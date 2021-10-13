@@ -158,14 +158,24 @@ MonoBehaviour:
   playerNumber: 2
   maxSpeed: 5
   currentSpeed: 0
-  timeToMax: 3
+  timeToMaxSpeed: 0
   boostTime: 1
   horizontalMoveSpeedMultiplier: 0.75
   minSpeed: 1
-  timeToMin: 1.5
-  jumpForce: 1
+  timeToMinSpeed: 0
   braking: 0
   speeding: 0
+  goLeft: 0
+  goRight: 0
+  maxJumpForce: 0
+  currentJumpForce: 0
+  timeToMaxJumpForce: 0
+  minJumpForce: 0
+  gravity: 0
+  jumpSpeedMult: 0
+  grounded: 0
+  chargingJump: 0
+  castDistance: 0.51
 --- !u!135 &145574813
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -468,14 +478,24 @@ MonoBehaviour:
   playerNumber: 4
   maxSpeed: 5
   currentSpeed: 0
-  timeToMax: 3
+  timeToMaxSpeed: 0
   boostTime: 1
   horizontalMoveSpeedMultiplier: 0.75
   minSpeed: 1
-  timeToMin: 1.5
-  jumpForce: 1
+  timeToMinSpeed: 0
   braking: 0
   speeding: 0
+  goLeft: 0
+  goRight: 0
+  maxJumpForce: 0
+  currentJumpForce: 0
+  timeToMaxJumpForce: 0
+  minJumpForce: 0
+  gravity: 0
+  jumpSpeedMult: 0
+  grounded: 0
+  chargingJump: 0
+  castDistance: 0.51
 --- !u!135 &721899213
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -686,14 +706,24 @@ MonoBehaviour:
   playerNumber: 1
   maxSpeed: 5
   currentSpeed: 0
-  timeToMax: 3
+  timeToMaxSpeed: 0
   boostTime: 1
   horizontalMoveSpeedMultiplier: 0.75
   minSpeed: 1
-  timeToMin: 1.5
-  jumpForce: 1
+  timeToMinSpeed: 0
   braking: 0
   speeding: 0
+  goLeft: 0
+  goRight: 0
+  maxJumpForce: 10
+  currentJumpForce: 0
+  timeToMaxJumpForce: 2
+  minJumpForce: 2
+  gravity: 9.8
+  jumpSpeedMult: 1.2
+  grounded: 0
+  chargingJump: 0
+  castDistance: 0.51
 --- !u!135 &1454794222
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -806,14 +836,24 @@ MonoBehaviour:
   playerNumber: 3
   maxSpeed: 5
   currentSpeed: 0
-  timeToMax: 3
+  timeToMaxSpeed: 0
   boostTime: 1
   horizontalMoveSpeedMultiplier: 0.75
   minSpeed: 1
-  timeToMin: 1.5
-  jumpForce: 1
+  timeToMinSpeed: 0
   braking: 0
   speeding: 0
+  goLeft: 0
+  goRight: 0
+  maxJumpForce: 0
+  currentJumpForce: 0
+  timeToMaxJumpForce: 0
+  minJumpForce: 0
+  gravity: 0
+  jumpSpeedMult: 0
+  grounded: 0
+  chargingJump: 0
+  castDistance: 0.51
 --- !u!135 &1854617319
 SphereCollider:
   m_ObjectHideFlags: 0

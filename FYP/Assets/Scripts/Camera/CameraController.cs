@@ -27,7 +27,10 @@ public class CameraController : MonoBehaviour
     private void CameraMove()
     {
         //follow furthest player
-        desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
+        if(eDist.furthestPlayer != null)
+        {
+            desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
+        }
         //zoom closest
         if (eDist.playerDifference > zoomDistance)
         {

@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Range(1, 4)] public int playerNumber;
-    public float maxSpeed, currentSpeed, timeToMax, boostTime, horizontalMoveSpeedMultiplier, minSpeed, timeToMin, jumpForce;
+    public float maxSpeed, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, minSpeed, timeToMinSpeed;
     public bool braking, speeding, goLeft, goRight;
+    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, gravity, jumpSpeedMult;
+    public bool grounded, chargingJump;
+    public float castDistance;
+    RaycastHit hit;
 
     private void Update()
     {
+        GroundCheck();
         PlayerInput();
         MoveCalculations();
     }
@@ -36,40 +41,53 @@ public class PlayerController : MonoBehaviour
     #region controls
     void Player1()
     {
-        float inputVertical = Input.GetAxis("Vertical1");
-        if(inputVertical > 0)
+        if (grounded)
         {
-            speeding = true;
-        }
-        else
-        {
-            speeding = false;
-        }
-        if(inputVertical < 0)
-        {
-            braking = true;
-        }
-        else
-        {
-            braking = false;
-        }
+            float inputVertical = Input.GetAxis("Vertical1");
+            if (inputVertical > 0)
+            {
+                speeding = true;
+            }
+            else
+            {
+                speeding = false;
+            }
+            if (inputVertical < 0)
+            {
+                braking = true;
+            }
+            else
+            {
+                braking = false;
+            }
 
-        float inputHorizontal = Input.GetAxis("Horizontal1");
-        if(inputHorizontal > 0)
-        {
-            goRight = true;
-        }
-        else
-        {
-            goRight = false;
-        }
-        if(inputHorizontal < 0)
-        {
-            goLeft = true;
-        }
-        else
-        {
-            goLeft = false;
+            float inputHorizontal = Input.GetAxis("Horizontal1");
+            if (inputHorizontal > 0)
+            {
+                goRight = true;
+            }
+            else
+            {
+                goRight = false;
+            }
+            if (inputHorizontal < 0)
+            {
+                goLeft = true;
+            }
+            else
+            {
+                goLeft = false;
+            }
+
+            if (Input.GetButton("Jump1"))
+            {
+                chargingJump = true;
+            }
+            else
+            {
+                chargingJump = false;
+                Jump();
+            }
         }
     }
 
@@ -111,6 +129,16 @@ public class PlayerController : MonoBehaviour
         {
             goLeft = false;
         }
+
+        if (Input.GetButton("Jump2"))
+        {
+            chargingJump = true;
+        }
+        else
+        {
+            chargingJump = false;
+            Jump();
+        }
     }
 
     void Player3()
@@ -150,6 +178,16 @@ public class PlayerController : MonoBehaviour
         else
         {
             goLeft = false;
+        }
+
+        if (Input.GetButton("Jump3"))
+        {
+            chargingJump = true;
+        }
+        else
+        {
+            chargingJump = false;
+            Jump();
         }
     }
 
@@ -191,37 +229,72 @@ public class PlayerController : MonoBehaviour
         {
             goLeft = false;
         }
+
+        if (Input.GetButton("Jump4"))
+        {
+            chargingJump = true;
+        }
+        else
+        {
+            chargingJump = false;
+            Jump();
+        }
     }
     #endregion
 
+    void GroundCheck()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, castDistance))
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
+    }
+
     void MoveCalculations()
     {
-        //accelerate
-        if(currentSpeed < maxSpeed && !braking)
+        Acceleration();
+        Braking();
+        MinMaxSpeed();
+        Movement();
+        Strafing();
+        ChargeJump();
+        Gravity();
+    }
+
+    void Acceleration()
+    {
+        if (currentSpeed < maxSpeed && !braking)
         {
             float accRate;
             if (!speeding)
             {
                 //3 secs till max
-                accRate = (maxSpeed / timeToMax) * Time.deltaTime;
+                accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
             }
             else
             {
                 //unless player inputVertical boosts rate
-                accRate = (maxSpeed / (timeToMax - boostTime)) * Time.deltaTime;
+                accRate = (maxSpeed / (timeToMaxSpeed - boostTime)) * Time.deltaTime;
             }
-            //faster
             currentSpeed += accRate;
         }
+    }
 
-        //brake
+    void Braking()
+    {
         if (braking)
         {
-            currentSpeed -= (maxSpeed / timeToMin) * Time.deltaTime;
+            currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
         }
+    }
 
-        //min/max speed
-        if(currentSpeed < minSpeed)
+    void MinMaxSpeed()
+    {
+        if (currentSpeed < minSpeed)
         {
             currentSpeed = minSpeed;
         }
@@ -229,11 +302,22 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed = maxSpeed;
         }
+    }
 
-        //move
-        transform.Translate(transform.forward * currentSpeed * Time.deltaTime);
+    void Movement()
+    {
+        if (grounded)
+        {
+            transform.Translate(transform.forward * currentSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(transform.forward * currentSpeed * Time.deltaTime * jumpSpeedMult);
+        }
+    }
 
-        //strafe
+    void Strafing()
+    {
         if (goRight)
         {
             transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime);
@@ -241,6 +325,51 @@ public class PlayerController : MonoBehaviour
         else if (goLeft)
         {
             transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * -1);
+        }
+    }
+
+    void ChargeJump()
+    {
+        float chargeRate = maxJumpForce / timeToMaxJumpForce * Time.deltaTime;
+        if (chargingJump)
+        {
+            currentJumpForce += chargeRate;
+            MinMaxJump();
+        }
+    }
+
+    void Jump()
+    {
+        transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
+    }
+
+    void Gravity()
+    {
+        if (!grounded && currentJumpForce > 0)
+        {
+            currentJumpForce -= gravity * Time.deltaTime;
+            transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
+        }
+        else if (!grounded && currentJumpForce <= 0)
+        {
+            currentJumpForce -= gravity * Time.deltaTime;
+            transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
+        }
+        else if(grounded && currentJumpForce < 0)
+        {
+            currentJumpForce = 0;
+        }
+    }
+
+    void MinMaxJump()
+    {
+        if(currentJumpForce < minJumpForce)
+        {
+            currentJumpForce = minJumpForce;
+        }
+        else if(currentJumpForce > maxJumpForce)
+        {
+            currentJumpForce = maxJumpForce;
         }
     }
 }
