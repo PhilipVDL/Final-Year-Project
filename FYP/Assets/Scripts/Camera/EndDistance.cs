@@ -5,8 +5,8 @@ using UnityEngine;
 public class EndDistance : MonoBehaviour
 {
     public GameObject[] players;
-    public GameObject closestPlayer, furthestPlayer;
-    public float closestDist, furthestDist, playerDifference;
+    public GameObject closestPlayer, furthestPlayer, leftestPlayer, rightestPlayer;
+    public float closestDist, furthestDist, playerDifference, leftDist, rightDist, horizontalDifference;
 
     private void Start()
     {
@@ -16,6 +16,7 @@ public class EndDistance : MonoBehaviour
     private void Update()
     {
         PlayerDistance();
+        HorizontalDIstance();
     }
 
     private void CountPlayers()
@@ -25,8 +26,6 @@ public class EndDistance : MonoBehaviour
 
     private void PlayerDistance()
     {
-        float[] dists = new float[players.Length];
-
         closestDist = 0;
         furthestDist = 0;
 
@@ -57,6 +56,37 @@ public class EndDistance : MonoBehaviour
             }
 
             playerDifference = furthestDist - closestDist;
+        }
+    }
+
+    private void HorizontalDIstance()
+    {
+        leftDist = 0;
+        rightDist = 0;
+
+        foreach(GameObject player in players)
+        {
+            float distance = player.transform.position.x;
+
+            if(leftDist == 0)
+            {
+                leftDist = distance;
+            }
+            else if(leftDist > distance)
+            {
+                leftDist = distance;
+            }
+
+            if(rightDist == 0)
+            {
+                rightDist = distance;
+            }
+            else if(rightDist < distance)
+            {
+                rightDist = distance;
+            }
+
+            horizontalDifference = rightDist - leftDist;
         }
     }
 }

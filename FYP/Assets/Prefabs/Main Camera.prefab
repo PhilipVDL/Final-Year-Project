@@ -98,7 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultHeight: 5
   followDist: 1.9
-  zoomDistance: 6.9
-  zoomScale: 0
+  verticalZoomDistance: 0
+  horizontalZoomDistance: 6
+  verticalZoomScale: 0
+  horizontalZoomScale: 0
   zoomScaleFactor: 1
   lerpSpeed: 0.05

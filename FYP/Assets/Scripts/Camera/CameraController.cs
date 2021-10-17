@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     //variables
     Vector3 desiredPos;
     public float defaultHeight;
-    public float followDist, zoomDistance, zoomScale, zoomScaleFactor;
+    public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor;
     public float lerpSpeed;
     
 
@@ -31,12 +31,21 @@ public class CameraController : MonoBehaviour
         {
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
         }
-        //zoom closest
-        if (eDist.playerDifference > zoomDistance)
+
+        //zoom
+        if (eDist.playerDifference > verticalZoomDistance || eDist.horizontalDifference > horizontalZoomDistance)
         {
-            zoomScale = eDist.playerDifference - zoomDistance;
-            //transform.Translate(Vector3.forward * -zoomScale * zoomScaleFactor);
-            desiredPos += (gameObject.transform.forward * -zoomScale * zoomScaleFactor);
+            verticalZoomScale = eDist.playerDifference - verticalZoomDistance;
+            horizontalZoomScale = eDist.horizontalDifference - horizontalZoomDistance;
+
+            if (verticalZoomScale > horizontalZoomScale)
+            {
+                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -1);
+            }
+            else if (verticalZoomScale < horizontalZoomScale)
+            {
+                desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -1);
+            }
         }
 
         //lerp
