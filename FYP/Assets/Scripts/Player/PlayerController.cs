@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool jumpControlled;
     [Range(1, 4)] public int playerNumber;
     public float maxSpeed, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, minSpeed, timeToMinSpeed;
     public bool braking, speeding, goLeft, goRight;
@@ -21,6 +22,16 @@ public class PlayerController : MonoBehaviour
 
     void PlayerInput()
     {
+        if (jumpControlled)
+        {
+            ControlsControlledJump(playerNumber);
+        }
+        else
+        {
+            ControlsUncontrolledJump(playerNumber);
+        }
+
+        /*
         switch (playerNumber)
         {
             case 1:
@@ -36,14 +47,15 @@ public class PlayerController : MonoBehaviour
                 Player4();
                 break;
         }
+        */
     }
 
     #region controls
-    void Player1()
+    void ControlsUncontrolledJump(int playerNumber)
     {
         if (grounded)
         {
-            float inputVertical = Input.GetAxis("Vertical1");
+            float inputVertical = Input.GetAxis("Vertical" + playerNumber);
             if (inputVertical > 0)
             {
                 speeding = true;
@@ -61,7 +73,7 @@ public class PlayerController : MonoBehaviour
                 braking = false;
             }
 
-            float inputHorizontal = Input.GetAxis("Horizontal1");
+            float inputHorizontal = Input.GetAxis("Horizontal" + playerNumber);
             if (inputHorizontal > 0)
             {
                 goRight = true;
@@ -78,59 +90,9 @@ public class PlayerController : MonoBehaviour
             {
                 goLeft = false;
             }
-
-            if (Input.GetButton("Jump1"))
-            {
-                chargingJump = true;
-            }
-            else
-            {
-                chargingJump = false;
-                Jump();
-            }
-        }
-    }
-
-    void Player2()
-    {
-        float inputVertical = Input.GetAxis("Vertical2");
-        if (inputVertical > 0)
-        {
-            speeding = true;
-        }
-        else
-        {
-            speeding = false;
         }
 
-        if (inputVertical < 0)
-        {
-            braking = true;
-        }
-        else
-        {
-            braking = false;
-        }
-
-        float inputHorizontal = Input.GetAxis("Horizontal2");
-        if (inputHorizontal > 0)
-        {
-            goRight = true;
-        }
-        else
-        {
-            goRight = false;
-        }
-        if (inputHorizontal < 0)
-        {
-            goLeft = true;
-        }
-        else
-        {
-            goLeft = false;
-        }
-
-        if (Input.GetButton("Jump2"))
+        if (Input.GetButton("Jump" +playerNumber) && grounded)
         {
             chargingJump = true;
         }
@@ -141,9 +103,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Player3()
+    void ControlsControlledJump(int playerNumber)
     {
-        float inputVertical = Input.GetAxis("Vertical3");
+        float inputVertical = Input.GetAxis("Vertical" + playerNumber);
         if (inputVertical > 0)
         {
             speeding = true;
@@ -152,7 +114,6 @@ public class PlayerController : MonoBehaviour
         {
             speeding = false;
         }
-
         if (inputVertical < 0)
         {
             braking = true;
@@ -162,7 +123,7 @@ public class PlayerController : MonoBehaviour
             braking = false;
         }
 
-        float inputHorizontal = Input.GetAxis("Horizontal3");
+        float inputHorizontal = Input.GetAxis("Horizontal" + playerNumber);
         if (inputHorizontal > 0)
         {
             goRight = true;
@@ -180,57 +141,8 @@ public class PlayerController : MonoBehaviour
             goLeft = false;
         }
 
-        if (Input.GetButton("Jump3"))
-        {
-            chargingJump = true;
-        }
-        else
-        {
-            chargingJump = false;
-            Jump();
-        }
-    }
 
-    void Player4()
-    {
-        float inputVertical = Input.GetAxis("Vertical4");
-        if (inputVertical > 0)
-        {
-            speeding = true;
-        }
-        else
-        {
-            speeding = false;
-        }
-
-        if (inputVertical < 0)
-        {
-            braking = true;
-        }
-        else
-        {
-            braking = false;
-        }
-
-        float inputHorizontal = Input.GetAxis("Horizontal4");
-        if (inputHorizontal > 0)
-        {
-            goRight = true;
-        }
-        else
-        {
-            goRight = false;
-        }
-        if (inputHorizontal < 0)
-        {
-            goLeft = true;
-        }
-        else
-        {
-            goLeft = false;
-        }
-
-        if (Input.GetButton("Jump4"))
+        if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
         }
