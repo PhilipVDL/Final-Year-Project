@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06dc1033486b9249bba063a603bd92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpControlled: 0
   playerNumber: 1
   maxSpeed: 5
   currentSpeed: 0
@@ -127,6 +128,7 @@ MonoBehaviour:
   minJumpForce: 2
   gravity: 9.8
   jumpSpeedMult: 1.2
+  jumpControlMult: 1
   grounded: 0
   chargingJump: 0
   castDistance: 0.51
