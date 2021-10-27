@@ -12,12 +12,17 @@ public class PlayerController : MonoBehaviour
     public bool grounded, chargingJump;
     public float castDistance;
     RaycastHit hit;
+    public float deathHeight;
+    public bool doesRespawn;
+    public GameObject currentSpawn;
+    private int currentSpawnNumber;
 
     private void Update()
     {
         GroundCheck();
         PlayerInput();
         MoveCalculations();
+        Respawn();
     }
 
     void PlayerInput()
@@ -279,6 +284,38 @@ public class PlayerController : MonoBehaviour
         else if(currentJumpForce > maxJumpForce)
         {
             currentJumpForce = maxJumpForce;
+        }
+    }
+
+    void Respawn()
+    {
+        if(currentSpawn == null && doesRespawn)
+        {
+            //set to start spawn if no spawn
+            currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
+        }
+
+        //check if past next spawn checkpoint
+        GameObject nextSpawn = null;
+        if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
+        {
+            nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
+
+            if (transform.position.z >= nextSpawn.transform.position.z)
+            {
+                currentSpawn = nextSpawn;
+                currentSpawnNumber++;
+            }
+        }
+
+
+        if (transform.position.y < deathHeight && !doesRespawn)
+        {
+            Destroy(gameObject);
+        }
+        else if (transform.position.y < deathHeight && doesRespawn)
+        {
+            transform.position = currentSpawn.transform.position;
         }
     }
 }
