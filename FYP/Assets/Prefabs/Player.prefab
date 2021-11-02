@@ -109,14 +109,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06dc1033486b9249bba063a603bd92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpControlled: 0
   playerNumber: 1
-  maxSpeed: 5
+  maxSpeed: 10
   currentSpeed: 0
-  timeToMaxSpeed: 0
+  timeToMaxSpeed: 3
   boostTime: 1
   horizontalMoveSpeedMultiplier: 0.75
-  minSpeed: 1
-  timeToMinSpeed: 0
+  minSpeed: 5
+  timeToMinSpeed: 1.5
   braking: 0
   speeding: 0
   goLeft: 0
@@ -127,6 +128,10 @@ MonoBehaviour:
   minJumpForce: 2
   gravity: 9.8
   jumpSpeedMult: 1.2
+  jumpControlMult: 1
   grounded: 0
   chargingJump: 0
   castDistance: 0.51
+  deathHeight: -20
+  doesRespawn: 0
+  currentSpawn: {fileID: 0}

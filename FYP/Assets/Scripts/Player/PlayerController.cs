@@ -8,16 +8,21 @@ public class PlayerController : MonoBehaviour
     [Range(1, 4)] public int playerNumber;
     public float maxSpeed, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, minSpeed, timeToMinSpeed;
     public bool braking, speeding, goLeft, goRight;
-    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, gravity, jumpSpeedMult;
+    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, gravity, jumpSpeedMult, jumpControlMult;
     public bool grounded, chargingJump;
     public float castDistance;
     RaycastHit hit;
+    public float deathHeight;
+    public bool doesRespawn;
+    public GameObject currentSpawn;
+    private int currentSpawnNumber;
 
     private void Update()
     {
         GroundCheck();
         PlayerInput();
         MoveCalculations();
+        Respawn();
     }
 
     void PlayerInput()
@@ -30,24 +35,6 @@ public class PlayerController : MonoBehaviour
         {
             ControlsUncontrolledJump(playerNumber);
         }
-
-        /*
-        switch (playerNumber)
-        {
-            case 1:
-                Player1();
-                break;
-            case 2:
-                Player2();
-                break;
-            case 3:
-                Player3();
-                break;
-            case 4:
-                Player4();
-                break;
-        }
-        */
     }
 
     #region controls
@@ -230,14 +217,29 @@ public class PlayerController : MonoBehaviour
 
     void Strafing()
     {
-        if (goRight)
+        if (grounded)
         {
-            transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime);
+            if (goRight)
+            {
+                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime);
+            }
+            else if (goLeft)
+            {
+                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * -1);
+            }
         }
-        else if (goLeft)
+        else
         {
-            transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * -1);
+            if (goRight)
+            {
+                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * jumpControlMult);
+            }
+            else if (goLeft)
+            {
+                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * jumpControlMult * -1);
+            }
         }
+        
     }
 
     void ChargeJump()
@@ -282,6 +284,38 @@ public class PlayerController : MonoBehaviour
         else if(currentJumpForce > maxJumpForce)
         {
             currentJumpForce = maxJumpForce;
+        }
+    }
+
+    void Respawn()
+    {
+        if(currentSpawn == null && doesRespawn)
+        {
+            //set to start spawn if no spawn
+            currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
+        }
+
+        //check if past next spawn checkpoint
+        GameObject nextSpawn = null;
+        if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
+        {
+            nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
+
+            if (transform.position.z >= nextSpawn.transform.position.z)
+            {
+                currentSpawn = nextSpawn;
+                currentSpawnNumber++;
+            }
+        }
+
+
+        if (transform.position.y < deathHeight && !doesRespawn)
+        {
+            Destroy(gameObject);
+        }
+        else if (transform.position.y < deathHeight && doesRespawn)
+        {
+            transform.position = currentSpawn.transform.position;
         }
     }
 }

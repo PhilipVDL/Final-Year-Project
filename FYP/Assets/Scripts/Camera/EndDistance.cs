@@ -8,13 +8,9 @@ public class EndDistance : MonoBehaviour
     public GameObject closestPlayer, furthestPlayer, leftestPlayer, rightestPlayer;
     public float closestDist, furthestDist, playerDifference, leftDist, rightDist, horizontalDifference;
 
-    private void Start()
-    {
-        CountPlayers();
-    }
-
     private void Update()
     {
+        CountPlayers();
         PlayerDistance();
         HorizontalDIstance();
     }
