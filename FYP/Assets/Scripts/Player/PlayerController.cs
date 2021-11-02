@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         StrafingMax();
-        StrafingDamping();
+        //StrafingDamping();
     }
 
     void StrafingMax()
