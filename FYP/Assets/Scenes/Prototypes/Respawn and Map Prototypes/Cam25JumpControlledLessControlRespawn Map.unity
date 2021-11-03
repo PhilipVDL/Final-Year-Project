@@ -756,6 +756,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: followDist
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: defaultHeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: verticalZoomMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: zoomScaleFactor
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> 939c1f0 (Elimination when off camera 1.0)
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f45213948c60245a9de33488e537df, type: 3}
 --- !u!1 &1198542171 stripped

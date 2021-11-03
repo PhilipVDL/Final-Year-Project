@@ -5,12 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     //components
-    EndDistance eDist;
+   public EndDistance eDist;
 
     //variables
     Vector3 desiredPos;
     public float defaultHeight;
-    public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor;
+    public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax;
     public float lerpSpeed;
     
 
@@ -27,9 +27,33 @@ public class CameraController : MonoBehaviour
     private void CameraMove()
     {
         //follow furthest player
-        if(eDist.furthestPlayer != null)
+        if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax)
+        {
+            
+            desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist );
+        }
+        else if (eDist.playerDifference > ZoomMax)
         {
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
+        }
+            
+        //elimination zoom
+         if(eDist.playerDifference >= 10)
+        {
+            zoomScaleFactor -= .1f * Time.deltaTime;
+        }
+        else if (eDist.playerDifference >= 12)
+        {
+            zoomScaleFactor -= .2f * Time.deltaTime;
+        }
+        else if(eDist.playerDifference <= 10)
+        {
+            zoomScaleFactor = 1;
+        }
+
+         if(eDist.players.Length == 1)
+        {
+            followDist = 7;
         }
 
         //zoom
@@ -47,8 +71,11 @@ public class CameraController : MonoBehaviour
                 desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -1);
             }
         }
+       
 
         //lerp
+
         transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
+        
     }
 }
