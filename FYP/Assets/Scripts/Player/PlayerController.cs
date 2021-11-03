@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [Range(1, 4)] public int playerNumber;
     public float maxSpeed, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, minSpeed, timeToMinSpeed;
     public bool braking, speeding, goLeft, goRight;
-    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, gravity, jumpSpeedMult, jumpControlMult;
+    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, gravity, jumpSpeedMult, jumpControlMult, elimCount;
     public bool grounded, chargingJump;
     public float castDistance;
     RaycastHit hit;
@@ -318,4 +318,16 @@ public class PlayerController : MonoBehaviour
             transform.position = currentSpawn.transform.position;
         }
     }
+
+    void OnBecameInvisible()
+    {
+        elimCount--;
+        if (elimCount <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    
+
 }
