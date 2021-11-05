@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CameraMove();
     }

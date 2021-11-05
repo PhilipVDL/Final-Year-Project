@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    Rigidbody rb;
     public bool jumpControlled;
     [Range(1, 4)] public int playerNumber;
-    public float maxSpeed, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, minSpeed, timeToMinSpeed;
-    public bool braking, speeding, goLeft, goRight;
-    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, gravity, jumpSpeedMult, jumpControlMult;
+    public float maxSpeed, maxVelocity, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, hDamp, minSpeed, timeToMinSpeed;
+    private bool braking, speeding, goLeft, goRight;
+    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, jumpSpeedMult, jumpControlMult;
     public bool grounded, chargingJump;
     public float castDistance;
     RaycastHit hit;
@@ -16,6 +17,11 @@ public class PlayerController : MonoBehaviour
     public bool doesRespawn;
     public GameObject currentSpawn;
     private int currentSpawnNumber;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
@@ -83,7 +89,8 @@ public class PlayerController : MonoBehaviour
         {
             chargingJump = true;
         }
-        else
+
+        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
         {
             chargingJump = false;
             Jump();
@@ -128,12 +135,19 @@ public class PlayerController : MonoBehaviour
             goLeft = false;
         }
 
+        if(!goRight && !goLeft)
+        {
+            StrafingDamping();
+            Debug.Log(playerNumber + ": " + "damping");
+        }
+
 
         if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
         }
-        else
+
+        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
         {
             chargingJump = false;
             Jump();
@@ -161,7 +175,6 @@ public class PlayerController : MonoBehaviour
         Movement();
         Strafing();
         ChargeJump();
-        Gravity();
     }
 
     void Acceleration()
@@ -205,6 +218,8 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        //translate
+        /*
         if (grounded)
         {
             transform.Translate(transform.forward * currentSpeed * Time.deltaTime);
@@ -213,10 +228,46 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(transform.forward * currentSpeed * Time.deltaTime * jumpSpeedMult);
         }
+        */
+
+        //rigidbody
+        if (grounded)
+        {
+            //move normal
+            rb.AddForce((transform.forward * currentSpeed));
+        }
+        else
+        {
+            //move air
+            rb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
+        }
+        MovementMax();
+    }
+
+    void MovementMax()
+    {
+        if (grounded)
+        {
+            if (rb.velocity.z > maxVelocity)
+            {
+                float brakeMag = rb.velocity.z - maxVelocity;
+                rb.AddForce(transform.forward * brakeMag * -1);
+            }
+        }
+        else
+        {
+            if (rb.velocity.z > (maxVelocity * jumpSpeedMult))
+            {
+                float brakeMag = rb.velocity.z - (maxVelocity * jumpSpeedMult);
+                rb.AddForce(transform.forward * brakeMag * -1);
+            }
+        }
     }
 
     void Strafing()
     {
+        //translate
+        /*
         if (grounded)
         {
             if (goRight)
@@ -239,7 +290,75 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * jumpControlMult * -1);
             }
         }
-        
+        */
+
+        //rigidbody
+        if (grounded)
+        {
+            if (goRight)
+            {
+                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+            }
+            else if (goLeft)
+            {
+                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+            }
+        }
+        else
+        {
+            if (goRight)
+            {
+                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult);
+            }
+            else if (goLeft)
+            {
+                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+            }
+        }
+        StrafingMax();
+        //StrafingDamping();
+    }
+
+    void StrafingMax()
+    {
+        if (grounded)
+        {
+            if (Mathf.Abs(rb.velocity.x) > (maxVelocity * horizontalMoveSpeedMultiplier))
+            {
+                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxVelocity * horizontalMoveSpeedMultiplier);
+                if (goRight)
+                {
+                    rb.AddForce(transform.right * brakeMag * -1);
+                }
+                else if (goLeft)
+                {
+                    rb.AddForce(transform.right * brakeMag);
+                }
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(rb.velocity.x) > (maxVelocity * horizontalMoveSpeedMultiplier * jumpSpeedMult))
+            {
+                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxVelocity * horizontalMoveSpeedMultiplier * jumpSpeedMult);
+                if (goRight)
+                {
+                    rb.AddForce(transform.right * brakeMag * -1);
+                }
+                else if (goLeft)
+                {
+                    rb.AddForce(transform.right * brakeMag);
+                }
+            }
+        }
+    }
+
+    void StrafingDamping()
+    {
+        //damp horizontal movement
+        float dampX = Mathf.Lerp(rb.velocity.x, 0, hDamp);
+        Vector3 dampedVelocity = new Vector3(dampX, rb.velocity.y, rb.velocity.z);
+        rb.velocity = dampedVelocity;
     }
 
     void ChargeJump()
@@ -252,39 +371,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Jump()
-    {
-        transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
-    }
-
-    void Gravity()
-    {
-        if (!grounded && currentJumpForce > 0)
-        {
-            currentJumpForce -= gravity * Time.deltaTime;
-            transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
-        }
-        else if (!grounded && currentJumpForce <= 0)
-        {
-            currentJumpForce -= gravity * Time.deltaTime;
-            transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
-        }
-        else if(grounded && currentJumpForce < 0)
-        {
-            currentJumpForce = 0;
-        }
-    }
-
     void MinMaxJump()
     {
-        if(currentJumpForce < minJumpForce)
+        if (currentJumpForce < minJumpForce)
         {
             currentJumpForce = minJumpForce;
         }
-        else if(currentJumpForce > maxJumpForce)
+        else if (currentJumpForce > maxJumpForce)
         {
             currentJumpForce = maxJumpForce;
         }
+    }
+
+    void Jump()
+    {
+        //translate
+        //transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
+
+        //rigibody
+        rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
+        currentJumpForce = 0;
     }
 
     void Respawn()
