@@ -704,6 +704,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152698, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152698, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152698, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.6723943
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152698, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.5539694
+      objectReference: {fileID: 0}
     - target: {fileID: 2939693221504152699, guid: e6f45213948c60245a9de33488e537df, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -740,6 +756,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: followDist
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: defaultHeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: verticalZoomMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
+      propertyPath: zoomScaleFactor
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> 939c1f0 (Elimination when off camera 1.0)
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f45213948c60245a9de33488e537df, type: 3}
 --- !u!1 &1198542171 stripped
@@ -1228,6 +1267,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: doesRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: jumpControlled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: jumpControlMult
+      value: 0.5
+      objectReference: {fileID: 0}
+=======
+>>>>>>> main
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Name
       value: Player 1
