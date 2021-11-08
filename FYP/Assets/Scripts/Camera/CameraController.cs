@@ -46,12 +46,12 @@ public class CameraController : MonoBehaviour
         //elimination zoom
          if(eDist.playerDifference >= maxDistance)
         {
-            followDist -= 2 * Time.deltaTime;
+            followDist -= 3 * Time.deltaTime;
             verticalZoomScale = 0;
         }
         else if (eDist.playerDifference >= maxDistance + 3)
         {
-            followDist -= 4 * Time.deltaTime;
+            followDist -= 6 * Time.deltaTime;
             verticalZoomScale = 0;
         }
         else if(eDist.playerDifference <= 10)
