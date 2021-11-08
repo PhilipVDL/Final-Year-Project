@@ -52,6 +52,7 @@ public class EndDistance : MonoBehaviour
             }
 
             playerDifference = furthestDist - closestDist;
+            print(distance);
         }
     }
 
