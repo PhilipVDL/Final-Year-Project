@@ -427,10 +427,9 @@ public class PlayerController : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        elimCount--;
-        if (elimCount <= 0)
-        {
+       
+        
             Destroy(this.gameObject);
-        }
+        
     }
 }

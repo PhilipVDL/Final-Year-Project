@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     //variables
     Vector3 desiredPos;
     public float defaultHeight;
-    public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax;
+    public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax, maxDistance;
     public float lerpSpeed;
     
 
@@ -36,19 +36,33 @@ public class CameraController : MonoBehaviour
         {
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
         }
-            
-        //elimination zoom
-         if(eDist.playerDifference >= 10)
+        //Slope movement
+
+        if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
         {
-            zoomScaleFactor -= .1f * Time.deltaTime;
+            defaultHeight = eDist.closestPlayer.transform.position.y + 12;
         }
-        else if (eDist.playerDifference >= 12)
+      
+        //elimination zoom
+         if(eDist.playerDifference >= maxDistance)
         {
-            zoomScaleFactor -= .2f * Time.deltaTime;
+            followDist -= 3 * Time.deltaTime;
+            verticalZoomScale = 0;
+        }
+        else if (eDist.playerDifference >= maxDistance + 3)
+        {
+            followDist -= 6 * Time.deltaTime;
+            verticalZoomScale = 0;
         }
         else if(eDist.playerDifference <= 10)
         {
             zoomScaleFactor = 1;
+        }
+
+         if(followDist <= 3 && eDist.players.Length > 1)
+        {
+            Destroy(eDist.furthestPlayer);
+            followDist = 8;
         }
 
          if(eDist.players.Length == 1)
@@ -64,7 +78,7 @@ public class CameraController : MonoBehaviour
 
             if (verticalZoomScale > horizontalZoomScale)
             {
-                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -1);
+                //desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -1);
             }
             else if (verticalZoomScale < horizontalZoomScale)
             {
