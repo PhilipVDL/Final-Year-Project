@@ -143,9 +143,10 @@ MonoBehaviour:
   minJumpForce: 10
   jumpSpeedMult: 1.2
   jumpControlMult: 0.5
+  elimCount: 0
   grounded: 0
   chargingJump: 0
   castDistance: 0.51
-  deathHeight: -20
+  deathHeight: -10
   doesRespawn: 1
   currentSpawn: {fileID: 0}
