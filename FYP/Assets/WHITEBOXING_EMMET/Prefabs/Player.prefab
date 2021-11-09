@@ -147,6 +147,6 @@ MonoBehaviour:
   grounded: 0
   chargingJump: 0
   castDistance: 0.51
-  deathHeight: -10
+  deathHeight: -25
   doesRespawn: 1
   currentSpawn: {fileID: 0}
