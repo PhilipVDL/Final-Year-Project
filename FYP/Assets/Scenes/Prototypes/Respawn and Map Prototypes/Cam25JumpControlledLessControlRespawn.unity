@@ -466,19 +466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-=======
-      value: -1.849
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.06
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_LocalRotation.x
@@ -513,45 +505,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-<<<<<<< Updated upstream
       propertyPath: playerNumber
       value: 4
-=======
-      propertyPath: deathHeight
-      value: -150.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: doesRespawn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: minJumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: playerNumber
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: jumpControlled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: jumpControlMult
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: timeToMaxJumpForce
-      value: 0.5
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Name
       value: Player 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
@@ -859,11 +818,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.66
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 733
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1243,32 +1202,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
-      propertyPath: ZoomMax
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
-      propertyPath: lerpSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
       propertyPath: followDist
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
-      propertyPath: maxDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
-      propertyPath: defaultHeight
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
-      propertyPath: verticalZoomDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939693221504152700, guid: e6f45213948c60245a9de33488e537df, type: 3}
-      propertyPath: horizontalZoomDistance
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f45213948c60245a9de33488e537df, type: 3}
@@ -1285,7 +1220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.38
+      value: 7.7782393
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1332,17 +1267,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-<<<<<<< Updated upstream
-=======
-      propertyPath: deathHeight
-      value: -150.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: doesRespawn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
->>>>>>> Stashed changes
       propertyPath: playerNumber
       value: 2
       objectReference: {fileID: 0}
@@ -1777,7 +1701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7575713425740896101, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 552
+      value: 552.4108
       objectReference: {fileID: 0}
     - target: {fileID: -7575713425740896101, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1785,7 +1709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7575713425740896101, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 128
+      value: -0.00003433228
       objectReference: {fileID: 0}
     - target: {fileID: -7276689732361826530, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
       propertyPath: m_LocalScale.x
@@ -1902,10 +1826,6 @@ PrefabInstance:
     - target: {fileID: -515970173881795798, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 496588809085960997, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 555049061294793207, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
       propertyPath: m_LocalScale.x
@@ -2289,33 +2209,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: deathHeight
-      value: -150.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: doesRespawn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: playerNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: jumpControlled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: jumpControlMult
-      value: 0.5
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -2468,17 +2361,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-<<<<<<< Updated upstream
-=======
-      propertyPath: deathHeight
-      value: -150.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-      propertyPath: doesRespawn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
->>>>>>> Stashed changes
       propertyPath: playerNumber
       value: 3
       objectReference: {fileID: 0}
