@@ -49,14 +49,14 @@ public class CameraController : MonoBehaviour
             followDist -= 2 * Time.deltaTime;
             verticalZoomScale = 0;
         }
-        else if (eDist.playerDifference >= maxDistance + 3)
+         if (eDist.playerDifference >= maxDistance + 3)
         {
-            followDist -= 4 * Time.deltaTime;
+            followDist -= 150 * Time.deltaTime;
             verticalZoomScale = 0;
         }
-        else if(eDist.playerDifference <= 10)
+       if(eDist.playerDifference >= maxDistance + 15)
         {
-            zoomScaleFactor = 1;
+            Destroy(eDist.furthestPlayer);
         }
 
          if(followDist <= 3 && eDist.players.Length > 1)

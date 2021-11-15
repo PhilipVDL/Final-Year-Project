@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool doesRespawn;
     public GameObject currentSpawn;
     private int currentSpawnNumber;
+
+   
 
     private void Start()
     {
@@ -363,7 +366,7 @@ public class PlayerController : MonoBehaviour
 
     void ChargeJump()
     {
-        float chargeRate = maxJumpForce / timeToMaxJumpForce * Time.deltaTime;
+        float chargeRate = 15 * Time.deltaTime;
         if (chargingJump)
         {
             currentJumpForce += chargeRate;
@@ -392,6 +395,8 @@ public class PlayerController : MonoBehaviour
         //rigibody
         rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         currentJumpForce = 0;
+
+        
     }
 
     void Respawn()
@@ -428,8 +433,8 @@ public class PlayerController : MonoBehaviour
 
     void OnBecameInvisible()
     {
-       
-        
+
+         new WaitForSeconds(3);
             Destroy(this.gameObject);
         
     }
