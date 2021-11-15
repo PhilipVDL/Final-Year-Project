@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         if(!goRight && !goLeft)
         {
             StrafingDamping();
-            Debug.Log(playerNumber + ": " + "damping");
+            //Debug.Log(playerNumber + ": " + "damping");
         }
 
 
