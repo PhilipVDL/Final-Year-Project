@@ -5,6 +5,7 @@ using UnityEngine;
 public class WinState : MonoBehaviour
 {
     FinishLine finish;
+    PlayerCustoms customs;
     public GameObject player;
     public Transform[] spawns;
 
@@ -19,6 +20,7 @@ public class WinState : MonoBehaviour
     private void Start()
     {
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
+        customs = GameObject.Find("Player Customs").GetComponent<PlayerCustoms>();
     }
 
     private void Update()
@@ -62,6 +64,7 @@ public class WinState : MonoBehaviour
         {
             GameObject thisPlayer = Instantiate(player, spawns[i - 1].position, Quaternion.identity);
             thisPlayer.GetComponent<PlayerController>().playerNumber = i;
+            thisPlayer.GetComponent<Renderer>().material = customs.SetMaterial(i);
         }
     }
 }
