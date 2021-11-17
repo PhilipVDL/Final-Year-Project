@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
@@ -22,6 +23,13 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         CameraMove();
+    }
+
+    private IEnumerator DeathCount()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(eDist.furthestPlayer);
+        
     }
 
     private void CameraMove()
@@ -51,18 +59,20 @@ public class CameraController : MonoBehaviour
         }
          if (eDist.playerDifference >= maxDistance + 3)
         {
-            followDist -= 150 * Time.deltaTime;
+           //followDist -= 150 * Time.deltaTime;
             verticalZoomScale = 0;
         }
-       if(eDist.playerDifference >= maxDistance + 15)
+       if(eDist.playerDifference >= maxDistance + 15 && eDist.players.Length > 1)
         {
-            Destroy(eDist.furthestPlayer);
+            StartCoroutine(DeathCount());
+            
         }
+        
 
          if(followDist <= 3 && eDist.players.Length > 1)
         {
-            Destroy(eDist.furthestPlayer);
-            followDist = 8;
+           // Destroy(eDist.furthestPlayer);
+            //followDist = 8;
         }
 
          if(eDist.players.Length == 1)
@@ -92,4 +102,6 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
         
     }
+
+    
 }
