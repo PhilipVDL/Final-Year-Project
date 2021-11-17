@@ -4376,11 +4376,10 @@ MonoBehaviour:
   - {fileID: 1456292478}
   - {fileID: 762391414}
   - {fileID: 566924955}
-  p1Score: 0
-  p2Score: 0
-  p3Score: 0
-  p4Score: 0
+  scores: 00000000000000000000000000000000
   targetScore: 20
+  win: 0
+  winnerNumber: 0
   currentRound: 1
   endRound: 0
 --- !u!1001 &8331225724391396183
