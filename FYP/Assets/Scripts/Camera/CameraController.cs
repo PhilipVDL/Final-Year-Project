@@ -27,8 +27,14 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator DeathCount()
     {
-        yield return new WaitForSeconds(2);
-        Destroy(eDist.furthestPlayer);
+        yield return new WaitForSeconds(3);
+        if (eDist.playerDifference > maxDistance)
+        {
+            Destroy(eDist.furthestPlayer);
+            followDist = 7;
+        }
+        yield return new WaitForSeconds(3);
+        
         
     }
 
@@ -44,29 +50,30 @@ public class CameraController : MonoBehaviour
         {
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
         }
+        else if(eDist.players.Length == 1)
+        {
+            desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+        }
         //Slope movement
 
         if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
         {
-            defaultHeight = eDist.closestPlayer.transform.position.y + 12;
+            defaultHeight = eDist.closestPlayer.transform.position.y + 10;
         }
       
         //elimination zoom
-         if(eDist.playerDifference >= maxDistance)
+         if(eDist.playerDifference >= maxDistance - 5)
         {
             followDist -= 2 * Time.deltaTime;
-            verticalZoomScale = 0;
+           // zoomScaleFactor = 0;
         }
-         if (eDist.playerDifference >= maxDistance + 3)
-        {
-           //followDist -= 150 * Time.deltaTime;
-            verticalZoomScale = 0;
-        }
-       if(eDist.playerDifference >= maxDistance + 15 && eDist.players.Length > 1)
+        
+       if(eDist.playerDifference >= maxDistance  && eDist.players.Length > 1)
         {
             StartCoroutine(DeathCount());
-            
+            StopCoroutine(DeathCount());
         }
+        
         
 
          if(followDist <= 3 && eDist.players.Length > 1)
@@ -88,7 +95,7 @@ public class CameraController : MonoBehaviour
 
             if (verticalZoomScale > horizontalZoomScale)
             {
-                //desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -1);
+                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -.5f);
             }
             else if (verticalZoomScale < horizontalZoomScale)
             {
