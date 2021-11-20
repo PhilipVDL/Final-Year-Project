@@ -68,7 +68,10 @@ public class WinState : MonoBehaviour
         {
             GameObject thisPlayer = Instantiate(player, spawns[i - 1].position, Quaternion.identity);
             thisPlayer.GetComponent<PlayerController>().playerNumber = i;
-            thisPlayer.GetComponent<Renderer>().material = customs.SetMaterial(i);
+            GameObject skin = thisPlayer.transform.GetChild(0).gameObject;
+            skin.GetComponent<Renderer>().material = customs.SetMaterial(i);
+            skin.GetComponent<MeshFilter>().mesh = customs.SetMesh(i);
+            skin.transform.localScale = customs.SetScale(i);
         }
     }
 }
