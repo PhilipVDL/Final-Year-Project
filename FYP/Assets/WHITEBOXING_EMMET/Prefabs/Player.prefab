@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpBar: {fileID: 3552196969478120846}
+  jumpBarObj: {fileID: 6651729609399520803}
+  currentFill: 0
 --- !u!1 &6651729609399520803
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06dc1033486b9249bba063a603bd92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoForward: 1
   jumpControlled: 1
   playerNumber: 1
   maxSpeed: 10
@@ -492,13 +495,14 @@ MonoBehaviour:
   timeToMaxSpeed: 3
   boostTime: 1
   horizontalMoveSpeedMultiplier: 0.75
+  horizontalMoveSpeedMin: 1
   hDamp: 0.05
   minSpeed: 5
   timeToMinSpeed: 1.5
   maxJumpForce: 25
   currentJumpForce: 0
-  timeToMaxJumpForce: 3
-  minJumpForce: 0
+  timeToMaxJumpForce: 1.5
+  minJumpForce: 5
   jumpSpeedMult: 1.2
   jumpControlMult: 0.5
   elimCount: 0
