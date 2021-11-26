@@ -6,9 +6,10 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
+    public bool autoForward;
     public bool jumpControlled;
     [Range(1, 4)] public int playerNumber;
-    public float maxSpeed, maxVelocity, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, hDamp, minSpeed, timeToMinSpeed;
+    public float maxSpeed, maxVelocity, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, horizontalMoveSpeedMin, hDamp, minSpeed, timeToMinSpeed;
     private bool braking, speeding, goLeft, goRight;
     public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, jumpSpeedMult, jumpControlMult, elimCount;
     public bool grounded, chargingJump;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject currentSpawn;
     private int currentSpawnNumber;
 
-   
+
 
     private void Start()
     {
@@ -88,9 +89,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Jump" +playerNumber) && grounded)
+        if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
+        }
+
+        if(chargingJump && !grounded)
+        {
+            chargingJump = false;
+            currentJumpForce = 0;
         }
 
         if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
@@ -138,16 +145,21 @@ public class PlayerController : MonoBehaviour
             goLeft = false;
         }
 
-        if(!goRight && !goLeft)
+        if (!goRight && !goLeft)
         {
             StrafingDamping();
-            //Debug.Log(playerNumber + ": " + "damping");
         }
 
 
         if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
+        }
+
+        if (chargingJump && !grounded)
+        {
+            chargingJump = false;
+            currentJumpForce = 0;
         }
 
         if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
@@ -182,21 +194,40 @@ public class PlayerController : MonoBehaviour
 
     void Acceleration()
     {
-        if (currentSpeed < maxSpeed && !braking)
+        if (autoForward)
         {
-            float accRate;
-            if (!speeding)
+            //always forward
+            if (currentSpeed < maxSpeed && !braking)
             {
-                //3 secs till max
-                accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
+                float accRate;
+                if (!speeding)
+                {
+                    //3 secs till max
+                    accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
+                }
+                else
+                {
+                    //unless player inputVertical boosts rate
+                    accRate = (maxSpeed / (timeToMaxSpeed - boostTime)) * Time.deltaTime;
+                }
+                currentSpeed += accRate;
+            }
+        }
+        else
+        {
+            //forward to move
+            float accRate;
+            accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
+            if (speeding)
+            {
+                currentSpeed += accRate;
             }
             else
             {
-                //unless player inputVertical boosts rate
-                accRate = (maxSpeed / (timeToMaxSpeed - boostTime)) * Time.deltaTime;
+                currentSpeed -= accRate;
             }
-            currentSpeed += accRate;
         }
+
     }
 
     void Braking()
@@ -221,18 +252,6 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        //translate
-        /*
-        if (grounded)
-        {
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime * jumpSpeedMult);
-        }
-        */
-
         //rigidbody
         if (grounded)
         {
@@ -269,53 +288,55 @@ public class PlayerController : MonoBehaviour
 
     void Strafing()
     {
-        //translate
-        /*
-        if (grounded)
-        {
-            if (goRight)
-            {
-                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime);
-            }
-            else if (goLeft)
-            {
-                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * -1);
-            }
-        }
-        else
-        {
-            if (goRight)
-            {
-                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * jumpControlMult);
-            }
-            else if (goLeft)
-            {
-                transform.Translate(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * Time.deltaTime * jumpControlMult * -1);
-            }
-        }
-        */
-
         //rigidbody
         if (grounded)
         {
             if (goRight)
             {
-                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                if(currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                {
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                }
+                else
+                {
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                }
             }
             else if (goLeft)
             {
-                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                {
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                }
+                else
+                {
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin * jumpControlMult * -1);
+                }
             }
         }
         else
         {
             if (goRight)
             {
-                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult);
+                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                {
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                }
+                else
+                {
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                }
             }
             else if (goLeft)
             {
-                rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                {
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                }
+                else
+                {
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin * jumpControlMult * -1);
+                }
             }
         }
         StrafingMax();
@@ -388,20 +409,16 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        //translate
-        //transform.Translate(transform.up * currentJumpForce * Time.deltaTime);
-        //fix
-
         //rigibody
         rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         currentJumpForce = 0;
 
-        
+
     }
 
     void Respawn()
     {
-        if(currentSpawn == null && doesRespawn)
+        if (currentSpawn == null && doesRespawn)
         {
             //set to start spawn if no spawn
             currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
@@ -431,11 +448,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+ 
+
     void OnBecameInvisible()
     {
+        Destroy(this.gameObject);
 
-         new WaitForSeconds(3);
-            Destroy(this.gameObject);
-        
     }
 }
