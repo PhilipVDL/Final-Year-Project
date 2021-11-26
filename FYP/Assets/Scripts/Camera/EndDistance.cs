@@ -29,30 +29,30 @@ public class EndDistance : MonoBehaviour
         {
             float distance = Vector3.Distance(player.transform.position, this.transform.position);
             
-            if(closestDist == 0)
+            if(closestDist == 0 )
             {
                 closestDist = distance;
                 closestPlayer = player;
             }
-            else if(closestDist > distance)
+            else if(closestDist > distance )
             {
                 closestDist = distance;
                 closestPlayer = player;
             }
 
-            if (furthestDist == 0)
+            if (furthestDist == 0 && players.Length > 1)
             {
                 furthestDist = distance;
                 furthestPlayer = player;
             }
-            else if (furthestDist < distance)
+            else if (furthestDist < distance && players.Length > 1)
             {
                 furthestDist = distance;
                 furthestPlayer = player;
             }
 
             playerDifference = furthestDist - closestDist;
-           
+            
         }
     }
 

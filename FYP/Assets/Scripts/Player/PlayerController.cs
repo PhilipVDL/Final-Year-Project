@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject currentSpawn;
     private int currentSpawnNumber;
 
-   
+
 
     private void Start()
     {
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Jump" +playerNumber) && grounded)
+        if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
         }
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
             goLeft = false;
         }
 
-        if(!goRight && !goLeft)
+        if (!goRight && !goLeft)
         {
             StrafingDamping();
             //Debug.Log(playerNumber + ": " + "damping");
@@ -396,12 +396,12 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         currentJumpForce = 0;
 
-        
+
     }
 
     void Respawn()
     {
-        if(currentSpawn == null && doesRespawn)
+        if (currentSpawn == null && doesRespawn)
         {
             //set to start spawn if no spawn
             currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
@@ -431,11 +431,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+ 
+
     void OnBecameInvisible()
     {
+        Destroy(this.gameObject);
 
-         new WaitForSeconds(3);
-            Destroy(this.gameObject);
-        
     }
 }

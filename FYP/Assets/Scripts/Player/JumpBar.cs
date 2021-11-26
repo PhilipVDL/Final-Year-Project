@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class JumpBar : MonoBehaviour
 {
     public Slider jumpBar;
+    public GameObject jumpBarObj;
 
     private float maxFill;
-    private float currentFill;
+    public float currentFill;
 
     public static JumpBar instance;
     private void Awake()
@@ -27,10 +28,28 @@ public class JumpBar : MonoBehaviour
 
     private void Update()
     {
+        ActivateBar();
+        FillBar();
+    }    
+    
+
+    void FillBar()
+    {
         currentFill += GetComponentInParent<PlayerController>().currentJumpForce / 100;
         jumpBar.value = currentFill;
         currentFill = GetComponentInParent<PlayerController>().currentJumpForce;
     }
+
+    void ActivateBar()
+    {
+        if(currentFill > 0)
+        {
+            jumpBarObj.SetActive(true);
+        }
+        else { jumpBarObj.SetActive(false); }
+    }
+
+    
 }
 
 

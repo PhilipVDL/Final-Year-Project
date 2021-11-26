@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
@@ -24,6 +25,19 @@ public class CameraController : MonoBehaviour
         CameraMove();
     }
 
+    private IEnumerator DeathCount()
+    {
+        yield return new WaitForSeconds(3);
+        if (eDist.playerDifference > maxDistance)
+        {
+            Destroy(eDist.furthestPlayer);
+            followDist = 7;
+        }
+        yield return new WaitForSeconds(3);
+        
+        
+    }
+
     private void CameraMove()
     {
         //follow furthest player
@@ -36,33 +50,36 @@ public class CameraController : MonoBehaviour
         {
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
         }
+        else if(eDist.players.Length == 1)
+        {
+            desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+        }
         //Slope movement
 
         if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
         {
-            defaultHeight = eDist.closestPlayer.transform.position.y + 12;
+            defaultHeight = eDist.closestPlayer.transform.position.y + 10;
         }
       
         //elimination zoom
-         if(eDist.playerDifference >= maxDistance)
+         if(eDist.playerDifference >= maxDistance - 5)
         {
             followDist -= 2 * Time.deltaTime;
-            verticalZoomScale = 0;
+           // zoomScaleFactor = 0;
         }
-         if (eDist.playerDifference >= maxDistance + 3)
+        
+       if(eDist.playerDifference >= maxDistance  && eDist.players.Length > 1)
         {
-            followDist -= 150 * Time.deltaTime;
-            verticalZoomScale = 0;
+            StartCoroutine(DeathCount());
+            StopCoroutine(DeathCount());
         }
-       if(eDist.playerDifference >= maxDistance + 15)
-        {
-            Destroy(eDist.furthestPlayer);
-        }
+        
+        
 
          if(followDist <= 3 && eDist.players.Length > 1)
         {
-            Destroy(eDist.furthestPlayer);
-            followDist = 8;
+           // Destroy(eDist.furthestPlayer);
+            //followDist = 8;
         }
 
          if(eDist.players.Length == 1)
@@ -78,7 +95,7 @@ public class CameraController : MonoBehaviour
 
             if (verticalZoomScale > horizontalZoomScale)
             {
-                //desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -1);
+                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -.5f);
             }
             else if (verticalZoomScale < horizontalZoomScale)
             {
@@ -92,4 +109,6 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
         
     }
+
+    
 }
