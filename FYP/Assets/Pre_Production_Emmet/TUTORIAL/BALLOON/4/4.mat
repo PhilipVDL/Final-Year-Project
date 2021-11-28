@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FINISHLINE
+  m_Name: 4
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: f220cff85ce494a46b052d1bbfa24700, type: 3}
+        m_Texture: {fileID: 2800000, guid: f633ae7fb8971144a87793e57579c913, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,15 +40,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 70b25d22f9fe7c247920f2aeb302f337, type: 3}
+        m_Texture: {fileID: 2800000, guid: 26bb03f8c80b36b48b5f104ad6c043d7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 2a56dc901e3fd174f8afc450f184ab47, type: 3}
+        m_Texture: {fileID: 2800000, guid: d21c6437ac209764faeab21ca3cc3f28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 26bd7303253e90f43ae2e70b2a2bd59c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 243685fe86578d24f950ae7985a10f17, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
