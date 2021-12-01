@@ -489,6 +489,10 @@ MonoBehaviour:
   autoForward: 1
   jumpControlled: 1
   playerNumber: 1
+  placementMode: 0
+  placementX: 0
+  placementZ: 0
+  placementMoveDelay: 0.25
   maxSpeed: 10
   maxVelocity: 10
   currentSpeed: 0
