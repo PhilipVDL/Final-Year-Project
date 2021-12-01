@@ -6,9 +6,13 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
+    GridManager gm;
     public bool autoForward;
     public bool jumpControlled;
     [Range(1, 4)] public int playerNumber;
+    public bool placementMode;
+    public int placementX, placementZ;
+    public float placementMoveDelay;
     public float maxSpeed, maxVelocity, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, horizontalMoveSpeedMin, hDamp, minSpeed, timeToMinSpeed;
     private bool braking, speeding, goLeft, goRight;
     public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, jumpSpeedMult, jumpControlMult, elimCount;
@@ -25,6 +29,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gm = GameObject.Find("Grid").GetComponent<GridManager>();
+        placementX = 0;
+        placementZ = 0;
     }
 
     private void Update()
@@ -32,6 +39,7 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         PlayerInput();
         MoveCalculations();
+        PlacementMove();
         Respawn();
     }
 
@@ -151,7 +159,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetButton("Jump" + playerNumber) && grounded)
+        if (Input.GetButton("Jump" + playerNumber) && grounded && !placementMode)
         {
             chargingJump = true;
         }
@@ -162,10 +170,15 @@ public class PlayerController : MonoBehaviour
             currentJumpForce = 0;
         }
 
-        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
+        if (Input.GetButtonUp("Jump" + playerNumber) && grounded && !placementMode)
         {
             chargingJump = false;
             Jump();
+        }
+
+        if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
+        {
+            //place obstacle
         }
     }
     #endregion
@@ -194,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
     void Acceleration()
     {
-        if (autoForward)
+        if (autoForward && !placementMode)
         {
             //always forward
             if (currentSpeed < maxSpeed && !braking)
@@ -213,7 +226,7 @@ public class PlayerController : MonoBehaviour
                 currentSpeed += accRate;
             }
         }
-        else
+        else if (!placementMode)
         {
             //forward to move
             float accRate;
@@ -232,7 +245,7 @@ public class PlayerController : MonoBehaviour
 
     void Braking()
     {
-        if (braking)
+        if (braking && !placementMode)
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
         }
@@ -253,12 +266,12 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //rigidbody
-        if (grounded)
+        if (grounded && !placementMode)
         {
             //move normal
             rb.AddForce((transform.forward * currentSpeed));
         }
-        else
+        else if(!placementMode)
         {
             //move air
             rb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
@@ -289,7 +302,7 @@ public class PlayerController : MonoBehaviour
     void Strafing()
     {
         //rigidbody
-        if (grounded)
+        if (grounded && !placementMode)
         {
             if (goRight)
             {
@@ -314,7 +327,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else
+        else if (!placementMode)
         {
             if (goRight)
             {
@@ -388,7 +401,7 @@ public class PlayerController : MonoBehaviour
     void ChargeJump()
     {
         float chargeRate = 15 * Time.deltaTime;
-        if (chargingJump)
+        if (chargingJump && ! placementMode)
         {
             currentJumpForce += chargeRate;
             MinMaxJump();
@@ -412,8 +425,6 @@ public class PlayerController : MonoBehaviour
         //rigibody
         rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         currentJumpForce = 0;
-
-
     }
 
     void Respawn()
@@ -448,7 +459,80 @@ public class PlayerController : MonoBehaviour
         }
     }
 
- 
+    void PlacementMove()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (!placementMode)
+            {
+                placementMode = true;
+                StartCoroutine(PlacementMoving());
+            }
+            else
+            {
+                placementMode = false;
+            }
+        }
+    }
+
+    IEnumerator PlacementMoving()
+    {
+        while (placementMode)
+        {
+            if (speeding)
+            {
+                //z up
+                PlacementCoords(true, 1);
+            }
+            else if (braking)
+            {
+                //z down
+                PlacementCoords(true, -1);
+            }
+            else if (goRight)
+            {
+                //x up
+                PlacementCoords(false, 1);
+            }
+            else if (goLeft)
+            {
+                //x down
+                PlacementCoords(false, -1);
+            }
+
+            yield return new WaitForSeconds(placementMoveDelay);
+        }
+    }
+
+    void PlacementCoords(bool axis, int amount)
+    {
+        if (axis)
+        {
+            //move z
+            placementZ += amount;
+            if(placementZ < gm.smallestZ)
+            {
+                placementZ = gm.largestZ;
+            }
+            else if(placementZ > gm.largestZ)
+            {
+                placementZ = gm.smallestZ;
+            }
+        }
+        else if (!axis)
+        {
+            //moxe x
+            placementX += amount;
+            if (placementX < gm.smallestX)
+            {
+                placementX = gm.largestX;
+            }
+            else if (placementX > gm.largestX)
+            {
+                placementX = gm.smallestX;
+            }
+        }
+    }
 
     void OnBecameInvisible()
     {

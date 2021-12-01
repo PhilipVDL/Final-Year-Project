@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridZone : MonoBehaviour
 {
-    public int x, z;
+    public int gridX, gridZ;
     public bool filled;
     public GameObject obstacle;
 }

@@ -287,11 +287,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5969064415414457383, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Mesh
@@ -391,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8444978536034656493, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 549622494}
   m_Layer: 0
   m_Name: Grid Zone (2)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,8 +513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 2
-  z: 0
+  gridX: 2
+  gridZ: 0
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1 &555358814
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +839,7 @@ GameObject:
   - component: {fileID: 759309328}
   m_Layer: 0
   m_Name: Grid Zone (7)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -918,8 +920,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 1
-  z: 2
+  gridX: 1
+  gridZ: 2
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1 &762391413
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841649053}
+  - component: {fileID: 841649054}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -999,6 +1004,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &841649054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841649052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51be07278aae7a340b239e285d427cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zones: []
+  smallestX: 0
+  largestX: 0
+  smallestZ: 0
+  largestZ: 0
 --- !u!1 &894711663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
@@ -1097,7 +1119,7 @@ GameObject:
   - component: {fileID: 999840156}
   m_Layer: 0
   m_Name: Grid Zone (3)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1178,8 +1200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 1
+  gridX: 0
+  gridZ: 1
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1 &1013927911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4225914887560890740, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
@@ -1232,7 +1256,7 @@ GameObject:
   - component: {fileID: 1025626114}
   m_Layer: 0
   m_Name: Grid Zone (1)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1313,8 +1337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 1
-  z: 0
+  gridX: 1
+  gridZ: 0
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1 &1079199141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1462559468418490457, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
@@ -1367,7 +1393,7 @@ GameObject:
   - component: {fileID: 1143093722}
   m_Layer: 0
   m_Name: Grid Zone (5)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1448,8 +1474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 2
-  z: 1
+  gridX: 2
+  gridZ: 1
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1001 &1159598092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1557,7 +1585,7 @@ GameObject:
   - component: {fileID: 1175429143}
   m_Layer: 0
   m_Name: Grid Zone (6)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1638,8 +1666,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 2
+  gridX: 0
+  gridZ: 2
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1001 &1259181857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1653,11 +1683,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5969064415414457383, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Mesh
@@ -1757,7 +1787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8444978536034656493, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1972,7 +2002,7 @@ GameObject:
   - component: {fileID: 1510510191}
   m_Layer: 0
   m_Name: Grid Zone (8)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,8 +2083,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 2
-  z: 2
+  gridX: 2
+  gridZ: 2
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1 &1532342277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2273211217196043863, guid: ced3c25e95dd29249b0541de07f40cf0, type: 3}
@@ -2107,7 +2139,7 @@ GameObject:
   - component: {fileID: 1582940799}
   m_Layer: 0
   m_Name: Grid Zone
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2188,8 +2220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
+  gridX: 0
+  gridZ: 0
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1001 &1703297955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2761,12 +2795,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: placementMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: timeToMaxSpeed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: timeToMinSpeed
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331225723004286650, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: placementMoveDelay
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Name
@@ -2878,7 +2920,7 @@ GameObject:
   - component: {fileID: 1992380356}
   m_Layer: 0
   m_Name: Grid Zone (4)
-  m_TagString: Untagged
+  m_TagString: Grid Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2959,8 +3001,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73948893e5cf5904e9e46f3869b0e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 1
-  z: 1
+  gridX: 1
+  gridZ: 1
+  filled: 0
+  obstacle: {fileID: 0}
 --- !u!1 &2113021159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,11 +3073,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5969064415414457383, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Mesh
@@ -3133,7 +3177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8444978536034656493, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Materials.Array.data[0]
