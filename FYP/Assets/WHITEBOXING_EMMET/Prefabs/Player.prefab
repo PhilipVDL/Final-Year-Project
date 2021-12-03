@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06dc1033486b9249bba063a603bd92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoForward: 1
+  autoForward: 0
   jumpControlled: 1
   playerNumber: 1
   placementMode: 0
@@ -501,14 +501,14 @@ MonoBehaviour:
   horizontalMoveSpeedMultiplier: 0.75
   horizontalMoveSpeedMin: 1
   hDamp: 0.05
-  minSpeed: 5
+  minSpeed: 0
   timeToMinSpeed: 1.5
   maxJumpForce: 25
   currentJumpForce: 0
   timeToMaxJumpForce: 1.5
   minJumpForce: 5
   jumpSpeedMult: 1.2
-  jumpControlMult: 0.5
+  jumpControlMult: 1
   elimCount: 0
   grounded: 0
   chargingJump: 0

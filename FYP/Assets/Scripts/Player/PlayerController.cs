@@ -5,26 +5,72 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    //components
     Rigidbody rb;
     GridManager gm;
+    RaycastHit hit;
+
+    //variables
+    #region variables
+    [Header("Control Modes")] 
     public bool autoForward;
-    public bool jumpControlled;
     [Range(1, 4)] public int playerNumber;
+
+    [Header("Move Speeds")]
+    public float currentSpeed;
+    public float maxSpeed;
+    public float maxVelocity;
+    public float timeToMaxSpeed;
+    public float boostTime;
+    public float minSpeed;
+    public float timeToMinSpeed;
+
+    private bool braking, speeding, goLeft, goRight;
+
+    [Header("Strafing")]
+    public float horizontalMoveSpeedMultiplier;
+    public float horizontalMoveSpeedMin;
+    public float hDamp;
+
+    [Header("Jump Checks")]
+    public float castDistance;
+    public bool grounded;
+    public bool chargingJump;
+
+    [Header("Jump Force")]
+    public float currentJumpForce;
+    public float minJumpForce;
+    public float maxJumpForce;
+    public float timeToMaxJumpForce;
+
+    [Header("Jump Speeds")]
+    public float jumpSpeedMult;
+    public bool jumpControlled;
+    public float jumpControlMult;
+
+    [Header("Placement Mode")]
     public bool placementMode;
     public int placementX, placementZ;
     public float placementMoveDelay;
-    public float maxSpeed, maxVelocity, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, horizontalMoveSpeedMin, hDamp, minSpeed, timeToMinSpeed;
-    private bool braking, speeding, goLeft, goRight;
-    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, jumpSpeedMult, jumpControlMult, elimCount;
-    public bool grounded, chargingJump;
-    public float castDistance;
-    RaycastHit hit;
+
+    [Header("Respawn")]
     public float deathHeight;
     public bool doesRespawn;
     public GameObject currentSpawn;
     private int currentSpawnNumber;
 
+    [Header("Elim Count")]
+    public float elimCount;
 
+    [Header("Oil Spill Effect")]
+    public float oilSpillSpeed;
+    public float oilSpillDuration;
+
+    [Header("Thumbtacks Effect")]
+    public float tackSpeed;
+    public float tackAirControl;
+    public float tackDuration;
+    #endregion
 
     private void Start()
     {
