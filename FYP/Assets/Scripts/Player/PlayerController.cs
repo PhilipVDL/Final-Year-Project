@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float boostTime;
     public float minSpeed;
     public float timeToMinSpeed;
+    public float fDamp;
 
     private bool braking, speeding, goLeft, goRight;
 
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Speeds")]
     public float jumpSpeedMult;
     public bool jumpControlled;
-    public float jumpControlMult;
+    public float airControlMult;
 
     [Header("Placement Mode")]
     public bool placementMode;
@@ -62,14 +63,22 @@ public class PlayerController : MonoBehaviour
     [Header("Elim Count")]
     public float elimCount;
 
+    [Header("Defaults")]
+    [SerializeField]private float defaultMaxSpeed;
+    [SerializeField]private float defaultAirControl;
+
     [Header("Oil Spill Effect")]
+    public bool oiled;
     public float oilSpillSpeed;
     public float oilSpillDuration;
+    public float oilSpillTimer;
 
     [Header("Thumbtacks Effect")]
+    public bool deflated;
     public float tackSpeed;
     public float tackAirControl;
     public float tackDuration;
+    public float tackTimer;
     #endregion
 
     private void Start()
@@ -78,12 +87,23 @@ public class PlayerController : MonoBehaviour
         gm = GameObject.Find("Grid").GetComponent<GridManager>();
         placementX = 0;
         placementZ = 0;
+        Defaults();
+    }
+
+    void Defaults()
+    {
+        Debug.Log(maxSpeed);
+        defaultMaxSpeed = maxSpeed;
+        defaultAirControl = airControlMult;
+        Debug.Log(maxSpeed);
     }
 
     private void Update()
     {
+        //maxVelocity = maxSpeed;
         GroundCheck();
         PlayerInput();
+        ObstacleTimers();
         MoveCalculations();
         PlacementMove();
         Respawn();
@@ -204,6 +224,10 @@ public class PlayerController : MonoBehaviour
             StrafingDamping();
         }
 
+        if(currentSpeed == 0)
+        {
+            MovementDamping();
+        }
 
         if (Input.GetButton("Jump" + playerNumber) && grounded && !placementMode)
         {
@@ -345,6 +369,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void MovementDamping()
+    {
+        //damp at 0 speed
+        float dampZ = Mathf.Lerp(rb.velocity.z, 0, fDamp);
+        Vector3 dampedVelocity = new Vector3(rb.velocity.x, rb.velocity.y, dampZ);
+        rb.velocity = dampedVelocity;
+    }
+
     void Strafing()
     {
         //rigidbody
@@ -365,11 +397,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * jumpControlMult * -1);
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
                 }
             }
         }
@@ -390,16 +422,15 @@ public class PlayerController : MonoBehaviour
             {
                 if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * airControlMult * -1);
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * jumpControlMult * -1);
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin * airControlMult * -1);
                 }
             }
         }
         StrafingMax();
-        //StrafingDamping();
     }
 
     void StrafingMax()
@@ -579,6 +610,56 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    #region obstacles
+    void RestoreDefaults()
+    {
+        maxSpeed = defaultMaxSpeed;
+        airControlMult = defaultAirControl;
+    }
+
+    public void Oiled()
+    {
+        oiled = true;
+        oilSpillTimer = oilSpillDuration;
+    }
+
+    public void Deflated()
+    {
+        deflated = true;
+        tackTimer = tackDuration;
+    }
+
+    void ObstacleTimers()
+    {
+        //oil
+        if(oiled)
+        {
+            maxSpeed = oilSpillSpeed;
+            oilSpillTimer -= Time.deltaTime;
+            if(oilSpillTimer <= 0)
+            {
+                oilSpillTimer = 0;
+                oiled = false;
+                RestoreDefaults();
+            }
+        }
+
+        //tack
+        if (deflated)
+        {
+            maxSpeed = tackSpeed;
+            airControlMult = tackAirControl;
+            tackTimer -= Time.deltaTime;
+            if(tackTimer <= 0)
+            {
+                tackTimer = 0;
+                deflated = false;
+                RestoreDefaults();
+            }
+        }
+    }
+    #endregion
 
     void OnBecameInvisible()
     {

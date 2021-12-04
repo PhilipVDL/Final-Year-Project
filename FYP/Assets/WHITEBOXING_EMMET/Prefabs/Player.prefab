@@ -487,35 +487,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoForward: 0
-  jumpControlled: 1
   playerNumber: 1
+  currentSpeed: 0
+  maxSpeed: 10
+  maxVelocity: 10
+  timeToMaxSpeed: 3
+  boostTime: 1
+  minSpeed: 0
+  timeToMinSpeed: 1.5
+  fDamp: 0.005
+  horizontalMoveSpeedMultiplier: 0.75
+  horizontalMoveSpeedMin: 1
+  hDamp: 0.05
+  castDistance: 0.51
+  grounded: 0
+  chargingJump: 0
+  currentJumpForce: 0
+  minJumpForce: 5
+  maxJumpForce: 25
+  timeToMaxJumpForce: 1.5
+  jumpSpeedMult: 1.2
+  jumpControlled: 1
+  airControlMult: 1
   placementMode: 0
   placementX: 0
   placementZ: 0
   placementMoveDelay: 0.25
-  maxSpeed: 10
-  maxVelocity: 10
-  currentSpeed: 0
-  timeToMaxSpeed: 3
-  boostTime: 1
-  horizontalMoveSpeedMultiplier: 0.75
-  horizontalMoveSpeedMin: 1
-  hDamp: 0.05
-  minSpeed: 0
-  timeToMinSpeed: 1.5
-  maxJumpForce: 25
-  currentJumpForce: 0
-  timeToMaxJumpForce: 1.5
-  minJumpForce: 5
-  jumpSpeedMult: 1.2
-  jumpControlMult: 1
-  elimCount: 0
-  grounded: 0
-  chargingJump: 0
-  castDistance: 0.51
   deathHeight: -10
   doesRespawn: 1
   currentSpawn: {fileID: 0}
+  elimCount: 0
+  defaultMaxSpeed: 0
+  defaultAirControl: 0
+  oiled: 0
+  oilSpillSpeed: 6
+  oilSpillDuration: 5
+  oilSpillTimer: 0
+  deflated: 0
+  tackSpeed: 6
+  tackAirControl: 0.5
+  tackDuration: 5
+  tackTimer: 0
 --- !u!1001 &7130045512191212649
 PrefabInstance:
   m_ObjectHideFlags: 0
