@@ -39,4 +39,18 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public Transform FindGridZone(int x, int z)
+    {
+        Transform tf = null;
+        foreach(GameObject zone in zones)
+        {
+            GridZone gz = zone.GetComponent<GridZone>();
+            if(gz.gridX == x && gz.gridZ == z)
+            {
+                tf = zone.transform;
+            }
+        }
+        return tf;
+    }
 }

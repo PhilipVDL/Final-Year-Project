@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     GridManager gm;
     RaycastHit hit;
+    ObstacleInventory inventory;
 
     //variables
     #region variables
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         gm = GameObject.Find("Grid").GetComponent<GridManager>();
+        inventory = GetComponent<ObstacleInventory>();
         placementX = 0;
         placementZ = 0;
         Defaults();
@@ -248,7 +250,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
         {
-            //place obstacle
+            if(inventory.obstacles.Count > 0 && inventory.obstacles[0] != null)
+            {
+                Instantiate(inventory.obstacles[inventory.selectedIndex], gm.FindGridZone(placementX, placementZ)); //place
+                inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
+            }
         }
     }
     #endregion
