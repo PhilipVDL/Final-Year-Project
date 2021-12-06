@@ -5,33 +5,109 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    //components
     Rigidbody rb;
-    public bool autoForward;
-    public bool jumpControlled;
-    [Range(1, 4)] public int playerNumber;
-    public float maxSpeed, maxVelocity, currentSpeed, timeToMaxSpeed, boostTime, horizontalMoveSpeedMultiplier, horizontalMoveSpeedMin, hDamp, minSpeed, timeToMinSpeed;
-    private bool braking, speeding, goLeft, goRight;
-    public float maxJumpForce, currentJumpForce, timeToMaxJumpForce, minJumpForce, jumpSpeedMult, jumpControlMult, elimCount;
-    public bool grounded, chargingJump;
-    public float castDistance;
+    GridManager gm;
     RaycastHit hit;
+    ObstacleInventory inventory;
+
+    //variables
+    #region variables
+    [Header("Control Modes")] 
+    public bool autoForward;
+    [Range(1, 4)] public int playerNumber;
+
+    [Header("Move Speeds")]
+    public float currentSpeed;
+    public float maxSpeed;
+    public float maxVelocity;
+    public float timeToMaxSpeed;
+    public float boostTime;
+    public float minSpeed;
+    public float timeToMinSpeed;
+    public float fDamp;
+
+    private bool braking, speeding, goLeft, goRight;
+
+    [Header("Strafing")]
+    public float horizontalMoveSpeedMultiplier;
+    public float horizontalMoveSpeedMin;
+    public float hDamp;
+
+    [Header("Jump Checks")]
+    public float castDistance;
+    public bool grounded;
+    public bool chargingJump;
+
+    [Header("Jump Force")]
+    public float currentJumpForce;
+    public float minJumpForce;
+    public float maxJumpForce;
+    public float timeToMaxJumpForce;
+
+    [Header("Jump Speeds")]
+    public float jumpSpeedMult;
+    public bool jumpControlled;
+    public float airControlMult;
+
+    [Header("Placement Mode")]
+    public bool placementMode;
+    public int placementX, placementZ;
+    public float placementMoveDelay;
+
+    [Header("Respawn")]
     public float deathHeight;
     public bool doesRespawn;
     public GameObject currentSpawn;
     private int currentSpawnNumber;
 
+    [Header("Elim Count")]
+    public float elimCount;
 
+    [Header("Defaults")]
+    [SerializeField]private float defaultMaxSpeed;
+    [SerializeField]private float defaultAirControl;
+
+    [Header("Oil Spill Effect")]
+    public bool oiled;
+    public float oilSpillSpeed;
+    public float oilSpillDuration;
+    public float oilSpillTimer;
+
+    [Header("Thumbtacks Effect")]
+    public bool deflated;
+    public float tackSpeed;
+    public float tackAirControl;
+    public float tackDuration;
+    public float tackTimer;
+    #endregion
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gm = GameObject.Find("Grid").GetComponent<GridManager>();
+        inventory = GetComponent<ObstacleInventory>();
+        placementX = 0;
+        placementZ = 0;
+        Defaults();
+    }
+
+    void Defaults()
+    {
+        Debug.Log(maxSpeed);
+        defaultMaxSpeed = maxSpeed;
+        defaultAirControl = airControlMult;
+        Debug.Log(maxSpeed);
     }
 
     private void Update()
     {
+        //maxVelocity = maxSpeed;
         GroundCheck();
         PlayerInput();
+        ObstacleTimers();
         MoveCalculations();
+        PlacementMove();
         Respawn();
     }
 
@@ -150,8 +226,12 @@ public class PlayerController : MonoBehaviour
             StrafingDamping();
         }
 
+        if(currentSpeed == 0)
+        {
+            MovementDamping();
+        }
 
-        if (Input.GetButton("Jump" + playerNumber) && grounded)
+        if (Input.GetButton("Jump" + playerNumber) && grounded && !placementMode)
         {
             chargingJump = true;
         }
@@ -162,10 +242,19 @@ public class PlayerController : MonoBehaviour
             currentJumpForce = 0;
         }
 
-        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
+        if (Input.GetButtonUp("Jump" + playerNumber) && grounded && !placementMode)
         {
             chargingJump = false;
             Jump();
+        }
+
+        if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
+        {
+            if(inventory.obstacles.Count > 0 && inventory.obstacles[0] != null)
+            {
+                Instantiate(inventory.obstacles[inventory.selectedIndex], gm.FindGridZone(placementX, placementZ)); //place
+                inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
+            }
         }
     }
     #endregion
@@ -194,7 +283,7 @@ public class PlayerController : MonoBehaviour
 
     void Acceleration()
     {
-        if (autoForward)
+        if (autoForward && !placementMode)
         {
             //always forward
             if (currentSpeed < maxSpeed && !braking)
@@ -213,7 +302,7 @@ public class PlayerController : MonoBehaviour
                 currentSpeed += accRate;
             }
         }
-        else
+        else if (!placementMode)
         {
             //forward to move
             float accRate;
@@ -232,7 +321,7 @@ public class PlayerController : MonoBehaviour
 
     void Braking()
     {
-        if (braking)
+        if (braking && !placementMode)
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
         }
@@ -253,12 +342,12 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //rigidbody
-        if (grounded)
+        if (grounded && !placementMode)
         {
             //move normal
             rb.AddForce((transform.forward * currentSpeed));
         }
-        else
+        else if(!placementMode)
         {
             //move air
             rb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
@@ -286,10 +375,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void MovementDamping()
+    {
+        //damp at 0 speed
+        float dampZ = Mathf.Lerp(rb.velocity.z, 0, fDamp);
+        Vector3 dampedVelocity = new Vector3(rb.velocity.x, rb.velocity.y, dampZ);
+        rb.velocity = dampedVelocity;
+    }
+
     void Strafing()
     {
         //rigidbody
-        if (grounded)
+        if (grounded && !placementMode)
         {
             if (goRight)
             {
@@ -306,15 +403,15 @@ public class PlayerController : MonoBehaviour
             {
                 if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * jumpControlMult * -1);
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
                 }
             }
         }
-        else
+        else if (!placementMode)
         {
             if (goRight)
             {
@@ -331,16 +428,15 @@ public class PlayerController : MonoBehaviour
             {
                 if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * jumpControlMult * -1);
+                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * airControlMult * -1);
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * jumpControlMult * -1);
+                    rb.AddForce(transform.right * horizontalMoveSpeedMin * airControlMult * -1);
                 }
             }
         }
         StrafingMax();
-        //StrafingDamping();
     }
 
     void StrafingMax()
@@ -388,7 +484,7 @@ public class PlayerController : MonoBehaviour
     void ChargeJump()
     {
         float chargeRate = 15 * Time.deltaTime;
-        if (chargingJump)
+        if (chargingJump && ! placementMode)
         {
             currentJumpForce += chargeRate;
             MinMaxJump();
@@ -412,8 +508,6 @@ public class PlayerController : MonoBehaviour
         //rigibody
         rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         currentJumpForce = 0;
-
-
     }
 
     void Respawn()
@@ -448,7 +542,130 @@ public class PlayerController : MonoBehaviour
         }
     }
 
- 
+    void PlacementMove()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (!placementMode)
+            {
+                placementMode = true;
+                StartCoroutine(PlacementMoving());
+            }
+            else
+            {
+                placementMode = false;
+            }
+        }
+    }
+
+    IEnumerator PlacementMoving()
+    {
+        while (placementMode)
+        {
+            if (speeding)
+            {
+                //z up
+                PlacementCoords(true, 1);
+            }
+            else if (braking)
+            {
+                //z down
+                PlacementCoords(true, -1);
+            }
+            else if (goRight)
+            {
+                //x up
+                PlacementCoords(false, 1);
+            }
+            else if (goLeft)
+            {
+                //x down
+                PlacementCoords(false, -1);
+            }
+
+            yield return new WaitForSeconds(placementMoveDelay);
+        }
+    }
+
+    void PlacementCoords(bool axis, int amount)
+    {
+        if (axis)
+        {
+            //move z
+            placementZ += amount;
+            if(placementZ < gm.smallestZ)
+            {
+                placementZ = gm.largestZ;
+            }
+            else if(placementZ > gm.largestZ)
+            {
+                placementZ = gm.smallestZ;
+            }
+        }
+        else if (!axis)
+        {
+            //moxe x
+            placementX += amount;
+            if (placementX < gm.smallestX)
+            {
+                placementX = gm.largestX;
+            }
+            else if (placementX > gm.largestX)
+            {
+                placementX = gm.smallestX;
+            }
+        }
+    }
+
+    #region obstacles
+    void RestoreDefaults()
+    {
+        maxSpeed = defaultMaxSpeed;
+        airControlMult = defaultAirControl;
+    }
+
+    public void Oiled()
+    {
+        oiled = true;
+        oilSpillTimer = oilSpillDuration;
+    }
+
+    public void Deflated()
+    {
+        deflated = true;
+        tackTimer = tackDuration;
+    }
+
+    void ObstacleTimers()
+    {
+        //oil
+        if(oiled)
+        {
+            maxSpeed = oilSpillSpeed;
+            oilSpillTimer -= Time.deltaTime;
+            if(oilSpillTimer <= 0)
+            {
+                oilSpillTimer = 0;
+                oiled = false;
+                RestoreDefaults();
+            }
+        }
+
+        //tack
+        if (deflated)
+        {
+            maxSpeed = tackSpeed;
+            airControlMult = tackAirControl;
+            tackTimer -= Time.deltaTime;
+            if(tackTimer <= 0)
+            {
+                tackTimer = 0;
+                deflated = false;
+                RestoreDefaults();
+            }
+        }
+    }
+    #endregion
 
     void OnBecameInvisible()
     {
