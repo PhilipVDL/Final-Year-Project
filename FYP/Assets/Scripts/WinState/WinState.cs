@@ -9,8 +9,11 @@ public class WinState : MonoBehaviour
     public GameObject player;
     public Transform[] spawns;
 
+    //players
+    public int numberOfPlayers;
+
     //score
-    public int[] scores = new int[4];
+    public int[] scores;
     public int targetScore;
     public bool win;
     public int winnerNumber;
@@ -23,6 +26,8 @@ public class WinState : MonoBehaviour
     {
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
         customs = GameObject.Find("Player Customs").GetComponent<PlayerCustoms>();
+
+        scores = new int[numberOfPlayers];
     }
 
     private void Update()
@@ -57,14 +62,14 @@ public class WinState : MonoBehaviour
     public void NewRound()
     {
         finish.NewRound();
-        SpawnPlayers();
+        SpawnPlayersNewRound();
         currentRound++;
         endRound = false;
     }
 
-    void SpawnPlayers()
+    void SpawnPlayersNewRound()
     {
-        for(int i = 1; i <= 4; i++)
+        for(int i = 1; i <= numberOfPlayers; i++)
         {
             GameObject thisPlayer = Instantiate(player, spawns[i - 1].position, Quaternion.identity);
             thisPlayer.GetComponent<PlayerController>().playerNumber = i;
@@ -72,6 +77,20 @@ public class WinState : MonoBehaviour
             skin.GetComponent<Renderer>().material = customs.SetMaterial(i);
             skin.GetComponent<MeshFilter>().mesh = customs.SetMesh(i);
             skin.transform.localScale = customs.SetScale(i);
+        }
+    }
+
+    public void SpawnPlayersMidRound(GameObject spawn)
+    {
+        for (int i = 1; i <= numberOfPlayers; i++)
+        {
+            GameObject thisPlayer = Instantiate(player, spawn.transform.position, Quaternion.identity);
+            thisPlayer.GetComponent<PlayerController>().playerNumber = i;
+            GameObject skin = thisPlayer.transform.GetChild(0).gameObject;
+            skin.GetComponent<Renderer>().material = customs.SetMaterial(i);
+            skin.GetComponent<MeshFilter>().mesh = customs.SetMesh(i);
+            skin.transform.localScale = customs.SetScale(i);
+            thisPlayer.transform.Translate(0, i, 0);
         }
     }
 }

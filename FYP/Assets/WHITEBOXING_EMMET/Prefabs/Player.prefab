@@ -489,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObstacles: 6
   currentObstacles: 0
+  selectedIndex: 0
   obstacles: []
 --- !u!114 &8331225723004286650
 MonoBehaviour:
@@ -507,21 +508,22 @@ MonoBehaviour:
   currentSpeed: 0
   maxSpeed: 10
   maxVelocity: 10
-  timeToMaxSpeed: 3
+  timeToMaxSpeed: 1
   boostTime: 1
   minSpeed: 0
-  timeToMinSpeed: 1.5
-  fDamp: 0.005
+  timeToMinSpeed: 0.75
+  fDamp: 0.05
   horizontalMoveSpeedMultiplier: 0.75
   horizontalMoveSpeedMin: 1
   hDamp: 0.05
   castDistance: 0.51
   grounded: 0
+  coyoteTime: 0.25
   chargingJump: 0
   currentJumpForce: 0
   minJumpForce: 5
   maxJumpForce: 25
-  timeToMaxJumpForce: 1.5
+  timeToMaxJumpForce: 0.75
   jumpSpeedMult: 1.2
   jumpControlled: 1
   airControlMult: 1
