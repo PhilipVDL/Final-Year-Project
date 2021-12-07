@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     GridManager gm;
     RaycastHit hit;
     ObstacleInventory inventory;
-    public WinState win;
 
     //variables
     #region variables
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Checks")]
     public float castDistance;
     public bool grounded;
-    public float coyoteTime;
     public bool chargingJump;
 
     [Header("Jump Force")]
@@ -89,7 +87,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         gm = GameObject.Find("Grid").GetComponent<GridManager>();
         inventory = GetComponent<ObstacleInventory>();
-        win = GameObject.Find("WinState").GetComponent<WinState>();
         placementX = 0;
         placementZ = 0;
         Defaults();
@@ -97,8 +94,10 @@ public class PlayerController : MonoBehaviour
 
     void Defaults()
     {
+        Debug.Log(maxSpeed);
         defaultMaxSpeed = maxSpeed;
         defaultAirControl = airControlMult;
+        Debug.Log(maxSpeed);
     }
 
     private void Update()
@@ -186,7 +185,6 @@ public class PlayerController : MonoBehaviour
 
     void ControlsControlledJump(int playerNumber)
     {
-        //movement
         float inputVertical = Input.GetAxis("Vertical" + playerNumber);
         if (inputVertical > 0)
         {
@@ -205,7 +203,6 @@ public class PlayerController : MonoBehaviour
             braking = false;
         }
 
-        //strafing
         float inputHorizontal = Input.GetAxis("Horizontal" + playerNumber);
         if (inputHorizontal > 0)
         {
@@ -224,28 +221,19 @@ public class PlayerController : MonoBehaviour
             goLeft = false;
         }
 
-        //strafe damping and reset
-        if (goRight && rb.velocity.x < 0)
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
-        }
-        else if (goLeft && rb.velocity.x > 0)
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
-        }
-        else if (!goRight && !goLeft)
+        if (!goRight && !goLeft)
         {
             StrafingDamping();
         }
 
         if(currentSpeed == 0)
         {
-            MovementDamping(); //damp movement if no input
+            MovementDamping();
         }
 
         if (Input.GetButton("Jump" + playerNumber) && grounded && !placementMode)
         {
-            chargingJump = true; //charge while grounded
+            chargingJump = true;
         }
 
         if (chargingJump && !grounded)
@@ -257,7 +245,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump" + playerNumber) && grounded && !placementMode)
         {
             chargingJump = false;
-            Jump(); //jump on release
+            Jump();
         }
 
         if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
@@ -279,14 +267,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(CoyoteTime());
+            grounded = false;
         }
-    }
-
-    IEnumerator CoyoteTime()
-    {
-        yield return new WaitForSeconds(coyoteTime);
-        grounded = false;
     }
 
     void MoveCalculations()
@@ -501,7 +483,7 @@ public class PlayerController : MonoBehaviour
 
     void ChargeJump()
     {
-        float chargeRate = (maxJumpForce / timeToMaxJumpForce) * Time.deltaTime;
+        float chargeRate = 15 * Time.deltaTime;
         if (chargingJump && ! placementMode)
         {
             currentJumpForce += chargeRate;
@@ -549,24 +531,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
         if (transform.position.y < deathHeight && !doesRespawn)
         {
             Destroy(gameObject);
         }
         else if (transform.position.y < deathHeight && doesRespawn)
         {
-            if(GameObject.FindGameObjectsWithTag("Player").Length > 1)
-            {
-                //if more than 1 player exists, spawn as normal
-                transform.position = currentSpawn.transform.position;
-                rb.velocity = Vector3.zero;
-            }
-            else
-            {
-                //if everyone is dead, spawn all
-                win.SpawnPlayersMidRound(currentSpawn);
-                Destroy(gameObject); //prevent duplicate
-            }
+            transform.position = currentSpawn.transform.position;
         }
     }
 
@@ -594,30 +566,24 @@ public class PlayerController : MonoBehaviour
             {
                 //z up
                 PlacementCoords(true, 1);
-                yield return new WaitForSeconds(placementMoveDelay);
             }
             else if (braking)
             {
                 //z down
-                yield return new WaitForSeconds(placementMoveDelay);
                 PlacementCoords(true, -1);
             }
             else if (goRight)
             {
                 //x up
                 PlacementCoords(false, 1);
-                yield return new WaitForSeconds(placementMoveDelay);
             }
             else if (goLeft)
             {
                 //x down
                 PlacementCoords(false, -1);
-                yield return new WaitForSeconds(placementMoveDelay);
             }
-            else
-            {
-                yield return null;
-            }
+
+            yield return new WaitForSeconds(placementMoveDelay);
         }
     }
 
