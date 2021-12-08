@@ -103,11 +103,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //maxVelocity = maxSpeed;
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
         MoveCalculations();
+        PlacementHighlight();
         PlacementMove();
         Respawn();
     }
@@ -264,7 +264,7 @@ public class PlayerController : MonoBehaviour
         {
             if(inventory.obstacles.Count > 0 && inventory.obstacles[0] != null)
             {
-                Instantiate(inventory.obstacles[inventory.selectedIndex], gm.FindGridZone(placementX, placementZ)); //place
+                Instantiate(inventory.obstacles[inventory.selectedIndex], gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex])); //place
                 inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
             }
         }
@@ -648,6 +648,14 @@ public class PlayerController : MonoBehaviour
             {
                 placementX = gm.smallestX;
             }
+        }
+    }
+
+    void PlacementHighlight()
+    {
+        if (placementMode)
+        {
+            gm.HighlightGridZone(placementX, placementZ, playerNumber);
         }
     }
 
