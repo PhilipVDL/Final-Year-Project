@@ -40,7 +40,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public Transform FindGridZone(int x, int z)
+    public Transform FindGridZone(int x, int z, int playerNumber, GameObject obstacle)
     {
         Transform tf = null;
         foreach(GameObject zone in zones)
@@ -49,8 +49,21 @@ public class GridManager : MonoBehaviour
             if(gz.gridX == x && gz.gridZ == z)
             {
                 tf = zone.transform;
+                gz.Fill(obstacle);
             }
         }
         return tf;
+    }
+
+    public void HighlightGridZone(int x, int z, int playerNumber)
+    {
+        foreach (GameObject zone in zones)
+        {
+            GridZone gz = zone.GetComponent<GridZone>();
+            if (gz.gridX == x && gz.gridZ == z)
+            {
+                gz.Highlight(playerNumber);
+            }
+        }
     }
 }
