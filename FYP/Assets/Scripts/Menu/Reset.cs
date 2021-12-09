@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Reset : MonoBehaviour
+public class MainManager : MonoBehaviour
 {
-   
-    
+    public float countdown = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,7 @@ public class Reset : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CountDown();
         Restart();
     }
 
@@ -25,5 +26,10 @@ public class Reset : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    void CountDown()
+    {
+        countdown -= Time.deltaTime;
     }
 }
