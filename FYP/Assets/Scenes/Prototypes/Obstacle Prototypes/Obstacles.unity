@@ -1104,6 +1104,7 @@ Transform:
   m_Children:
   - {fileID: 964773128}
   - {fileID: 537914373}
+  - {fileID: 6446582669757908379}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1478,6 +1479,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad7c2c006241f94ea24344665ec2723, type: 3}
+--- !u!1001 &2917302086835547514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1624067696}
+    m_Modifications:
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145474620507203812, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+      propertyPath: m_Name
+      value: Trampoline Test
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
 --- !u!1001 &3720133668305399933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1535,6 +1593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47a94450ea9d98140aaa6f2d3e31dcbd, type: 3}
+--- !u!4 &6446582669757908379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8145474620507203809, guid: 5bc079b80278bd343b2f7e050799b626, type: 3}
+  m_PrefabInstance: {fileID: 2917302086835547514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8748720640767654198
 PrefabInstance:
   m_ObjectHideFlags: 0

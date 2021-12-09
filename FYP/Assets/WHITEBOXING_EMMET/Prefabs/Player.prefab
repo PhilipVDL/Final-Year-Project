@@ -535,8 +535,6 @@ MonoBehaviour:
   doesRespawn: 1
   currentSpawn: {fileID: 0}
   elimCount: 0
-  defaultMaxSpeed: 0
-  defaultAirControl: 0
   oiled: 0
   oilSpillSpeed: 6
   oilSpillDuration: 5
@@ -546,6 +544,10 @@ MonoBehaviour:
   tackAirControl: 0.5
   tackDuration: 5
   tackTimer: 0
+  trampolined: 0
+  trampolineJumpSpeedMult: 1.5
+  trampolineDuration: 5
+  trampolineTimer: 0
 --- !u!1001 &7130045512191212649
 PrefabInstance:
   m_ObjectHideFlags: 0
