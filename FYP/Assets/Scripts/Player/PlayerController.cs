@@ -65,8 +65,9 @@ public class PlayerController : MonoBehaviour
     public float elimCount;
 
     [Header("Defaults")]
-    [SerializeField]private float defaultMaxSpeed;
-    [SerializeField]private float defaultAirControl;
+    private float defaultMaxSpeed;
+    private float defaultAirControl;
+    private float defaultAirSpeed;
 
     [Header("Oil Spill Effect")]
     public bool oiled;
@@ -80,6 +81,12 @@ public class PlayerController : MonoBehaviour
     public float tackAirControl;
     public float tackDuration;
     public float tackTimer;
+
+    [Header("Trampoline Effect")]
+    public bool trampolined;
+    public float trampolineJumpSpeedMult;
+    public float trampolineDuration;
+    public float trampolineTimer;
     #endregion
 
     private void Start()
@@ -94,10 +101,9 @@ public class PlayerController : MonoBehaviour
 
     void Defaults()
     {
-        Debug.Log(maxSpeed);
         defaultMaxSpeed = maxSpeed;
         defaultAirControl = airControlMult;
-        Debug.Log(maxSpeed);
+        defaultAirSpeed = jumpSpeedMult;
     }
 
     private void Update()
@@ -639,6 +645,7 @@ public class PlayerController : MonoBehaviour
     {
         maxSpeed = defaultMaxSpeed;
         airControlMult = defaultAirControl;
+        jumpSpeedMult = defaultAirSpeed;
     }
 
     public void Oiled()
@@ -651,6 +658,12 @@ public class PlayerController : MonoBehaviour
     {
         deflated = true;
         tackTimer = tackDuration;
+    }
+
+    public void Trampolined()
+    {
+        trampolined = true;
+        trampolineTimer = trampolineDuration;
     }
 
     void ObstacleTimers()
@@ -678,6 +691,19 @@ public class PlayerController : MonoBehaviour
             {
                 tackTimer = 0;
                 deflated = false;
+                RestoreDefaults();
+            }
+        }
+
+        //trampoline
+        if (trampolined)
+        {
+            jumpSpeedMult = trampolineJumpSpeedMult;
+            trampolineTimer -= Time.deltaTime;
+            if(trampolineTimer <= 0)
+            {
+                trampolineTimer = 0;
+                trampolined = false;
                 RestoreDefaults();
             }
         }
