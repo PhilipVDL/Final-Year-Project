@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Manager : MonoBehaviour
+public class Reset : MonoBehaviour
 {
+ 
     
     // Start is called before the first frame update
     void Start()
@@ -15,16 +16,18 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        
+        Restart();
+        
     }
 
-    public void StartGame()
+    void Restart()
     {
-        SceneManager.LoadScene(1);
+        if (Input.GetKey("r"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
-    public void EndGame()
-    {
-        Application.Quit();
-    }
+    
 }

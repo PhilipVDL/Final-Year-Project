@@ -18,6 +18,8 @@ public class EndDistance : MonoBehaviour
     private void CountPlayers()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+
+        
     }
 
     private void PlayerDistance()
@@ -86,4 +88,5 @@ public class EndDistance : MonoBehaviour
             horizontalDifference = rightDist - leftDist;
         }
     }
+
 }

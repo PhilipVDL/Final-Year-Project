@@ -23,18 +23,6 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         CameraMove();
-    }
-
-    private IEnumerator DeathCount()
-    {
-        yield return new WaitForSeconds(3);
-        if (eDist.playerDifference > maxDistance)
-        {
-            Destroy(eDist.furthestPlayer);
-            followDist = 7;
-        }
-        yield return new WaitForSeconds(3);
-        
         
     }
 
@@ -43,72 +31,52 @@ public class CameraController : MonoBehaviour
         //follow furthest player
         if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax)
         {
-            
-            desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist );
+           // desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+             desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
         }
         else if (eDist.playerDifference > ZoomMax)
         {
-            desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
+            //desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+             desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
         }
-        else if(eDist.players.Length == 1)
+
+         else if (eDist.players.Length == 1)
         {
-            desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+            desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
         }
+
         //Slope movement
 
         if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
         {
             defaultHeight = eDist.closestPlayer.transform.position.y + 10;
         }
-      
-        //elimination zoom
-         if(eDist.playerDifference >= maxDistance - 5)
-        {
-            followDist -= 2 * Time.deltaTime;
-           // zoomScaleFactor = 0;
-        }
-        
-       if(eDist.playerDifference >= maxDistance  && eDist.players.Length > 1)
-        {
-            StartCoroutine(DeathCount());
-            StopCoroutine(DeathCount());
-        }
-        
-        
-
-         if(followDist <= 3 && eDist.players.Length > 1)
-        {
-           // Destroy(eDist.furthestPlayer);
-            //followDist = 8;
-        }
-
-         if(eDist.players.Length == 1)
-        {
-            followDist = 7;
-        }
 
         //zoom
-        if (eDist.playerDifference > verticalZoomDistance || eDist.horizontalDifference > horizontalZoomDistance)
+        if (eDist.playerDifference > verticalZoomDistance || eDist.horizontalDifference > horizontalZoomDistance || eDist.players.Length == 1 )
         {
             verticalZoomScale = eDist.playerDifference - verticalZoomDistance;
             horizontalZoomScale = eDist.horizontalDifference - horizontalZoomDistance;
 
+
             if (verticalZoomScale > horizontalZoomScale)
             {
-                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -.5f);
+                desiredPos += (gameObject.transform.up * verticalZoomScale * zoomScaleFactor * .1f);
+                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * .2f);
             }
+
             else if (verticalZoomScale < horizontalZoomScale)
             {
-                desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -1);
+                desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -.5f);
             }
+            
+
+
+            //lerp
+
+            transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
+
         }
-       
-
-        //lerp
-
-        transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
-        
     }
-
     
 }

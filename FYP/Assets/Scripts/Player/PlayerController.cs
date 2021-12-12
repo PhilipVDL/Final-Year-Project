@@ -114,10 +114,18 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
-        MoveCalculations();
+        Begin();
         PlacementHighlight();
         PlacementMove();
         Respawn();
+    }
+
+    public void Begin()
+    {
+      if(GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown <= 0)
+        {
+            MoveCalculations();
+        }
     }
 
     void PlayerInput()
@@ -299,6 +307,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveCalculations()
     {
+        
         Acceleration();
         Braking();
         MinMaxSpeed();
@@ -736,10 +745,21 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+    //Death Count
+    private IEnumerator DeathCount()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
+    }
 
     void OnBecameInvisible()
     {
-        Destroy(this.gameObject);
+        StartCoroutine(DeathCount());
 
+    }
+
+    void OnBecameVisible()
+    {
+        StopAllCoroutines();
     }
 }
