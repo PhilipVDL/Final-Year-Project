@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
         }
 
         //zoom
-        if (eDist.playerDifference > verticalZoomDistance || eDist.horizontalDifference > horizontalZoomDistance || eDist.players.Length == 1 )
+        if (eDist.playerDifference > verticalZoomDistance || eDist.playerDifference > horizontalZoomDistance || eDist.players.Length == 1 )
         {
             verticalZoomScale = eDist.playerDifference - verticalZoomDistance;
             horizontalZoomScale = eDist.horizontalDifference - horizontalZoomDistance;
@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
             if (verticalZoomScale > horizontalZoomScale)
             {
                 desiredPos += (gameObject.transform.up * verticalZoomScale * zoomScaleFactor * .1f);
-                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * .2f);
+                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * .1f);
             }
 
             else if (verticalZoomScale < horizontalZoomScale)
