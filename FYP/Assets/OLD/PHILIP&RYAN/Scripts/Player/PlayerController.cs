@@ -280,8 +280,13 @@ public class PlayerController : MonoBehaviour
         {
             if(inventory.obstacles.Count > 0 && inventory.obstacles[0] != null)
             {
-                Instantiate(inventory.obstacles[inventory.selectedIndex], gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex])); //place
-                inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
+                Transform grid = gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex]);
+                //find, check
+                if (grid != null)
+                {
+                    Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
+                    inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
+                }
             }
         }
     }
