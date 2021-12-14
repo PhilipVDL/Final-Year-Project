@@ -87,6 +87,15 @@ public class PlayerController : MonoBehaviour
     public float trampolineJumpSpeedMult;
     public float trampolineDuration;
     public float trampolineTimer;
+
+    [Header("Laser Effect")]
+    public bool lasered;
+
+    [Header("Laser Effect")]
+    public bool speedPadded;
+    public float padSpeed;
+    public float padDuration;
+    public float padTimer;
     #endregion
 
     private void Start()
@@ -666,6 +675,17 @@ public class PlayerController : MonoBehaviour
         trampolineTimer = trampolineDuration;
     }
 
+    public void SpeedPadded()
+    {
+        speedPadded = true;
+        padTimer = padDuration;
+    }
+
+    public void Lasered()
+    {
+        lasered = true;
+    }
+
     void ObstacleTimers()
     {
         //oil
@@ -707,12 +727,31 @@ public class PlayerController : MonoBehaviour
                 RestoreDefaults();
             }
         }
+
+        //Lasers
+        if (lasered)
+        {
+            Destroy(this.gameObject);
+        }
+
+        //Speed Pad
+        if (speedPadded)
+        {
+            maxSpeed = padSpeed;
+            padTimer -= Time.deltaTime;
+            if(padTimer <= 0)
+            {
+                padTimer = 0;
+                speedPadded = false;
+                RestoreDefaults();
+            }
+        }
     }
     #endregion
     //Death Count
     private IEnumerator DeathCount()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(elimCount);
         Destroy(this.gameObject);
     }
 

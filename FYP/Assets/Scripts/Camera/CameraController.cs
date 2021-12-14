@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 {
     //components
    public EndDistance eDist;
+   public float managerCount;
 
     //variables
     Vector3 desiredPos;
@@ -18,30 +19,35 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
+        
     }
 
     private void FixedUpdate()
     {
         CameraMove();
-        
+        managerCount = GameObject.Find("BackgroundTasks").GetComponent<MainManager>().countdown;
     }
 
     private void CameraMove()
     {
+        
+        
         //follow furthest player
         if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax)
         {
-           // desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
-             desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+            lerpSpeed = 0.1f;
+            desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
         }
+        
         else if (eDist.playerDifference > ZoomMax)
         {
-            //desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
-             desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
+            lerpSpeed = 0.0045f;
+            desiredPos = new Vector3(0, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
         }
 
-         else if (eDist.players.Length == 1)
+        else if (eDist.players.Length == 1)
         {
+            lerpSpeed = 0.1f; 
             desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
         }
 
@@ -62,7 +68,7 @@ public class CameraController : MonoBehaviour
             if (verticalZoomScale > horizontalZoomScale)
             {
                 desiredPos += (gameObject.transform.up * verticalZoomScale * zoomScaleFactor * .1f);
-                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * .1f);
+                desiredPos += (gameObject.transform.forward * verticalZoomScale * zoomScaleFactor * -.1f);
             }
 
             else if (verticalZoomScale < horizontalZoomScale)
