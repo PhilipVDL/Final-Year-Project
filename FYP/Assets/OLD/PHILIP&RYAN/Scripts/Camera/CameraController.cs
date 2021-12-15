@@ -7,38 +7,64 @@ public class CameraController : MonoBehaviour
 {
     //components
    public EndDistance eDist;
-   public float managerCount;
+
+    //Grids
+    public GameObject[] Grids;
+    public GameObject LookAt;
 
     //variables
     Vector3 desiredPos;
     public float defaultHeight;
     public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax, maxDistance;
     public float lerpSpeed;
-    
+    public float managerCount;
+    public float camCountdown;
+    public float maxCount;
+    public int currentGrid = 0;
+    public float gridDist;
+    public float playerDist;
+
 
     private void Start()
     {
-        eDist = GameObject.Find("End").GetComponent<EndDistance>();
         
+        eDist = GameObject.Find("End").GetComponent<EndDistance>();
+        GetGrids();
+
     }
 
     private void FixedUpdate()
     {
-        CameraMove();
+        if (eDist.closestPlayer.GetComponent<PlayerController>().placementMode == true)
+        {
+            PlacementPhaseCam();
+        }
+        else { CameraMove(); }
+        
         managerCount = GameObject.Find("BackgroundTasks").GetComponent<MainManager>().countdown;
+       
+    }
+
+    void GetGrids()
+    {
+        Grids[0] = GameObject.Find("Grid 1");
+        Grids[1] = GameObject.Find("Grid 2");
+        Grids[2] = GameObject.Find("Grid 3");
     }
 
     private void CameraMove()
     {
-        
-        
+        if (GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown > 1)
+        {
+            transform.LookAt(LookAt.transform.position);
+        }
         //follow furthest player
         if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax)
         {
             lerpSpeed = 0.1f;
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
         }
-        
+
         else if (eDist.playerDifference > ZoomMax)
         {
             lerpSpeed = 0.0045f;
@@ -47,7 +73,7 @@ public class CameraController : MonoBehaviour
 
         else if (eDist.players.Length == 1)
         {
-            lerpSpeed = 0.1f; 
+            lerpSpeed = 0.1f;
             desiredPos = new Vector3(eDist.closestPlayer.transform.position.x, defaultHeight, eDist.closestPlayer.transform.position.z - followDist);
         }
 
@@ -59,7 +85,7 @@ public class CameraController : MonoBehaviour
         }
 
         //zoom
-        if (eDist.playerDifference > verticalZoomDistance || eDist.playerDifference > horizontalZoomDistance || eDist.players.Length == 1 )
+        if (eDist.playerDifference > verticalZoomDistance || eDist.playerDifference > horizontalZoomDistance || eDist.players.Length == 1)
         {
             verticalZoomScale = eDist.playerDifference - verticalZoomDistance;
             horizontalZoomScale = eDist.horizontalDifference - horizontalZoomDistance;
@@ -75,7 +101,7 @@ public class CameraController : MonoBehaviour
             {
                 desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -.5f);
             }
-            
+
 
 
             //lerp
@@ -84,5 +110,53 @@ public class CameraController : MonoBehaviour
 
         }
     }
+
+    public void PlacementPhaseCam()
+    {
+        lerpSpeed = 0.01f;
+        defaultHeight = 18;
+        followDist = gridDist;
+
+        camCountdown -= Time.deltaTime;
+
+        // Grid Movement
+        if(camCountdown <= 9.9f)
+        {
+            LookAt = Grids[currentGrid];
+        }
+
+        if (camCountdown <= 0 && currentGrid != 2)
+        {
+           
+            camCountdown = maxCount;
+            Grids[currentGrid].SetActive(false);
+            currentGrid++;
+        }
+
+        // Last Grid 
+         if (camCountdown <= 0 && currentGrid == 2)
+        {
+            Grids[0].SetActive(true);
+            Grids[1].SetActive(true);
+            Grids[2].SetActive(true);
+            eDist.closestPlayer.GetComponent<PlayerController>().placementMode = false;
+            currentGrid = 0;
+            transform.LookAt(eDist.closestPlayer.transform.position);
+            followDist = playerDist;
+            LookAt = GameObject.Find("LookAt");
+            GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
+            
+        }
+
+        desiredPos = new Vector3(Grids[currentGrid].transform.position.x, defaultHeight, Grids[currentGrid].transform.position.z);
+        transform.LookAt(LookAt.transform.position);
+        transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
+    }    
+        
+        
+        
+
+    
+    
     
 }
