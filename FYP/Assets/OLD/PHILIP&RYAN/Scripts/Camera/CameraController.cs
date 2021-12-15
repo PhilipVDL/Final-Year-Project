@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (eDist.closestPlayer.GetComponent<PlayerController>().placementMode == true)
+        if (GameObject.Find("Finish").GetComponent<FinishLine>().finished == 3)
         {
             PlacementPhaseCam();
         }
@@ -141,11 +141,13 @@ public class CameraController : MonoBehaviour
             Grids[2].SetActive(true);
             eDist.closestPlayer.GetComponent<PlayerController>().placementMode = false;
             currentGrid = 0;
-            transform.LookAt(eDist.closestPlayer.transform.position);
+            //transform.LookAt(eDist.closestPlayer.transform.position);
             followDist = playerDist;
             LookAt = GameObject.Find("LookAt");
             GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
             
+
+
         }
 
         desiredPos = new Vector3(Grids[currentGrid].transform.position.x, defaultHeight, Grids[currentGrid].transform.position.z);
