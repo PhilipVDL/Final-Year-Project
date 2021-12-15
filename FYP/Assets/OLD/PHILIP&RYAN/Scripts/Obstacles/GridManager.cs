@@ -46,7 +46,7 @@ public class GridManager : MonoBehaviour
         foreach(GameObject zone in zones)
         {
             GridZone gz = zone.GetComponent<GridZone>();
-            if(gz.gridX == x && gz.gridZ == z)
+            if(gz.gridX == x && gz.gridZ == z && !gz.filled)
             {
                 tf = zone.transform;
                 gz.Fill(obstacle);
