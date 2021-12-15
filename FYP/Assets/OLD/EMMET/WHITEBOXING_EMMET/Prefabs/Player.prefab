@@ -439,7 +439,7 @@ Transform:
   m_GameObject: {fileID: 8331225723004286651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7312082043380898690}
   - {fileID: 2583110396266710763}
@@ -508,20 +508,20 @@ MonoBehaviour:
   currentSpeed: 0
   maxSpeed: 10
   maxVelocity: 10
-  timeToMaxSpeed: 3
+  timeToMaxSpeed: 1
   boostTime: 1
   minSpeed: 0
-  timeToMinSpeed: 1.5
+  timeToMinSpeed: 0.75
   fDamp: 0.005
   horizontalMoveSpeedMultiplier: 0.75
   horizontalMoveSpeedMin: 1
   hDamp: 0.05
-  castDistance: 0.51
+  castDistance: 1.1
   grounded: 0
   chargingJump: 0
   currentJumpForce: 0
-  minJumpForce: 5
-  maxJumpForce: 25
+  minJumpForce: 15
+  maxJumpForce: 30
   timeToMaxJumpForce: 1.5
   jumpSpeedMult: 1.2
   jumpControlled: 1
@@ -533,7 +533,7 @@ MonoBehaviour:
   deathHeight: -10
   doesRespawn: 1
   currentSpawn: {fileID: 0}
-  elimCount: 0
+  elimCount: 0.3
   oiled: 0
   oilSpillSpeed: 6
   oilSpillDuration: 5
@@ -547,6 +547,11 @@ MonoBehaviour:
   trampolineJumpSpeedMult: 1.5
   trampolineDuration: 5
   trampolineTimer: 0
+  lasered: 0
+  speedPadded: 0
+  padSpeed: 0
+  padDuration: 0
+  padTimer: 0
 --- !u!1001 &7130045512191212649
 PrefabInstance:
   m_ObjectHideFlags: 0
