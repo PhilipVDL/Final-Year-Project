@@ -20,4 +20,9 @@ public class ButtonScript : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

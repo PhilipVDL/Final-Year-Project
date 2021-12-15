@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
         }
         else { CameraMove(); }
         
-        managerCount = GameObject.Find("BackgroundTasks").GetComponent<MainManager>().countdown;
+        managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
        
     }
 
