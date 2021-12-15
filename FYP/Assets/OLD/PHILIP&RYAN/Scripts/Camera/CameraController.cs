@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameObject.Find("Finish").GetComponent<FinishLine>().finished == 3)
+        if (GameObject.Find("Finish").GetComponent<FinishLine>().finished == eDist.players.Length)
         {
             PlacementPhaseCam();
         }

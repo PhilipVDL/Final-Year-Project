@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        if (Input.GetKey(KeyCode.Escape) && PauseCanvas ==false)
+        if (Input.GetKey(KeyCode.Escape))
         {
             PauseCanvas.SetActive(true);
             Time.timeScale = 0;

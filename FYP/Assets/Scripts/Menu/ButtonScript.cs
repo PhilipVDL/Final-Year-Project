@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
+  
  public void StartButton()
     {
         SceneManager.LoadScene(0);
     }
 
-    
-
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
     }
 }
