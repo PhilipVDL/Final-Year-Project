@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        gm = GameObject.Find("Grid").GetComponent<GridManager>();
+        gm = GameObject.FindGameObjectWithTag("Grid Manager").GetComponent<GridManager>();
         inventory = GetComponent<ObstacleInventory>();
         placementX = 0;
         placementZ = 0;
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         ObstacleTimers();
         Begin();
         PlacementHighlight();
-        PlacementMove();
+        PlacementDebugToggle();
         Respawn();
     }
 
@@ -282,8 +282,6 @@ public class PlayerController : MonoBehaviour
                     Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
                     inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
                 }
-                Instantiate(inventory.obstacles[inventory.selectedIndex], gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex])); //place
-                inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
             }
         }
     }
@@ -573,19 +571,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PlacementMove()
+    void PlacementDebugToggle()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (!placementMode)
-            {
-                placementMode = true;
-                StartCoroutine(PlacementMoving());
-            }
-            else
-            {
-                placementMode = false;
-            }
+            PlacementMove();
+        }
+    }
+
+    public void PlacementMove()
+    {
+        if (!placementMode)
+        {
+            placementMode = true;
+            StartCoroutine(PlacementMoving());
+        }
+        else
+        {
+            placementMode = false;
         }
     }
 
@@ -764,8 +767,10 @@ public class PlayerController : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        StartCoroutine(DeathCount());
-
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(DeathCount());
+        }
     }
 
     void OnBecameVisible()

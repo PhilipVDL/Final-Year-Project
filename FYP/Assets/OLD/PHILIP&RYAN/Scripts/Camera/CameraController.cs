@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
 
     private void CameraMove()
     {
-        if (GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown > 1)
+        if (GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown > 1 && LookAt != null)
         {
             transform.LookAt(LookAt.transform.position);
         }
@@ -86,10 +86,12 @@ public class CameraController : MonoBehaviour
         }
 
         //Slope movement
-
-        if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
+        if(eDist.closestPlayer != null)
         {
-            defaultHeight = eDist.closestPlayer.transform.position.y + 10;
+            if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
+            {
+                defaultHeight = eDist.closestPlayer.transform.position.y + 10;
+            }
         }
 
         //zoom

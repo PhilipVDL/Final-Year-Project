@@ -11,6 +11,7 @@ public class GridZone : MonoBehaviour
     public GameObject highlight;
     Renderer hlRenderer;
     public Material hlMaterial;
+    private bool lightUp;
 
     private void Start()
     {
@@ -18,11 +19,21 @@ public class GridZone : MonoBehaviour
         highlight = transform.GetChild(0).gameObject;
         hlRenderer = highlight.GetComponent<Renderer>();
         hlMaterial = hlRenderer.material;
+        lightUp = false;
     }
 
     private void Update()
     {
         ResetHighlight();
+    }
+
+    private void LateUpdate()
+    {
+        if (lightUp)
+        {
+            Lit();
+            lightUp = false;
+        }
     }
 
     public void Fill(GameObject fillObstacle)
@@ -38,8 +49,13 @@ public class GridZone : MonoBehaviour
 
     public void Highlight(int playerNumber)
     {
-        highlight.SetActive(true);
         hlMaterial = customs.materials[playerNumber - 1];
+        lightUp = true;
+    }
+
+    void Lit()
+    {
+        highlight.SetActive(true);
         hlRenderer.material = hlMaterial;
     }
 }

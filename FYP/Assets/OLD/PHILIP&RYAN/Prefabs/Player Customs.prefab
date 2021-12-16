@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2569899475000524055}
   - component: {fileID: 2569899475000524072}
-  - component: {fileID: 1062342605023814811}
   m_Layer: 0
   m_Name: Player Customs
   m_TagString: Untagged
@@ -47,64 +46,3 @@ MonoBehaviour:
   players: []
   materials: []
   meshes: []
---- !u!114 &1062342605023814811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569899475000524073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06dc1033486b9249bba063a603bd92c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoForward: 0
-  playerNumber: 0
-  currentSpeed: 0
-  maxSpeed: 0
-  maxVelocity: 0
-  timeToMaxSpeed: 0
-  boostTime: 0
-  minSpeed: 0
-  timeToMinSpeed: 0
-  fDamp: 0
-  horizontalMoveSpeedMultiplier: 0
-  horizontalMoveSpeedMin: 0
-  hDamp: 0
-  castDistance: 0
-  grounded: 0
-  chargingJump: 0
-  currentJumpForce: 0
-  minJumpForce: 0
-  maxJumpForce: 0
-  timeToMaxJumpForce: 0
-  jumpSpeedMult: 0
-  jumpControlled: 0
-  airControlMult: 0
-  placementMode: 0
-  placementX: 0
-  placementZ: 0
-  placementMoveDelay: 0
-  deathHeight: 0
-  doesRespawn: 0
-  currentSpawn: {fileID: 0}
-  elimCount: 0
-  oiled: 0
-  oilSpillSpeed: 0
-  oilSpillDuration: 0
-  oilSpillTimer: 0
-  deflated: 0
-  tackSpeed: 0
-  tackAirControl: 0
-  tackDuration: 0
-  tackTimer: 0
-  trampolined: 0
-  trampolineJumpSpeedMult: 0
-  trampolineDuration: 0
-  trampolineTimer: 0
-  lasered: 0
-  speedPadded: 0
-  padSpeed: 0
-  padDuration: 0
-  padTimer: 0
