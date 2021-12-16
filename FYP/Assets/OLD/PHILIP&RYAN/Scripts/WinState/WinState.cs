@@ -8,6 +8,7 @@ public class WinState : MonoBehaviour
     PlayerCustoms customs;
     public GameObject player;
     public Transform[] spawns;
+    public GameObject maincamera;
 
     //score
     public int[] scores = new int[4];
@@ -23,13 +24,15 @@ public class WinState : MonoBehaviour
     {
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
         customs = GameObject.Find("Player Customs").GetComponent<PlayerCustoms>();
+        maincamera = GameObject.Find("Main Camera");
     }
 
     private void Update()
     {
-        if (endRound && !win)
+        if (endRound && !win )
         {
-            NewRound();
+            maincamera.GetComponent<CameraController>().placementPhase = true;
+           // NewRound();
         }
         else if(endRound && win)
         {

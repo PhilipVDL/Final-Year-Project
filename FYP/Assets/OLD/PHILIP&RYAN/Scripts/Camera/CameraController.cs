@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class CameraController : MonoBehaviour
 {
     //components
-   public EndDistance eDist;
+    public EndDistance eDist;
 
     //Grids
     public GameObject[] Grids;
@@ -23,11 +23,15 @@ public class CameraController : MonoBehaviour
     public int currentGrid = 0;
     public float gridDist;
     public float playerDist;
+    public float totalPlayers;
+
+    //modes
+    public bool placementPhase;
 
 
     private void Start()
     {
-        
+
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         GetGrids();
 
@@ -35,15 +39,19 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameObject.Find("Finish").GetComponent<FinishLine>().finished == eDist.players.Length)
+        if (placementPhase)
         {
             PlacementPhaseCam();
         }
         else { CameraMove(); }
-        
+
         managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
-       
+
+
+
     }
+
+
 
     void GetGrids()
     {
@@ -113,52 +121,61 @@ public class CameraController : MonoBehaviour
 
     public void PlacementPhaseCam()
     {
+        //Set stats
         lerpSpeed = 0.01f;
         defaultHeight = 18;
         followDist = gridDist;
 
         camCountdown -= Time.deltaTime;
+        LookAt = Grids[currentGrid];
 
-        // Grid Movement
-        if(camCountdown <= 9.9f)
+        // Grid Calculations
+        if (camCountdown <= 0 && currentGrid == 0)
         {
-            LookAt = Grids[currentGrid];
-        }
-
-        if (camCountdown <= 0 && currentGrid != 2)
-        {
-           
+            currentGrid = 1;
             camCountdown = maxCount;
-            Grids[currentGrid].SetActive(false);
-            currentGrid++;
         }
 
-        // Last Grid 
-         if (camCountdown <= 0 && currentGrid == 2)
+        if (currentGrid == 0)
         {
+            Grids[1].SetActive(false);
             Grids[0].SetActive(true);
-            Grids[1].SetActive(true);
-            Grids[2].SetActive(true);
-            eDist.closestPlayer.GetComponent<PlayerController>().placementMode = false;
+            Grids[2].SetActive(false);
+        }
+
+        if (camCountdown <= 0 && currentGrid == 1)
+        {
+            currentGrid = 2;
+            camCountdown = maxCount;
+        }
+
+        if (camCountdown <= 0 && currentGrid == 2)
+        {
             currentGrid = 0;
-            //transform.LookAt(eDist.closestPlayer.transform.position);
             followDist = playerDist;
             LookAt = GameObject.Find("LookAt");
             GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-            
-
-
+            GameObject.Find("WinState").GetComponent<WinState>().NewRound();
+            placementPhase = false;
         }
+
+
+        //Grid Movement
+        if (currentGrid != 0)
+        {
+            Grids[currentGrid - 1].SetActive(false);
+        }
+        Grids[currentGrid].SetActive(true);
 
         desiredPos = new Vector3(Grids[currentGrid].transform.position.x, defaultHeight, Grids[currentGrid].transform.position.z);
         transform.LookAt(LookAt.transform.position);
         transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
-    }    
-        
-        
+    }
+
+
+}        
         
 
     
     
     
-}

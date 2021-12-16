@@ -19,9 +19,10 @@ public class FinishLine : MonoBehaviour
         //score
         if (other.CompareTag("Player"))
         {
+            finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             win.Score(player, points[finished]);
-            finished++;
+           
             Destroy(other.gameObject);
         }
     }
