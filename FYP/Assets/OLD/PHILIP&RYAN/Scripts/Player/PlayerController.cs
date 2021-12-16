@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     GridManager gm;
     RaycastHit hit;
     ObstacleInventory inventory;
+    GameObject obstaclesOnMap;
 
     //variables
     #region variables
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         gm = GameObject.FindGameObjectWithTag("Grid Manager").GetComponent<GridManager>();
         inventory = GetComponent<ObstacleInventory>();
+        obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
         placementX = 0;
         placementZ = 0;
         Defaults();
@@ -279,7 +281,8 @@ public class PlayerController : MonoBehaviour
                 //find, check
                 if (grid != null)
                 {
-                    Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
+                    GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
+                    obstacle.transform.parent = obstaclesOnMap.transform; //unparent
                     inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
                 }
             }
