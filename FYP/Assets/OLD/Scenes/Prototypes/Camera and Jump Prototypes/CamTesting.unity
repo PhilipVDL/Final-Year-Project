@@ -536,6 +536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid 2
       objectReference: {fileID: 0}
+    - target: {fileID: 585123300058674227, guid: 59e38ebf7b4b7944f81b9c5600d4e797, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 585123300556917448, guid: 59e38ebf7b4b7944f81b9c5600d4e797, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1248,6 +1252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid 3
       objectReference: {fileID: 0}
+    - target: {fileID: 585123300058674227, guid: 59e38ebf7b4b7944f81b9c5600d4e797, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 585123300556917448, guid: 59e38ebf7b4b7944f81b9c5600d4e797, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1485,6 +1493,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 326195740}
     m_Modifications:
+    - target: {fileID: 1923085735758376849, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: obstacles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923085735758376849, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: obstacles.Array.data[0]
+      value: 
+      objectReference: {fileID: 2401008648983930406, guid: 4ad7c2c006241f94ea24344665ec2723, type: 3}
     - target: {fileID: 2583110396266710763, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.014299001

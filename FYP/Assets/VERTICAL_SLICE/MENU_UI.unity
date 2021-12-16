@@ -8733,9 +8733,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2040438737}
-        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 2040438736}
+        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
+        m_MethodName: StartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8756,7 +8756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2040438737
+--- !u!114 &2040438736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8765,7 +8765,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2040438732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282878251b166a8489ffeff323bdcdfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5b7760044dd734f9656a6f1a0171ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2057784714

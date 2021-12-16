@@ -8,7 +8,7 @@ public class ButtonScript : MonoBehaviour
   
  public void StartButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitButton()
