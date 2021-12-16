@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         ObstacleTimers();
         Begin();
         PlacementHighlight();
-        PlacementDebugToggle();
+        //PlacementDebugToggle();
         Respawn();
     }
 
