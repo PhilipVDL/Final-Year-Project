@@ -589,10 +589,7 @@ public class PlayerController : MonoBehaviour
             placementMode = true;
             StartCoroutine(PlacementMoving());
         }
-        else
-        {
-            placementMode = false;
-        }
+       
     }
 
     IEnumerator PlacementMoving()
@@ -765,12 +762,14 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DeathCount()
     {
         yield return new WaitForSeconds(elimCount);
-        Destroy(this.gameObject);
+        GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers--;
+        this.gameObject.SetActive(false);
+        //Destroy(this.gameObject);
     }
 
     void OnBecameInvisible()
     {
-        if (gameObject.activeInHierarchy)
+        if (gameObject.activeInHierarchy && placementMode == false)
         {
             StartCoroutine(DeathCount());
         }

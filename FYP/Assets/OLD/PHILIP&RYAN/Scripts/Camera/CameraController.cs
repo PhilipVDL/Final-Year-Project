@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     public int currentGrid = 0;
     public float gridDist;
     public float playerDist;
-    public float totalPlayers;
+    public int totalPlayers;
 
     //modes
     public bool placementPhase;
@@ -31,11 +31,12 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-
+        CountPlayers();
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         GetGrids();
+    }    
 
-    }
+    
 
     private void FixedUpdate()
     {
@@ -46,10 +47,13 @@ public class CameraController : MonoBehaviour
         else { CameraMove(); }
 
         managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
-
-
-
     }
+
+    public void CountPlayers()
+    {
+        totalPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
+    }
+    
 
 
 
@@ -67,7 +71,7 @@ public class CameraController : MonoBehaviour
             transform.LookAt(LookAt.transform.position);
         }
         //follow furthest player
-        if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax)
+        if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax && eDist.furthestPlayer.activeInHierarchy != false)
         {
             lerpSpeed = 0.1f;
             desiredPos = new Vector3(0, defaultHeight, eDist.furthestPlayer.transform.position.z - followDist);
@@ -134,34 +138,57 @@ public class CameraController : MonoBehaviour
         // Grid Calculations
         if (camCountdown <= 0 && currentGrid == 0)
         {
-            currentGrid = 1;
+            //currentGrid = 1;
+            Destroy(GameObject.Find("Player 1"));
+            Destroy(GameObject.Find("Player 2"));
+            Destroy(GameObject.Find("Player 3"));
+            Destroy(GameObject.Find("Player 4"));
             camCountdown = maxCount;
-        }
-
-        if (currentGrid == 0)
-        {
-            Grids[1].SetActive(false);
-            Grids[0].SetActive(true);
-            Grids[2].SetActive(false);
-        }
-
-        if (camCountdown <= 0 && currentGrid == 1)
-        {
-            currentGrid = 2;
-            camCountdown = maxCount;
-        }
-
-        if (camCountdown <= 0 && currentGrid == 2)
-        {
             currentGrid = 0;
             followDist = playerDist;
             LookAt = GameObject.Find("LookAt");
             GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
             GameObject.Find("WinState").GetComponent<WinState>().NewRound();
+            
             placementPhase = false;
+
         }
 
+        if (camCountdown <= 0 && currentGrid == 0 && GameObject.Find("Win").GetComponent<WinState>().currentRound > 1)
+        {
+            //currentGrid = 1;
+            Destroy(GameObject.Find("Player 1(Clone)"));
+            Destroy(GameObject.Find("Player 2(Clone)"));
+            Destroy(GameObject.Find("Player 3(Clone)"));
+            Destroy(GameObject.Find("Player 4(Clone)"));
+            camCountdown = maxCount;
+            currentGrid = 0;
+            followDist = playerDist;
+            LookAt = GameObject.Find("LookAt");
+            GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
+            GameObject.Find("WinState").GetComponent<WinState>().NewRound();
 
+            placementPhase = false;
+
+        }
+
+        /* if (camCountdown <= 0 && currentGrid == 1)
+         {
+             currentGrid = 2;
+             camCountdown = maxCount;
+         }
+
+         if (camCountdown <= 0 && currentGrid == 2)
+         {
+             currentGrid = 0;
+             followDist = playerDist;
+             LookAt = GameObject.Find("LookAt");
+             GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
+             GameObject.Find("WinState").GetComponent<WinState>().NewRound();
+             placementPhase = false;
+         }
+
+     */
         //Grid Movement
         if (currentGrid != 0)
         {
