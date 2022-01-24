@@ -7,19 +7,29 @@ public class EndDistance : MonoBehaviour
     public GameObject[] players;
     public GameObject closestPlayer, furthestPlayer, leftestPlayer, rightestPlayer;
     public float closestDist, furthestDist, playerDifference, leftDist, rightDist, horizontalDifference;
+    public List<GameObject> playerPositions;
+
+    private void ListPlayers()
+    {
+        playerPositions.Clear();
+        foreach(GameObject player in players)
+        {
+            playerPositions.Add(player);
+        }
+    }
 
     private void Update()
     {
         CountPlayers();
         PlayerDistance();
         HorizontalDIstance();
+        GetPlayerPositions();
     }
 
     private void CountPlayers()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-
-        
+        ListPlayers();
     }
 
     private void PlayerDistance()
@@ -54,8 +64,18 @@ public class EndDistance : MonoBehaviour
             }
 
             playerDifference = furthestDist - closestDist;
-            
         }
+    }
+
+    void GetPlayerPositions()
+    {
+        playerPositions.Sort(delegate (GameObject a, GameObject b)
+        {
+            Vector3 pos = this.transform.position;
+            Vector3 A = a.transform.position;
+            Vector3 B = b.transform.position;
+            return (pos - A).sqrMagnitude.CompareTo((pos-B).sqrMagnitude);
+        });
     }
 
     private void HorizontalDIstance()
