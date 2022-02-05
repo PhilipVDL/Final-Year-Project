@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     GridManager gm;
     RaycastHit hit;
     ObstacleInventory inventory;
+    PlayerObstacles playerObstacles;
     GameObject obstaclesOnMap;
 
     //variables
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public float timeToMinSpeed;
     public float fDamp;
 
-    private bool braking, speeding, goLeft, goRight;
+    public bool braking, speeding, goLeft, goRight;
 
     [Header("Strafing")]
     public float horizontalMoveSpeedMultiplier;
@@ -102,8 +103,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        gm = GameObject.FindGameObjectWithTag("Grid Manager").GetComponent<GridManager>();
+        //gm = GameObject.FindGameObjectWithTag("Grid Manager").GetComponent<GridManager>();
         inventory = GetComponent<ObstacleInventory>();
+        playerObstacles = GetComponent<PlayerObstacles>();
         obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
         placementX = 0;
         placementZ = 0;
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         ObstacleTimers();
         Begin();
-        PlacementHighlight();
+        //PlacementHighlight();
         //PlacementDebugToggle();
         Respawn();
     }
@@ -275,8 +277,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
         {
-            if(inventory.obstacles.Count > 0 && inventory.obstacles[0] != null)
+            if (inventory.obstacles.Count > 0 && inventory.obstacles[inventory.selectedIndex] != null)
             {
+                playerObstacles.PlaceObstacle();
+
+                /*
                 Transform grid = gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex]);
                 //find, check
                 if (grid != null)
@@ -285,6 +290,7 @@ public class PlayerController : MonoBehaviour
                     obstacle.transform.parent = obstaclesOnMap.transform; //unparent
                     inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
                 }
+                */
             }
         }
     }
@@ -587,7 +593,7 @@ public class PlayerController : MonoBehaviour
         if (!placementMode)
         {
             placementMode = true;
-            StartCoroutine(PlacementMoving());
+            //StartCoroutine(PlacementMoving());
         }
        
     }

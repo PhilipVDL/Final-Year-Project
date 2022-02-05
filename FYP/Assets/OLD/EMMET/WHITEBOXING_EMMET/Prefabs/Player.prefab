@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 8331225723004286649}
   - component: {fileID: 4120364034480901924}
   - component: {fileID: 1923085735758376849}
+  - component: {fileID: 1370262700781777219}
   - component: {fileID: 8331225723004286650}
   m_Layer: 0
   m_Name: Player
@@ -491,6 +492,22 @@ MonoBehaviour:
   currentObstacles: 0
   selectedIndex: 0
   obstacles: []
+--- !u!114 &1370262700781777219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331225723004286651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927d5bc43f9d7564191ea8c851ac1a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePreview: {fileID: 0}
+  preview: 0
+  currentPreviewIndex: 0
+  previewSpeed: 10
 --- !u!114 &8331225723004286650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +530,10 @@ MonoBehaviour:
   minSpeed: 0
   timeToMinSpeed: 0.75
   fDamp: 0.005
+  braking: 0
+  speeding: 0
+  goLeft: 0
+  goRight: 0
   horizontalMoveSpeedMultiplier: 0.75
   horizontalMoveSpeedMin: 1
   hDamp: 0.05
