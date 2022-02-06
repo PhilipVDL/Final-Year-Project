@@ -593,9 +593,14 @@ public class PlayerController : MonoBehaviour
         if (!placementMode)
         {
             placementMode = true;
+            playerObstacles.preview = true;
             //StartCoroutine(PlacementMoving());
         }
-       
+        else if (placementMode)
+        {
+            placementMode = false;
+            playerObstacles.preview = false;
+        }
     }
 
     IEnumerator PlacementMoving()
