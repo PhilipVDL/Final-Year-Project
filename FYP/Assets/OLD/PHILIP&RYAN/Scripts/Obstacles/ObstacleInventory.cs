@@ -26,8 +26,17 @@ public class ObstacleInventory : MonoBehaviour
         }
     }
 
-    void SelectedIndex()
+    public void SelectedIndex(int change)
     {
-        //switch obstacles
+        selectedIndex += change;
+
+        if(selectedIndex >= obstacles.Count)
+        {
+            selectedIndex = 0;
+        }
+        else if(selectedIndex < 0)
+        {
+            selectedIndex = obstacles.Count - 1;
+        }
     }
 }

@@ -293,6 +293,18 @@ public class PlayerController : MonoBehaviour
                 */
             }
         }
+
+        if(Input.GetButtonDown("ObstacleSwitch" + playerNumber) && placementMode)
+        {
+            if(Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
+            {
+                inventory.SelectedIndex(1);
+            }
+            else if(Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
+            {
+                inventory.SelectedIndex(-1);
+            }
+        }
     }
     #endregion
 
