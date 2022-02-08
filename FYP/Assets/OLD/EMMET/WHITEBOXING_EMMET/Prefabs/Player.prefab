@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 1923085735758376849}
   - component: {fileID: 1370262700781777219}
   - component: {fileID: 8331225723004286650}
+  - component: {fileID: 5399486690372267786}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -573,6 +574,25 @@ MonoBehaviour:
   padSpeed: 0
   padDuration: 0
   padTimer: 0
+--- !u!114 &5399486690372267786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331225723004286651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e262a9baaaa89084aa05a5b900c4c9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballTypeID: 0
+  currentBallType: 
+  ballTypes:
+  - bouncy
+  - bowling
+  - marble
+  - snooker
 --- !u!1001 &7130045512191212649
 PrefabInstance:
   m_ObjectHideFlags: 0

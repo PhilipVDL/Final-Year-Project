@@ -194,6 +194,10 @@ PrefabInstance:
       propertyPath: obstacles.Array.data[2]
       value: 
       objectReference: {fileID: 788565902981978402, guid: 91e8a5c2023279f4093edb65975ecad9, type: 3}
+    - target: {fileID: 5399486690372267786, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: ballTypeID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
