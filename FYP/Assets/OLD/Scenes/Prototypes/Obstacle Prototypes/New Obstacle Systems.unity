@@ -175,6 +175,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 818127540}
     - target: {fileID: 1370262700781777219, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: maxPlaceThisRound
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370262700781777219, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: previewMeshes.Array.size
       value: 1
       objectReference: {fileID: 0}

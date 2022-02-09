@@ -10,9 +10,10 @@ public class PlayerObstacles : MonoBehaviour
     public GameObject obstaclePreview;
     private GameObject obstaclesOnMap;
     ObstaclePreview _obstaclePreviw;
+    public int maxPlaceThisRound;
+    public int placedThisRound;
     public bool preview;
     public int currentPreviewIndex;
-
     public float previewSpeed;
 
     private void Start()
@@ -25,8 +26,17 @@ public class PlayerObstacles : MonoBehaviour
 
     private void Update()
     {
+        MaxPlaced();
         PreviewMode();
         MovePreview();
+    }
+
+    void MaxPlaced()
+    {
+        if(placedThisRound >= maxPlaceThisRound)
+        {
+            preview = false;
+        }
     }
 
     void PreviewMode()
@@ -84,9 +94,10 @@ public class PlayerObstacles : MonoBehaviour
 
     public void PlaceObstacle()
     {
-        if (controller.placementMode)
+        if (controller.placementMode && preview)
         {
             GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
+            placedThisRound++; //count 1 placement
             obstacle.transform.parent = obstaclesOnMap.transform; //unparent
             inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
         }
