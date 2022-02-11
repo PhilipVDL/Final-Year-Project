@@ -7,9 +7,10 @@ public class CameraController : MonoBehaviour
 {
     //components
     public EndDistance eDist;
+    public Vector3 placementRot;
 
     //Grids
-    public GameObject[] Grids;
+    public GameObject[] Sections;
     public GameObject LookAt;
 
     //variables
@@ -20,8 +21,8 @@ public class CameraController : MonoBehaviour
     public float managerCount;
     public float camCountdown;
     public float maxCount;
-    public int currentGrid = 0;
-    public float gridDist;
+    public int currentSection = 0;
+    public float sectionDist;
     public float playerDist;
     public int totalPlayers;
 
@@ -36,6 +37,7 @@ public class CameraController : MonoBehaviour
         GetGrids();
     }    
 
+  
     
 
     private void FixedUpdate()
@@ -59,9 +61,9 @@ public class CameraController : MonoBehaviour
 
     void GetGrids()
     {
-        Grids[0] = GameObject.Find("Grid 1");
-        Grids[1] = GameObject.Find("Grid 2");
-        Grids[2] = GameObject.Find("Grid 3");
+        Sections[0] = GameObject.Find("P1");
+        Sections[1] = GameObject.Find("P2");
+        Sections[2] = GameObject.Find("P3");
     }
 
     private void CameraMove()
@@ -70,6 +72,7 @@ public class CameraController : MonoBehaviour
         {
             transform.LookAt(LookAt.transform.position);
         }
+     
         //follow furthest player
         if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax && eDist.furthestPlayer.activeInHierarchy != false)
         {
@@ -127,78 +130,33 @@ public class CameraController : MonoBehaviour
 
     public void PlacementPhaseCam()
     {
+        //Avert look at
+        Destroy(GameObject.Find("Player 1"));
+        Destroy(GameObject.Find("Player 2"));
+        Destroy(GameObject.Find("Player 3"));
+        Destroy(GameObject.Find("Player 4"));
+        
         //Set stats
-        lerpSpeed = 0.01f;
-        defaultHeight = 18;
-        followDist = gridDist;
+        lerpSpeed = 0.001f;
+        defaultHeight = 13;
+        
 
         camCountdown -= Time.deltaTime;
-        LookAt = Grids[currentGrid];
 
-        // Grid Calculations
-        if (camCountdown <= 0 && currentGrid == 0)
-        {
-            //currentGrid = 1;
-            Destroy(GameObject.Find("Player 1"));
-            Destroy(GameObject.Find("Player 2"));
-            Destroy(GameObject.Find("Player 3"));
-            Destroy(GameObject.Find("Player 4"));
-            camCountdown = maxCount;
-            currentGrid = 0;
-            followDist = playerDist;
-            LookAt = GameObject.Find("LookAt");
-            GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-            GameObject.Find("WinState").GetComponent<WinState>().NewRound();
-            
-            placementPhase = false;
-
-        }
-
-        if (camCountdown <= 0 && currentGrid == 0 && GameObject.Find("Win").GetComponent<WinState>().currentRound > 1)
-        {
-            //currentGrid = 1;
-            Destroy(GameObject.Find("Player 1(Clone)"));
-            Destroy(GameObject.Find("Player 2(Clone)"));
-            Destroy(GameObject.Find("Player 3(Clone)"));
-            Destroy(GameObject.Find("Player 4(Clone)"));
-            camCountdown = maxCount;
-            currentGrid = 0;
-            followDist = playerDist;
-            LookAt = GameObject.Find("LookAt");
-            GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-            GameObject.Find("WinState").GetComponent<WinState>().NewRound();
-
-            placementPhase = false;
-
-        }
-
-        /* if (camCountdown <= 0 && currentGrid == 1)
-         {
-             currentGrid = 2;
-             camCountdown = maxCount;
-         }
-
-         if (camCountdown <= 0 && currentGrid == 2)
-         {
-             currentGrid = 0;
-             followDist = playerDist;
-             LookAt = GameObject.Find("LookAt");
-             GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-             GameObject.Find("WinState").GetComponent<WinState>().NewRound();
-             placementPhase = false;
-         }
-
-     */
-        //Grid Movement
-        if (currentGrid != 0)
-        {
-            Grids[currentGrid - 1].SetActive(false);
-        }
-        Grids[currentGrid].SetActive(true);
-
-        desiredPos = new Vector3(Grids[currentGrid].transform.position.x, defaultHeight, Grids[currentGrid].transform.position.z);
+        desiredPos = new Vector3(Sections[2].transform.position.x, sectionDist, Sections[2].transform.position.z);
+        LookAt = Sections[2];
         transform.LookAt(LookAt.transform.position);
         transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
+
+       
+
+
+
+
+
+
+
+        
     }
 
 
