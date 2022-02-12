@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8145474620507203808}
   - component: {fileID: 8145474620507203815}
   - component: {fileID: 8145474620507203814}
-  - component: {fileID: 8145474620507203813}
   m_Layer: 0
   m_Name: Trampoline
   m_TagString: Untagged
@@ -91,21 +90,9 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8145474620507203812}
-  m_Material: {fileID: 13400000, guid: 3252615eeda104c4797763280e92ec22, type: 2}
+  m_Material: {fileID: 13400000, guid: 0cf5b1a1f085719408b1eaae78d8ad60, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8145474620507203813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8145474620507203812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21cc631e7e1875744b7ca7f0a85d2e0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
