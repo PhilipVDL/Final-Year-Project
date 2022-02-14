@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour
         placementX = 0;
         placementZ = 0;
         Defaults();
+
+        gameObject.name = "Player " + playerNumber;
     }
 
     void Defaults()
