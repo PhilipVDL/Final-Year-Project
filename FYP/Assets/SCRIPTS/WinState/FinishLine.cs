@@ -24,14 +24,14 @@ public class FinishLine : MonoBehaviour
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             win.Score(player, points[finished]);
-           
-            //Destroy(other.gameObject);
+
+            other.gameObject.transform.position = win.spawns[0].transform.position;
         }
     }
 
     private void Update()
     {
-       enablePlacing();
+       EnablePlacing();
     }
 
     public void NewRound()
@@ -41,7 +41,7 @@ public class FinishLine : MonoBehaviour
       
     }
 
-    public void enablePlacing()
+    public void EnablePlacing()
     {
         if (finished == GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers && finished != 0)//GameObject.FindWithTag("Player") == null)
         {
@@ -60,18 +60,7 @@ public class FinishLine : MonoBehaviour
 
 
 
-        else if (finished == GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers && GameObject.Find("Win").GetComponent<WinState>().currentRound > 1)
-        {
-            PlayerClones[0].SetActive(true);
-            PlayerClones[1].SetActive(true);
-            PlayerClones[2].SetActive(true);
-            PlayerClones[3].SetActive(true);
-
-            GameObject.Find("Player 1(Clone)").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 2(Clone)").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 3(Clone)").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 4(Clone)").GetComponent<PlayerController>().PlacementMove();
-        }
-
+      
+        
         }
     }

@@ -137,12 +137,6 @@ public class CameraController : MonoBehaviour
     {
         camCountdown -= Time.deltaTime;
 
-        //Avert look at
-        Destroy(GameObject.Find("Player 1"));
-        Destroy(GameObject.Find("Player 2"));
-        Destroy(GameObject.Find("Player 3"));
-        Destroy(GameObject.Find("Player 4"));
-
         //Go to start
         if (camCountdown > 0)
         {
@@ -150,7 +144,7 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
         }
 
-        else 
+        else
         {  //Set stats
             lerpSpeed = 0.001f;
             defaultHeight = 13;
@@ -159,15 +153,18 @@ public class CameraController : MonoBehaviour
             camCountdown -= Time.deltaTime;
 
             desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
-           // LookAt = Sections[1];
-            
+            // LookAt = Sections[1];
+
             transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
-            if (camCountdown <= -50)
-            {
-               
-                placementPhase = false;
-                camCountdown = maxCount;
-            }
+
+        }
+
+        if (camCountdown <= -10)
+        {
+
+            placementPhase = false;
+            camCountdown = maxCount;
+
         }
     }
 }
