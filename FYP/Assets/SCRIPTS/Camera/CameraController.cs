@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
     public float defaultHeight;
     public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax, maxDistance;
     public float lerpSpeed;
+    public float placementCamSpeed;
     public float managerCount;
     public float camCountdown;
     public float maxCount;
@@ -30,23 +31,27 @@ public class CameraController : MonoBehaviour
     public bool placementPhase;
 
 
+
     private void Start()
     {
         CountPlayers();
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         GetGrids();
-    }    
+    }
 
-  
-    
 
     private void FixedUpdate()
     {
         if (placementPhase)
         {
             PlacementPhaseCam();
+            transform.rotation = Quaternion.Euler(50, 0, 0);
         }
-        else { CameraMove(); }
+        else
+        {
+            CameraMove();
+            transform.rotation = Quaternion.Euler(15, 0, 0);
+        }
 
         managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
     }
@@ -55,16 +60,16 @@ public class CameraController : MonoBehaviour
     {
         totalPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
     }
-    
+
 
 
 
     void GetGrids()
     {
-        Sections[0] = GameObject.Find("P1");
-        Sections[1] = GameObject.Find("P2");
-        Sections[2] = GameObject.Find("P3");
+        Sections[0] = GameObject.Find("CamStart");
+        Sections[1] = GameObject.Find("P3");
     }
+
 
     private void CameraMove()
     {
@@ -72,7 +77,7 @@ public class CameraController : MonoBehaviour
         {
             transform.LookAt(LookAt.transform.position);
         }
-     
+
         //follow furthest player
         if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax && eDist.furthestPlayer.activeInHierarchy != false)
         {
@@ -93,7 +98,7 @@ public class CameraController : MonoBehaviour
         }
 
         //Slope movement
-        if(eDist.closestPlayer != null)
+        if (eDist.closestPlayer != null)
         {
             if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
             {
@@ -130,24 +135,42 @@ public class CameraController : MonoBehaviour
 
     public void PlacementPhaseCam()
     {
+        camCountdown -= Time.deltaTime;
+
         //Avert look at
         Destroy(GameObject.Find("Player 1"));
         Destroy(GameObject.Find("Player 2"));
         Destroy(GameObject.Find("Player 3"));
         Destroy(GameObject.Find("Player 4"));
-        
-        //Set stats
-        lerpSpeed = 0.001f;
-        defaultHeight = 13;
-        
 
-        camCountdown -= Time.deltaTime;
+        //Go to start
+        if (camCountdown > 0)
+        {
+            desiredPos = Sections[0].transform.position;
+            transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
+        }
 
-        desiredPos = new Vector3(Sections[2].transform.position.x, sectionDist, Sections[2].transform.position.z);
-        LookAt = Sections[2];
-        transform.LookAt(LookAt.transform.position);
-        transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
+        else 
+        {  //Set stats
+            lerpSpeed = 0.001f;
+            defaultHeight = 13;
 
+
+            camCountdown -= Time.deltaTime;
+
+            desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
+           // LookAt = Sections[1];
+            
+            transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
+            if (camCountdown <= -50)
+            {
+               
+                placementPhase = false;
+                camCountdown = maxCount;
+            }
+        }
+    }
+}
        
 
 
@@ -157,10 +180,10 @@ public class CameraController : MonoBehaviour
 
 
         
-    }
+    
 
 
-}        
+        
         
 
     

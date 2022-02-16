@@ -31,9 +31,7 @@ public class FinishLine : MonoBehaviour
 
     private void Update()
     {
-       
-
-        enablePlacing();
+       enablePlacing();
     }
 
     public void NewRound()
