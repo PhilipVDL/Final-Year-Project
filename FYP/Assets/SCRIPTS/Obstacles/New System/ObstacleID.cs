@@ -9,5 +9,8 @@ public class ObstacleID : MonoBehaviour
     /*
     0 = Oil Spill
     1 = Thumbtacks
+    2 = Speed Pad
+    3 = Trampoline
+    4 = Lasers
     */
 }

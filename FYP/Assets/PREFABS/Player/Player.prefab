@@ -506,6 +506,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePreview: {fileID: 0}
+  DEBUG_MaxPlace: 0
+  maxPlaceThisRound: 1
+  placedThisRound: 0
   preview: 0
   currentPreviewIndex: 0
   previewSpeed: 10
@@ -571,8 +574,8 @@ MonoBehaviour:
   trampolineTimer: 0
   lasered: 0
   speedPadded: 0
-  padSpeed: 0
-  padDuration: 0
+  padSpeed: 20
+  padDuration: 3
   padTimer: 0
 --- !u!114 &5399486690372267786
 MonoBehaviour:
@@ -593,6 +596,10 @@ MonoBehaviour:
   - bowling
   - marble
   - snooker
+  bouncyAttribute: 0
+  bowlingAttribute: 0
+  marbleAttribute: 0
+  snookerAttribute: 0
 --- !u!1001 &7130045512191212649
 PrefabInstance:
   m_ObjectHideFlags: 0

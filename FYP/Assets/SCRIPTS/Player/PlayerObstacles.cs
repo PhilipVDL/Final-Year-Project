@@ -10,6 +10,7 @@ public class PlayerObstacles : MonoBehaviour
     public GameObject obstaclePreview;
     private GameObject obstaclesOnMap;
     ObstaclePreview _obstaclePreviw;
+    public bool DEBUG_MaxPlace;
     public int maxPlaceThisRound;
     public int placedThisRound;
     public bool preview;
@@ -33,7 +34,11 @@ public class PlayerObstacles : MonoBehaviour
 
     void MaxPlaced()
     {
-        if(placedThisRound >= maxPlaceThisRound)
+        if(placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
+        {
+            preview = false;
+        }
+        else if(inventory.obstacles.Count == 0)
         {
             preview = false;
         }

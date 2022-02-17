@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
     [Header("Laser Effect")]
     public bool lasered;
 
-    [Header("Laser Effect")]
+    [Header("Speed Pad Effect")]
     public bool speedPadded;
     public float padSpeed;
     public float padDuration;

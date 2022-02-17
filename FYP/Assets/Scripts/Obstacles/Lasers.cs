@@ -8,7 +8,7 @@ public class Lasers : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().lasered = true;
+            other.GetComponent<PlayerController>().Lasered();
         }
     }
 }
