@@ -159,7 +159,7 @@ public class CameraController : MonoBehaviour
 
         }
 
-        if (camCountdown <= -10)
+        if (camCountdown <= -50)
         {
 
             placementPhase = false;

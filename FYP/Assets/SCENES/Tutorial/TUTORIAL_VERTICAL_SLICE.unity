@@ -3382,7 +3382,7 @@ BoxCollider:
   m_GameObject: {fileID: 576318793}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5263,7 +5263,7 @@ BoxCollider:
   m_GameObject: {fileID: 1010364493}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -7356,7 +7356,7 @@ BoxCollider:
   m_GameObject: {fileID: 1563626190}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8099,7 +8099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777969334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7, y: -4.3, z: 475.5}
+  m_LocalPosition: {x: -2.7, y: -4.3, z: 68.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2018552123}
@@ -10236,7 +10236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8596183349349673601, guid: aad268a5f67d7b848b8423c28b069986, type: 3}
       propertyPath: elimCount
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8596183349349673601, guid: aad268a5f67d7b848b8423c28b069986, type: 3}
       propertyPath: maxJumpForce
@@ -10353,7 +10353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1160045249379726643, guid: dff17f2aa692e064ca66dda32edb47db, type: 3}
       propertyPath: elimCount
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1160045249379726643, guid: dff17f2aa692e064ca66dda32edb47db, type: 3}
       propertyPath: tackSpeed
@@ -10414,7 +10414,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 427353075221761742, guid: c00a34be171243848a6dfc3c4acd3080, type: 3}
       propertyPath: elimCount
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 427353075221761742, guid: c00a34be171243848a6dfc3c4acd3080, type: 3}
       propertyPath: tackSpeed
@@ -10608,7 +10608,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 583875977952095852, guid: 0d0d6bb7bae00d946a42e9445cac2412, type: 3}
       propertyPath: elimCount
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 583875977952095852, guid: 0d0d6bb7bae00d946a42e9445cac2412, type: 3}
       propertyPath: maxJumpForce

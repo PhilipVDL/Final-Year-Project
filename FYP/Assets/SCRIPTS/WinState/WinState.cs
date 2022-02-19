@@ -29,11 +29,13 @@ public class WinState : MonoBehaviour
 
     private void Update()
     {
-        if (endRound && !win )
+        if (endRound && !win)
         {
             maincamera.GetComponent<CameraController>().placementPhase = true;
             
            NewRound();
+
+            
         }
         else if(endRound && win)
         {
@@ -65,7 +67,7 @@ public class WinState : MonoBehaviour
         currentRound++;
        
         //GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers = 4;
-        if (GameObject.Find("Main Camera").GetComponent<CameraController>().camCountdown <= -9)
+        if (GameObject.Find("Main Camera").GetComponent<CameraController>().camCountdown < -48)
         {
             SpawnPlayers();
             endRound = true;
