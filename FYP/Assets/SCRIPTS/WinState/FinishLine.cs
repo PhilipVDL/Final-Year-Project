@@ -21,11 +21,13 @@ public class FinishLine : MonoBehaviour
         //score
         if (other.CompareTag("Player"))
         {
-            finished++;
+            other.gameObject.transform.position = win.spawns[0].transform.position;
+            other.gameObject.GetComponent<PlayerController>().currentSpeed = 0;
+           finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             win.Score(player, points[finished]);
 
-            other.gameObject.transform.position = win.spawns[0].transform.position;
+        
         }
     }
 
@@ -46,16 +48,13 @@ public class FinishLine : MonoBehaviour
         if (finished == GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers && finished != 0)//GameObject.FindWithTag("Player") == null)
         {
             //end round
-            Players[0].SetActive(true);
-            Players[1].SetActive(true);
-            Players[2].SetActive(true);
-            Players[3].SetActive(true);
+            Players[0].SetActive(false);
+            
+            
             win.endRound = true;
 
             GameObject.Find("Player 1").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 2").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 3").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 4").GetComponent<PlayerController>().PlacementMove();
+            
         }
 
 

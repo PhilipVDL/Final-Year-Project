@@ -99,7 +99,7 @@ public class PlayerObstacles : MonoBehaviour
 
     public void PlaceObstacle()
     {
-        if (controller.placementMode && preview)
+        if (controller.placementMode)
         {
             GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
             placedThisRound++; //count 1 placement

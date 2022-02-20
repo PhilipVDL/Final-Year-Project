@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 7836292719427737573}
   - component: {fileID: 427353075221761742}
   - component: {fileID: 8534381750848662563}
+  - component: {fileID: 8195202264889906493}
+  - component: {fileID: -5278847852195237166}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Playerrrr
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,8 +83,7 @@ MonoBehaviour:
   maxObstacles: 6
   currentObstacles: 0
   selectedIndex: 0
-  obstacles:
-  - {fileID: 2401008648983930406, guid: 4ad7c2c006241f94ea24344665ec2723, type: 3}
+  obstacles: []
 --- !u!114 &427353075221761742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +106,10 @@ MonoBehaviour:
   minSpeed: 0
   timeToMinSpeed: 0.75
   fDamp: 0.005
+  braking: 0
+  speeding: 0
+  goLeft: 0
+  goRight: 0
   horizontalMoveSpeedMultiplier: 0.75
   horizontalMoveSpeedMin: 1
   hDamp: 0.05
@@ -186,6 +191,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8195202264889906493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427353075221761743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e262a9baaaa89084aa05a5b900c4c9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballTypeID: 0
+  currentBallType: 
+  ballTypes: []
+  bouncyAttribute: 0
+  bowlingAttribute: 0
+  marbleAttribute: 0
+  snookerAttribute: 0
+--- !u!114 &-5278847852195237166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427353075221761743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927d5bc43f9d7564191ea8c851ac1a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePreview: {fileID: 0}
+  DEBUG_MaxPlace: 1
+  maxPlaceThisRound: 0
+  placedThisRound: 0
+  preview: 0
+  currentPreviewIndex: 0
+  previewSpeed: 0
 --- !u!95 &8882063175317334568
 Animator:
   serializedVersion: 3

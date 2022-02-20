@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
+
+    WinState win;
     //components
     public EndDistance eDist;
     public Vector3 placementRot;
@@ -159,13 +161,18 @@ public class CameraController : MonoBehaviour
 
         }
 
-        if (camCountdown <= -50)
+        if (camCountdown <= -15)
         {
+            GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
+           
 
             placementPhase = false;
             camCountdown = maxCount;
+        }   
 
-        }
+            
+
+        
     }
 }
        

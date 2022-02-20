@@ -789,7 +789,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(elimCount);
         GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers--;
         this.gameObject.SetActive(false);
-        //Destroy(this.gameObject);
+       
     }
 
     void OnBecameInvisible()
@@ -797,6 +797,7 @@ public class PlayerController : MonoBehaviour
         if (gameObject.activeInHierarchy && placementMode == false)
         {
             StartCoroutine(DeathCount());
+            
         }
     }
 

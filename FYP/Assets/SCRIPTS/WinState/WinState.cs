@@ -62,41 +62,24 @@ public class WinState : MonoBehaviour
 
     public void NewRound()
     {
+       
         finish.NewRound();
-        
+        SpawnPlayers();
         currentRound++;
        
         //GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers = 4;
-        if (GameObject.Find("Main Camera").GetComponent<CameraController>().camCountdown < -48)
-        {
-            SpawnPlayers();
-            endRound = true;
-            maincamera.GetComponent<CameraController>().placementPhase = false;
-        }
+       
     }
 
-    void SpawnPlayers()
+   public void SpawnPlayers()
     {
-     /*
-        Instantiate(players[0], spawns[0].position, Quaternion.identity);
-        Instantiate(players[1], spawns[1].position, Quaternion.identity);
-        Instantiate(players[2], spawns[2].position, Quaternion.identity);
-        Instantiate(players[3], spawns[3].position, Quaternion.identity);
-
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[0] = players[0];
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[1] = players[1];
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[2] = players[2];
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[3] = players[3];
-   */
+  
         GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].SetActive(true);
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].SetActive(true);
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].SetActive(true);
+       
+     
 
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].GetComponent<PlayerController>().placementMode = false;
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].GetComponent<PlayerController>().placementMode = false;
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].GetComponent<PlayerController>().placementMode = false;
-        GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].GetComponent<PlayerController>().placementMode = false;
+        GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].GetComponent<PlayerController>().placementMode = true;
+        
 
 
     }
