@@ -1880,71 +1880,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2939693221504152696, guid: e6f45213948c60245a9de33488e537df, type: 3}
   m_PrefabInstance: {fileID: 284833939}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &284833941 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2939693221504152699, guid: e6f45213948c60245a9de33488e537df, type: 3}
-  m_PrefabInstance: {fileID: 284833939}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &284833942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284833940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 284833941}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 1
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!65 &284833946
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2119,26 +2054,6 @@ PrefabInstance:
     - target: {fileID: 72740950171135434, guid: f07d110a5e44f754392e251bcec57761, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 72740950171135435, guid: f07d110a5e44f754392e251bcec57761, type: 3}
-      propertyPath: Players.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 72740950171135435, guid: f07d110a5e44f754392e251bcec57761, type: 3}
-      propertyPath: Players.Array.data[0]
-      value: 
-      objectReference: {fileID: 507759380}
-    - target: {fileID: 72740950171135435, guid: f07d110a5e44f754392e251bcec57761, type: 3}
-      propertyPath: Players.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 72740950171135435, guid: f07d110a5e44f754392e251bcec57761, type: 3}
-      propertyPath: Players.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 72740950171135435, guid: f07d110a5e44f754392e251bcec57761, type: 3}
-      propertyPath: Players.Array.data[3]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f07d110a5e44f754392e251bcec57761, type: 3}
@@ -2739,11 +2654,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ec75fe0fd225e904ab1d72f6fdc73d83, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6724ebec45fb5f247b74abbaf26e72a8, type: 3}
---- !u!1 &507759380 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
-  m_PrefabInstance: {fileID: 1374417203}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &507759381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8331225723004286630, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
@@ -5377,8 +5287,12 @@ PrefabInstance:
       value: WinState
       objectReference: {fileID: 0}
     - target: {fileID: 4948542976701491784, guid: 8dc04feb99683e84facaf0d9d1c24ec7, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+    - target: {fileID: 4948542976701491784, guid: 8dc04feb99683e84facaf0d9d1c24ec7, type: 3}
       propertyPath: players.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4948542976701491784, guid: 8dc04feb99683e84facaf0d9d1c24ec7, type: 3}
       propertyPath: spawns.Array.data[0]
