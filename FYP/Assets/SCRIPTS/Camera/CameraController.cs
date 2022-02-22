@@ -164,7 +164,7 @@ public class CameraController : MonoBehaviour
         if (camCountdown <= -15)
         {
             GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
-           
+            GameObject.Find("Player 1").GetComponent<PlayerController>().placementMode = false;
 
             placementPhase = false;
             camCountdown = maxCount;
