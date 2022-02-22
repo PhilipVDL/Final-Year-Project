@@ -23,7 +23,10 @@ public class FinishLine : MonoBehaviour
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
+            GameObject playerObj = other.gameObject;
+            
             win.Score(player, points[finished]);
+            
 
             other.gameObject.transform.position = win.spawns[0].transform.position;
             //Destroy(other.gameObject);

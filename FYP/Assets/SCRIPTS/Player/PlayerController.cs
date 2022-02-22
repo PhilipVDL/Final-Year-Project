@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     ObstacleInventory inventory;
     PlayerObstacles playerObstacles;
     GameObject obstaclesOnMap;
+    public GameObject spawn;
 
     //variables
     #region variables
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
         placementX = 0;
         placementZ = 0;
         Defaults();
+        spawn = GameObject.Find("StartSpawn");
 
         gameObject.name = "Player " + playerNumber;
     }
@@ -369,6 +371,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (placementMode)
+        {
+            currentSpeed = 0;
+            speeding = false;
+            transform.position = spawn.transform.position;
+        }
     }
 
     void Braking()
