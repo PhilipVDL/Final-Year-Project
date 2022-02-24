@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 {
 
     WinState win;
+    FinishLine finish;
     //components
     public EndDistance eDist;
     public Vector3 placementRot;
@@ -28,6 +29,7 @@ public class CameraController : MonoBehaviour
     public float sectionDist;
     public float playerDist;
     public int totalPlayers;
+    public GameObject[] Players;
 
     //modes
     public bool placementPhase;
@@ -39,6 +41,8 @@ public class CameraController : MonoBehaviour
         CountPlayers();
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         GetGrids();
+
+       Players = GameObject.FindGameObjectsWithTag("Player");
     }
 
 
@@ -53,6 +57,23 @@ public class CameraController : MonoBehaviour
         {
             CameraMove();
             transform.rotation = Quaternion.Euler(15, 0, 0);
+        }
+
+        if (camCountdown <= 0)
+        {
+            
+
+            placementPhase = false;
+            camCountdown = maxCount;
+
+            Players[0].GetComponent<PlayerController>().placementMode = false;
+            Players[1].GetComponent<PlayerController>().placementMode = false;
+            Players[2].GetComponent<PlayerController>().placementMode = false;
+            Players[3].GetComponent<PlayerController>().placementMode = false;
+
+
+
+            //GameObject.Find("Finish").GetComponent<FinishLine>().EnablePlacing();
         }
 
         managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
@@ -160,14 +181,7 @@ public class CameraController : MonoBehaviour
 
         }
 
-        if (camCountdown <= -15)
-        {
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
-            GameObject.Find("Player 1").GetComponent<PlayerController>().placementMode = false;
-
-            placementPhase = false;
-            camCountdown = maxCount;
-        }   
+        
 
             
 

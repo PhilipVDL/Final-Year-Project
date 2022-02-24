@@ -817,6 +817,7 @@ public class PlayerController : MonoBehaviour
             //transform.position = spawn.transform.position;
             speeding = false;
             currentSpeed = 0;
+            
         }    
         
     }

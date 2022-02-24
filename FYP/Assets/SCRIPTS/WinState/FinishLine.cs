@@ -7,20 +7,24 @@ public class FinishLine : MonoBehaviour
     WinState win;
     public int[] points = new int[4];
     public int finished;
-    public List<GameObject> Players;
+    public GameObject[] Players;
     public GameObject[] PlayerClones;
+    public GameObject cam;
+
 
     private void Start()
     {
         win = GameObject.Find("WinState").GetComponent<WinState>();
         finished = 0;
-        GetPlayers();
+        PlayerClones = GameObject.FindGameObjectsWithTag("Player");
+        cam = GameObject.Find("Main Camera");
     }
+        
 
     private void OnTriggerEnter(Collider other)
     {
         //score
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && Players.Length == 1)
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
@@ -29,22 +33,38 @@ public class FinishLine : MonoBehaviour
             win.Score(player, points[finished]);
 
             EnablePlacing();
+            
+            
+            
+        }
+
+        else
+        {
+            finished++;
+            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
+            GameObject playerObj = other.gameObject;
+
+            win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
-            //Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+
+           
         }
     }
 
     private void Update()
     {
-        
-       
-    }
+        GetPlayers();
+
+      
+    }    
+    
 
   
 
     void GetPlayers()
     {
-        Players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+        Players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     public void NewRound()
@@ -55,19 +75,26 @@ public class FinishLine : MonoBehaviour
     public void EnablePlacing()
     {
         //(GameObject.FindWithTag("Player") == null)
-        
-            //end round
-            win.endRound = true;
 
-            foreach (GameObject player in Players)
-            {
-                
-                player.SetActive(true);
-                player.GetComponent<PlayerController>().PlacementMove();
-                
-            }
+        //end round
+        win.endRound = true;
 
-          
-        
+        for (int i = 0; i < PlayerClones.Length; i++)
+        {
+            PlayerClones[i].SetActive(true);
+        }
+
+        for (int i = 0; i < PlayerClones.Length; i++)
+        {
+            PlayerClones[i].transform.position = win.spawns[0].transform.position;
+        }
+
+        for (int i = 0; i < PlayerClones.Length; i++)
+        {
+            PlayerClones[i].GetComponent<PlayerController>().PlacementMove();
+        }
+
+     
+       
     }
 }

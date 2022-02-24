@@ -28,11 +28,12 @@ public class WinState : MonoBehaviour
         customs = GameObject.Find("Player Customs").GetComponent<PlayerCustoms>();
         maincamera = GameObject.Find("Main Camera");
         camController = maincamera.GetComponent<CameraController>();
+        GetPlayers();
     }
 
     private void Update()
     {
-        GetPlayers();
+        
         EndRound();
     }
 
@@ -54,10 +55,15 @@ public class WinState : MonoBehaviour
             maincamera.GetComponent<CameraController>().placementPhase = true;
 
             NewRound();
+
+           
         }
+
+
         else if (endRound && win)
         {
             //win
+
             Debug.Log("Player " + winnerNumber + " Wins!");
         }
     }
@@ -80,23 +86,17 @@ public class WinState : MonoBehaviour
 
     public void NewRound()
     {
-        finish.NewRound();
+       // finish.NewRound();
        // SpawnPlayers();
         currentRound++;
-        StartCoroutine(CamNewRound());
+       // StartCoroutine(CamNewRound());
        
         endRound = false;
+
+       
     }
 
-    IEnumerator CamNewRound()
-    {
-        //yield return new WaitUntil(() => CamCountDownTracker() < -48);
-        //maincamera.GetComponent<CameraController>().placementPhase = false;
-
-        yield return new WaitUntil(() => !camController.placementPhase);
-        
-        //endRound = false;
-    }
+ 
 
     void SpawnPlayers()
     {
@@ -107,7 +107,7 @@ public class WinState : MonoBehaviour
             {
 
                 controller.placementMode = false;
-                transform.position = spawns[0].transform.position;
+               
             }
         }
 
