@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     PlayerObstacles playerObstacles;
     GameObject obstaclesOnMap;
     public GameObject spawn;
+    Rigidbody prb;
 
     //variables
     #region variables
@@ -114,6 +115,8 @@ public class PlayerController : MonoBehaviour
         spawn = GameObject.Find("StartSpawn");
 
         gameObject.name = "Player " + playerNumber;
+
+        prb = gameObject.GetComponent<Rigidbody>();
     }
 
     void Defaults()
@@ -129,9 +132,16 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         ObstacleTimers();
         Begin();
-        //PlacementHighlight();
-        //PlacementDebugToggle();
+        PlacementHighlight();
+        PlacementDebugToggle();
         Respawn();
+
+        if (placementMode)
+        {
+            speeding = false;
+            currentSpeed = 0;
+        }
+        
     }
 
     public void Begin()
@@ -371,12 +381,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (placementMode)
-        {
-            currentSpeed = 0;
-            speeding = false;
-            transform.position = spawn.transform.position;
-        }
+       
     }
 
     void Braking()
@@ -588,6 +593,7 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpawn = nextSpawn;
                 currentSpawnNumber++;
+                currentSpeed = currentSpeed / 2;
             }
         }
 
@@ -616,13 +622,18 @@ public class PlayerController : MonoBehaviour
         {
             placementMode = true;
             playerObstacles.preview = true;
+            
             //StartCoroutine(PlacementMoving());
         }
         else if (placementMode)
         {
             placementMode = false;
             playerObstacles.preview = false;
+            currentSpeed = 0;
+            speeding = false;
+           // transform.position = currentSpawn.transform.position;
         }
+        
     }
 
     IEnumerator PlacementMoving()
@@ -797,8 +808,19 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(elimCount);
         GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers--;
         this.gameObject.SetActive(false);
-       
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
+        {
+            //transform.position = spawn.transform.position;
+            speeding = false;
+            currentSpeed = 0;
+        }    
+        
+    }
+
 
     void OnBecameInvisible()
     {

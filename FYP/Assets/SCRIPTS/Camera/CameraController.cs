@@ -68,8 +68,7 @@ public class CameraController : MonoBehaviour
 
     void GetGrids()
     {
-        Sections[0] = GameObject.Find("CamStart");
-        Sections[1] = GameObject.Find("P3");
+       
     }
 
 
@@ -140,7 +139,7 @@ public class CameraController : MonoBehaviour
         camCountdown -= Time.deltaTime;
 
         //Go to start
-        if (camCountdown > 0)
+        if (camCountdown > 25)
         {
             desiredPos = Sections[0].transform.position;
             transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
@@ -157,7 +156,7 @@ public class CameraController : MonoBehaviour
             desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
             // LookAt = Sections[1];
 
-            transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
+            transform.localPosition = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
 
         }
 

@@ -36,7 +36,7 @@ public class PlayerObstacles : MonoBehaviour
     {
         if(placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
         {
-            preview = false;
+            preview = true;
         }
         else if(inventory.obstacles.Count == 0)
         {
