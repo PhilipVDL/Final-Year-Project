@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     GameObject obstaclesOnMap;
     public GameObject spawn;
     Rigidbody prb;
+    EndDistance end;
 
     //variables
     #region variables
@@ -32,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public float fDamp;
 
     public bool braking, speeding, goLeft, goRight;
+
+    [Header("Position")]
+    public int pos;
 
     [Header("Strafing")]
     public float horizontalMoveSpeedMultiplier;

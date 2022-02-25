@@ -30,6 +30,8 @@ public class JumpBar : MonoBehaviour
     {
         ActivateBar();
         FillBar();
+
+        
     }    
     
 
