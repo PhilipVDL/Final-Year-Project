@@ -10,6 +10,7 @@ public class FinishLine : MonoBehaviour
     public GameObject[] Players;
     public GameObject[] PlayerClones;
     public GameObject cam;
+    public EndDistance end;
 
 
     private void Start()
@@ -31,10 +32,10 @@ public class FinishLine : MonoBehaviour
             GameObject playerObj = other.gameObject;
             
             win.Score(player, points[finished]);
-
+            other.gameObject.transform.position = win.spawns[0].transform.position;
             EnablePlacing();
             
-            
+          
             
         }
 
@@ -47,9 +48,13 @@ public class FinishLine : MonoBehaviour
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
             other.gameObject.SetActive(false);
+            GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
+            
 
            
         }
+
+     
     }
 
     private void Update()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RankingUi : MonoBehaviour
 {
     public EndDistance end;
+    public FinishLine finishLine;
 
     public GameObject[] playerImages;
     public GameObject[] players;
@@ -23,85 +24,142 @@ public class RankingUi : MonoBehaviour
     void Update()
     {
         PLayerRanks();
+        availablePositions();
+    }
+
+    void availablePositions()
+    {
+       
     }
 
     void PLayerRanks()
     {
         //Player 1
-        switch (players[0].GetComponent<PlayerController>().pos)
+        if (players[0] != null && players[0] == true)
         {
-            case 1:
-                playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
-                break;
-            case 2:
-                playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
-                break;
-            case 3:
-                playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
-                break;
-            case 4:
-                playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[3].transform.position, lerpSpd);
-                break;
+            switch (players[0].GetComponent<PlayerController>().pos)
+            {
+                case 1:
+                    if (finishLine.finished == 0)
+                    {
+                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
+                        
+                    }
+                    break;
+                case 2:
+                    if (finishLine.finished < 2 )
+                    {
+                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
+                    }
+                    
+                    break;
+                case 3:
+                    if (finishLine.finished < 3)
+                    {
+                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
+                    }
+                    break;
+                case 4:
+                    if (finishLine.finished < 4)
+                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[3].transform.position, lerpSpd);
+                    break;
 
+            }
         }
 
 
         //Player 2
 
-        if (players[1] != null)
+        if (players[1] != null && players[1] == true)
         {
             switch (players[1].GetComponent<PlayerController>().pos)
             {
                 case 1:
-                    playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
+                    if (finishLine.finished == 0)
+                    {
+                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
+                    }
                     break;
                 case 2:
-                    playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
+                    if (finishLine.finished < 2)
+                    {
+                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
+                    }
                     break;
                 case 3:
-                    playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
+                    if (finishLine.finished < 3)
+                    {
+                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
+                    }
                     break;
                 case 4:
-                    playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[3].transform.position, lerpSpd);
+                    if (finishLine.finished < 4)
+                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[3].transform.position, lerpSpd);
                     break;
 
             }
         }
-      
+
         //Player 3
-        switch (players[2].GetComponent<PlayerController>().pos)
+        if (players[2] != null && players[2] == true)
         {
-            case 1:
-                playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
-                break;
-            case 2:
-                playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
-                break;
-            case 3:
-                playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
-                break;
-            case 4:
-                playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[3].transform.position, lerpSpd);
-                break;
+            switch (players[2].GetComponent<PlayerController>().pos)
+            {
+                case 1:
+                    if (finishLine.finished == 0)
+                    {
+                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
+                    }
+                    break;
+                case 2:
+                    if (finishLine.finished < 2)
+                    {
+                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
+                    }
+                    break;
+                case 3:
+                    if (finishLine.finished < 3)
+                    {
+                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
+                    }
+                    break;
+                case 4:
+                    if (finishLine.finished < 4)
+                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[3].transform.position, lerpSpd);
+                    break;
 
+            }
         }
-       
-        //Player 4
-        switch (players[3].GetComponent<PlayerController>().pos)
-        {
-            case 1:
-                playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[0].transform.position, lerpSpd);
-                break;
-            case 2:
-                playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[1].transform.position, lerpSpd);
-                break;
-            case 3:
-                playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[2].transform.position, lerpSpd);
-                break;
-            case 4:
-                playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[3].transform.position, lerpSpd);
-                break;
 
+        //Player 4
+        if (players[3] != null && players[3] == true)
+        {
+            switch (players[3].GetComponent<PlayerController>().pos)
+            {
+                case 1:
+                    if (finishLine.finished == 0)
+                    {
+                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[0].transform.position, lerpSpd);
+                    }
+                    break;
+                case 2:
+                    if (finishLine.finished < 2)
+                    {
+                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[1].transform.position, lerpSpd);
+                    }
+                    break;
+                case 3:
+                    if (finishLine.finished < 3)
+                    {
+                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[2].transform.position, lerpSpd);
+                    }
+                    break;
+                case 4:
+                    if (finishLine.finished < 4)
+                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[3].transform.position, lerpSpd);
+                    break;
+
+            }
         }
 
 
