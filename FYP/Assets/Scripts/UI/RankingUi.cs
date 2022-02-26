@@ -17,7 +17,7 @@ public class RankingUi : MonoBehaviour
     {
         playerImages = GameObject.FindGameObjectsWithTag("Player Image");
         players = GameObject.FindGameObjectsWithTag("Player");
-        positions = GameObject.FindGameObjectsWithTag("Position");
+       
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class RankingUi : MonoBehaviour
 
     void availablePositions()
     {
-       
+        positions = GameObject.FindGameObjectsWithTag("Position");
     }
 
     void PLayerRanks()

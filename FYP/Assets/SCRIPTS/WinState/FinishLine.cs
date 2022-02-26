@@ -83,6 +83,7 @@ public class FinishLine : MonoBehaviour
 
         //end round
         win.endRound = true;
+        finished = 0;
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
