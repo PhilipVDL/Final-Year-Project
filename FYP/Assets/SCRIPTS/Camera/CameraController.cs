@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.Euler(15, 0, 0);
         }
 
-        if(placementPhase && camCountdown < 45)
+        if(placementPhase && camCountdown < 40)
         {
             ZoneSwitch();
         }
