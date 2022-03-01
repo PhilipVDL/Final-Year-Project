@@ -581,25 +581,27 @@ public class PlayerController : MonoBehaviour
 
     void Respawn()
     {
-        if (currentSpawn == null && doesRespawn)
-        {
-            //set to start spawn if no spawn
-            currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
-        }
+        /*   if (currentSpawn == null && doesRespawn)
+          {
+              //set to start spawn if no spawn
+              currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
+          }
 
-        //check if past next spawn checkpoint
-        GameObject nextSpawn = null;
-        if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
-        {
-            nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
+          //check if past next spawn checkpoint
+         GameObject nextSpawn = null;
+          if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
+          {
+              nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
 
-            if (transform.position.z >= nextSpawn.transform.position.z)
-            {
-                currentSpawn = nextSpawn;
-                currentSpawnNumber++;
-                currentSpeed = currentSpeed / 2;
-            }
-        }
+             /* if (transform.position.z >= nextSpawn.transform.position.z)
+              {
+                  currentSpawn = nextSpawn;
+                  currentSpawnNumber++;
+                  currentSpeed = currentSpeed / 2;
+              }
+
+          }
+          */
 
 
         if (transform.position.y < deathHeight && !doesRespawn)
@@ -609,6 +611,7 @@ public class PlayerController : MonoBehaviour
         else if (transform.position.y < deathHeight && doesRespawn)
         {
             transform.position = currentSpawn.transform.position;
+            currentSpeed = currentSpeed / 2;
         }
     }
 
@@ -626,7 +629,7 @@ public class PlayerController : MonoBehaviour
         {
             placementMode = true;
             playerObstacles.preview = true;
-            
+            transform.position = currentSpawn.transform.position;
             //StartCoroutine(PlacementMoving());
         }
         else if (placementMode)
@@ -635,7 +638,8 @@ public class PlayerController : MonoBehaviour
             playerObstacles.preview = false;
             currentSpeed = 0;
             speeding = false;
-           // transform.position = currentSpawn.transform.position;
+            
+            
         }
         
     }
@@ -818,11 +822,20 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-            //transform.position = spawn.transform.position;
+           
+            currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
+            transform.position = spawn.transform.position;
+            braking = true;
+        }
+
+        if (other.CompareTag("Checkpoint"))
+        {
+            currentSpawn = other.gameObject;
+        }
             
-        }    
+          
         
     }
 
