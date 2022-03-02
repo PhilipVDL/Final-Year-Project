@@ -34,7 +34,7 @@ public class FinishLine : MonoBehaviour
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
             EnablePlacing();
-            
+          //  GameObject.Find("Place Zone Manager").GetComponent<PlaceZoneManager>().activeZone = 1;
           
             
         }

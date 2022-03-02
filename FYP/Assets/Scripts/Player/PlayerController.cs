@@ -132,6 +132,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        if (placementMode)
+        {
+            speeding = false;
+            currentSpeed = 0;
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
+
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
@@ -140,11 +149,7 @@ public class PlayerController : MonoBehaviour
         PlacementDebugToggle();
         Respawn();
 
-        if (placementMode)
-        {
-            speeding = false;
-            currentSpeed = 0;
-        }
+      
         
     }
 

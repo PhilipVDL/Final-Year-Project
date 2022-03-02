@@ -70,7 +70,7 @@ public class CameraController : MonoBehaviour
         if (camCountdown <= 0)
         {
 
-
+            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
             placementPhase = false;
             camCountdown = maxCount;
 
