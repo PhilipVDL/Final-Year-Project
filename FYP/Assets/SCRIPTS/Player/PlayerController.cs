@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float currentSpeed;
     public float maxSpeed;
     public float maxVelocity;
+    public float maxBackSpeed;
+    public bool moveBackwards;
     public float timeToMaxSpeed;
     public float boostTime;
     public float minSpeed;
@@ -340,7 +342,6 @@ public class PlayerController : MonoBehaviour
 
     void MoveCalculations()
     {
-        
         Acceleration();
         Braking();
         MinMaxSpeed();
@@ -359,7 +360,7 @@ public class PlayerController : MonoBehaviour
                 float accRate;
                 if (!speeding)
                 {
-                    //3 secs till max
+                    //X secs till max
                     accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
                 }
                 else
@@ -379,20 +380,35 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpeed += accRate;
             }
+            else if (moveBackwards && braking)
+            {
+                accRate = (maxBackSpeed / timeToMaxSpeed) * Time.deltaTime;
+                currentSpeed += accRate;
+                if(currentSpeed > maxBackSpeed)
+                {
+                    currentSpeed = maxBackSpeed;
+                }
+            }
             else
             {
                 currentSpeed -= accRate;
             }
         }
-
-       
     }
 
     void Braking()
     {
-        if (braking && !placementMode)
+        if (braking && !moveBackwards && !placementMode)
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
+        }
+        else if(braking && moveBackwards && !placementMode)
+        {
+            if(rb.velocity.z > 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
+            rb.AddForce(transform.forward * currentSpeed * -1);
         }
     }
 
@@ -411,14 +427,22 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //rigidbody
-        if (grounded && !placementMode)
+        if (grounded && !placementMode && !braking)
         {
             //move normal
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
             rb.AddForce((transform.forward * currentSpeed));
         }
-        else if(!placementMode)
+        else if(!placementMode && !braking)
         {
             //move air
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
             rb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
         }
         MovementMax();
@@ -450,6 +474,13 @@ public class PlayerController : MonoBehaviour
         float dampZ = Mathf.Lerp(rb.velocity.z, 0, fDamp);
         Vector3 dampedVelocity = new Vector3(rb.velocity.x, rb.velocity.y, dampZ);
         rb.velocity = dampedVelocity;
+
+        /*
+        if (currentSpeed <= 0)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+        }
+        */
     }
 
     void Strafing()
@@ -459,24 +490,38 @@ public class PlayerController : MonoBehaviour
         {
             if (goRight)
             {
-                if(currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                if(rb.velocity.x >= 0) //if moving right
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                    if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                    {
+                        rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                    }
+                    else
+                    {
+                        rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                    }
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
                 }
             }
             else if (goLeft)
             {
-                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                if(rb.velocity.x <= 0) //if moving left
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+                    if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                    {
+                        rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+                    }
+                    else
+                    {
+                        rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
+                    }
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
+                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
                 }
             }
         }
