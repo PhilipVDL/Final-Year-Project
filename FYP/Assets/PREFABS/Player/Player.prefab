@@ -550,8 +550,8 @@ MonoBehaviour:
   grounded: 0
   chargingJump: 0
   currentJumpForce: 0
-  minJumpForce: 15
-  maxJumpForce: 30
+  minJumpForce: 10
+  maxJumpForce: 15
   timeToMaxJumpForce: 1.5
   jumpSpeedMult: 1.2
   jumpControlled: 1
