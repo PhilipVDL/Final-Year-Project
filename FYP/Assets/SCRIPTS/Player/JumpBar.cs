@@ -8,21 +8,21 @@ public class JumpBar : MonoBehaviour
     public Slider jumpBar;
     public GameObject jumpBarObj;
 
-    private float maxFill;
+    public float maxFill;
+    public float minFill;
     public float currentFill;
 
     public static JumpBar instance;
-    private void Awake()
-    {
-       
-    }
 
     void Start()
     {
-        maxFill = GetComponentInParent<PlayerController>().maxJumpForce;
-        currentFill = GetComponentInParent<PlayerController>().currentJumpForce;
+        PlayerController controller = GetComponentInParent<PlayerController>();
+        maxFill = controller.maxJumpForce;
+        minFill = controller.minJumpForce;
+        currentFill = controller.currentJumpForce;
 
         jumpBar.maxValue = maxFill;
+        jumpBar.minValue = minFill;
         jumpBar.value = currentFill;
     }
 
@@ -30,10 +30,7 @@ public class JumpBar : MonoBehaviour
     {
         ActivateBar();
         FillBar();
-
-        
     }    
-    
 
     void FillBar()
     {
@@ -49,9 +46,5 @@ public class JumpBar : MonoBehaviour
             jumpBarObj.SetActive(true);
         }
         else { jumpBarObj.SetActive(false); }
-    }
-
-    
+    }   
 }
-
-
