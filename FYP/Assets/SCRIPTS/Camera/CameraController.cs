@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour
 
     //Grids
     public GameObject[] Sections;
+    public GameObject[] Zones;
     public GameObject LookAt;
+    public GameObject ZoneManager;
 
     //variables
     Vector3 desiredPos;
@@ -41,8 +43,8 @@ public class CameraController : MonoBehaviour
         CountPlayers();
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         GetGrids();
-
-       Players = GameObject.FindGameObjectsWithTag("Player");
+        Zones = GameObject.FindGameObjectsWithTag("Zone");
+        Players = GameObject.FindGameObjectsWithTag("Player");
     }
 
 
@@ -51,6 +53,7 @@ public class CameraController : MonoBehaviour
         if (placementPhase)
         {
             PlacementPhaseCam();
+            
             transform.rotation = Quaternion.Euler(50, 0, 0);
         }
         else
@@ -59,10 +62,15 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.Euler(15, 0, 0);
         }
 
+        if(placementPhase && camCountdown < 40)
+        {
+            ZoneSwitch();
+        }
+
         if (camCountdown <= 0)
         {
-            
 
+            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
             placementPhase = false;
             camCountdown = maxCount;
 
@@ -89,7 +97,7 @@ public class CameraController : MonoBehaviour
 
     void GetGrids()
     {
-       
+
     }
 
 
@@ -160,7 +168,7 @@ public class CameraController : MonoBehaviour
         camCountdown -= Time.deltaTime;
 
         //Go to start
-        if (camCountdown > 25)
+        if (camCountdown > 40)
         {
             desiredPos = Sections[0].transform.position;
             transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
@@ -177,17 +185,35 @@ public class CameraController : MonoBehaviour
             desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
             // LookAt = Sections[1];
 
-            transform.localPosition = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
-
+            transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
+            // transform.Translate(Vector3.forward * placementCamSpeed * Time.deltaTime);
         }
 
-        
+    }
 
-            
+    public void ZoneSwitch()
+    {
+        if (transform.position.z > Zones[0].transform.position.z)
+        {
+            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 1;
+        }
 
-        
+        if (transform.position.z > Zones[1].transform.position.z)
+        {
+            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 2;
+        }
+
+        if (transform.position.z > Zones[2].transform.position.z)
+        {
+            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 3;
+        }
+
     }
 }
+
+        
+    
+
        
 
 

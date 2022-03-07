@@ -531,24 +531,27 @@ MonoBehaviour:
   currentSpeed: 0
   maxSpeed: 10
   maxVelocity: 10
+  maxBackSpeed: 5
+  moveBackwards: 1
   timeToMaxSpeed: 1
   boostTime: 1
   minSpeed: 0
-  timeToMinSpeed: 0.75
-  fDamp: 0.005
+  timeToMinSpeed: 0.3
+  fDamp: 0.1
   braking: 0
   speeding: 0
   goLeft: 0
   goRight: 0
+  pos: 0
   horizontalMoveSpeedMultiplier: 0.75
-  horizontalMoveSpeedMin: 1
+  horizontalMoveSpeedMin: 5
   hDamp: 0.05
   castDistance: 1.1
   grounded: 0
   chargingJump: 0
   currentJumpForce: 0
-  minJumpForce: 15
-  maxJumpForce: 30
+  minJumpForce: 10
+  maxJumpForce: 15
   timeToMaxJumpForce: 1.5
   jumpSpeedMult: 1.2
   jumpControlled: 1

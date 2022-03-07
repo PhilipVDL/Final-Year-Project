@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float currentSpeed;
     public float maxSpeed;
     public float maxVelocity;
+    public float maxBackSpeed;
+    public bool moveBackwards;
     public float timeToMaxSpeed;
     public float boostTime;
     public float minSpeed;
@@ -132,6 +134,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        if (placementMode)
+        {
+            speeding = false;
+            currentSpeed = 0;
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
+
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
@@ -140,11 +151,7 @@ public class PlayerController : MonoBehaviour
         PlacementDebugToggle();
         Respawn();
 
-        if (placementMode)
-        {
-            speeding = false;
-            currentSpeed = 0;
-        }
+      
         
     }
 
@@ -340,7 +347,6 @@ public class PlayerController : MonoBehaviour
 
     void MoveCalculations()
     {
-        
         Acceleration();
         Braking();
         MinMaxSpeed();
@@ -359,7 +365,7 @@ public class PlayerController : MonoBehaviour
                 float accRate;
                 if (!speeding)
                 {
-                    //3 secs till max
+                    //X secs till max
                     accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
                 }
                 else
@@ -379,20 +385,35 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpeed += accRate;
             }
+            else if (moveBackwards && braking)
+            {
+                accRate = (maxBackSpeed / timeToMaxSpeed) * Time.deltaTime;
+                currentSpeed += accRate;
+                if(currentSpeed > maxBackSpeed)
+                {
+                    currentSpeed = maxBackSpeed;
+                }
+            }
             else
             {
                 currentSpeed -= accRate;
             }
         }
-
-       
     }
 
     void Braking()
     {
-        if (braking && !placementMode)
+        if (braking && !moveBackwards && !placementMode)
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
+        }
+        else if(braking && moveBackwards && !placementMode)
+        {
+            if(rb.velocity.z > 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
+            rb.AddForce(transform.forward * currentSpeed * -1);
         }
     }
 
@@ -411,14 +432,22 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //rigidbody
-        if (grounded && !placementMode)
+        if (grounded && !placementMode && !braking)
         {
             //move normal
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
             rb.AddForce((transform.forward * currentSpeed));
         }
-        else if(!placementMode)
+        else if(!placementMode && !braking)
         {
             //move air
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
             rb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
         }
         MovementMax();
@@ -450,6 +479,13 @@ public class PlayerController : MonoBehaviour
         float dampZ = Mathf.Lerp(rb.velocity.z, 0, fDamp);
         Vector3 dampedVelocity = new Vector3(rb.velocity.x, rb.velocity.y, dampZ);
         rb.velocity = dampedVelocity;
+
+        /*
+        if (currentSpeed <= 0)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+        }
+        */
     }
 
     void Strafing()
@@ -459,24 +495,38 @@ public class PlayerController : MonoBehaviour
         {
             if (goRight)
             {
-                if(currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                if(rb.velocity.x >= 0) //if moving right
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                    if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                    {
+                        rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                    }
+                    else
+                    {
+                        rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                    }
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
                 }
             }
             else if (goLeft)
             {
-                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                if(rb.velocity.x <= 0) //if moving left
                 {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+                    if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
+                    {
+                        rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+                    }
+                    else
+                    {
+                        rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
+                    }
                 }
                 else
                 {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
+                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
                 }
             }
         }
@@ -581,25 +631,27 @@ public class PlayerController : MonoBehaviour
 
     void Respawn()
     {
-        if (currentSpawn == null && doesRespawn)
-        {
-            //set to start spawn if no spawn
-            currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
-        }
+        /*   if (currentSpawn == null && doesRespawn)
+          {
+              //set to start spawn if no spawn
+              currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
+          }
 
-        //check if past next spawn checkpoint
-        GameObject nextSpawn = null;
-        if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
-        {
-            nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
+          //check if past next spawn checkpoint
+         GameObject nextSpawn = null;
+          if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
+          {
+              nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
 
-            if (transform.position.z >= nextSpawn.transform.position.z)
-            {
-                currentSpawn = nextSpawn;
-                currentSpawnNumber++;
-                currentSpeed = currentSpeed / 2;
-            }
-        }
+             /* if (transform.position.z >= nextSpawn.transform.position.z)
+              {
+                  currentSpawn = nextSpawn;
+                  currentSpawnNumber++;
+                  currentSpeed = currentSpeed / 2;
+              }
+
+          }
+          */
 
 
         if (transform.position.y < deathHeight && !doesRespawn)
@@ -609,6 +661,7 @@ public class PlayerController : MonoBehaviour
         else if (transform.position.y < deathHeight && doesRespawn)
         {
             transform.position = currentSpawn.transform.position;
+            currentSpeed = currentSpeed / 2;
         }
     }
 
@@ -626,7 +679,7 @@ public class PlayerController : MonoBehaviour
         {
             placementMode = true;
             playerObstacles.preview = true;
-            
+            transform.position = currentSpawn.transform.position;
             //StartCoroutine(PlacementMoving());
         }
         else if (placementMode)
@@ -635,7 +688,8 @@ public class PlayerController : MonoBehaviour
             playerObstacles.preview = false;
             currentSpeed = 0;
             speeding = false;
-           // transform.position = currentSpawn.transform.position;
+            
+            
         }
         
     }
@@ -818,11 +872,20 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-            //transform.position = spawn.transform.position;
+           
+            currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
+            transform.position = spawn.transform.position;
+            braking = true;
+        }
+
+        if (other.CompareTag("Checkpoint"))
+        {
+            currentSpawn = other.gameObject;
+        }
             
-        }    
+          
         
     }
 
