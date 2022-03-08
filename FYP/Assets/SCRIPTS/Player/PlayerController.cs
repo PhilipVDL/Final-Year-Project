@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
     [Header("Position")]
     public int pos;
 
+    [Header("Checkpoint Activation")]
+    public GameObject[] checkpointActivations;
+
+
     [Header("Strafing")]
     public float horizontalMoveSpeedMultiplier;
     public float horizontalMoveSpeedMin;
@@ -872,7 +876,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-           
+
             currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
@@ -880,14 +884,24 @@ public class PlayerController : MonoBehaviour
             braking = true;
         }
 
-        if (other.CompareTag("Checkpoint"))
+       
+
+        switch (other.tag)
         {
-            currentSpawn = other.gameObject;
+            case "Checkpoint 1":
+                checkpointActivations[0].SetActive(true);
+                currentSpawn = other.gameObject;
+                break;
+            case "Checkpoint 2":
+                checkpointActivations[1].SetActive(true);
+                currentSpawn = other.gameObject;
+                break;
         }
-            
+        
+    }        
           
         
-    }
+    
 
 
     void OnBecameInvisible()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-    WinState win;
+    public WinState win;
     public int[] points = new int[4];
     public int finished;
     public GameObject[] Players;
@@ -28,12 +28,15 @@ public class FinishLine : MonoBehaviour
         if (other.CompareTag("Player") && Players.Length == 1)
         {
             finished++;
+            EnablePlacing();
+
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             GameObject playerObj = other.gameObject;
             
-            win.Score(player, points[finished]);
+           // win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
-            EnablePlacing();
+            
+            
           //  GameObject.Find("Place Zone Manager").GetComponent<PlaceZoneManager>().activeZone = 1;
           
             

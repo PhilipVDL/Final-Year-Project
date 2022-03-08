@@ -11,6 +11,8 @@ public class RankingUi : MonoBehaviour
     public GameObject[] players;
     public GameObject[] positions;
 
+    public GameObject placementModetext;
+
     public float lerpSpd = 0.01f;
     // Start is called before the first frame update
     void Start()

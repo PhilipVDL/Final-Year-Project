@@ -18,6 +18,12 @@ public class CameraController : MonoBehaviour
     public GameObject LookAt;
     public GameObject ZoneManager;
 
+    //Sign Count
+    public GameObject countDownSign;
+
+    //UI
+    public GameObject UI;
+
     //variables
     Vector3 desiredPos;
     public float defaultHeight;
@@ -42,7 +48,7 @@ public class CameraController : MonoBehaviour
     {
         CountPlayers();
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
-        GetGrids();
+        countDownSign = GameObject.Find("SIGN");
         Zones = GameObject.FindGameObjectsWithTag("Zone");
         Players = GameObject.FindGameObjectsWithTag("Player");
     }
@@ -69,20 +75,28 @@ public class CameraController : MonoBehaviour
 
         if (camCountdown <= 0)
         {
-
+            //Reset zone focus, phase and countdown
             ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
             placementPhase = false;
             camCountdown = maxCount;
 
+            //reset start timer
+            managerCount = 3;
+            countDownSign.GetComponent<Animator>().Play(0);
+
+            //Turn off player placement mode
             Players[0].GetComponent<PlayerController>().placementMode = false;
             Players[1].GetComponent<PlayerController>().placementMode = false;
             Players[2].GetComponent<PlayerController>().placementMode = false;
             Players[3].GetComponent<PlayerController>().placementMode = false;
 
+            Players[0].GetComponent<PlayerController>().checkpointActivations[0].SetActive(false);
+            Players[0].GetComponent<PlayerController>().checkpointActivations[1].SetActive(false);
 
-
-            //GameObject.Find("Finish").GetComponent<FinishLine>().EnablePlacing();
         }
+
+            
+        
 
         managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
     }
@@ -93,12 +107,6 @@ public class CameraController : MonoBehaviour
     }
 
 
-
-
-    void GetGrids()
-    {
-
-    }
 
 
     private void CameraMove()
@@ -166,10 +174,11 @@ public class CameraController : MonoBehaviour
     public void PlacementPhaseCam()
     {
         camCountdown -= Time.deltaTime;
-
+        
         //Go to start
-        if (camCountdown > 40)
+        if (camCountdown > maxCount - 5)
         {
+            UI.GetComponent<RankingUi>().placementModetext.SetActive(true);
             desiredPos = Sections[0].transform.position;
             transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
         }
@@ -183,10 +192,11 @@ public class CameraController : MonoBehaviour
             camCountdown -= Time.deltaTime;
 
             desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
-            // LookAt = Sections[1];
+         
 
             transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
-            // transform.Translate(Vector3.forward * placementCamSpeed * Time.deltaTime);
+            ///Turn off UI
+            UI.GetComponent<RankingUi>().placementModetext.SetActive(false);
         }
 
     }
