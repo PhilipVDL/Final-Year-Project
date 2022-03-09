@@ -33,7 +33,7 @@ public class FinishLine : MonoBehaviour
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             GameObject playerObj = other.gameObject;
             
-           // win.Score(player, points[finished]);
+            win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
             
             

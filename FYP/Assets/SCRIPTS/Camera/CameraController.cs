@@ -192,9 +192,10 @@ public class CameraController : MonoBehaviour
             camCountdown -= Time.deltaTime;
 
             desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
-         
+
 
             transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
+            
             ///Turn off UI
             UI.GetComponent<RankingUi>().placementModetext.SetActive(false);
         }
