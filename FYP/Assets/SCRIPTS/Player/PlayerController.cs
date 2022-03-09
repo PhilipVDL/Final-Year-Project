@@ -503,7 +503,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(rb.velocity.x * -1, rb.velocity.y, rb.velocity.z); //switch direction
                 }
             }
             else if (goLeft)
@@ -521,7 +521,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(rb.velocity.x * -1, rb.velocity.y, rb.velocity.z); //switch direction
                 }
             }
         }
