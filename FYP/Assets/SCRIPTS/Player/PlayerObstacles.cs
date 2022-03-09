@@ -36,7 +36,7 @@ public class PlayerObstacles : MonoBehaviour
     {
         if(placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
         {
-            preview = true;
+            preview = false;
         }
         else if(inventory.obstacles.Count == 0)
         {
@@ -99,12 +99,9 @@ public class PlayerObstacles : MonoBehaviour
 
     public void PlaceObstacle()
     {
-        if (controller.placementMode)
-        {
-            GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
-            placedThisRound++; //count 1 placement
-            obstacle.transform.parent = obstaclesOnMap.transform; //unparent
-            inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
-        }
+        GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
+        placedThisRound++; //count 1 placement
+        obstacle.transform.parent = obstaclesOnMap.transform; //unparent
+        inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory 
     }
 }

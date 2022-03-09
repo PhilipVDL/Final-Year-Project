@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     RaycastHit hit;
     ObstacleInventory inventory;
     PlayerObstacles playerObstacles;
+    PlayerObstaclesRacePlace playerObstaclesRacePlace;
     GameObject obstaclesOnMap;
     public GameObject spawn;
     Rigidbody prb;
@@ -118,6 +119,7 @@ public class PlayerController : MonoBehaviour
         //gm = GameObject.FindGameObjectWithTag("Grid Manager").GetComponent<GridManager>();
         inventory = GetComponent<ObstacleInventory>();
         playerObstacles = GetComponent<PlayerObstacles>();
+        playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();
         obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
         placementX = 0;
         placementZ = 0;
@@ -308,7 +310,15 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory.obstacles.Count > 0 && inventory.obstacles[inventory.selectedIndex] != null)
             {
-                playerObstacles.PlaceObstacle();
+                if (playerObstacles.enabled)
+                {
+                    playerObstacles.PlaceObstacle();
+                }
+
+                if (playerObstaclesRacePlace.enabled)
+                {
+                    playerObstaclesRacePlace.PlaceObstacle();
+                }
 
                 /*
                 Transform grid = gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex]);
@@ -512,7 +522,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(rb.velocity.x * -1, rb.velocity.y, rb.velocity.z); //switch direction
                 }
             }
             else if (goLeft)
@@ -530,7 +540,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(rb.velocity.x * -1, rb.velocity.y, rb.velocity.z); //switch direction
                 }
             }
         }
