@@ -110,12 +110,7 @@ public class WinState : MonoBehaviour
         foreach (GameObject player in players)
         {
             PlayerController controller = player.GetComponent<PlayerController>();
-            if (controller.placementMode)
-            {
-
-                controller.placementMode = false;
-               
-            }
+           
         }
 
            

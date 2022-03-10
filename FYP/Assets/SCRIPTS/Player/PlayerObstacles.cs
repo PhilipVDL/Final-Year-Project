@@ -70,7 +70,7 @@ public class PlayerObstacles : MonoBehaviour
     {
         int x = 0;
         int z = 0;
-        if (controller.placementMode)
+      /*  if (controller.placementMode)
         {
             //vertical
             if (controller.speeding)
@@ -92,6 +92,7 @@ public class PlayerObstacles : MonoBehaviour
                 x = -1;
             }
         }
+        */
         Vector3 move = new Vector3(x, 0, z);
         Vector3 moveSpeed = move.normalized * previewSpeed;
         obstaclePreview.transform.Translate(moveSpeed * Time.deltaTime);

@@ -121,14 +121,15 @@ public class PlayerController : MonoBehaviour
         playerObstacles = GetComponent<PlayerObstacles>();
         playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();
         obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
-        placementX = 0;
-        placementZ = 0;
+       
         Defaults();
         spawn = GameObject.Find("StartSpawn");
 
         gameObject.name = "Player " + playerNumber;
 
         prb = gameObject.GetComponent<Rigidbody>();
+
+        
     }
 
     void Defaults()
@@ -235,32 +236,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
-        {
-            if (inventory.obstacles.Count > 0 && inventory.obstacles[inventory.selectedIndex] != null)
-            {
-                if (playerObstacles.enabled)
-                {
-                    playerObstacles.PlaceObstacle();
-                }
-
-                if (playerObstaclesRacePlace.enabled)
-                {
-                    playerObstaclesRacePlace.PlaceObstacle();
-                }
-
-                /*
-                Transform grid = gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex]);
-                //find, check
-                if (grid != null)
-                {
-                    GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
-                    obstacle.transform.parent = obstaclesOnMap.transform; //unparent
-                    inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
-                }
-                */
-            }
-        }
+        
 
         if(Input.GetButtonDown("ObstacleSwitch" + playerNumber))
         {
@@ -624,13 +600,7 @@ public class PlayerController : MonoBehaviour
     }
 
   
-    void PlacementHighlight()
-    {
-        if (placementMode)
-        {
-            //gm.HighlightGridZone(placementX, placementZ, playerNumber);
-        }
-    }
+   
 
     #region obstacles
     void RestoreDefaults()
@@ -761,6 +731,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Checkpoint 2":
                 checkpointActivations[1].SetActive(true);
+                currentSpawn = other.gameObject;
+                break;
+            case "Checkpoint":
                 currentSpawn = other.gameObject;
                 break;
         }
