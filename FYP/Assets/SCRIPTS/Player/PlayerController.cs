@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     public float airControlMult;
 
     [Header("Placement Mode")]
-    public bool placementMode;
+    //public bool placementMode;
     public int placementX, placementZ;
     public float placementMoveDelay;
 
@@ -139,19 +139,13 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-        if (placementMode)
-        {
-            speeding = false;
-            currentSpeed = 0;
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        }
+      
 
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
         Begin();
-        PlacementHighlight();
+        
         PlacementDebugToggle();
         Respawn();
 
@@ -282,12 +276,12 @@ public class PlayerController : MonoBehaviour
             StrafingDamping();
         }
 
-        if(currentSpeed == 0)
+        if (currentSpeed == 0)
         {
             MovementDamping();
         }
 
-        if (Input.GetButton("Jump" + playerNumber) && grounded && !placementMode)
+        if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
         }
@@ -298,43 +292,16 @@ public class PlayerController : MonoBehaviour
             currentJumpForce = 0;
         }
 
-        if (Input.GetButtonUp("Jump" + playerNumber) && grounded && !placementMode)
+        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
         {
             chargingJump = false;
             Jump();
         }
 
-        if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
-        {
-            if (inventory.obstacles.Count > 0 && inventory.obstacles[inventory.selectedIndex] != null)
-            {
-                playerObstacles.PlaceObstacle();
-
-                /*
-                Transform grid = gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex]);
-                //find, check
-                if (grid != null)
-                {
-                    GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
-                    obstacle.transform.parent = obstaclesOnMap.transform; //unparent
-                    inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
-                }
-                */
-            }
-        }
-
-        if(Input.GetButtonDown("ObstacleSwitch" + playerNumber) && placementMode)
-        {
-            if(Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
-            {
-                inventory.SelectedIndex(1);
-            }
-            else if(Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
-            {
-                inventory.SelectedIndex(-1);
-            }
-        }
     }
+        
+
+       
     #endregion
 
     void GroundCheck()
@@ -361,7 +328,7 @@ public class PlayerController : MonoBehaviour
 
     void Acceleration()
     {
-        if (autoForward && !placementMode)
+        if (autoForward)
         {
             //always forward
             if (currentSpeed < maxSpeed && !braking)
@@ -380,7 +347,7 @@ public class PlayerController : MonoBehaviour
                 currentSpeed += accRate;
             }
         }
-        else if (!placementMode)
+        else
         {
             //forward to move
             float accRate;
@@ -407,11 +374,11 @@ public class PlayerController : MonoBehaviour
 
     void Braking()
     {
-        if (braking && !moveBackwards && !placementMode)
+        if (braking && !moveBackwards)
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
         }
-        else if(braking && moveBackwards && !placementMode)
+        else if(braking && moveBackwards)
         {
             if(rb.velocity.z > 0)
             {
@@ -436,7 +403,7 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //rigidbody
-        if (grounded && !placementMode && !braking)
+        if (grounded && !braking)
         {
             //move normal
             if (rb.velocity.z < 0)
@@ -445,7 +412,7 @@ public class PlayerController : MonoBehaviour
             }
             rb.AddForce((transform.forward * currentSpeed));
         }
-        else if(!placementMode && !braking)
+        else if( !braking)
         {
             //move air
             if (rb.velocity.z < 0)
@@ -484,18 +451,13 @@ public class PlayerController : MonoBehaviour
         Vector3 dampedVelocity = new Vector3(rb.velocity.x, rb.velocity.y, dampZ);
         rb.velocity = dampedVelocity;
 
-        /*
-        if (currentSpeed <= 0)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
-        }
-        */
+       
     }
 
     void Strafing()
     {
         //rigidbody
-        if (grounded && !placementMode)
+        if (grounded)
         {
             if (goRight)
             {
@@ -534,31 +496,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if (!placementMode)
-        {
-            if (goRight)
-            {
-                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
-                {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
-                }
-                else
-                {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin);
-                }
-            }
-            else if (goLeft)
-            {
-                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
-                {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * airControlMult * -1);
-                }
-                else
-                {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * airControlMult * -1);
-                }
-            }
-        }
+      
         StrafingMax();
     }
 
@@ -607,7 +545,7 @@ public class PlayerController : MonoBehaviour
     void ChargeJump()
     {
         float chargeRate = 15 * Time.deltaTime;
-        if (chargingJump && ! placementMode)
+        if (chargingJump)
         {
             currentJumpForce += chargeRate;
             MinMaxJump();
@@ -671,61 +609,9 @@ public class PlayerController : MonoBehaviour
 
     void PlacementDebugToggle()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            PlacementMove();
-        }
     }
+    
 
-    public void PlacementMove()
-    {
-        if (!placementMode)
-        {
-            placementMode = true;
-            playerObstacles.preview = true;
-            transform.position = currentSpawn.transform.position;
-            //StartCoroutine(PlacementMoving());
-        }
-        else if (placementMode)
-        {
-            placementMode = false;
-            playerObstacles.preview = false;
-            currentSpeed = 0;
-            speeding = false;
-            
-            
-        }
-        
-    }
-
-    IEnumerator PlacementMoving()
-    {
-        while (placementMode)
-        {
-            if (speeding)
-            {
-                //z up
-                PlacementCoords(true, 1);
-            }
-            else if (braking)
-            {
-                //z down
-                PlacementCoords(true, -1);
-            }
-            else if (goRight)
-            {
-                //x up
-                PlacementCoords(false, 1);
-            }
-            else if (goLeft)
-            {
-                //x down
-                PlacementCoords(false, -1);
-            }
-
-            yield return new WaitForSeconds(placementMoveDelay);
-        }
-    }
 
     void PlacementCoords(bool axis, int amount)
     {
@@ -757,13 +643,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PlacementHighlight()
-    {
-        if (placementMode)
-        {
-            gm.HighlightGridZone(placementX, placementZ, playerNumber);
-        }
-    }
+  
 
     #region obstacles
     void RestoreDefaults()
@@ -906,7 +786,7 @@ public class PlayerController : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        if (gameObject.activeInHierarchy && placementMode == false)
+        if (gameObject.activeInHierarchy)
         {
             StartCoroutine(DeathCount());
             

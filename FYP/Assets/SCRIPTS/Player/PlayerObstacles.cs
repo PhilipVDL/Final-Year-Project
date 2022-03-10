@@ -70,41 +70,11 @@ public class PlayerObstacles : MonoBehaviour
     {
         int x = 0;
         int z = 0;
-        if (controller.placementMode)
-        {
-            //vertical
-            if (controller.speeding)
-            {
-                z = 1;
-            }
-            else if (controller.braking)
-            {
-                z = -1;
-            }
-
-            //horizontal
-            if (controller.goRight)
-            {
-                x = 1;
-            }
-            else if (controller.goLeft)
-            {
-                x = -1;
-            }
-        }
+        
         Vector3 move = new Vector3(x, 0, z);
         Vector3 moveSpeed = move.normalized * previewSpeed;
         obstaclePreview.transform.Translate(moveSpeed * Time.deltaTime);
     }
 
-    public void PlaceObstacle()
-    {
-        if (controller.placementMode)
-        {
-            GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
-            placedThisRound++; //count 1 placement
-            obstacle.transform.parent = obstaclesOnMap.transform; //unparent
-            inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
-        }
-    }
+    
 }

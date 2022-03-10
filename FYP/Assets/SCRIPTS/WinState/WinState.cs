@@ -33,7 +33,7 @@ public class WinState : MonoBehaviour
 
     private void Update()
     {
-        
+
         EndRound();
     }
 
@@ -52,11 +52,11 @@ public class WinState : MonoBehaviour
     {
         if (endRound && !win)
         {
-            maincamera.GetComponent<CameraController>().placementPhase = true;
+
 
             NewRound();
 
-           
+
         }
 
 
@@ -86,44 +86,22 @@ public class WinState : MonoBehaviour
 
     public void NewRound()
     {
-       // finish.NewRound();
-       // SpawnPlayers();
+        // finish.NewRound();
+        // SpawnPlayers();
         currentRound++;
-       // StartCoroutine(CamNewRound());
-       
+        // StartCoroutine(CamNewRound());
+
         endRound = false;
 
-       
-    }
 
+    }
+}
  
 
-    void SpawnPlayers()
-    {
-        foreach (GameObject player in players)
-        {
-            PlayerController controller = player.GetComponent<PlayerController>();
-            if (controller.placementMode)
-            {
-
-                controller.placementMode = false;
-               
-            }
-        }
 
            
         
 
-        /*
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].SetActive(true);
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].SetActive(true);
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].SetActive(true);
-
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].GetComponent<PlayerController>().placementMode = false;
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].GetComponent<PlayerController>().placementMode = false;
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].GetComponent<PlayerController>().placementMode = false;
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].GetComponent<PlayerController>().placementMode = false;
-        */
-    }
-}
+        
+        
+    

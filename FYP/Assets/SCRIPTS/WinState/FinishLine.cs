@@ -11,6 +11,8 @@ public class FinishLine : MonoBehaviour
     public GameObject[] PlayerClones;
     public GameObject cam;
     public EndDistance end;
+    public GameObject countdownSign;
+    public GameObject manager;
 
 
     private void Start()
@@ -19,6 +21,8 @@ public class FinishLine : MonoBehaviour
         finished = 0;
         PlayerClones = GameObject.FindGameObjectsWithTag("Player");
         cam = GameObject.Find("Main Camera");
+        countdownSign = GameObject.Find("SIGN");
+        manager = GameObject.Find("Background Tasks");
     }
         
 
@@ -28,7 +32,7 @@ public class FinishLine : MonoBehaviour
         if (other.CompareTag("Player") && Players.Length == 1)
         {
             finished++;
-            EnablePlacing();
+            StartRound();
 
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             GameObject playerObj = other.gameObject;
@@ -80,13 +84,15 @@ public class FinishLine : MonoBehaviour
         finished = 0;
     }
 
-    public void EnablePlacing()
+    public void StartRound()
     {
         //(GameObject.FindWithTag("Player") == null)
+        countdownSign.GetComponent<Animator>().Play(0);
 
         //end round
         win.endRound = true;
         finished = 0;
+
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
@@ -97,13 +103,10 @@ public class FinishLine : MonoBehaviour
         {
             PlayerClones[i].transform.position = win.spawns[0].transform.position;
         }
-
-        for (int i = 0; i < PlayerClones.Length; i++)
-        {
-            PlayerClones[i].GetComponent<PlayerController>().PlacementMove();
-        }
-
-     
-       
+        manager.GetComponent<MainManager>().countdown = 3;
     }
+
+
+
+    
 }

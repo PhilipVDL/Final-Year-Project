@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     FinishLine finish;
     //components
     public EndDistance eDist;
-    public Vector3 placementRot;
+   // public Vector3 placementRot;
 
     //Grids
     public GameObject[] Sections;
@@ -18,8 +18,7 @@ public class CameraController : MonoBehaviour
     public GameObject LookAt;
     public GameObject ZoneManager;
 
-    //Sign Count
-    public GameObject countDownSign;
+  
 
     //UI
     public GameObject UI;
@@ -29,7 +28,7 @@ public class CameraController : MonoBehaviour
     public float defaultHeight;
     public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax, maxDistance;
     public float lerpSpeed;
-    public float placementCamSpeed;
+   // public float placementCamSpeed;
     public float managerCount;
     public float camCountdown;
     public float maxCount;
@@ -40,7 +39,7 @@ public class CameraController : MonoBehaviour
     public GameObject[] Players;
 
     //modes
-    public bool placementPhase;
+   // public bool placementPhase;
 
 
 
@@ -48,58 +47,54 @@ public class CameraController : MonoBehaviour
     {
         CountPlayers();
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
-        countDownSign = GameObject.Find("SIGN");
+        
         Zones = GameObject.FindGameObjectsWithTag("Zone");
         Players = GameObject.FindGameObjectsWithTag("Player");
+        managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
     }
 
 
     private void FixedUpdate()
     {
-        if (placementPhase)
-        {
-            PlacementPhaseCam();
-            
-            transform.rotation = Quaternion.Euler(50, 0, 0);
-        }
-        else
-        {
-            CameraMove();
-            transform.rotation = Quaternion.Euler(15, 0, 0);
-        }
+        /*if (placementPhase)
+       {
+           PlacementPhaseCam();
 
-        if(placementPhase && camCountdown < 40)
-        {
-            ZoneSwitch();
-        }
+           transform.rotation = Quaternion.Euler(50, 0, 0);
+       }
+       */
 
-        if (camCountdown <= 0)
+
+        CameraMove();
+        transform.rotation = Quaternion.Euler(15, 0, 0);
+
+
+
+
+        if (managerCount >= 3)
         {
             //Reset zone focus, phase and countdown
-            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
-            placementPhase = false;
-            camCountdown = maxCount;
+            // ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
+
+            // camCountdown = maxCount;
 
             //reset start timer
-            managerCount = 3;
-            countDownSign.GetComponent<Animator>().Play(0);
 
-            //Turn off player placement mode
-            Players[0].GetComponent<PlayerController>().placementMode = false;
-            Players[1].GetComponent<PlayerController>().placementMode = false;
-            Players[2].GetComponent<PlayerController>().placementMode = false;
-            Players[3].GetComponent<PlayerController>().placementMode = false;
+           
+            managerCount = 3;
+
+
 
             Players[0].GetComponent<PlayerController>().checkpointActivations[0].SetActive(false);
             Players[0].GetComponent<PlayerController>().checkpointActivations[1].SetActive(false);
 
         }
-
+    }
             
         
 
-        managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
-    }
+        
+    
 
     public void CountPlayers()
     {
@@ -162,8 +157,6 @@ public class CameraController : MonoBehaviour
                 desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -.5f);
             }
 
-
-
             //lerp
 
             transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
@@ -183,43 +176,9 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
         }
 
-        else
-        {  //Set stats
-            lerpSpeed = 0.001f;
-            defaultHeight = 13;
-
-
-            camCountdown -= Time.deltaTime;
-
-            desiredPos = new Vector3(Sections[1].transform.position.x, sectionDist, Sections[1].transform.position.z);
-
-
-            transform.position = Vector3.MoveTowards(transform.position, desiredPos, placementCamSpeed);
-            
-            ///Turn off UI
-            UI.GetComponent<RankingUi>().placementModetext.SetActive(false);
-        }
-
     }
 
-    public void ZoneSwitch()
-    {
-        if (transform.position.z > Zones[0].transform.position.z)
-        {
-            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 1;
-        }
 
-        if (transform.position.z > Zones[1].transform.position.z)
-        {
-            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 2;
-        }
-
-        if (transform.position.z > Zones[2].transform.position.z)
-        {
-            ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 3;
-        }
-
-    }
 }
 
         
