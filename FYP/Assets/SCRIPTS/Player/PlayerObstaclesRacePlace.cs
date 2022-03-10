@@ -29,7 +29,11 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
 
     void MaxPlaced()
     {
-        if (placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
+        if(placedThisRound < maxPlaceThisRound)
+        {
+            canPlaceMore = true;
+        }
+        else if (placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
         {
             canPlaceMore = false;
         }

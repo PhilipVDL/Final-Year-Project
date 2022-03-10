@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         ObstacleTimers();
         Begin();
-        PlacementHighlight();
+        //PlacementHighlight();
         PlacementDebugToggle();
         Respawn();
 
@@ -171,76 +171,10 @@ public class PlayerController : MonoBehaviour
 
     void PlayerInput()
     {
-        if (jumpControlled)
-        {
-            ControlsControlledJump(playerNumber);
-        }
-        else
-        {
-            ControlsUncontrolledJump(playerNumber);
-        }
+        ControlsControlledJump(playerNumber);
     }
 
     #region controls
-    void ControlsUncontrolledJump(int playerNumber)
-    {
-        if (grounded)
-        {
-            float inputVertical = Input.GetAxis("Vertical" + playerNumber);
-            if (inputVertical > 0)
-            {
-                speeding = true;
-            }
-            else
-            {
-                speeding = false;
-            }
-            if (inputVertical < 0)
-            {
-                braking = true;
-            }
-            else
-            {
-                braking = false;
-            }
-
-            float inputHorizontal = Input.GetAxis("Horizontal" + playerNumber);
-            if (inputHorizontal > 0)
-            {
-                goRight = true;
-            }
-            else
-            {
-                goRight = false;
-            }
-            if (inputHorizontal < 0)
-            {
-                goLeft = true;
-            }
-            else
-            {
-                goLeft = false;
-            }
-        }
-
-        if (Input.GetButton("Jump" + playerNumber) && grounded)
-        {
-            chargingJump = true;
-        }
-
-        if(chargingJump && !grounded)
-        {
-            chargingJump = false;
-            currentJumpForce = 0;
-        }
-
-        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
-        {
-            chargingJump = false;
-            Jump();
-        }
-    }
-
     void ControlsControlledJump(int playerNumber)
     {
         float inputVertical = Input.GetAxis("Vertical" + playerNumber);
@@ -333,7 +267,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(Input.GetButtonDown("ObstacleSwitch" + playerNumber) && placementMode)
+        if(Input.GetButtonDown("ObstacleSwitch" + playerNumber))
         {
             if(Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
             {
@@ -343,6 +277,11 @@ public class PlayerController : MonoBehaviour
             {
                 inventory.SelectedIndex(-1);
             }
+        }
+
+        if(Input.GetButtonDown("ObstaclePlace" + playerNumber))
+        {
+            playerObstaclesRacePlace.PlaceObstacle();
         }
     }
     #endregion
@@ -771,7 +710,7 @@ public class PlayerController : MonoBehaviour
     {
         if (placementMode)
         {
-            gm.HighlightGridZone(placementX, placementZ, playerNumber);
+            //gm.HighlightGridZone(placementX, placementZ, playerNumber);
         }
     }
 
