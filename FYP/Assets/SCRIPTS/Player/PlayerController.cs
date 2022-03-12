@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     [Header("Move Speeds")]
     public float currentSpeed;
     public float maxSpeed;
-    public float maxVelocity;
     public float maxBackSpeed;
     public bool moveBackwards;
     public float timeToMaxSpeed;
@@ -312,7 +311,7 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpeed += accRate;
             }
-            else if (moveBackwards && braking)
+            else if (moveBackwards && braking) //move backwards
             {
                 accRate = (maxBackSpeed / timeToMaxSpeed) * Time.deltaTime;
                 currentSpeed += accRate;
@@ -384,18 +383,28 @@ public class PlayerController : MonoBehaviour
     {
         if (grounded)
         {
-            if (rb.velocity.z > maxVelocity)
+            if (rb.velocity.z > maxSpeed) //forward
             {
-                float brakeMag = rb.velocity.z - maxVelocity;
+                float brakeMag = rb.velocity.z - maxSpeed;
                 rb.AddForce(transform.forward * brakeMag * -1);
+            }
+            else if(rb.velocity.z < maxBackSpeed) //backwards
+            {
+                float brakeMag = Mathf.Abs(rb.velocity.z) - maxBackSpeed;
+                rb.AddForce(transform.forward * brakeMag);
             }
         }
         else
         {
-            if (rb.velocity.z > (maxVelocity * jumpSpeedMult))
+            if (rb.velocity.z > (maxSpeed * jumpSpeedMult)) //forwards air
             {
-                float brakeMag = rb.velocity.z - (maxVelocity * jumpSpeedMult);
+                float brakeMag = rb.velocity.z - (maxSpeed * jumpSpeedMult);
                 rb.AddForce(transform.forward * brakeMag * -1);
+            }
+            else if (rb.velocity.z < (maxBackSpeed * jumpSpeedMult)) //backwards air
+            {
+                float brakeMag = Mathf.Abs(rb.velocity.z) - (maxBackSpeed * jumpSpeedMult);
+                rb.AddForce(transform.forward * brakeMag);
             }
         }
     }
@@ -460,9 +469,9 @@ public class PlayerController : MonoBehaviour
     {
         if (grounded)
         {
-            if (Mathf.Abs(rb.velocity.x) > (maxVelocity * horizontalMoveSpeedMultiplier))
+            if (Mathf.Abs(rb.velocity.x) > (maxSpeed * horizontalMoveSpeedMultiplier))
             {
-                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxVelocity * horizontalMoveSpeedMultiplier);
+                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxSpeed * horizontalMoveSpeedMultiplier);
                 if (goRight)
                 {
                     rb.AddForce(transform.right * brakeMag * -1);
@@ -475,9 +484,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Mathf.Abs(rb.velocity.x) > (maxVelocity * horizontalMoveSpeedMultiplier * jumpSpeedMult))
+            if (Mathf.Abs(rb.velocity.x) > (maxSpeed * horizontalMoveSpeedMultiplier * jumpSpeedMult))
             {
-                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxVelocity * horizontalMoveSpeedMultiplier * jumpSpeedMult);
+                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxSpeed * horizontalMoveSpeedMultiplier * jumpSpeedMult);
                 if (goRight)
                 {
                     rb.AddForce(transform.right * brakeMag * -1);
