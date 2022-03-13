@@ -31,11 +31,8 @@ public class EndDistance : MonoBehaviour
     private void CountPlayers()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-       
         ListPlayers();
     }
-
-   
 
     private void PlayerDistance()
     {
@@ -79,11 +76,7 @@ public class EndDistance : MonoBehaviour
             Vector3 pos = this.transform.position;
             Vector3 A = a.transform.position;
             Vector3 B = b.transform.position;
-
-         
-
             return (pos - A).sqrMagnitude.CompareTo((pos-B).sqrMagnitude);
-            
         });
     }
 
@@ -96,8 +89,7 @@ public class EndDistance : MonoBehaviour
             playerPositions[2].GetComponent<PlayerController>().pos = 3;
             playerPositions[3].GetComponent<PlayerController>().pos = 4;
         }
-
-       else if(finish.finished == 1)
+        else if (finish.finished == 1)
         {
             playerPositions[0].GetComponent<PlayerController>().pos = 2;
             playerPositions[1].GetComponent<PlayerController>().pos = 3;
@@ -135,5 +127,4 @@ public class EndDistance : MonoBehaviour
             horizontalDifference = rightDist - leftDist;
         }
     }
-
 }

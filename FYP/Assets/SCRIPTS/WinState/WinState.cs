@@ -5,7 +5,6 @@ using UnityEngine;
 public class WinState : MonoBehaviour
 {
     FinishLine finish;
-    PlayerCustoms customs;
     ObstaclesOnMap obstaclesOnMap;
     public GameObject playerPrefab;
     public GameObject[] players;
@@ -26,7 +25,6 @@ public class WinState : MonoBehaviour
     private void Start()
     {
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
-        customs = GameObject.Find("Player Customs").GetComponent<PlayerCustoms>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map").GetComponent<ObstaclesOnMap>();
         maincamera = GameObject.Find("Main Camera");
         camController = maincamera.GetComponent<CameraController>();
@@ -35,7 +33,6 @@ public class WinState : MonoBehaviour
 
     private void Update()
     {
-        
         EndRound();
     }
 
@@ -54,19 +51,11 @@ public class WinState : MonoBehaviour
     {
         if (endRound && !win)
         {
-            //maincamera.GetComponent<CameraController>().placementPhase = true;
-
             NewRound();
-
-           
         }
-
-
         else if (endRound && win)
         {
-            //win
-
-            Debug.Log("Player " + winnerNumber + " Wins!");
+            Debug.Log("Player " + winnerNumber + " Wins!"); //win
         }
     }
 
@@ -88,44 +77,13 @@ public class WinState : MonoBehaviour
 
     public void NewRound()
     {
-       // finish.NewRound();
-       // SpawnPlayers();
         currentRound++;
+        finish.finished = 0;
         obstaclesOnMap.ActivateObstacles();
         foreach(GameObject player in players)
         {
             player.GetComponent<PlayerObstaclesRacePlace>().placedThisRound = 0;
         }
-       // StartCoroutine(CamNewRound());
-       
         endRound = false;
-
-       
-    }
-
- 
-
-    void SpawnPlayers()
-    {
-        foreach (GameObject player in players)
-        {
-            PlayerController controller = player.GetComponent<PlayerController>();
-           
-        }
-
-           
-        
-
-        /*
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].SetActive(true);
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].SetActive(true);
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].SetActive(true);
-
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].GetComponent<PlayerController>().placementMode = false;
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].GetComponent<PlayerController>().placementMode = false;
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].GetComponent<PlayerController>().placementMode = false;
-           GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].GetComponent<PlayerController>().placementMode = false;
-        */
     }
 }

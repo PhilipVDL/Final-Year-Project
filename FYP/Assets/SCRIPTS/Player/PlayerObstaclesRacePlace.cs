@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerObstaclesRacePlace : MonoBehaviour
 {
     ObstacleInventory inventory;
-    PlayerController controller;
 
     public GameObject previewPrefab;
     private GameObject obstaclesOnMap;
@@ -18,7 +17,6 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
     private void Start()
     {
         inventory = GetComponent<ObstacleInventory>();
-        controller = GetComponent<PlayerController>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map");
     }
 

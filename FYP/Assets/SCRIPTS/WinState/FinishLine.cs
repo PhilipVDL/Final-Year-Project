@@ -24,7 +24,6 @@ public class FinishLine : MonoBehaviour
         countdownSign = GameObject.Find("SIGN");
         manager = GameObject.Find("Background Tasks");
     }
-        
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,66 +32,37 @@ public class FinishLine : MonoBehaviour
         {
             finished++;
             StartRound();
-
-            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
-            GameObject playerObj = other.gameObject;
-            
+            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;            
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
-            
-            
-          //  GameObject.Find("Place Zone Manager").GetComponent<PlaceZoneManager>().activeZone = 1;
-          
-            
         }
-
         else
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
-            GameObject playerObj = other.gameObject;
-
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
             other.gameObject.SetActive(false);
             GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
-            
-
-           
         }
-
-     
     }
 
     private void Update()
     {
         GetPlayers();
-
-      
-    }    
-    
-
-  
+    }
 
     void GetPlayers()
     {
         Players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    public void NewRound()
-    {
-        finished = 0;
-    }
-
     public void StartRound()
     {
-        //(GameObject.FindWithTag("Player") == null)
         countdownSign.GetComponent<Animator>().Play(0);
 
         //end round
         win.endRound = true;
-        finished = 0;
-
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
@@ -105,8 +75,4 @@ public class FinishLine : MonoBehaviour
         }
         manager.GetComponent<MainManager>().countdown = 3;
     }
-
-
-
-    
 }
