@@ -6,7 +6,6 @@ public class PlayerJoinVisible : MonoBehaviour
 {
     public PlayerJoinCount joinCount; //Assign manually
     MeshRenderer rend;
-    PlayerJoinJump jump;
 
     [Range(1,4)] public int playerNumber;
 
@@ -14,7 +13,6 @@ public class PlayerJoinVisible : MonoBehaviour
     {
         rend = GetComponent<MeshRenderer>();
         rend.enabled = false;
-        jump = GetComponentInParent<PlayerJoinJump>();
     }
 
     private void Update()

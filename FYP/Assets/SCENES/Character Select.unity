@@ -754,9 +754,10 @@ GameObject:
   - component: {fileID: 2657286347327521357}
   - component: {fileID: 217409266504644231}
   - component: {fileID: 1730676258654426963}
+  - component: {fileID: 1730676258654426964}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -775,6 +776,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinCount: {fileID: 110311852}
   playerNumber: 2
+--- !u!114 &1730676258654426964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730676258654426962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballTypeID: 0
+  minID: 0
+  maxID: 3
+  meshes:
+  - {fileID: -6614643736806360952, guid: 186f73ebdd5d9994fa467ef5a4daeeca, type: 3}
+  - {fileID: 5060444177187149915, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
+  - {fileID: 1010724824023305615, guid: 3cf4c7e91c1b5c845be47c337ba9108f, type: 3}
+  - {fileID: 5060444177187149915, guid: ae63c755f25b191419430f1096a739c1, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 3df5cfd6b1dd30c49bc9e0c50c0af233, type: 2}
+  - {fileID: 2100000, guid: 410fb16371e4e954c8ef23a43ab97bcf, type: 2}
+  - {fileID: 2100000, guid: 3f15fda9ead72b0408c782b5af7a537f, type: 2}
+  - {fileID: 2100000, guid: 20a1266f6818ff047a54976ff00901e7, type: 2}
 --- !u!33 &2294726311298191482
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -795,9 +821,10 @@ GameObject:
   - component: {fileID: 2294726311298191482}
   - component: {fileID: 4052243670235817136}
   - component: {fileID: 2539056391047644518}
+  - component: {fileID: 2539056391047644519}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -816,6 +843,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinCount: {fileID: 110311852}
   playerNumber: 1
+--- !u!114 &2539056391047644519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2539056391047644517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballTypeID: 0
+  minID: 0
+  maxID: 3
+  meshes:
+  - {fileID: -6614643736806360952, guid: 186f73ebdd5d9994fa467ef5a4daeeca, type: 3}
+  - {fileID: 5060444177187149915, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
+  - {fileID: 1010724824023305615, guid: 3cf4c7e91c1b5c845be47c337ba9108f, type: 3}
+  - {fileID: 5060444177187149915, guid: ae63c755f25b191419430f1096a739c1, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 3df5cfd6b1dd30c49bc9e0c50c0af233, type: 2}
+  - {fileID: 2100000, guid: 410fb16371e4e954c8ef23a43ab97bcf, type: 2}
+  - {fileID: 2100000, guid: 3f15fda9ead72b0408c782b5af7a537f, type: 2}
+  - {fileID: 2100000, guid: 20a1266f6818ff047a54976ff00901e7, type: 2}
 --- !u!33 &2657286347327521357
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -892,9 +944,10 @@ GameObject:
   - component: {fileID: 8690367140703553828}
   - component: {fileID: 6881101756966387182}
   - component: {fileID: 4935498683205786684}
+  - component: {fileID: 4935498683205786685}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -913,6 +966,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinCount: {fileID: 110311852}
   playerNumber: 3
+--- !u!114 &4935498683205786685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935498683205786683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballTypeID: 0
+  minID: 0
+  maxID: 3
+  meshes:
+  - {fileID: -6614643736806360952, guid: 186f73ebdd5d9994fa467ef5a4daeeca, type: 3}
+  - {fileID: 5060444177187149915, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
+  - {fileID: 1010724824023305615, guid: 3cf4c7e91c1b5c845be47c337ba9108f, type: 3}
+  - {fileID: 5060444177187149915, guid: ae63c755f25b191419430f1096a739c1, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 3df5cfd6b1dd30c49bc9e0c50c0af233, type: 2}
+  - {fileID: 2100000, guid: 410fb16371e4e954c8ef23a43ab97bcf, type: 2}
+  - {fileID: 2100000, guid: 3f15fda9ead72b0408c782b5af7a537f, type: 2}
+  - {fileID: 2100000, guid: 20a1266f6818ff047a54976ff00901e7, type: 2}
 --- !u!4 &5707671837544269441
 Transform:
   m_ObjectHideFlags: 0
@@ -989,9 +1067,10 @@ GameObject:
   - component: {fileID: 6649330251500190640}
   - component: {fileID: 8909208492359651194}
   - component: {fileID: 6963446400836316848}
+  - component: {fileID: 6963446400836316849}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1010,6 +1089,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinCount: {fileID: 110311852}
   playerNumber: 4
+--- !u!114 &6963446400836316849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963446400836316847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballTypeID: 0
+  minID: 0
+  maxID: 3
+  meshes:
+  - {fileID: -6614643736806360952, guid: 186f73ebdd5d9994fa467ef5a4daeeca, type: 3}
+  - {fileID: 5060444177187149915, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
+  - {fileID: 1010724824023305615, guid: 3cf4c7e91c1b5c845be47c337ba9108f, type: 3}
+  - {fileID: 5060444177187149915, guid: ae63c755f25b191419430f1096a739c1, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 3df5cfd6b1dd30c49bc9e0c50c0af233, type: 2}
+  - {fileID: 2100000, guid: 410fb16371e4e954c8ef23a43ab97bcf, type: 2}
+  - {fileID: 2100000, guid: 3f15fda9ead72b0408c782b5af7a537f, type: 2}
+  - {fileID: 2100000, guid: 20a1266f6818ff047a54976ff00901e7, type: 2}
 --- !u!4 &7775729975531041813
 Transform:
   m_ObjectHideFlags: 0
