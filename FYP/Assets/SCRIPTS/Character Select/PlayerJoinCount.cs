@@ -5,20 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerJoinCount : MonoBehaviour
 {
+    public PlayerCustoms customs;
     public bool playerJoined1, playerJoined2, playerJoined3, playerJoined4;
     public int joinCount;
     public bool DEBUG_Player1Only;
+    public bool firstScene;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneUnloaded += OnSceneUnloaded; //allows detecting when scene unloads
         SceneManager.sceneLoaded += OnSceneLoaded; //allows detecting when scene loads
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        firstScene = false;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //run coroutine when scene loaded
-        StartCoroutine(JoinedPlayers());
+        //run coroutine when scene loaded, if not first scene
+        if (!firstScene)
+        {
+            StartCoroutine(JoinedPlayers());
+        }
     }
 
     IEnumerator JoinedPlayers()
@@ -96,6 +107,9 @@ public class PlayerJoinCount : MonoBehaviour
                 }
             }
         }
+
+        customs = GameObject.Find("PlayerCustoms").GetComponent<PlayerCustoms>();
+        customs.SetPlayerCustoms();
     }
 
     private void Update()
