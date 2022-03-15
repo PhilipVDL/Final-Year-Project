@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7089378ebb6b9e349a3669bc3dee967e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: 1
+  currentPlayers: 
+  players: []
+  playerMeshes: []
+  playerMaterials: []

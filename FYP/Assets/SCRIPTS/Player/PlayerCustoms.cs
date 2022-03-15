@@ -1,71 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCustoms : MonoBehaviour
 {
-    public GameObject[] players;
-    public Material[] materials;
-    public Mesh[] meshes;
-    float[] scales;
+    PlayerJoinCount pjc;
 
-    /*
-    public Material p1, p2, p3, p4;
-    public Mesh m1, m2, m3, m4;
-    public float s1, s2, s3, s4;
-    */
+    public bool characterSelect;
+
+    public bool[] currentPlayers;
+    public List<GameObject> players;
+    public Mesh[] playerMeshes;
+    public Material[] playerMaterials;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneUnloaded += OnSceneUnloaded; //allows detecting when scene unloads
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        characterSelect = false;
+    }
 
     private void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        materials = new Material[players.Length];
-        meshes = new Mesh[players.Length];
-        scales = new float[players.Length];
-        GetCustoms();
-
-        /*
-        //get materials
-        p1 = GameObject.Find("Player 1").transform.GetChild(0).GetComponent<Renderer>().material;
-        p2 = GameObject.Find("Player 2").transform.GetChild(0).GetComponent<Renderer>().material;
-        p3 = GameObject.Find("Player 3").transform.GetChild(0).GetComponent<Renderer>().material;
-        p4 = GameObject.Find("Player 4").transform.GetChild(0).GetComponent<Renderer>().material;
-        //get meshes
-        m1 = GameObject.Find("Player 1").transform.GetChild(0).GetComponent<MeshFilter>().mesh;
-        m2 = GameObject.Find("Player 2").transform.GetChild(0).GetComponent<MeshFilter>().mesh;
-        m3 = GameObject.Find("Player 3").transform.GetChild(0).GetComponent<MeshFilter>().mesh;
-        m4 = GameObject.Find("Player 4").transform.GetChild(0).GetComponent<MeshFilter>().mesh;
-        //get scales
-        s1 = GameObject.Find("Player 1").transform.GetChild(0).transform.localScale.x;
-        s2 = GameObject.Find("Player 2").transform.GetChild(0).transform.localScale.x;
-        s3 = GameObject.Find("Player 3").transform.GetChild(0).transform.localScale.x;
-        s4 = GameObject.Find("Player 4").transform.GetChild(0).transform.localScale.x;
-        */
+        pjc = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
     }
 
-    void GetCustoms()
+    private void Update()
     {
-        for (int i = 0; i < players.Length; i++)
+        GetPlayerCustoms();
+    }
+
+    void GetPlayerCustoms()
+    {
+        if (characterSelect) //if in character select
         {
-            materials[i] = players[i].transform.GetChild(0).GetComponent<Renderer>().material;
-            meshes[i] = players[i].transform.GetChild(0).GetComponent<MeshFilter>().mesh;
-            scales[i] = players[i].transform.GetChild(0).transform.localScale.x;
+            players.Clear(); //clear list, so it doesn't keep growing
+            foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                players.Add(player); //add each player to the list
+            }
+            players.Sort((p1, p2) => p1.name.CompareTo(p2.name)); //sort list by name of parent
+            currentPlayers = new bool[] { pjc.playerJoined1, pjc.playerJoined2, pjc.playerJoined3, pjc.playerJoined4 }; //which players have joined
+            playerMeshes = new Mesh[players.Count];
+            playerMaterials = new Material[players.Count];
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (currentPlayers[i])
+                {
+                    GameObject skin = players[i].transform.GetChild(0).gameObject;
+                    playerMeshes[i] = skin.GetComponent<MeshFilter>().mesh;
+                    playerMaterials[i] = skin.GetComponent<Renderer>().material;
+                }
+                else
+                {
+                    playerMeshes[i] = null;
+                    playerMaterials[i] = null;
+                }
+            }
         }
     }
 
-    public Material SetMaterial(int player)
+    public void SetPlayerCustoms()
     {
-        return materials[player - 1];
-    }
+        foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            int pNum = player.GetComponent<PlayerController>().playerNumber;
+            GameObject skin = player.transform.GetChild(0).gameObject;
 
-    public Mesh SetMesh(int player)
-    {
-        return meshes[player - 1];
-    }
+            skin.GetComponent<MeshFilter>().mesh = playerMeshes[pNum - 1];
+            skin.GetComponent<Renderer>().material = playerMaterials[pNum - 1];
 
-    public Vector3 SetScale(int player)
-    {
-        float scale = scales[player - 1];
-        Vector3 scaleV = new Vector3(scale, scale, scale);
-        return scaleV;
+            
+        }
     }
 }
