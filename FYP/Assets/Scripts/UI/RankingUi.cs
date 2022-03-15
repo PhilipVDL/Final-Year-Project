@@ -13,7 +13,7 @@ public class RankingUi : MonoBehaviour
 
     public GameObject placementModetext;
 
-    public float lerpSpd = 0.01f;
+    public float lerpSpd = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,27 +44,27 @@ public class RankingUi : MonoBehaviour
                 case 1:
                     if (finishLine.finished == 0)
                     {
-                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
-                        
+                        playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
                     }
                     break;
                 case 2:
-                    if (finishLine.finished < 2 )
+                    if (finishLine.finished < 2)
                     {
-                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
+                        playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
                     }
-                    
                     break;
                 case 3:
                     if (finishLine.finished < 3)
                     {
-                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
+                        playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
                     }
                     break;
                 case 4:
                     if (finishLine.finished < 4)
-                        playerImages[0].transform.position = Vector3.Lerp(playerImages[0].transform.position, positions[3].transform.position, lerpSpd);
+                        playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[3].transform.position, lerpSpd);
                     break;
+
+
 
             }
         }
@@ -79,24 +79,24 @@ public class RankingUi : MonoBehaviour
                 case 1:
                     if (finishLine.finished == 0)
                     {
-                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
+                        playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
                     }
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
-                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
+                        playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
                     }
                     break;
                 case 3:
                     if (finishLine.finished < 3)
                     {
-                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
+                        playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
                     }
                     break;
                 case 4:
                     if (finishLine.finished < 4)
-                        playerImages[1].transform.position = Vector3.Lerp(playerImages[1].transform.position, positions[3].transform.position, lerpSpd);
+                        playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[3].transform.position, lerpSpd);
                     break;
 
             }
@@ -110,24 +110,24 @@ public class RankingUi : MonoBehaviour
                 case 1:
                     if (finishLine.finished == 0)
                     {
-                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
+                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
                     }
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
-                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
+                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
                     }
                     break;
                 case 3:
                     if (finishLine.finished < 3)
                     {
-                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
+                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
                     }
                     break;
                 case 4:
                     if (finishLine.finished < 4)
-                        playerImages[2].transform.position = Vector3.Lerp(playerImages[2].transform.position, positions[3].transform.position, lerpSpd);
+                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[3].transform.position, lerpSpd);
                     break;
 
             }
@@ -141,24 +141,24 @@ public class RankingUi : MonoBehaviour
                 case 1:
                     if (finishLine.finished == 0)
                     {
-                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[0].transform.position, lerpSpd);
+                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[0].transform.position, lerpSpd);
                     }
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
-                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[1].transform.position, lerpSpd);
+                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[1].transform.position, lerpSpd);
                     }
                     break;
                 case 3:
                     if (finishLine.finished < 3)
                     {
-                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[2].transform.position, lerpSpd);
+                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[2].transform.position, lerpSpd);
                     }
                     break;
                 case 4:
                     if (finishLine.finished < 4)
-                        playerImages[3].transform.position = Vector3.Lerp(playerImages[3].transform.position, positions[3].transform.position, lerpSpd);
+                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[3].transform.position, lerpSpd);
                     break;
 
             }

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public GameObject spawn;
     EndDistance end;
     public GameObject[] Checkpoints;
+    public GameObject particleSys;
 
     //variables
     #region variables
@@ -546,6 +547,7 @@ public class PlayerController : MonoBehaviour
          else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers != 1)
          {
              transform.position = currentSpawn.transform.position;
+            Instantiate(particleSys, transform.position, transform.rotation);
              currentSpeed = 0;
          }
          
@@ -562,6 +564,7 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].transform.position = currentSpawn.transform.position;
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].transform.position = currentSpawn.transform.position;
             transform.position = currentSpawn.transform.position;
+            Instantiate(particleSys, transform.position, transform.rotation);
 
         }
     }
