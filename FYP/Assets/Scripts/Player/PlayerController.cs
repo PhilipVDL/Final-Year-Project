@@ -121,16 +121,37 @@ public class PlayerController : MonoBehaviour
         playerObstacles = GetComponent<PlayerObstacles>();
         playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();
         obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
-       
+
         Defaults();
-        spawn = GameObject.Find("StartSpawn");
+        GetSpawnPos();
+        currentSpawn = spawn;
 
         gameObject.name = "Player " + playerNumber;
 
         prb = gameObject.GetComponent<Rigidbody>();
-
-        
     }
+ 
+
+    void GetSpawnPos()
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                spawn = GameObject.Find("Spawn 1");
+                break;
+            case 2:
+                spawn = GameObject.Find("Spawn 2");
+                break;
+            case 3:
+                spawn = GameObject.Find("Spawn 3");
+                break;
+            case 4:
+                spawn = GameObject.Find("Spawn 4");
+                break;
+        }
+    }
+        
+    
 
     void Defaults()
     {
@@ -142,8 +163,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-      
 
+       // GetSpawnPos();
         GroundCheck();
         PlayerInput();
         ObstacleTimers();

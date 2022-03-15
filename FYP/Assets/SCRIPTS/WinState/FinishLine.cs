@@ -101,7 +101,7 @@ public class FinishLine : MonoBehaviour
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
-            PlayerClones[i].transform.position = win.spawns[0].transform.position;
+            PlayerClones[i].transform.position = win.spawns[i].transform.position;
         }
         manager.GetComponent<MainManager>().countdown = 3;
     }
