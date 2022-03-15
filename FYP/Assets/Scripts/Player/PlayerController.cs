@@ -15,10 +15,11 @@ public class PlayerController : MonoBehaviour
     GameObject obstaclesOnMap;
     public GameObject spawn;
     EndDistance end;
+    public GameObject[] Checkpoints;
 
     //variables
     #region variables
-    [Header("Control Modes")] 
+    [Header("Control Modes")]
     [Range(1, 4)] public int playerNumber;
 
     [Header("Move Speeds")]
@@ -118,13 +119,14 @@ public class PlayerController : MonoBehaviour
 
         Defaults();
         GetSpawnPos();
+        Checkpoints = GameObject.FindGameObjectsWithTag("CP");
         currentSpawn = spawn;
 
         gameObject.name = "Player " + playerNumber;
 
         prb = gameObject.GetComponent<Rigidbody>();
     }
- 
+
 
     void GetSpawnPos()
     {
@@ -143,11 +145,11 @@ public class PlayerController : MonoBehaviour
                 spawn = GameObject.Find("Spawn 4");
                 break;
         }
-        spawn = GameObject.Find("StartSpawn");
+        // spawn = GameObject.Find("StartSpawn");
         gameObject.name = "Player " + playerNumber;
     }
-        
-    
+
+
 
     void Defaults()
     {
@@ -160,11 +162,11 @@ public class PlayerController : MonoBehaviour
     {
 
 
-       // GetSpawnPos();
+        // GetSpawnPos();
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
-        Begin();        
+        Begin();
         Respawn();
     }
 
@@ -247,19 +249,19 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetButtonDown("ObstacleSwitch" + playerNumber))
+        if (Input.GetButtonDown("ObstacleSwitch" + playerNumber))
         {
-            if(Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
+            if (Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
             {
                 inventory.SelectedIndex(1);
             }
-            else if(Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
+            else if (Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
             {
                 inventory.SelectedIndex(-1);
             }
         }
 
-        if(Input.GetButtonDown("ObstaclePlace" + playerNumber))
+        if (Input.GetButtonDown("ObstaclePlace" + playerNumber))
         {
             playerObstaclesRacePlace.PlaceObstacle();
         }
@@ -317,9 +319,9 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
         }
-        else if(braking && moveBackwards)
+        else if (braking && moveBackwards)
         {
-            if(prb.velocity.z > 0)
+            if (prb.velocity.z > 0)
             {
                 prb.velocity = new Vector3(prb.velocity.x, prb.velocity.y, 0);
             }
@@ -350,7 +352,7 @@ public class PlayerController : MonoBehaviour
             }
             prb.AddForce((transform.forward * currentSpeed));
         }
-        else if( !braking)
+        else if (!braking)
         {
             //move air
             if (prb.velocity.z < 0)
@@ -371,7 +373,7 @@ public class PlayerController : MonoBehaviour
                 float brakeMag = prb.velocity.z - maxSpeed;
                 prb.AddForce(transform.forward * brakeMag * -1);
             }
-            else if(prb.velocity.z < maxBackSpeed) //backwards
+            else if (prb.velocity.z < maxBackSpeed) //backwards
             {
                 float brakeMag = Mathf.Abs(prb.velocity.z) - maxBackSpeed;
                 prb.AddForce(transform.forward * brakeMag);
@@ -407,7 +409,7 @@ public class PlayerController : MonoBehaviour
         {
             if (goRight)
             {
-                if(prb.velocity.x >= 0) //if moving right
+                if (prb.velocity.x >= 0) //if moving right
                 {
                     if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                     {
@@ -425,7 +427,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (goLeft)
             {
-                if(prb.velocity.x <= 0) //if moving left
+                if (prb.velocity.x <= 0) //if moving left
                 {
                     if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                     {
@@ -541,10 +543,26 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (transform.position.y < deathHeight && doesRespawn)
+         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers != 1)
+         {
+             transform.position = currentSpawn.transform.position;
+             currentSpeed = 0;
+         }
+         
+        else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
         {
+
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].SetActive(true);
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].SetActive(true);
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].SetActive(true);
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].SetActive(true);
+
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].transform.position = currentSpawn.transform.position;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].transform.position = currentSpawn.transform.position;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].transform.position = currentSpawn.transform.position;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].transform.position = currentSpawn.transform.position;
             transform.position = currentSpawn.transform.position;
-            currentSpeed = 0;
+
         }
     }
 
@@ -588,11 +606,11 @@ public class PlayerController : MonoBehaviour
     void ObstacleTimers()
     {
         //oil
-        if(oiled)
+        if (oiled)
         {
             maxSpeed = oilSpillSpeed;
             oilSpillTimer -= Time.deltaTime;
-            if(oilSpillTimer <= 0)
+            if (oilSpillTimer <= 0)
             {
                 oilSpillTimer = 0;
                 oiled = false;
@@ -606,7 +624,7 @@ public class PlayerController : MonoBehaviour
             maxSpeed = tackSpeed;
             airControlMult = tackAirControl;
             tackTimer -= Time.deltaTime;
-            if(tackTimer <= 0)
+            if (tackTimer <= 0)
             {
                 tackTimer = 0;
                 deflated = false;
@@ -619,7 +637,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpSpeedMult = trampolineJumpSpeedMult;
             trampolineTimer -= Time.deltaTime;
-            if(trampolineTimer <= 0)
+            if (trampolineTimer <= 0)
             {
                 trampolineTimer = 0;
                 trampolined = false;
@@ -638,7 +656,7 @@ public class PlayerController : MonoBehaviour
         {
             maxSpeed = padSpeed;
             padTimer -= Time.deltaTime;
-            if(padTimer <= 0)
+            if (padTimer <= 0)
             {
                 padTimer = 0;
                 speedPadded = false;
@@ -666,23 +684,73 @@ public class PlayerController : MonoBehaviour
             currentSpeed = 0;
             transform.position = spawn.transform.position;
             braking = true;
-        } 
-
-        switch (other.tag)
-        {
-            case "Checkpoint 1":
-                checkpointActivations[0].SetActive(true);
-                currentSpawn = other.gameObject;
-                break;
-            case "Checkpoint 2":
-                checkpointActivations[1].SetActive(true);
-                currentSpawn = other.gameObject;
-                break;
-            case "Checkpoint":
-                currentSpawn = other.gameObject;
-                break;
         }
-    }        
+
+        if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
+        {
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[0];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[1];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[3];
+        }
+        else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
+        {
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[4];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[5];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[6];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[7];
+        }
+        else
+        {
+            switch (other.tag)
+            {
+                case "Checkpoint 1":
+
+                    switch (playerNumber)
+                    {
+                        case 1:
+                            currentSpawn = Checkpoints[0];
+                            break;
+                        case 2:
+                            currentSpawn = Checkpoints[1];
+                            break;
+                        case 3:
+                            currentSpawn = Checkpoints[2];
+                            break;
+                        case 4:
+                            currentSpawn = Checkpoints[3];
+                            break;
+                    }
+                    checkpointActivations[0].SetActive(true);
+
+                    break;
+
+
+
+
+                case "Checkpoint 2":
+                    switch (playerNumber)
+                    {
+                        case 1:
+                            currentSpawn = Checkpoints[5];
+                            break;
+                        case 2:
+                            currentSpawn = Checkpoints[6];
+                            break;
+                        case 3:
+                            currentSpawn = Checkpoints[7];
+                            break;
+                        case 4:
+                            currentSpawn = Checkpoints[8];
+                            break;
+                    }
+                    checkpointActivations[1].SetActive(true);
+
+                    break;
+
+            }
+        }
+    }     
 
     void OnBecameInvisible()
     {

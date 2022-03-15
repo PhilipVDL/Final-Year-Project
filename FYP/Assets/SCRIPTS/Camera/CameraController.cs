@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        CountPlayers();
+        
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         
         Zones = GameObject.FindGameObjectsWithTag("Zone");
@@ -56,13 +56,7 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*if (placementPhase)
-       {
-           PlacementPhaseCam();
-
-           transform.rotation = Quaternion.Euler(50, 0, 0);
-       }
-       */
+        CountPlayers();
 
 
         CameraMove();
