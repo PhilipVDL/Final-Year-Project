@@ -13,6 +13,7 @@ public class PlayerCustoms : MonoBehaviour
     public List<GameObject> players;
     public Mesh[] playerMeshes;
     public Material[] playerMaterials;
+    public int[] playerTypes;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class PlayerCustoms : MonoBehaviour
             currentPlayers = new bool[] { pjc.playerJoined1, pjc.playerJoined2, pjc.playerJoined3, pjc.playerJoined4 }; //which players have joined
             playerMeshes = new Mesh[players.Count];
             playerMaterials = new Material[players.Count];
+            playerTypes = new int[players.Count];
 
             for (int i = 0; i < players.Count; i++)
             {
@@ -56,11 +58,13 @@ public class PlayerCustoms : MonoBehaviour
                     GameObject skin = players[i].transform.GetChild(0).gameObject;
                     playerMeshes[i] = skin.GetComponent<MeshFilter>().mesh;
                     playerMaterials[i] = skin.GetComponent<Renderer>().material;
+                    playerTypes[i] = skin.GetComponent<PlayerSelectBallType>().ballTypeID;
                 }
                 else
                 {
                     playerMeshes[i] = null;
                     playerMaterials[i] = null;
+                    playerTypes[i] = -1;
                 }
             }
         }
@@ -75,8 +79,9 @@ public class PlayerCustoms : MonoBehaviour
 
             skin.GetComponent<MeshFilter>().mesh = playerMeshes[pNum - 1];
             skin.GetComponent<Renderer>().material = playerMaterials[pNum - 1];
-
-            
+            PlayerAttributes attributes = player.GetComponent<PlayerAttributes>();
+            attributes.ballTypeID = playerTypes[pNum - 1];
+            attributes.set = true;
         }
     }
 }

@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     [Header("Control Modes")]
     [Range(1, 4)] public int playerNumber;
 
+    [Header("Knockback")]
+    public float knockbackForce;
+    public float knockbackMult;
+
     [Header("Move Speeds")]
     public bool moveBackwards;
     public float currentSpeed;
@@ -41,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Checkpoint Activation")]
     public GameObject[] checkpointActivations;
-
 
     [Header("Strafing")]
     public float horizontalMoveSpeedMultiplier;
@@ -110,6 +113,23 @@ public class PlayerController : MonoBehaviour
     public float padTimer;
     #endregion
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Knockback(collision.gameObject, collision.GetContact(0).point);
+        }
+    }
+
+    void Knockback(GameObject other, Vector3 point)
+    {
+        prb.AddExplosionForce(knockbackForce * knockbackMult, point, 1);
+
+        PlayerController otherController = other.GetComponent<PlayerController>();
+        Rigidbody otherRB = other.GetComponent<Rigidbody>();
+        otherRB.AddExplosionForce(otherController.knockbackForce * otherController.knockbackMult, point, 1);
+    }
+
     private void Start()
     {
         prb = GetComponent<Rigidbody>();
@@ -124,10 +144,7 @@ public class PlayerController : MonoBehaviour
         currentSpawn = spawn;
 
         gameObject.name = "Player " + playerNumber;
-
-        prb = gameObject.GetComponent<Rigidbody>();
     }
-
 
     void GetSpawnPos()
     {
@@ -150,8 +167,6 @@ public class PlayerController : MonoBehaviour
         gameObject.name = "Player " + playerNumber;
     }
 
-
-
     void Defaults()
     {
         defaultMaxSpeed = maxSpeed;
@@ -161,8 +176,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-
         // GetSpawnPos();
         GroundCheck();
         PlayerInput();
@@ -374,7 +387,7 @@ public class PlayerController : MonoBehaviour
                 float brakeMag = prb.velocity.z - maxSpeed;
                 prb.AddForce(transform.forward * brakeMag * -1);
             }
-            else if (prb.velocity.z < maxBackSpeed) //backwards
+            else if (Mathf.Abs(prb.velocity.z) > maxBackSpeed) //backwards
             {
                 float brakeMag = Mathf.Abs(prb.velocity.z) - maxBackSpeed;
                 prb.AddForce(transform.forward * brakeMag);
@@ -387,7 +400,7 @@ public class PlayerController : MonoBehaviour
                 float brakeMag = prb.velocity.z - (maxSpeed * jumpSpeedMult);
                 prb.AddForce(transform.forward * brakeMag * -1);
             }
-            else if (prb.velocity.z < (maxBackSpeed * jumpSpeedMult)) //backwards air
+            else if (Mathf.Abs(prb.velocity.z) > (maxBackSpeed * jumpSpeedMult)) //backwards air
             {
                 float brakeMag = Mathf.Abs(prb.velocity.z) - (maxBackSpeed * jumpSpeedMult);
                 prb.AddForce(transform.forward * brakeMag);
