@@ -1788,6 +1788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ARCADE_MACHINE
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 908c0474a2c5c694cacfea09666f021c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908c0474a2c5c694cacfea09666f021c, type: 3}
 --- !u!1 &610500200
@@ -3444,7 +3448,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1061712921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282878251b166a8489ffeff323bdcdfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5b7760044dd734f9656a6f1a0171ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1061712924
@@ -6447,7 +6451,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2041399479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282878251b166a8489ffeff323bdcdfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5b7760044dd734f9656a6f1a0171ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2041399482
