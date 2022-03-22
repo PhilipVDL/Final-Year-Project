@@ -6,28 +6,32 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     //components
-    Rigidbody rb;
+    Rigidbody prb;
     GridManager gm;
     RaycastHit hit;
     ObstacleInventory inventory;
     PlayerObstacles playerObstacles;
+    PlayerObstaclesRacePlace playerObstaclesRacePlace;
     GameObject obstaclesOnMap;
     public GameObject spawn;
-    Rigidbody prb;
     EndDistance end;
+    public GameObject[] Checkpoints;
+    public GameObject particleSys;
 
     //variables
     #region variables
-    [Header("Control Modes")] 
-    public bool autoForward;
+    [Header("Control Modes")]
     [Range(1, 4)] public int playerNumber;
 
+    [Header("Knockback")]
+    public float knockbackForce;
+    public float knockbackMult;
+
     [Header("Move Speeds")]
+    public bool moveBackwards;
     public float currentSpeed;
     public float maxSpeed;
-    public float maxVelocity;
     public float maxBackSpeed;
-    public bool moveBackwards;
     public float timeToMaxSpeed;
     public float boostTime;
     public float minSpeed;
@@ -38,6 +42,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Position")]
     public int pos;
+
+    [Header("Checkpoint Activation")]
+    public GameObject[] checkpointActivations;
 
     [Header("Strafing")]
     public float horizontalMoveSpeedMultiplier;
@@ -60,10 +67,8 @@ public class PlayerController : MonoBehaviour
     public bool jumpControlled;
     public float airControlMult;
 
-    [Header("Placement Mode")]
-    public bool placementMode;
-    public int placementX, placementZ;
-    public float placementMoveDelay;
+    //[Header("Placement Mode")]
+    //public bool placementMode;
 
     [Header("Respawn")]
     public float deathHeight;
@@ -108,21 +113,58 @@ public class PlayerController : MonoBehaviour
     public float padTimer;
     #endregion
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Knockback(collision.gameObject, collision.GetContact(0).point);
+        }
+    }
+
+    void Knockback(GameObject other, Vector3 point)
+    {
+        prb.AddExplosionForce(knockbackForce * knockbackMult, point, 1);
+
+        PlayerController otherController = other.GetComponent<PlayerController>();
+        Rigidbody otherRB = other.GetComponent<Rigidbody>();
+        otherRB.AddExplosionForce(otherController.knockbackForce * otherController.knockbackMult, point, 1);
+    }
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        //gm = GameObject.FindGameObjectWithTag("Grid Manager").GetComponent<GridManager>();
+        prb = GetComponent<Rigidbody>();
         inventory = GetComponent<ObstacleInventory>();
         playerObstacles = GetComponent<PlayerObstacles>();
+        playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();
         obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
-        placementX = 0;
-        placementZ = 0;
+
         Defaults();
-        spawn = GameObject.Find("StartSpawn");
+        GetSpawnPos();
+        Checkpoints = GameObject.FindGameObjectsWithTag("CP");
+        currentSpawn = spawn;
 
         gameObject.name = "Player " + playerNumber;
+    }
 
-        prb = gameObject.GetComponent<Rigidbody>();
+    void GetSpawnPos()
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                spawn = GameObject.Find("Spawn 1");
+                break;
+            case 2:
+                spawn = GameObject.Find("Spawn 2");
+                break;
+            case 3:
+                spawn = GameObject.Find("Spawn 3");
+                break;
+            case 4:
+                spawn = GameObject.Find("Spawn 4");
+                break;
+        }
+        // spawn = GameObject.Find("StartSpawn");
+        gameObject.name = "Player " + playerNumber;
     }
 
     void Defaults()
@@ -134,30 +176,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-        if (placementMode)
-        {
-            speeding = false;
-            currentSpeed = 0;
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        }
-
+        // GetSpawnPos();
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
         Begin();
-        PlacementHighlight();
-        PlacementDebugToggle();
         Respawn();
-
-      
-        
     }
 
     public void Begin()
     {
-      if(GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown <= 0)
+        if (GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown <= 0)
         {
             MoveCalculations();
         }
@@ -165,76 +194,10 @@ public class PlayerController : MonoBehaviour
 
     void PlayerInput()
     {
-        if (jumpControlled)
-        {
-            ControlsControlledJump(playerNumber);
-        }
-        else
-        {
-            ControlsUncontrolledJump(playerNumber);
-        }
+        ControlsControlledJump(playerNumber);
     }
 
     #region controls
-    void ControlsUncontrolledJump(int playerNumber)
-    {
-        if (grounded)
-        {
-            float inputVertical = Input.GetAxis("Vertical" + playerNumber);
-            if (inputVertical > 0)
-            {
-                speeding = true;
-            }
-            else
-            {
-                speeding = false;
-            }
-            if (inputVertical < 0)
-            {
-                braking = true;
-            }
-            else
-            {
-                braking = false;
-            }
-
-            float inputHorizontal = Input.GetAxis("Horizontal" + playerNumber);
-            if (inputHorizontal > 0)
-            {
-                goRight = true;
-            }
-            else
-            {
-                goRight = false;
-            }
-            if (inputHorizontal < 0)
-            {
-                goLeft = true;
-            }
-            else
-            {
-                goLeft = false;
-            }
-        }
-
-        if (Input.GetButton("Jump" + playerNumber) && grounded)
-        {
-            chargingJump = true;
-        }
-
-        if(chargingJump && !grounded)
-        {
-            chargingJump = false;
-            currentJumpForce = 0;
-        }
-
-        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
-        {
-            chargingJump = false;
-            Jump();
-        }
-    }
-
     void ControlsControlledJump(int playerNumber)
     {
         float inputVertical = Input.GetAxis("Vertical" + playerNumber);
@@ -278,12 +241,12 @@ public class PlayerController : MonoBehaviour
             StrafingDamping();
         }
 
-        if(currentSpeed == 0)
+        if (currentSpeed == 0)
         {
             MovementDamping();
         }
 
-        if (Input.GetButton("Jump" + playerNumber) && grounded && !placementMode)
+        if (Input.GetButton("Jump" + playerNumber) && grounded)
         {
             chargingJump = true;
         }
@@ -294,41 +257,27 @@ public class PlayerController : MonoBehaviour
             currentJumpForce = 0;
         }
 
-        if (Input.GetButtonUp("Jump" + playerNumber) && grounded && !placementMode)
+        if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
         {
             chargingJump = false;
             Jump();
         }
 
-        if(Input.GetButtonDown("Jump" + playerNumber) && placementMode)
+        if (Input.GetButtonDown("ObstacleSwitch" + playerNumber))
         {
-            if (inventory.obstacles.Count > 0 && inventory.obstacles[inventory.selectedIndex] != null)
-            {
-                playerObstacles.PlaceObstacle();
-
-                /*
-                Transform grid = gm.FindGridZone(placementX, placementZ, playerNumber, inventory.obstacles[inventory.selectedIndex]);
-                //find, check
-                if (grid != null)
-                {
-                    GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], grid); //place
-                    obstacle.transform.parent = obstaclesOnMap.transform; //unparent
-                    inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
-                }
-                */
-            }
-        }
-
-        if(Input.GetButtonDown("ObstacleSwitch" + playerNumber) && placementMode)
-        {
-            if(Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
+            if (Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
             {
                 inventory.SelectedIndex(1);
             }
-            else if(Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
+            else if (Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
             {
                 inventory.SelectedIndex(-1);
             }
+        }
+
+        if (Input.GetButtonDown("ObstaclePlace" + playerNumber))
+        {
+            playerObstaclesRacePlace.PlaceObstacle();
         }
     }
     #endregion
@@ -357,63 +306,40 @@ public class PlayerController : MonoBehaviour
 
     void Acceleration()
     {
-        if (autoForward && !placementMode)
+        float accRate;
+        accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
+        if (speeding) //forward to move
         {
-            //always forward
-            if (currentSpeed < maxSpeed && !braking)
+            currentSpeed += accRate;
+        }
+        else if (moveBackwards && braking) //move backwards
+        {
+            accRate = (maxBackSpeed / timeToMaxSpeed) * Time.deltaTime;
+            currentSpeed += accRate;
+            if (currentSpeed > maxBackSpeed)
             {
-                float accRate;
-                if (!speeding)
-                {
-                    //X secs till max
-                    accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
-                }
-                else
-                {
-                    //unless player inputVertical boosts rate
-                    accRate = (maxSpeed / (timeToMaxSpeed - boostTime)) * Time.deltaTime;
-                }
-                currentSpeed += accRate;
+                currentSpeed = maxBackSpeed;
             }
         }
-        else if (!placementMode)
+        else
         {
-            //forward to move
-            float accRate;
-            accRate = (maxSpeed / timeToMaxSpeed) * Time.deltaTime;
-            if (speeding)
-            {
-                currentSpeed += accRate;
-            }
-            else if (moveBackwards && braking)
-            {
-                accRate = (maxBackSpeed / timeToMaxSpeed) * Time.deltaTime;
-                currentSpeed += accRate;
-                if(currentSpeed > maxBackSpeed)
-                {
-                    currentSpeed = maxBackSpeed;
-                }
-            }
-            else
-            {
-                currentSpeed -= accRate;
-            }
+            currentSpeed -= accRate; //slow down if no input
         }
     }
 
     void Braking()
     {
-        if (braking && !moveBackwards && !placementMode)
+        if (braking && !moveBackwards)
         {
             currentSpeed -= (maxSpeed / timeToMinSpeed) * Time.deltaTime;
         }
-        else if(braking && moveBackwards && !placementMode)
+        else if (braking && moveBackwards)
         {
-            if(rb.velocity.z > 0)
+            if (prb.velocity.z > 0)
             {
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+                prb.velocity = new Vector3(prb.velocity.x, prb.velocity.y, 0);
             }
-            rb.AddForce(transform.forward * currentSpeed * -1);
+            prb.AddForce(transform.forward * currentSpeed * -1);
         }
     }
 
@@ -431,24 +357,23 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        //rigidbody
-        if (grounded && !placementMode && !braking)
+        if (grounded && !braking)
         {
             //move normal
-            if (rb.velocity.z < 0)
+            if (prb.velocity.z < 0)
             {
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+                prb.velocity = new Vector3(prb.velocity.x, prb.velocity.y, 0);
             }
-            rb.AddForce((transform.forward * currentSpeed));
+            prb.AddForce((transform.forward * currentSpeed));
         }
-        else if(!placementMode && !braking)
+        else if (!braking)
         {
             //move air
-            if (rb.velocity.z < 0)
+            if (prb.velocity.z < 0)
             {
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+                prb.velocity = new Vector3(prb.velocity.x, prb.velocity.y, 0);
             }
-            rb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
+            prb.AddForce((transform.forward * currentSpeed * jumpSpeedMult));
         }
         MovementMax();
     }
@@ -457,18 +382,28 @@ public class PlayerController : MonoBehaviour
     {
         if (grounded)
         {
-            if (rb.velocity.z > maxVelocity)
+            if (prb.velocity.z > maxSpeed) //forward
             {
-                float brakeMag = rb.velocity.z - maxVelocity;
-                rb.AddForce(transform.forward * brakeMag * -1);
+                float brakeMag = prb.velocity.z - maxSpeed;
+                prb.AddForce(transform.forward * brakeMag * -1);
+            }
+            else if (Mathf.Abs(prb.velocity.z) > maxBackSpeed) //backwards
+            {
+                float brakeMag = Mathf.Abs(prb.velocity.z) - maxBackSpeed;
+                prb.AddForce(transform.forward * brakeMag);
             }
         }
         else
         {
-            if (rb.velocity.z > (maxVelocity * jumpSpeedMult))
+            if (prb.velocity.z > (maxSpeed * jumpSpeedMult)) //forwards air
             {
-                float brakeMag = rb.velocity.z - (maxVelocity * jumpSpeedMult);
-                rb.AddForce(transform.forward * brakeMag * -1);
+                float brakeMag = prb.velocity.z - (maxSpeed * jumpSpeedMult);
+                prb.AddForce(transform.forward * brakeMag * -1);
+            }
+            else if (Mathf.Abs(prb.velocity.z) > (maxBackSpeed * jumpSpeedMult)) //backwards air
+            {
+                float brakeMag = Mathf.Abs(prb.velocity.z) - (maxBackSpeed * jumpSpeedMult);
+                prb.AddForce(transform.forward * brakeMag);
             }
         }
     }
@@ -476,82 +411,50 @@ public class PlayerController : MonoBehaviour
     void MovementDamping()
     {
         //damp at 0 speed
-        float dampZ = Mathf.Lerp(rb.velocity.z, 0, fDamp);
-        Vector3 dampedVelocity = new Vector3(rb.velocity.x, rb.velocity.y, dampZ);
-        rb.velocity = dampedVelocity;
-
-        /*
-        if (currentSpeed <= 0)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
-        }
-        */
+        float dampZ = Mathf.Lerp(prb.velocity.z, 0, fDamp);
+        Vector3 dampedVelocity = new Vector3(prb.velocity.x, prb.velocity.y, dampZ);
+        prb.velocity = dampedVelocity;
     }
 
     void Strafing()
     {
         //rigidbody
-        if (grounded && !placementMode)
+        if (grounded)
         {
             if (goRight)
             {
-                if(rb.velocity.x >= 0) //if moving right
+                if (prb.velocity.x >= 0) //if moving right
                 {
                     if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                     {
-                        rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
+                        prb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
                     }
                     else
                     {
-                        rb.AddForce(transform.right * horizontalMoveSpeedMin);
+                        prb.AddForce(transform.right * horizontalMoveSpeedMin);
                     }
                 }
                 else
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+                    prb.velocity = new Vector3(prb.velocity.x * -1, prb.velocity.y, prb.velocity.z); //switch direction
                 }
             }
             else if (goLeft)
             {
-                if(rb.velocity.x <= 0) //if moving left
+                if (prb.velocity.x <= 0) //if moving left
                 {
                     if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                     {
-                        rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
+                        prb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
                     }
                     else
                     {
-                        rb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
+                        prb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
                     }
                 }
                 else
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
-                }
-            }
-        }
-        else if (!placementMode)
-        {
-            if (goRight)
-            {
-                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
-                {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
-                }
-                else
-                {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin);
-                }
-            }
-            else if (goLeft)
-            {
-                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
-                {
-                    rb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * airControlMult * -1);
-                }
-                else
-                {
-                    rb.AddForce(transform.right * horizontalMoveSpeedMin * airControlMult * -1);
+                    prb.velocity = new Vector3(prb.velocity.x * -1, prb.velocity.y, prb.velocity.z); //switch direction
                 }
             }
         }
@@ -562,31 +465,31 @@ public class PlayerController : MonoBehaviour
     {
         if (grounded)
         {
-            if (Mathf.Abs(rb.velocity.x) > (maxVelocity * horizontalMoveSpeedMultiplier))
+            if (Mathf.Abs(prb.velocity.x) > (maxSpeed * horizontalMoveSpeedMultiplier))
             {
-                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxVelocity * horizontalMoveSpeedMultiplier);
+                float brakeMag = Mathf.Abs(prb.velocity.x) - (maxSpeed * horizontalMoveSpeedMultiplier);
                 if (goRight)
                 {
-                    rb.AddForce(transform.right * brakeMag * -1);
+                    prb.AddForce(transform.right * brakeMag * -1);
                 }
                 else if (goLeft)
                 {
-                    rb.AddForce(transform.right * brakeMag);
+                    prb.AddForce(transform.right * brakeMag);
                 }
             }
         }
         else
         {
-            if (Mathf.Abs(rb.velocity.x) > (maxVelocity * horizontalMoveSpeedMultiplier * jumpSpeedMult))
+            if (Mathf.Abs(prb.velocity.x) > (maxSpeed * horizontalMoveSpeedMultiplier * jumpSpeedMult))
             {
-                float brakeMag = Mathf.Abs(rb.velocity.x) - (maxVelocity * horizontalMoveSpeedMultiplier * jumpSpeedMult);
+                float brakeMag = Mathf.Abs(prb.velocity.x) - (maxSpeed * horizontalMoveSpeedMultiplier * jumpSpeedMult);
                 if (goRight)
                 {
-                    rb.AddForce(transform.right * brakeMag * -1);
+                    prb.AddForce(transform.right * brakeMag * -1);
                 }
                 else if (goLeft)
                 {
-                    rb.AddForce(transform.right * brakeMag);
+                    prb.AddForce(transform.right * brakeMag);
                 }
             }
         }
@@ -595,15 +498,15 @@ public class PlayerController : MonoBehaviour
     void StrafingDamping()
     {
         //damp horizontal movement
-        float dampX = Mathf.Lerp(rb.velocity.x, 0, hDamp);
-        Vector3 dampedVelocity = new Vector3(dampX, rb.velocity.y, rb.velocity.z);
-        rb.velocity = dampedVelocity;
+        float dampX = Mathf.Lerp(prb.velocity.x, 0, hDamp);
+        Vector3 dampedVelocity = new Vector3(dampX, prb.velocity.y, prb.velocity.z);
+        prb.velocity = dampedVelocity;
     }
 
     void ChargeJump()
     {
         float chargeRate = 15 * Time.deltaTime;
-        if (chargingJump && ! placementMode)
+        if (chargingJump)
         {
             currentJumpForce += chargeRate;
             MinMaxJump();
@@ -624,140 +527,58 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        //rigibody
-        rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
+        prb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         currentJumpForce = 0;
     }
 
     void Respawn()
     {
-        /*   if (currentSpawn == null && doesRespawn)
-          {
-              //set to start spawn if no spawn
-              currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
-          }
+        if (currentSpawn == null && doesRespawn)
+        {
+            //set to start spawn if no spawn
+            currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
+        }
 
-          //check if past next spawn checkpoint
-         GameObject nextSpawn = null;
-          if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
-          {
-              nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
+        //check if past next spawn checkpoint
+        GameObject nextSpawn = null;
+        if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
+        {
+            nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
 
-             /* if (transform.position.z >= nextSpawn.transform.position.z)
-              {
-                  currentSpawn = nextSpawn;
-                  currentSpawnNumber++;
-                  currentSpeed = currentSpeed / 2;
-              }
-
-          }
-          */
-
+            if (transform.position.z >= nextSpawn.transform.position.z)
+            {
+                currentSpawn = nextSpawn;
+                currentSpawnNumber++;
+                currentSpeed = 0;
+            }
+        }
 
         if (transform.position.y < deathHeight && !doesRespawn)
         {
             Destroy(gameObject);
         }
-        else if (transform.position.y < deathHeight && doesRespawn)
+         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers != 1)
+         {
+             transform.position = currentSpawn.transform.position;
+            Instantiate(particleSys, transform.position, transform.rotation);
+             currentSpeed = 0;
+         }
+         
+        else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
         {
+
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].SetActive(true);
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].SetActive(true);
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].SetActive(true);
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].SetActive(true);
+
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].transform.position = currentSpawn.transform.position;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].transform.position = currentSpawn.transform.position;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].transform.position = currentSpawn.transform.position;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].transform.position = currentSpawn.transform.position;
             transform.position = currentSpawn.transform.position;
-            currentSpeed = currentSpeed / 2;
-        }
-    }
+            Instantiate(particleSys, transform.position, transform.rotation);
 
-    void PlacementDebugToggle()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            PlacementMove();
-        }
-    }
-
-    public void PlacementMove()
-    {
-        if (!placementMode)
-        {
-            placementMode = true;
-            playerObstacles.preview = true;
-            transform.position = currentSpawn.transform.position;
-            //StartCoroutine(PlacementMoving());
-        }
-        else if (placementMode)
-        {
-            placementMode = false;
-            playerObstacles.preview = false;
-            currentSpeed = 0;
-            speeding = false;
-            
-            
-        }
-        
-    }
-
-    IEnumerator PlacementMoving()
-    {
-        while (placementMode)
-        {
-            if (speeding)
-            {
-                //z up
-                PlacementCoords(true, 1);
-            }
-            else if (braking)
-            {
-                //z down
-                PlacementCoords(true, -1);
-            }
-            else if (goRight)
-            {
-                //x up
-                PlacementCoords(false, 1);
-            }
-            else if (goLeft)
-            {
-                //x down
-                PlacementCoords(false, -1);
-            }
-
-            yield return new WaitForSeconds(placementMoveDelay);
-        }
-    }
-
-    void PlacementCoords(bool axis, int amount)
-    {
-        if (axis)
-        {
-            //move z
-            placementZ += amount;
-            if(placementZ < gm.smallestZ)
-            {
-                placementZ = gm.largestZ;
-            }
-            else if(placementZ > gm.largestZ)
-            {
-                placementZ = gm.smallestZ;
-            }
-        }
-        else if (!axis)
-        {
-            //moxe x
-            placementX += amount;
-            if (placementX < gm.smallestX)
-            {
-                placementX = gm.largestX;
-            }
-            else if (placementX > gm.largestX)
-            {
-                placementX = gm.smallestX;
-            }
-        }
-    }
-
-    void PlacementHighlight()
-    {
-        if (placementMode)
-        {
-            gm.HighlightGridZone(placementX, placementZ, playerNumber);
         }
     }
 
@@ -801,11 +622,11 @@ public class PlayerController : MonoBehaviour
     void ObstacleTimers()
     {
         //oil
-        if(oiled)
+        if (oiled)
         {
             maxSpeed = oilSpillSpeed;
             oilSpillTimer -= Time.deltaTime;
-            if(oilSpillTimer <= 0)
+            if (oilSpillTimer <= 0)
             {
                 oilSpillTimer = 0;
                 oiled = false;
@@ -819,7 +640,7 @@ public class PlayerController : MonoBehaviour
             maxSpeed = tackSpeed;
             airControlMult = tackAirControl;
             tackTimer -= Time.deltaTime;
-            if(tackTimer <= 0)
+            if (tackTimer <= 0)
             {
                 tackTimer = 0;
                 deflated = false;
@@ -832,7 +653,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpSpeedMult = trampolineJumpSpeedMult;
             trampolineTimer -= Time.deltaTime;
-            if(trampolineTimer <= 0)
+            if (trampolineTimer <= 0)
             {
                 trampolineTimer = 0;
                 trampolined = false;
@@ -851,7 +672,7 @@ public class PlayerController : MonoBehaviour
         {
             maxSpeed = padSpeed;
             padTimer -= Time.deltaTime;
-            if(padTimer <= 0)
+            if (padTimer <= 0)
             {
                 padTimer = 0;
                 speedPadded = false;
@@ -860,6 +681,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
     //Death Count
     private IEnumerator DeathCount()
     {
@@ -872,7 +694,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-           
+
             currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
@@ -880,22 +702,77 @@ public class PlayerController : MonoBehaviour
             braking = true;
         }
 
-        if (other.CompareTag("Checkpoint"))
+        if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
         {
-            currentSpawn = other.gameObject;
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[0];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[1];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[3];
         }
-            
-          
-        
-    }
+        else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
+        {
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[4];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[5];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[6];
+            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[7];
+        }
+        else
+        {
+            switch (other.tag)
+            {
+                case "Checkpoint 1":
 
+                    switch (playerNumber)
+                    {
+                        case 1:
+                            currentSpawn = Checkpoints[0];
+                            break;
+                        case 2:
+                            currentSpawn = Checkpoints[1];
+                            break;
+                        case 3:
+                            currentSpawn = Checkpoints[2];
+                            break;
+                        case 4:
+                            currentSpawn = Checkpoints[3];
+                            break;
+                    }
+                    checkpointActivations[0].SetActive(true);
+
+                    break;
+
+
+
+
+                case "Checkpoint 2":
+                    switch (playerNumber)
+                    {
+                        case 1:
+                            currentSpawn = Checkpoints[5];
+                            break;
+                        case 2:
+                            currentSpawn = Checkpoints[6];
+                            break;
+                        case 3:
+                            currentSpawn = Checkpoints[7];
+                            break;
+                        case 4:
+                            currentSpawn = Checkpoints[8];
+                            break;
+                    }
+                    checkpointActivations[1].SetActive(true);
+
+                    break;
+
+            }
+        }
+    }     
 
     void OnBecameInvisible()
     {
-        if (gameObject.activeInHierarchy && placementMode == false)
+        if (gameObject.activeInHierarchy)
         {
             StartCoroutine(DeathCount());
-            
         }
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerJoinJump : MonoBehaviour
 {
     Animator anim;
-
     private int playerNumber;
 
     private void Start()

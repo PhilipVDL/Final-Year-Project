@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-    WinState win;
+    public WinState win;
     public int[] points = new int[4];
     public int finished;
     public GameObject[] Players;
     public GameObject[] PlayerClones;
     public GameObject cam;
     public EndDistance end;
+    public GameObject countdownSign;
+    public GameObject manager;
 
 
     private void Start()
@@ -19,8 +21,9 @@ public class FinishLine : MonoBehaviour
         finished = 0;
         PlayerClones = GameObject.FindGameObjectsWithTag("Player");
         cam = GameObject.Find("Main Camera");
+        countdownSign = GameObject.Find("SIGN");
+        manager = GameObject.Find("Background Tasks");
     }
-        
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,62 +31,38 @@ public class FinishLine : MonoBehaviour
         if (other.CompareTag("Player") && Players.Length == 1)
         {
             finished++;
-            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
-            GameObject playerObj = other.gameObject;
-            
+            StartRound();
+            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;            
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
-            EnablePlacing();
-          //  GameObject.Find("Place Zone Manager").GetComponent<PlaceZoneManager>().activeZone = 1;
-          
-            
         }
-
         else
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
-            GameObject playerObj = other.gameObject;
-
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
             other.gameObject.SetActive(false);
             GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
-            
-
-           
         }
-
-     
     }
 
     private void Update()
     {
         GetPlayers();
-
-      
-    }    
-    
-
-  
+    }
 
     void GetPlayers()
     {
         Players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    public void NewRound()
+    public void StartRound()
     {
-        finished = 0;
-    }
-
-    public void EnablePlacing()
-    {
-        //(GameObject.FindWithTag("Player") == null)
+        countdownSign.GetComponent<Animator>().Play(0);
 
         //end round
         win.endRound = true;
-        finished = 0;
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
@@ -92,15 +71,8 @@ public class FinishLine : MonoBehaviour
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
-            PlayerClones[i].transform.position = win.spawns[0].transform.position;
+            PlayerClones[i].transform.position = win.spawns[i].transform.position;
         }
-
-        for (int i = 0; i < PlayerClones.Length; i++)
-        {
-            PlayerClones[i].GetComponent<PlayerController>().PlacementMove();
-        }
-
-     
-       
+        manager.GetComponent<MainManager>().countdown = 3;
     }
 }

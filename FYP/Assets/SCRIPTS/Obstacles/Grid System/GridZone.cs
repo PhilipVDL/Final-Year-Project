@@ -49,7 +49,7 @@ public class GridZone : MonoBehaviour
 
     public void Highlight(int playerNumber)
     {
-        hlMaterial = customs.materials[playerNumber - 1];
+        //hlMaterial = customs.materials[playerNumber - 1];
         lightUp = true;
     }
 

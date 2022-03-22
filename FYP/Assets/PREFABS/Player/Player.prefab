@@ -226,6 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpBar: {fileID: 3552196969478120846}
   jumpBarObj: {fileID: 6651729609399520803}
+  maxFill: 0
+  minFill: 0
   currentFill: 0
 --- !u!1 &6651729609399520803
 GameObject:
@@ -423,6 +425,7 @@ GameObject:
   - component: {fileID: 4120364034480901924}
   - component: {fileID: 1923085735758376849}
   - component: {fileID: 1370262700781777219}
+  - component: {fileID: 1327776278939099430}
   - component: {fileID: 8331225723004286650}
   - component: {fileID: 5399486690372267786}
   - component: {fileID: 4072024994411098549}
@@ -513,6 +516,24 @@ MonoBehaviour:
   preview: 0
   currentPreviewIndex: 0
   previewSpeed: 10
+--- !u!114 &1327776278939099430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331225723004286651}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b32b56f40d6aa84f80050e03489a520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previewPrefab: {fileID: 7182098491531211140, guid: d61128134ec1d4c45941b2cee80d725c, type: 3}
+  DEBUG_MaxPlace: 0
+  canPlaceMore: 1
+  maxPlaceThisRound: 1
+  placedThisRound: 0
+  currentPreviewIndex: 0
 --- !u!114 &8331225723004286650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,13 +547,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 0}
-  autoForward: 0
+  Checkpoints: []
+  particleSys: {fileID: 0}
   playerNumber: 1
+  knockbackForce: 250
+  knockbackMult: 1
+  moveBackwards: 1
   currentSpeed: 0
   maxSpeed: 10
-  maxVelocity: 10
   maxBackSpeed: 5
-  moveBackwards: 1
   timeToMaxSpeed: 1
   boostTime: 1
   minSpeed: 0
@@ -543,6 +566,7 @@ MonoBehaviour:
   goLeft: 0
   goRight: 0
   pos: 0
+  checkpointActivations: []
   horizontalMoveSpeedMultiplier: 0.75
   horizontalMoveSpeedMin: 5
   hDamp: 0.05
@@ -556,10 +580,6 @@ MonoBehaviour:
   jumpSpeedMult: 1.2
   jumpControlled: 1
   airControlMult: 1
-  placementMode: 0
-  placementX: 0
-  placementZ: 0
-  placementMoveDelay: 0.25
   deathHeight: -10
   doesRespawn: 1
   currentSpawn: {fileID: 0}
@@ -594,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e262a9baaaa89084aa05a5b900c4c9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  set: 0
   ballTypeID: 0
   currentBallType: 
   ballTypes:
@@ -601,10 +622,14 @@ MonoBehaviour:
   - bowling
   - marble
   - snooker
-  bouncyAttribute: 0
-  bowlingAttribute: 0
-  marbleAttribute: 0
-  snookerAttribute: 0
+  bouncyJumpMult: 1.2
+  bouncyMaterial: {fileID: 13400000, guid: 490a8dd731fdec3429e715bf3021830c, type: 2}
+  bowlingSpeedMult: 0.9
+  bowlingKnockbackMult: 0.5
+  marbleSpeedMult: 1.1
+  marbleKnockbackMult: 1.5
+  snookerSpeedMult: 1.1
+  snookerDampMult: 0.5
 --- !u!23 &4072024994411098549
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -724,13 +749,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
---- !u!1 &7940527067279081784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
-  m_PrefabInstance: {fileID: 7130045512191212649}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7312082043380898690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
+  m_PrefabInstance: {fileID: 7130045512191212649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7940527067279081784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a5b273ffc1caca748822dd53f05dc64e, type: 3}
   m_PrefabInstance: {fileID: 7130045512191212649}
   m_PrefabAsset: {fileID: 0}
