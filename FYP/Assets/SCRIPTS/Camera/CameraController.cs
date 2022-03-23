@@ -79,8 +79,8 @@ public class CameraController : MonoBehaviour
 
 
 
-            Players[0].GetComponent<PlayerController>().checkpointActivations[0].SetActive(false);
-            Players[0].GetComponent<PlayerController>().checkpointActivations[1].SetActive(false);
+            //Players[0].GetComponent<PlayerController>().checkpointActivations[0].SetActive(false);
+           // Players[0].GetComponent<PlayerController>().checkpointActivations[1].SetActive(false);
 
         }
     }

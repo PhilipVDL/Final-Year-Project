@@ -60,6 +60,7 @@ public class FinishLine : MonoBehaviour
     public void StartRound()
     {
         countdownSign.GetComponent<Animator>().Play(0);
+        manager.GetComponent<MainManager>().countdown = 3;
 
         //end round
         win.endRound = true;
@@ -73,6 +74,10 @@ public class FinishLine : MonoBehaviour
         {
             PlayerClones[i].transform.position = win.spawns[i].transform.position;
         }
-        manager.GetComponent<MainManager>().countdown = 3;
+
+        for (int i = 0; i < PlayerClones.Length; i++)
+        {
+            PlayerClones[i].GetComponent<PlayerController>().currentSpawn = PlayerClones[i].GetComponent<PlayerController>().spawn;
+        }
     }
 }

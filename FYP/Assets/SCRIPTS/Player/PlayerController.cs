@@ -533,26 +533,7 @@ public class PlayerController : MonoBehaviour
 
     void Respawn()
     {
-        if (currentSpawn == null && doesRespawn)
-        {
-            //set to start spawn if no spawn
-            currentSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(0).gameObject;
-        }
-
-        //check if past next spawn checkpoint
-        GameObject nextSpawn = null;
-        if (currentSpawnNumber < GameObject.FindGameObjectWithTag("Respawns").transform.childCount - 1 && doesRespawn)
-        {
-            nextSpawn = GameObject.FindGameObjectWithTag("Respawns").transform.GetChild(currentSpawnNumber + 1).gameObject;
-
-            if (transform.position.z >= nextSpawn.transform.position.z)
-            {
-                currentSpawn = nextSpawn;
-                currentSpawnNumber++;
-                currentSpeed = 0;
-            }
-        }
-
+       
         if (transform.position.y < deathHeight && !doesRespawn)
         {
             Destroy(gameObject);
@@ -709,7 +690,7 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[3];
         }
-        else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
+        else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 2"))
         {
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[4];
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[5];

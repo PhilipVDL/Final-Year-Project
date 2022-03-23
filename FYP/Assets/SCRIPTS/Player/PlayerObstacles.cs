@@ -21,14 +21,14 @@ public class PlayerObstacles : MonoBehaviour
     {
         inventory = GetComponent<ObstacleInventory>();
         controller = GetComponent<PlayerController>();
-        _obstaclePreviw = obstaclePreview.GetComponent<ObstaclePreview>();
+       // _obstaclePreviw = obstaclePreview.GetComponent<ObstaclePreview>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map");
     }
 
     private void Update()
     {
         MaxPlaced();
-        PreviewMode();
+        //PreviewMode();
         MovePreview();
     }
 
@@ -44,7 +44,7 @@ public class PlayerObstacles : MonoBehaviour
         }
     }
 
-    void PreviewMode()
+   /* void PreviewMode()
     {
         if (preview)
         {
@@ -56,7 +56,7 @@ public class PlayerObstacles : MonoBehaviour
             obstaclePreview.SetActive(false);
         }
     }
-
+    
     void SetPreviewModel()
     {
         if(inventory.obstacles.Count > 0)
@@ -65,6 +65,7 @@ public class PlayerObstacles : MonoBehaviour
             _obstaclePreviw.ActivePreview(currentPreviewIndex);
         }
     }
+    */
 
     void MovePreview()
     {
@@ -95,7 +96,7 @@ public class PlayerObstacles : MonoBehaviour
         */
         Vector3 move = new Vector3(x, 0, z);
         Vector3 moveSpeed = move.normalized * previewSpeed;
-        obstaclePreview.transform.Translate(moveSpeed * Time.deltaTime);
+       // obstaclePreview.transform.Translate(moveSpeed * Time.deltaTime);
     }
 
     public void PlaceObstacle()
