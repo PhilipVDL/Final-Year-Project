@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerSelectBallType : MonoBehaviour
 {
+    PlayerJoinCount pjc;
     PlayerJoinVisible pjv;
     MeshFilter meshFilter;
     MeshRenderer rend;
@@ -16,6 +17,7 @@ public class PlayerSelectBallType : MonoBehaviour
 
     private void Start()
     {
+        pjc = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
         pjv = GetComponent<PlayerJoinVisible>();
         meshFilter = GetComponent<MeshFilter>();
         rend = GetComponent<MeshRenderer>();
@@ -35,10 +37,12 @@ public class PlayerSelectBallType : MonoBehaviour
             if (Input.GetAxis("ObstacleSwitch" + playerNumber) > 0)
             {
                 ballTypeID++;
+                UnReady(playerNumber);
             }
             else if (Input.GetAxis("ObstacleSwitch" + playerNumber) < 0)
             {
                 ballTypeID--;
+                UnReady(playerNumber);
             }
         }
 
@@ -57,5 +61,24 @@ public class PlayerSelectBallType : MonoBehaviour
     {
         meshFilter.mesh = meshes[id];
         rend.material = materials[id];
+    }
+
+    void UnReady(int pNum)
+    {
+        switch (pNum)
+        {
+            case 1:
+                pjc.playerReady1 = false;
+                break;
+            case 2:
+                pjc.playerReady2 = false;
+                break;
+            case 3:
+                pjc.playerReady3 = false;
+                break;
+            case 4:
+                pjc.playerReady4 = false;
+                break;
+        }
     }
 }
