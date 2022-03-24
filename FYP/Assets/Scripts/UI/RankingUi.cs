@@ -19,8 +19,13 @@ public class RankingUi : MonoBehaviour
     {
         playerImages = GameObject.FindGameObjectsWithTag("Player Image");
         players = GameObject.FindGameObjectsWithTag("Player");
-       
+
+        if (players.Length < 4)
+        {
+            activatePositions();
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -36,9 +41,11 @@ public class RankingUi : MonoBehaviour
 
     void PLayerRanks()
     {
+        //2 Players
         //Player 1
-        if (players[0] != null && players[0] == true)
+        if (players.Length == 2)
         {
+
             switch (players[0].GetComponent<PlayerController>().pos)
             {
                 case 1:
@@ -46,34 +53,21 @@ public class RankingUi : MonoBehaviour
                     {
                         playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
                     }
+
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
                         playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
                     }
-                    break;
-                case 3:
-                    if (finishLine.finished < 3)
-                    {
-                        playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
-                    }
-                    break;
-                case 4:
-                    if (finishLine.finished < 4)
-                        playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[3].transform.position, lerpSpd);
-                    break;
 
-
-
+                    break;
             }
-        }
 
 
-        //Player 2
+            //Player 2
 
-        if (players[1] != null && players[1] == true)
-        {
+
             switch (players[1].GetComponent<PlayerController>().pos)
             {
                 case 1:
@@ -81,91 +75,272 @@ public class RankingUi : MonoBehaviour
                     {
                         playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
                     }
+
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
                         playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
                     }
-                    break;
-                case 3:
-                    if (finishLine.finished < 3)
-                    {
-                        playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
-                    }
-                    break;
-                case 4:
-                    if (finishLine.finished < 4)
-                        playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[3].transform.position, lerpSpd);
-                    break;
 
+                    break;
             }
-        }
 
-        //Player 3
-        if (players[2] != null && players[2] == true)
+        }
+        //THREE PLAYERS
+
+
+        if (players.Length == 3)
         {
-            switch (players[2].GetComponent<PlayerController>().pos)
+            {   //Player 1
+                switch (players[0].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+
+                        break;
+
+
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+
+                        break;
+
+                }
+            }
+
+            //Player 2
+
             {
-                case 1:
-                    if (finishLine.finished == 0)
-                    {
-                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
-                    }
-                    break;
-                case 2:
-                    if (finishLine.finished < 2)
-                    {
-                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
-                    }
-                    break;
-                case 3:
-                    if (finishLine.finished < 3)
-                    {
-                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
-                    }
-                    break;
-                case 4:
-                    if (finishLine.finished < 4)
-                        playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[3].transform.position, lerpSpd);
-                    break;
+                switch (players[1].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+
+                        break;
+
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+
+                        break;
+                }
+
+                //Player 3
+                switch (players[2].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+
+                        break;
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+                        break;
+
+
+                }
 
             }
         }
 
-        //Player 4
-        if (players[3] != null && players[3] == true)
+
+
+
+
+
+        else if (players.Length == 4)
         {
-            switch (players[3].GetComponent<PlayerController>().pos)
+            //Player 1
+            if (players[0] != null && players[0] == true)
             {
-                case 1:
-                    if (finishLine.finished == 0)
-                    {
-                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[0].transform.position, lerpSpd);
-                    }
-                    break;
-                case 2:
-                    if (finishLine.finished < 2)
-                    {
-                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[1].transform.position, lerpSpd);
-                    }
-                    break;
-                case 3:
-                    if (finishLine.finished < 3)
-                    {
-                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[2].transform.position, lerpSpd);
-                    }
-                    break;
-                case 4:
-                    if (finishLine.finished < 4)
-                        playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[3].transform.position, lerpSpd);
-                    break;
+                switch (players[0].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 4:
+                        if (finishLine.finished < 4)
+                            playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[3].transform.position, lerpSpd);
+                        break;
 
+
+
+                }
+            }
+
+
+            //Player 2
+
+            if (players[1] != null && players[1] == true)
+            {
+                switch (players[1].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 4:
+                        if (finishLine.finished < 4)
+                            playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[3].transform.position, lerpSpd);
+                        break;
+
+                }
+            }
+
+            //Player 3
+            if (players[2] != null && players[2] == true)
+            {
+                switch (players[2].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 4:
+                        if (finishLine.finished < 4)
+                            playerImages[2].transform.position = Vector3.MoveTowards(playerImages[2].transform.position, positions[3].transform.position, lerpSpd);
+                        break;
+
+                }
+            }
+
+            //Player 4
+            if (players[3] != null && players[3] == true)
+            {
+                switch (players[3].GetComponent<PlayerController>().pos)
+                {
+                    case 1:
+                        if (finishLine.finished == 0)
+                        {
+                            playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[0].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 2:
+                        if (finishLine.finished < 2)
+                        {
+                            playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[1].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 3:
+                        if (finishLine.finished < 3)
+                        {
+                            playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[2].transform.position, lerpSpd);
+                        }
+                        break;
+                    case 4:
+                        if (finishLine.finished < 4)
+                            playerImages[3].transform.position = Vector3.MoveTowards(playerImages[3].transform.position, positions[3].transform.position, lerpSpd);
+                        break;
+
+                }
             }
         }
-
-
-
-
     }
-}
+
+    void activatePositions()
+    {
+        switch (players.Length)
+        {
+            case 3:
+                positions[3].SetActive(false);
+                playerImages[3].SetActive(false);
+                break;
+
+            case 2:
+                for (int i = 0; i < 2; i++)
+                {
+                    positions[i + 2].SetActive(false);
+                    playerImages[i + 2].SetActive(false);
+                }
+                break;
+            
+        }
+    }
+    }
+
+
+
+    
+
+

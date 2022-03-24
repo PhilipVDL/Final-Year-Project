@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     EndDistance end;
     public GameObject[] Checkpoints;
     public GameObject particleSys;
+    public FinishLine finishLine;
 
     //variables
     #region variables
@@ -132,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         prb = GetComponent<Rigidbody>();
         inventory = GetComponent<ObstacleInventory>();
         playerObstacles = GetComponent<PlayerObstacles>();
@@ -685,18 +687,31 @@ public class PlayerController : MonoBehaviour
 
         if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
         {
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[0];
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[1];
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[3];
+            for(int i = 0; i < finishLine.PlayerClones.Length; i++)
+            {
+                finishLine.PlayerClones[i].SetActive(true);
+                finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
+                finishLine.PlayerClones[i].transform.position = currentSpawn.transform.position;
+            }
+         
+            
+
+            
+            Instantiate(particleSys, transform.position, transform.rotation);
         }
         else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 2"))
         {
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].GetComponent<PlayerController>().currentSpawn = Checkpoints[4];
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].GetComponent<PlayerController>().currentSpawn = Checkpoints[5];
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].GetComponent<PlayerController>().currentSpawn = Checkpoints[6];
-            GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].GetComponent<PlayerController>().currentSpawn = Checkpoints[7];
+            for (int i = 0; i < finishLine.PlayerClones.Length; i++)
+            {
+                finishLine.PlayerClones[i].SetActive(true);
+                finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
+                finishLine.PlayerClones[i].transform.position = currentSpawn.transform.position;
+            }
+
+
+            Instantiate(particleSys, transform.position, transform.rotation);
         }
+        
         else
         {
             switch (other.tag)
