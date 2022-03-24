@@ -6,10 +6,26 @@ using UnityEngine.SceneManagement;
 public class PlayerJoinCount : MonoBehaviour
 {
     public PlayerCustoms customs;
-    public bool playerJoined1, playerJoined2, playerJoined3, playerJoined4;
+    [Header("Joined")]
+    public bool playerJoined1;
+    public bool playerJoined2;
+    public bool playerJoined3;
+    public bool playerJoined4;
+
+    [Header("Ready")]
+    public bool playerReady1;
+    public bool playerReady2;
+    public bool playerReady3;
+    public bool playerReady4;
+
+    [Header("Counts")]
     public int joinCount;
+    public int readyCount;
+
+    [Header("Debug")]
     public bool DEBUG_Player1Only;
     public bool firstScene;
+    public bool readyToLoad;
 
     private void Awake()
     {
@@ -115,32 +131,85 @@ public class PlayerJoinCount : MonoBehaviour
     private void Update()
     {
         PlayerJoin();
+        ReadyCount();
+        ReadyLoad();
     }
 
     void PlayerJoin()
     {
+        //join, else ready
+
+        //Player 1
         if (!playerJoined1 && Input.GetButtonDown("Jump1"))
         {
             playerJoined1 = true;
             joinCount++;
         }
+        else if(playerJoined1 && Input.GetButtonDown("Jump1"))
+        {
+            playerReady1 = true;
+        }
 
+        //Player 2
         if (!playerJoined2 && Input.GetButtonDown("Jump2"))
         {
             playerJoined2 = true;
             joinCount++;
         }
+        else if(playerJoined2 && Input.GetButtonDown("Jump2"))
+        {
+            playerReady2 = true;
+        }
 
+        //Player 3
         if (!playerJoined3 && Input.GetButtonDown("Jump3"))
         {
             playerJoined3 = true;
             joinCount++;
         }
+        else if(playerJoined3 && Input.GetButtonDown("Jump3"))
+        {
+            playerReady3 = true;
+        }
 
+        //Player 4
         if (!playerJoined4 && Input.GetButtonDown("Jump4"))
         {
             playerJoined4 = true;
             joinCount++;
+        }
+        else if(playerJoined4 && Input.GetButtonDown("Jump4"))
+        {
+            playerReady4 = true;
+        }
+    }
+
+    void ReadyCount()
+    {
+        bool[] ready = new bool[] { playerReady1, playerReady2, playerReady3, playerReady4 };
+        readyCount = 0;
+        foreach(bool r in ready)
+        {
+            if (r)
+            {
+                readyCount++;
+            }
+        }
+    }
+
+    void ReadyLoad()
+    {
+        if (DEBUG_Player1Only)
+        {
+            readyToLoad = true;
+        }
+        else if(joinCount >= 2 && readyCount == joinCount)
+        {
+            readyToLoad = true;
+        }
+        else
+        {
+            readyToLoad = false;
         }
     }
 }
