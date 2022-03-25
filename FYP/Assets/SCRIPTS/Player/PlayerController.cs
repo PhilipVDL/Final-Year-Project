@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
         GetSpawnPos();
         Checkpoints = GameObject.FindGameObjectsWithTag("CP");
         currentSpawn = spawn;
+        particleSys = GameObject.Find("UniParticle");
 
         gameObject.name = "Player " + playerNumber;
     }
@@ -543,8 +544,9 @@ public class PlayerController : MonoBehaviour
          else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers != 1)
          {
              transform.position = currentSpawn.transform.position;
-            Instantiate(particleSys, transform.position, transform.rotation);
-             currentSpeed = 0;
+            particleSys.SetActive(true);
+            // Instantiate(particleSys, transform.position, transform.rotation);
+            currentSpeed = 0;
          }
          
         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
@@ -560,7 +562,8 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].transform.position = currentSpawn.transform.position;
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].transform.position = currentSpawn.transform.position;
             transform.position = currentSpawn.transform.position;
-            Instantiate(particleSys, transform.position, transform.rotation);
+            particleSys.SetActive(true);
+            //Instantiate(particleSys, transform.position, transform.rotation);
 
         }
     }
@@ -678,7 +681,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
 
-            currentSpawn = spawn;
+            //currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
             transform.position = spawn.transform.position;
@@ -693,11 +696,11 @@ public class PlayerController : MonoBehaviour
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
                 finishLine.PlayerClones[i].transform.position = currentSpawn.transform.position;
             }
-         
-            
 
-            
-            Instantiate(particleSys, transform.position, transform.rotation);
+
+
+            particleSys.SetActive(true);
+            //  Instantiate(particleSys, transform.position, transform.rotation);
         }
         else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 2"))
         {
@@ -708,8 +711,8 @@ public class PlayerController : MonoBehaviour
                 finishLine.PlayerClones[i].transform.position = currentSpawn.transform.position;
             }
 
-
-            Instantiate(particleSys, transform.position, transform.rotation);
+            particleSys.SetActive(true);
+           // Instantiate(particleSys, transform.position, transform.rotation);
         }
         
         else
