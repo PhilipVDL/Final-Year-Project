@@ -690,29 +690,26 @@ public class PlayerController : MonoBehaviour
 
         if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
         {
-            for(int i = 0; i < finishLine.PlayerClones.Length; i++)
+            for(int i = 0; i < finishLine.PlayerClones.Length - 1; i++)
             {
-                finishLine.PlayerClones[i].SetActive(true);
+                finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
-                finishLine.PlayerClones[i].transform.position = currentSpawn.transform.position;
+                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
+                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
+                finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
             }
 
-
-
-            particleSys.SetActive(true);
-            //  Instantiate(particleSys, transform.position, transform.rotation);
         }
         else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 2"))
         {
             for (int i = 0; i < finishLine.PlayerClones.Length; i++)
             {
-                finishLine.PlayerClones[i].SetActive(true);
+                finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
-                finishLine.PlayerClones[i].transform.position = currentSpawn.transform.position;
+                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
+                finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
             }
 
-            particleSys.SetActive(true);
-           // Instantiate(particleSys, transform.position, transform.rotation);
         }
         
         else
