@@ -12,7 +12,7 @@ public class PlayerAnimationScript : MonoBehaviour
     {
         pc = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Update()
