@@ -11,9 +11,8 @@ public class ObstaclePickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<ObstacleInventory>().obstacles.Add(obstacles[RandomObstacle()]); //adds a random obstacle from the list
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 
     int RandomObstacle()
