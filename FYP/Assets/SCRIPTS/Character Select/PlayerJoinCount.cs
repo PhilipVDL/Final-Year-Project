@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerJoinCount : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class PlayerJoinCount : MonoBehaviour
     public bool firstScene;
     public bool readyToLoad;
 
+    public Text[] joinedandReady;
+   
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -46,6 +50,12 @@ public class PlayerJoinCount : MonoBehaviour
         {
             StartCoroutine(JoinedPlayers());
         }
+    }
+
+    void SetText()
+    {
+        joinedandReady[0].text = joinCount.ToString();
+        joinedandReady[1].text = readyCount.ToString();
     }
 
     IEnumerator JoinedPlayers()
@@ -128,11 +138,19 @@ public class PlayerJoinCount : MonoBehaviour
         customs.SetPlayerCustoms();
     }
 
+
+
     private void Update()
     {
         PlayerJoin();
         ReadyCount();
         ReadyLoad();
+        SetText();
+
+        if(joinCount > 1 && readyCount == joinCount)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     void PlayerJoin()
@@ -144,10 +162,12 @@ public class PlayerJoinCount : MonoBehaviour
         {
             playerJoined1 = true;
             joinCount++;
+           
         }
         else if(playerJoined1 && Input.GetButtonDown("Jump1"))
         {
             playerReady1 = true;
+            readyCount ++;
         }
 
         //Player 2
@@ -155,6 +175,7 @@ public class PlayerJoinCount : MonoBehaviour
         {
             playerJoined2 = true;
             joinCount++;
+            
         }
         else if(playerJoined2 && Input.GetButtonDown("Jump2"))
         {
