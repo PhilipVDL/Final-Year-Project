@@ -17,10 +17,10 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.61
   threshold:
-    overrideState: 0
+    overrideState: 1
     value: 1
   softKnee:
     overrideState: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   saturation:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 65
   brightness:
     overrideState: 0
     value: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   mixerRedOutRedIn:
-    overrideState: 0
-    value: 100
+    overrideState: 1
+    value: 108.2
   mixerRedOutGreenIn:
     overrideState: 0
     value: 0
@@ -1393,14 +1393,14 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 3.15
   color:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
+    overrideState: 1
+    value: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   ambientOnly:
     overrideState: 0
     value: 1
@@ -1414,8 +1414,8 @@ MonoBehaviour:
     overrideState: 0
     value: -12
   thicknessModifier:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 1.55
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -1442,14 +1442,14 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   filtering:
-    overrideState: 0
-    value: {x: 50, y: 95}
+    overrideState: 1
+    value: {x: 53.999992, y: 99}
   minLuminance:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: -0.36
   maxLuminance:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: -0.31
   keyValue:
     overrideState: 0
     value: 1
