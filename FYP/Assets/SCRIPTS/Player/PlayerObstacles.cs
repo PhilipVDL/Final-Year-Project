@@ -10,6 +10,7 @@ public class PlayerObstacles : MonoBehaviour
     public GameObject obstaclePreview;
     private GameObject obstaclesOnMap;
     ObstaclePreview _obstaclePreviw;
+    public bool DEBUG_MaxPlace;
     public int maxPlaceThisRound;
     public int placedThisRound;
     public bool preview;
@@ -20,26 +21,30 @@ public class PlayerObstacles : MonoBehaviour
     {
         inventory = GetComponent<ObstacleInventory>();
         controller = GetComponent<PlayerController>();
-        _obstaclePreviw = obstaclePreview.GetComponent<ObstaclePreview>();
+       // _obstaclePreviw = obstaclePreview.GetComponent<ObstaclePreview>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map");
     }
 
     private void Update()
     {
         MaxPlaced();
-        PreviewMode();
+        //PreviewMode();
         MovePreview();
     }
 
     void MaxPlaced()
     {
-        if(placedThisRound >= maxPlaceThisRound)
+        if(placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
+        {
+            preview = false;
+        }
+        else if(inventory.obstacles.Count == 0)
         {
             preview = false;
         }
     }
 
-    void PreviewMode()
+   /* void PreviewMode()
     {
         if (preview)
         {
@@ -51,7 +56,7 @@ public class PlayerObstacles : MonoBehaviour
             obstaclePreview.SetActive(false);
         }
     }
-
+    
     void SetPreviewModel()
     {
         if(inventory.obstacles.Count > 0)
@@ -60,12 +65,13 @@ public class PlayerObstacles : MonoBehaviour
             _obstaclePreviw.ActivePreview(currentPreviewIndex);
         }
     }
+    */
 
     void MovePreview()
     {
         int x = 0;
         int z = 0;
-        if (controller.placementMode)
+      /*  if (controller.placementMode)
         {
             //vertical
             if (controller.speeding)
@@ -87,19 +93,17 @@ public class PlayerObstacles : MonoBehaviour
                 x = -1;
             }
         }
+        */
         Vector3 move = new Vector3(x, 0, z);
         Vector3 moveSpeed = move.normalized * previewSpeed;
-        obstaclePreview.transform.Translate(moveSpeed * Time.deltaTime);
+       // obstaclePreview.transform.Translate(moveSpeed * Time.deltaTime);
     }
 
     public void PlaceObstacle()
     {
-        if (controller.placementMode && preview)
-        {
-            GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
-            placedThisRound++; //count 1 placement
-            obstacle.transform.parent = obstaclesOnMap.transform; //unparent
-            inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
-        }
+        GameObject obstacle = Instantiate(inventory.obstacles[inventory.selectedIndex], obstaclePreview.transform); //place
+        placedThisRound++; //count 1 placement
+        obstacle.transform.parent = obstaclesOnMap.transform; //unparent
+        inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory 
     }
 }

@@ -10,6 +10,10 @@ public class ButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void Continue()
+    {
+        SceneManager.LoadScene(2);
+    }
 
     public void QuitButton()
     {

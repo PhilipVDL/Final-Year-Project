@@ -5,64 +5,98 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
+
+    WinState win;
+    FinishLine finish;
     //components
     public EndDistance eDist;
+   // public Vector3 placementRot;
 
     //Grids
-    public GameObject[] Grids;
+    public GameObject[] Sections;
+    public GameObject[] Zones;
     public GameObject LookAt;
+    public GameObject ZoneManager;
+
+  
+
+    //UI
+    public GameObject UI;
 
     //variables
     Vector3 desiredPos;
     public float defaultHeight;
     public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax, maxDistance;
     public float lerpSpeed;
+   // public float placementCamSpeed;
     public float managerCount;
     public float camCountdown;
     public float maxCount;
-    public int currentGrid = 0;
-    public float gridDist;
+    public int currentSection = 0;
+    public float sectionDist;
     public float playerDist;
     public int totalPlayers;
+    public GameObject[] Players;
 
     //modes
-    public bool placementPhase;
+   // public bool placementPhase;
+
 
 
     private void Start()
     {
-        CountPlayers();
+        
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
-        GetGrids();
-    }    
+        
+        Zones = GameObject.FindGameObjectsWithTag("Zone");
+        Players = GameObject.FindGameObjectsWithTag("Player");
+        managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
+    }
 
-    
 
     private void FixedUpdate()
     {
-        if (placementPhase)
-        {
-            PlacementPhaseCam();
-        }
-        else { CameraMove(); }
+        CountPlayers();
 
-        managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
+
+        CameraMove();
+        transform.rotation = Quaternion.Euler(15, 0, 0);
+
+
+
+
+        if (managerCount >= 3)
+        {
+            //Reset zone focus, phase and countdown
+            // ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
+
+            // camCountdown = maxCount;
+
+            //reset start timer
+
+           
+            managerCount = 3;
+
+
+
+            //Players[0].GetComponent<PlayerController>().checkpointActivations[0].SetActive(false);
+           // Players[0].GetComponent<PlayerController>().checkpointActivations[1].SetActive(false);
+
+        }
     }
+            
+        
+
+        
+    
 
     public void CountPlayers()
     {
         totalPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
     }
-    
 
 
 
-    void GetGrids()
-    {
-        Grids[0] = GameObject.Find("Grid 1");
-        Grids[1] = GameObject.Find("Grid 2");
-        Grids[2] = GameObject.Find("Grid 3");
-    }
 
     private void CameraMove()
     {
@@ -70,6 +104,7 @@ public class CameraController : MonoBehaviour
         {
             transform.LookAt(LookAt.transform.position);
         }
+
         //follow furthest player
         if (eDist.furthestPlayer != null && eDist.playerDifference < ZoomMax && eDist.furthestPlayer.activeInHierarchy != false)
         {
@@ -90,7 +125,7 @@ public class CameraController : MonoBehaviour
         }
 
         //Slope movement
-        if(eDist.closestPlayer != null)
+        if (eDist.closestPlayer != null)
         {
             if (eDist.playerDifference < maxDistance && eDist.closestPlayer.GetComponent<PlayerController>().grounded == true)
             {
@@ -116,8 +151,6 @@ public class CameraController : MonoBehaviour
                 desiredPos += (gameObject.transform.forward * horizontalZoomScale * zoomScaleFactor * -.5f);
             }
 
-
-
             //lerp
 
             transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
@@ -127,82 +160,37 @@ public class CameraController : MonoBehaviour
 
     public void PlacementPhaseCam()
     {
-        //Set stats
-        lerpSpeed = 0.01f;
-        defaultHeight = 18;
-        followDist = gridDist;
-
         camCountdown -= Time.deltaTime;
-        LookAt = Grids[currentGrid];
-
-        // Grid Calculations
-        if (camCountdown <= 0 && currentGrid == 0)
+        
+        //Go to start
+        if (camCountdown > maxCount - 5)
         {
-            //currentGrid = 1;
-            Destroy(GameObject.Find("Player 1"));
-            Destroy(GameObject.Find("Player 2"));
-            Destroy(GameObject.Find("Player 3"));
-            Destroy(GameObject.Find("Player 4"));
-            camCountdown = maxCount;
-            currentGrid = 0;
-            followDist = playerDist;
-            LookAt = GameObject.Find("LookAt");
-            GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-            GameObject.Find("WinState").GetComponent<WinState>().NewRound();
-            
-            placementPhase = false;
-
+            UI.GetComponent<RankingUi>().placementModetext.SetActive(true);
+            desiredPos = Sections[0].transform.position;
+            transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
         }
 
-        if (camCountdown <= 0 && currentGrid == 0 && GameObject.Find("Win").GetComponent<WinState>().currentRound > 1)
-        {
-            //currentGrid = 1;
-            Destroy(GameObject.Find("Player 1(Clone)"));
-            Destroy(GameObject.Find("Player 2(Clone)"));
-            Destroy(GameObject.Find("Player 3(Clone)"));
-            Destroy(GameObject.Find("Player 4(Clone)"));
-            camCountdown = maxCount;
-            currentGrid = 0;
-            followDist = playerDist;
-            LookAt = GameObject.Find("LookAt");
-            GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-            GameObject.Find("WinState").GetComponent<WinState>().NewRound();
-
-            placementPhase = false;
-
-        }
-
-        /* if (camCountdown <= 0 && currentGrid == 1)
-         {
-             currentGrid = 2;
-             camCountdown = maxCount;
-         }
-
-         if (camCountdown <= 0 && currentGrid == 2)
-         {
-             currentGrid = 0;
-             followDist = playerDist;
-             LookAt = GameObject.Find("LookAt");
-             GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown = 3;
-             GameObject.Find("WinState").GetComponent<WinState>().NewRound();
-             placementPhase = false;
-         }
-
-     */
-        //Grid Movement
-        if (currentGrid != 0)
-        {
-            Grids[currentGrid - 1].SetActive(false);
-        }
-        Grids[currentGrid].SetActive(true);
-
-        desiredPos = new Vector3(Grids[currentGrid].transform.position.x, defaultHeight, Grids[currentGrid].transform.position.z);
-        transform.LookAt(LookAt.transform.position);
-        transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
     }
 
 
-}        
+}
+
+        
+    
+
+       
+
+
+
+
+
+
+
+        
+    
+
+
+        
         
 
     

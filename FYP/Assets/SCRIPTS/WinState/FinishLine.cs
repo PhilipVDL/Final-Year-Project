@@ -4,76 +4,80 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-    WinState win;
+    public WinState win;
     public int[] points = new int[4];
     public int finished;
     public GameObject[] Players;
     public GameObject[] PlayerClones;
+    public GameObject cam;
+    public EndDistance end;
+    public GameObject countdownSign;
+    public GameObject manager;
+
 
     private void Start()
     {
         win = GameObject.Find("WinState").GetComponent<WinState>();
         finished = 0;
+        PlayerClones = GameObject.FindGameObjectsWithTag("Player");
+        cam = GameObject.Find("Main Camera");
+        countdownSign = GameObject.Find("SIGN");
+        manager = GameObject.Find("Background Tasks");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //score
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && Players.Length == 1)
+        {
+            finished++;
+            StartRound();
+            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;            
+            win.Score(player, points[finished]);
+            other.gameObject.transform.position = win.spawns[0].transform.position;
+        }
+        else
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             win.Score(player, points[finished]);
-           
-            //Destroy(other.gameObject);
+            other.gameObject.transform.position = win.spawns[0].transform.position;
+            other.gameObject.SetActive(false);
+            GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
         }
     }
 
     private void Update()
     {
-       
-
-        enablePlacing();
+        GetPlayers();
     }
 
-    public void NewRound()
+    void GetPlayers()
     {
-        finished = 0;
-
-      
+        Players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    public void enablePlacing()
+    public void StartRound()
     {
-        if (finished == GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers && finished != 0)//GameObject.FindWithTag("Player") == null)
-        {
-            //end round
-            Players[0].SetActive(true);
-            Players[1].SetActive(true);
-            Players[2].SetActive(true);
-            Players[3].SetActive(true);
-            win.endRound = true;
+        countdownSign.GetComponent<Animator>().Play(0);
+        manager.GetComponent<MainManager>().countdown = 3;
 
-            GameObject.Find("Player 1").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 2").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 3").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 4").GetComponent<PlayerController>().PlacementMove();
+        //end round
+        win.endRound = true;
+
+        for (int i = 0; i < PlayerClones.Length; i++)
+        {
+            PlayerClones[i].SetActive(true);
         }
 
-
-
-        else if (finished == GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers && GameObject.Find("Win").GetComponent<WinState>().currentRound > 1)
+        for (int i = 0; i < PlayerClones.Length; i++)
         {
-            PlayerClones[0].SetActive(true);
-            PlayerClones[1].SetActive(true);
-            PlayerClones[2].SetActive(true);
-            PlayerClones[3].SetActive(true);
-
-            GameObject.Find("Player 1(Clone)").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 2(Clone)").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 3(Clone)").GetComponent<PlayerController>().PlacementMove();
-            GameObject.Find("Player 4(Clone)").GetComponent<PlayerController>().PlacementMove();
+            PlayerClones[i].transform.position = win.spawns[i].transform.position;
         }
 
+        for (int i = 0; i < PlayerClones.Length; i++)
+        {
+            PlayerClones[i].GetComponent<PlayerController>().currentSpawn = PlayerClones[i].GetComponent<PlayerController>().spawn;
         }
     }
+}

@@ -14,7 +14,9 @@ public class PrintInputName : MonoBehaviour
             foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
             {
                 if (Input.GetKeyDown(kcode))
+                {
                     Debug.Log("KeyCode down: " + kcode);
+                }
             }
         }
     }
