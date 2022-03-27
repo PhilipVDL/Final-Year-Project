@@ -25,7 +25,7 @@ public class ParticleSystem : MonoBehaviour
         if(duration <= 0)
         {
             duration = maxDuration;
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
