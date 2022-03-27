@@ -695,8 +695,9 @@ public class PlayerController : MonoBehaviour
                 finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
                 finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
-                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
+                //finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
+                other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
             }
 
         }
@@ -708,6 +709,7 @@ public class PlayerController : MonoBehaviour
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
                 finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
+                other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
             }
 
         }
@@ -717,6 +719,7 @@ public class PlayerController : MonoBehaviour
             switch (other.tag)
             {
                 case "Checkpoint 1":
+                    
 
                     switch (playerNumber)
                     {
@@ -734,6 +737,7 @@ public class PlayerController : MonoBehaviour
                             break;
                     }
                     checkpointActivations[0].SetActive(true);
+                    other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
 
                     break;
 
@@ -757,6 +761,7 @@ public class PlayerController : MonoBehaviour
                             break;
                     }
                     checkpointActivations[1].SetActive(true);
+                    other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
 
                     break;
 
