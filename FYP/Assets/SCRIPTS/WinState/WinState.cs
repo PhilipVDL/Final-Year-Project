@@ -8,7 +8,7 @@ public class WinState : MonoBehaviour
     ObstaclesOnMap obstaclesOnMap;
     public GameObject playerPrefab;
     public GameObject[] players;
-    public Transform[] spawns;
+    public GameObject[] spawns;
     public GameObject maincamera;
     CameraController camController;
 
@@ -24,6 +24,7 @@ public class WinState : MonoBehaviour
 
     private void Start()
     {
+        spawns = GameObject.FindGameObjectsWithTag("Start Spawn");
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map").GetComponent<ObstaclesOnMap>();
         maincamera = GameObject.Find("Main Camera");

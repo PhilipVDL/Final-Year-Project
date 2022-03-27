@@ -36,7 +36,7 @@ public class FinishLine : MonoBehaviour
             win.Score(player, points[finished]);
             other.gameObject.transform.position = win.spawns[0].transform.position;
         }
-        else
+        else if(other.CompareTag("Player"))
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
