@@ -21,8 +21,8 @@ public class FinishLine : MonoBehaviour
         finished = 0;
         PlayerClones = GameObject.FindGameObjectsWithTag("Player");
         cam = GameObject.Find("Main Camera");
-        countdownSign = GameObject.Find("SIGN");
         manager = GameObject.Find("Background Tasks");
+        countdownSign = GameObject.Find("SIGN");
     }
 
     private void OnTriggerEnter(Collider other)

@@ -711,13 +711,25 @@ public class PlayerController : MonoBehaviour
             {
                 finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
-                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
+               // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
                 other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
             }
 
         }
-        
+        else if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 3"))
+        {
+            for (int i = 0; i < finishLine.PlayerClones.Length; i++)
+            {
+                finishLine.PlayerClones[i + 1].SetActive(true);
+                finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 8];
+                // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
+                finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
+                other.GetComponent<Checkpoint>().notifiers[2].SetActive(true);
+            }
+
+        }
+
         else
         {
             switch (other.tag)
@@ -752,21 +764,42 @@ public class PlayerController : MonoBehaviour
                     switch (playerNumber)
                     {
                         case 1:
-                            currentSpawn = Checkpoints[5];
+                            currentSpawn = Checkpoints[4];
                             break;
                         case 2:
-                            currentSpawn = Checkpoints[6];
+                            currentSpawn = Checkpoints[5];
                             break;
                         case 3:
-                            currentSpawn = Checkpoints[7];
+                            currentSpawn = Checkpoints[6];
                             break;
                         case 4:
-                            currentSpawn = Checkpoints[8];
+                            currentSpawn = Checkpoints[7];
                             break;
                     }
                     checkpointActivations[1].SetActive(true);
                     other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
 
+                    break;
+
+                case "Checkpoint 3":
+                    switch (playerNumber)
+                    {
+                        case 1:
+                            currentSpawn = Checkpoints[8];
+                            break;
+                        case 2:
+                            currentSpawn = Checkpoints[9];
+                            break;
+                        case 3:
+                            currentSpawn = Checkpoints[10];
+                            break;
+                        case 4:
+                            currentSpawn = Checkpoints[11];
+                            break;
+                    }
+
+                   // checkpointActivations[2].SetActive(true);
+                    other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
                     break;
 
             }
