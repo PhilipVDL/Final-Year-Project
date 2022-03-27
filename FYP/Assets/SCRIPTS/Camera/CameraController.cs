@@ -19,8 +19,8 @@ public class CameraController : MonoBehaviour
     public GameObject ZoneManager;
 
     //Animation
-    public Animator startAnim;
-    public float animCount = 15;
+   // public Animator startAnim;
+   // public float animCount = 15;
   
 
     //UI
@@ -100,12 +100,7 @@ public class CameraController : MonoBehaviour
 
     public void StartAnim()
     {
-        animCount -= Time.deltaTime;
-
-        if (animCount <= 0)
-        {
-            startAnim.enabled = false;
-        }
+      
     }
 
 
