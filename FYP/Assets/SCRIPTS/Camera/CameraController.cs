@@ -18,6 +18,9 @@ public class CameraController : MonoBehaviour
     public GameObject LookAt;
     public GameObject ZoneManager;
 
+    //Animation
+    public Animator startAnim;
+    public float animCount = 15;
   
 
     //UI
@@ -45,7 +48,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        
+       
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
         
         Zones = GameObject.FindGameObjectsWithTag("Zone");
@@ -57,7 +60,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         CountPlayers();
-
+        StartAnim();
 
         CameraMove();
         transform.rotation = Quaternion.Euler(15, 0, 0);
@@ -95,7 +98,15 @@ public class CameraController : MonoBehaviour
         totalPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
     }
 
+    public void StartAnim()
+    {
+        animCount -= Time.deltaTime;
 
+        if (animCount <= 0)
+        {
+            startAnim.enabled = false;
+        }
+    }
 
 
     private void CameraMove()
