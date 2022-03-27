@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody prb;
     GridManager gm;
     RaycastHit hit;
+    SFXScript sfx;
     ObstacleInventory inventory;
     PlayerObstacles playerObstacles;
     PlayerObstaclesRacePlace playerObstaclesRacePlace;
@@ -124,6 +125,8 @@ public class PlayerController : MonoBehaviour
 
     void Knockback(GameObject other, Vector3 point)
     {
+        sfx.PlaySFX(sfx.playerCollide);
+
         prb.AddExplosionForce(knockbackForce * knockbackMult, point, 1);
 
         PlayerController otherController = other.GetComponent<PlayerController>();
@@ -135,6 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         prb = GetComponent<Rigidbody>();
+        sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         inventory = GetComponent<ObstacleInventory>();
         playerObstacles = GetComponent<PlayerObstacles>();
         playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();

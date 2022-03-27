@@ -10,6 +10,8 @@ public class SFXScript : MonoBehaviour
     [Header("SFX")]
     public AudioClip obstaclePlaced;
     public AudioClip offscreenEliminated;
+    public AudioClip pickupObstacle;
+    public AudioClip playerCollide;
 
     public void PlaySFX(AudioClip clip)
     {
