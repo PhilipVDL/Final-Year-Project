@@ -68,6 +68,10 @@ public class PlayerCustoms : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            //do nothing
+        }
     }
 
     public void SetPlayerCustoms()

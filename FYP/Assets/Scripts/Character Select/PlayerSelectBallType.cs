@@ -9,6 +9,8 @@ public class PlayerSelectBallType : MonoBehaviour
     MeshFilter meshFilter;
     MeshRenderer rend;
 
+    public bool characterSelect;
+
     private int playerNumber;
     public int ballTypeID;
     public int minID, maxID;
@@ -17,17 +19,23 @@ public class PlayerSelectBallType : MonoBehaviour
 
     private void Start()
     {
-        pjc = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
-        pjv = GetComponent<PlayerJoinVisible>();
-        meshFilter = GetComponent<MeshFilter>();
-        rend = GetComponent<MeshRenderer>();
-        playerNumber = pjv.playerNumber;
+        if (characterSelect)
+        {
+            pjc = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
+            pjv = GetComponent<PlayerJoinVisible>();
+            meshFilter = GetComponent<MeshFilter>();
+            rend = GetComponent<MeshRenderer>();
+            playerNumber = pjv.playerNumber;
+        }
     }
 
     private void Update()
     {
-        SwitchBallType();
-        SetBallType(ballTypeID);
+        if (characterSelect)
+        {
+            SwitchBallType();
+            SetBallType(ballTypeID);
+        }
     }
 
     void SwitchBallType()
