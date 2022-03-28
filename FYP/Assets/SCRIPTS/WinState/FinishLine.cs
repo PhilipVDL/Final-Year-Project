@@ -14,6 +14,9 @@ public class FinishLine : MonoBehaviour
     public GameObject countdownSign;
     public GameObject manager;
 
+    private float countdown = 3;
+    private float countamount = 1;
+
 
     private void Start()
     {
@@ -24,6 +27,9 @@ public class FinishLine : MonoBehaviour
         manager = GameObject.Find("Background Tasks");
         countdownSign = GameObject.Find("SIGN");
     }
+       
+    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,9 +53,23 @@ public class FinishLine : MonoBehaviour
         }
     }
 
+    void GetPlayerClones()
+    {
+        countdown -= countamount * Time.deltaTime;
+
+        if(countdown <= 0)
+        {
+            PlayerClones = GameObject.FindGameObjectsWithTag("Player");
+            countamount = 0;
+            countdown = 10;
+            
+        }
+    }
+
     private void Update()
     {
         GetPlayers();
+        GetPlayerClones();
     }
 
     void GetPlayers()

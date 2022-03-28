@@ -698,34 +698,36 @@ public class PlayerController : MonoBehaviour
             {
                 finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
-                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
+                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 1];
                 //finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
-                other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
+                //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
             }
 
         }
         else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 2"))
         {
-            for (int i = 0; i < finishLine.PlayerClones.Length; i++)
+            for (int i = 0; i < finishLine.PlayerClones.Length -1; i++)
             {
                 finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
-               // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
+                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 5];
+                // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
-                other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+               // other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
             }
 
         }
         else if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 3"))
         {
-            for (int i = 0; i < finishLine.PlayerClones.Length; i++)
+            for (int i = 0; i < finishLine.PlayerClones.Length - 1; i++)
             {
                 finishLine.PlayerClones[i + 1].SetActive(true);
                 finishLine.PlayerClones[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 8];
+                finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 9];
                 // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
-                other.GetComponent<Checkpoint>().notifiers[2].SetActive(true);
+              //  other.GetComponent<Checkpoint>().notifiers[2].SetActive(true);
             }
 
         }
@@ -752,8 +754,8 @@ public class PlayerController : MonoBehaviour
                             currentSpawn = Checkpoints[3];
                             break;
                     }
-                    checkpointActivations[0].SetActive(true);
-                    other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
+                    //checkpointActivations[0].SetActive(true);
+                   // other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
 
                     break;
 
@@ -776,8 +778,8 @@ public class PlayerController : MonoBehaviour
                             currentSpawn = Checkpoints[7];
                             break;
                     }
-                    checkpointActivations[1].SetActive(true);
-                    other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                   // checkpointActivations[1].SetActive(true);
+                   // other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
 
                     break;
 
@@ -799,7 +801,7 @@ public class PlayerController : MonoBehaviour
                     }
 
                    // checkpointActivations[2].SetActive(true);
-                    other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                    //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
                     break;
 
             }
