@@ -5,19 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-  
+    public GameObject[] Levels;
  public void StartButton()
     {
         SceneManager.LoadScene(1);
     }
     public void Continue()
     {
-        SceneManager.LoadScene(2);
+        if (GameObject.Find("Pinball") == true)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else if(GameObject.Find("SkyLevel") == false)
+        {
+            
+        }
     }
 
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void NextButton()
+    {
+        if(Levels[1] == false)
+            {
+            Levels[1].SetActive(true);
+            Levels[0].SetActive(false);
+        }
+
+        else if(Levels[1] == true)
+        {
+            Levels[0].SetActive(true);
+            Levels[1].SetActive(false);
+        }
     }
 
     public void Resume()
