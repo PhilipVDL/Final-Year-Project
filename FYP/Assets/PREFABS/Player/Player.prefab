@@ -547,7 +547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8331225723004286651}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 927d5bc43f9d7564191ea8c851ac1a77, type: 3}
   m_Name: 
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8331225723004286651}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b32b56f40d6aa84f80050e03489a520, type: 3}
   m_Name: 
@@ -592,6 +592,7 @@ MonoBehaviour:
   spawn: {fileID: 0}
   Checkpoints: []
   particleSys: {fileID: 0}
+  finishLine: {fileID: 0}
   playerNumber: 1
   knockbackForce: 250
   knockbackMult: 1
