@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         prb = GetComponent<Rigidbody>();
-       // sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
+        sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         inventory = GetComponent<ObstacleInventory>();
         playerObstacles = GetComponent<PlayerObstacles>();
         playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();
