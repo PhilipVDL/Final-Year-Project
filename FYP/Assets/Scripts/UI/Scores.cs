@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Scores : MonoBehaviour
 {
     public Text[] playerScores;
+    public GameObject[] playerImages;
 
     public GameObject winState;
     // Start is called before the first frame update

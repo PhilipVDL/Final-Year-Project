@@ -342,6 +342,8 @@ public class RankingUi : MonoBehaviour
             case 3:
                 positions[3].SetActive(false);
                 playerImages[3].SetActive(false);
+                GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
+                GameObject.Find("Scores").GetComponent<Scores>().playerScores[3] = null;
                 break;
 
             case 2:
@@ -349,6 +351,8 @@ public class RankingUi : MonoBehaviour
                 {
                     positions[i + 2].SetActive(false);
                     playerImages[i + 2].SetActive(false);
+                    GameObject.Find("Scores").GetComponent<Scores>().playerImages[i + 2].SetActive(false);
+                    GameObject.Find("Scores").GetComponent<Scores>().playerScores[i + 2] = null;
                 }
                 break;
             
