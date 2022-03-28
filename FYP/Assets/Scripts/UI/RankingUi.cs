@@ -11,6 +11,9 @@ public class RankingUi : MonoBehaviour
     public GameObject[] players;
     public GameObject[] positions;
 
+    private float countdown = 3;
+    private float countSpd = 1;
+
     public GameObject placementModetext;
 
     public float lerpSpd = 10f;
@@ -18,7 +21,18 @@ public class RankingUi : MonoBehaviour
     void Start()
     {
         playerImages = GameObject.FindGameObjectsWithTag("Player Image");
-        players = GameObject.FindGameObjectsWithTag("Player");
+        
+
+      
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        getPlayers();
+        PLayerRanks();
+        availablePositions();
 
         if (players.Length < 4)
         {
@@ -26,12 +40,15 @@ public class RankingUi : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
+    void getPlayers()
     {
-        PLayerRanks();
-        availablePositions();
+        countdown -= countSpd * Time.deltaTime;
+
+        if(countdown <= 0)
+        {
+            players = GameObject.FindGameObjectsWithTag("Player");
+            countSpd = 0;
+        }
     }
 
     void availablePositions()
