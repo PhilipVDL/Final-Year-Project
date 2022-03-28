@@ -54,8 +54,11 @@ public class PlayerJoinCount : MonoBehaviour
 
     void SetText()
     {
-        joinedandReady[0].text = joinCount.ToString();
-        joinedandReady[1].text = readyCount.ToString();
+        if (firstScene)
+        {
+            joinedandReady[0].text = joinCount.ToString();
+            joinedandReady[1].text = readyCount.ToString();
+        }
     }
 
     IEnumerator JoinedPlayers()
@@ -147,7 +150,7 @@ public class PlayerJoinCount : MonoBehaviour
         ReadyLoad();
         SetText();
 
-        if(joinCount > 1 && readyCount == joinCount)
+        if(readyToLoad && firstScene)
         {
             SceneManager.LoadScene(2);
         }

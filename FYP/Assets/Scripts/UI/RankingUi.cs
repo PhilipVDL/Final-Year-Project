@@ -21,9 +21,9 @@ public class RankingUi : MonoBehaviour
     void Start()
     {
         playerImages = GameObject.FindGameObjectsWithTag("Player Image");
-        
 
-      
+
+
     }
 
 
@@ -44,7 +44,7 @@ public class RankingUi : MonoBehaviour
     {
         countdown -= countSpd * Time.deltaTime;
 
-        if(countdown <= 0)
+        if (countdown <= 0)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
             countSpd = 0;
@@ -347,17 +347,11 @@ public class RankingUi : MonoBehaviour
             case 2:
                 for (int i = 0; i < 2; i++)
                 {
-                    positions[i + 2].SetActive(false);
-                    playerImages[i + 2].SetActive(false);
+                    positions[i + 2].SetActive(false); //this is giving errors
+                    playerImages[i + 2].SetActive(false); //this is similar so probably also errors
                 }
                 break;
-            
+
         }
     }
-    }
-
-
-
-    
-
-
+}

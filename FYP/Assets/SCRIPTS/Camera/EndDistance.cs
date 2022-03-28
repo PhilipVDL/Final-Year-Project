@@ -23,7 +23,7 @@ public class EndDistance : MonoBehaviour
     {
         CountPlayers();
         PlayerDistance();
-        HorizontalDIstance();
+        HorizontalDistance();
         GetPlayerPositions();
         SetPlayerPos();
     }
@@ -84,20 +84,34 @@ public class EndDistance : MonoBehaviour
     {
         if (finish.finished == 0)
         {
+            for(int i = 0; i < playerPositions.Count; i++)
+            {
+                playerPositions[i].GetComponent<PlayerController>().pos = i + 1;
+            }
+
+            /*
             playerPositions[0].GetComponent<PlayerController>().pos = 1;
             playerPositions[1].GetComponent<PlayerController>().pos = 2;
             playerPositions[2].GetComponent<PlayerController>().pos = 3;
             playerPositions[3].GetComponent<PlayerController>().pos = 4;
+            */
         }
         else if (finish.finished == 1)
         {
+            for (int i = 0; i < playerPositions.Count; i++)
+            {
+                playerPositions[i].GetComponent<PlayerController>().pos = i + 2;
+            }
+
+            /*
             playerPositions[0].GetComponent<PlayerController>().pos = 2;
             playerPositions[1].GetComponent<PlayerController>().pos = 3;
             playerPositions[2].GetComponent<PlayerController>().pos = 4;
+            */
         }
     }
 
-    private void HorizontalDIstance()
+    private void HorizontalDistance()
     {
         leftDist = 0;
         rightDist = 0;

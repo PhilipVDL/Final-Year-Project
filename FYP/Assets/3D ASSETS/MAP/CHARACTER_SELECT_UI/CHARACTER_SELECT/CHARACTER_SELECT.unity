@@ -3094,9 +3094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: 1
   ballTypeID: 0
   minID: 0
-  maxID: 1
+  maxID: 0
   meshes:
   - {fileID: 3868671361854562809, guid: 9b39ee78c09a0b24492b9fbbbd6d25e0, type: 3}
   materials:
@@ -3314,9 +3315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: 1
   ballTypeID: 0
   minID: 0
-  maxID: 1
+  maxID: 0
   meshes:
   - {fileID: 3868671361854562809, guid: 9b39ee78c09a0b24492b9fbbbd6d25e0, type: 3}
   materials:
@@ -4104,9 +4106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: 1
   ballTypeID: 0
   minID: 0
-  maxID: 1
+  maxID: 0
   meshes:
   - {fileID: 3868671361854562809, guid: 9b39ee78c09a0b24492b9fbbbd6d25e0, type: 3}
   materials:
@@ -4388,9 +4391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: 1
   ballTypeID: 0
   minID: 0
-  maxID: 1
+  maxID: 0
   meshes:
   - {fileID: 3868671361854562809, guid: 9b39ee78c09a0b24492b9fbbbd6d25e0, type: 3}
   materials:
