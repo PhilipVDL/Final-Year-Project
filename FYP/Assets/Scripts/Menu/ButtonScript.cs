@@ -16,9 +16,9 @@ public class ButtonScript : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
-        else if(GameObject.Find("SkyLevel") == false)
+        else if(GameObject.Find("SkyLevel") == true)
         {
-            
+            SceneManager.LoadScene(2);
         }
     }
 
