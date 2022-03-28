@@ -20,34 +20,48 @@ public class RankingUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerImages = GameObject.FindGameObjectsWithTag("Player Image");
         
+        players = GameObject.FindGameObjectsWithTag("Player");
+        playerImages = GameObject.FindGameObjectsWithTag("Player Image");
 
-      
     }
-
-
-    // Update is called once per frame
+ 
     void Update()
     {
         getPlayers();
         PLayerRanks();
         availablePositions();
 
-        if (players.Length < 4)
-        {
-            activatePositions();
-        }
+      
     }
 
     void getPlayers()
     {
         countdown -= countSpd * Time.deltaTime;
-
         if(countdown <= 0)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
+        }
+        if(countdown <= 0 && players.Length < 3)
+        {
+            players = GameObject.FindGameObjectsWithTag("Player");
             countSpd = 0;
+            countdown = 10;
+            activatePositions();
+            
+            GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
+            GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
+
+           
+        }
+        else if (countdown <= 0 && players.Length == 3)
+        {
+            players = GameObject.FindGameObjectsWithTag("Player");
+            countSpd = 0;
+            countdown = 10;
+            activatePositions();
+            if (players.Length < 3)
+                GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
         }
     }
 
@@ -347,13 +361,22 @@ public class RankingUi : MonoBehaviour
                 break;
 
             case 2:
-                for (int i = 0; i < 2; i++)
-                {
-                    positions[i + 2].SetActive(false);
-                    playerImages[i + 2].SetActive(false);
-                    GameObject.Find("Scores").GetComponent<Scores>().playerImages[i + 2].SetActive(false);
-                    GameObject.Find("Scores").GetComponent<Scores>().playerScores[i + 2] = null;
-                }
+
+
+
+                GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
+                GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
+
+                GameObject.Find("Scores").GetComponent<Scores>().playerScores[2] = null;
+                GameObject.Find("Scores").GetComponent<Scores>().playerScores[3] = null;
+                positions[2].SetActive(false);
+                positions[3].SetActive(false);
+                playerImages[2].SetActive(false);
+                playerImages[3].SetActive(false);
+                       
+                        
+                    
+                
                 break;
             
         }
