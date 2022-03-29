@@ -91,7 +91,7 @@ public class FinishLine : MonoBehaviour
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
-            PlayerClones[i + 1].SetActive(true);
+            PlayerClones[i ].SetActive(true);
         }
 
         for (int i = 0; i < PlayerClones.Length; i++)

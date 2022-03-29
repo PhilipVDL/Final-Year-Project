@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        elimCount = 1.5f;
+        elimCount = 2.5f;
         finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         prb = GetComponent<Rigidbody>();
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();

@@ -367,8 +367,7 @@ public class RankingUi : MonoBehaviour
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
 
-                GameObject.Find("Scores").GetComponent<Scores>().playerScores[2] = null;
-                GameObject.Find("Scores").GetComponent<Scores>().playerScores[3] = null;
+                
                 positions[2].SetActive(false);
                 positions[3].SetActive(false);
                 playerImages[2].SetActive(false);
