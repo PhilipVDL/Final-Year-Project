@@ -27,15 +27,15 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
 
     void MaxPlaced()
     {
-        if(placedThisRound < maxPlaceThisRound)
+        if (inventory.obstacles.Count == 0)
+        {
+            canPlaceMore = false;
+        }
+        else if (placedThisRound < maxPlaceThisRound)
         {
             canPlaceMore = true;
         }
         else if (placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
-        {
-            canPlaceMore = false;
-        }
-        else if (inventory.obstacles.Count == 0)
         {
             canPlaceMore = false;
         }

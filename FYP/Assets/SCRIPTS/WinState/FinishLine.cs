@@ -27,9 +27,6 @@ public class FinishLine : MonoBehaviour
         manager = GameObject.Find("Background Tasks");
         countdownSign = GameObject.Find("SIGN");
     }
-       
-    
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -64,7 +61,6 @@ public class FinishLine : MonoBehaviour
             PlayerClones = GameObject.FindGameObjectsWithTag("Player");
             countamount = 0;
             countdown = 10;
-            
         }
     }
 
@@ -83,8 +79,6 @@ public class FinishLine : MonoBehaviour
     {
         countdownSign.GetComponent<Animator>().Play(0);
         manager.GetComponent<MainManager>().countdown = 3;
-
-            
 
         //end round
         win.endRound = true;
