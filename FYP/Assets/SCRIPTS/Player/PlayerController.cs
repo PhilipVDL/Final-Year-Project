@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     private int currentSpawnNumber;
 
     [Header("Elim Count")]
-    public float elimCount;
+    public float elimCount = 1.5f;
 
     [Header("Defaults")]
     private float defaultMaxSpeed;
@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        elimCount = 1.5f;
         finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         prb = GetComponent<Rigidbody>();
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
