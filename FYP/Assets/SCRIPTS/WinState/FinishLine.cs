@@ -36,13 +36,15 @@ public class FinishLine : MonoBehaviour
         //score
         if (other.CompareTag("Player") && Players.Length == 1)
         {
+            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
+            win.Score(player, points[finished]);
+
             finished++;
             StartRound();
-            int player = other.gameObject.GetComponent<PlayerController>().playerNumber;            
-            win.Score(player, points[finished]);
+           
             other.gameObject.transform.position = win.spawns[0].transform.position;
         }
-        else if(other.CompareTag("Player"))
+        else if(other.CompareTag("Player") && Players.Length != 1)
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
@@ -89,12 +91,12 @@ public class FinishLine : MonoBehaviour
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
-            PlayerClones[i].SetActive(true);
+            PlayerClones[i + 1].SetActive(true);
         }
 
         for (int i = 0; i < PlayerClones.Length; i++)
         {
-            PlayerClones[i].transform.position = win.spawns[i].transform.position;
+            PlayerClones[i + 1].transform.position = win.spawns[i+ 1].transform.position;
         }
 
         for (int i = 0; i < PlayerClones.Length; i++)
