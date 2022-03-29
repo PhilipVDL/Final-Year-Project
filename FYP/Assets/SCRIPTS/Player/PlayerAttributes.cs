@@ -37,6 +37,7 @@ public class PlayerAttributes : MonoBehaviour
 
     void GetBallType()
     {
+        ballTypeID = 0; //temp fix, all bouncy
         if(ballTypeID >= 0 && ballTypeID < ballTypes.Length)
         {
             currentBallType = ballTypes[ballTypeID];
