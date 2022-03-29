@@ -23,6 +23,7 @@ public class RankingUi : MonoBehaviour
         
         players = GameObject.FindGameObjectsWithTag("Player");
         playerImages = GameObject.FindGameObjectsWithTag("Player Image");
+        activatePositions();
 
     }
  
@@ -47,10 +48,9 @@ public class RankingUi : MonoBehaviour
             players = GameObject.FindGameObjectsWithTag("Player");
             countSpd = 0;
             countdown = 10;
-            activatePositions();
+            //activatePositions();
             
-            GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
-            GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
+           
 
            
         }
@@ -59,9 +59,9 @@ public class RankingUi : MonoBehaviour
             players = GameObject.FindGameObjectsWithTag("Player");
             countSpd = 0;
             countdown = 10;
-            activatePositions();
-            if (players.Length < 3)
-                GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
+           
+            
+              //  GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
         }
     }
 
