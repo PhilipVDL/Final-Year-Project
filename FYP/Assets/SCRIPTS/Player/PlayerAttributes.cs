@@ -12,7 +12,7 @@ public class PlayerAttributes : MonoBehaviour
     public string currentBallType;
     public string[] ballTypes;
     [Header("Bouncy")]
-    public float bouncyJumpMult; //add physics material
+    public float bouncyJumpMult;
     public PhysicMaterial bouncyMaterial;
     [Header("Bowling")]
     public float bowlingSpeedMult;

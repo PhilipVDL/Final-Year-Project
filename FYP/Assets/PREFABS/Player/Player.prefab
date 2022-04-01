@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d21ac8e6d005c246a8c7550df550b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: 0
   ballTypeID: 0
   minID: 0
   maxID: 0
@@ -695,6 +696,8 @@ MonoBehaviour:
   particleSys: {fileID: 0}
   finishLine: {fileID: 0}
   playerNumber: 1
+  knockBacking: 0
+  knockBackTime: 0.25
   knockbackForce: 250
   knockbackMult: 1
   moveBackwards: 1

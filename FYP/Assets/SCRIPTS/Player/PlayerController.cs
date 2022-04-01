@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     [Range(1, 4)] public int playerNumber;
 
     [Header("Knockback")]
+    public bool knockBacking;
+    public float knockBackTime;
+    private float knockBackTimer;
     public float knockbackForce;
     public float knockbackMult;
 
@@ -126,12 +129,30 @@ public class PlayerController : MonoBehaviour
     void Knockback(GameObject other, Vector3 point)
     {
         sfx.PlaySFX(sfx.playerCollide);
-
+        knockbacked();
         prb.AddExplosionForce(knockbackForce * knockbackMult, point, 1);
 
-        PlayerController otherController = other.GetComponent<PlayerController>();
-        Rigidbody otherRB = other.GetComponent<Rigidbody>();
-        otherRB.AddExplosionForce(otherController.knockbackForce * otherController.knockbackMult, point, 1);
+        //PlayerController otherController = other.GetComponent<PlayerController>();
+        //Rigidbody otherRB = other.GetComponent<Rigidbody>();
+        //otherRB.AddExplosionForce(otherController.knockbackForce * otherController.knockbackMult, point, 1);
+    }
+
+    public void knockbacked()
+    {
+        knockBackTimer = knockBackTime;
+        knockBacking = true;
+    }
+
+    void knockbackTimer()
+    {
+        if (knockBacking)
+        {
+            knockBackTimer -= Time.deltaTime;
+            if(knockBackTimer <= 0)
+            {
+                knockBacking = false;
+            }
+        }
     }
 
     private void Start()
@@ -188,13 +209,14 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         PlayerInput();
         ObstacleTimers();
+        knockbackTimer();
         Begin();
         Respawn();
     }
 
     public void Begin()
     {
-        if (GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown <= 0)
+        if (GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown <= 0 && !knockBacking)
         {
             MoveCalculations();
         }
@@ -738,8 +760,6 @@ public class PlayerController : MonoBehaviour
             switch (other.tag)
             {
                 case "Checkpoint 1":
-                    
-
                     switch (playerNumber)
                     {
                         case 1:
@@ -756,13 +776,8 @@ public class PlayerController : MonoBehaviour
                             break;
                     }
                     //checkpointActivations[0].SetActive(true);
-                   // other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
-
+                    //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
                     break;
-
-
-
-
                 case "Checkpoint 2":
                     switch (playerNumber)
                     {
@@ -779,11 +794,9 @@ public class PlayerController : MonoBehaviour
                             currentSpawn = Checkpoints[7];
                             break;
                     }
-                   // checkpointActivations[1].SetActive(true);
-                   // other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
-
+                   //checkpointActivations[1].SetActive(true);
+                   //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
                     break;
-
                 case "Checkpoint 3":
                     switch (playerNumber)
                     {
@@ -800,11 +813,9 @@ public class PlayerController : MonoBehaviour
                             currentSpawn = Checkpoints[11];
                             break;
                     }
-
-                   // checkpointActivations[2].SetActive(true);
+                    //checkpointActivations[2].SetActive(true);
                     //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
                     break;
-
             }
         }
     }     
