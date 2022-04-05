@@ -37,7 +37,7 @@ public class PlayerAttributes : MonoBehaviour
 
     void GetBallType()
     {
-        ballTypeID = 0; //temp fix, all bouncy
+        //ballTypeID = 0; //temp fix, all bouncy
         if(ballTypeID >= 0 && ballTypeID < ballTypes.Length)
         {
             currentBallType = ballTypes[ballTypeID];
@@ -52,24 +52,24 @@ public class PlayerAttributes : MonoBehaviour
     {
         if (set)
         {
-            switch (ballTypeID)
+            switch (currentBallType)
             {
-                case 0: //bouncy
+                case "bouncy": //bouncy
                     controller.minJumpForce *= bouncyJumpMult;
                     controller.maxJumpForce *= bouncyJumpMult;
                     GetComponent<Collider>().material = bouncyMaterial;
                     break;
-                case 1: //bowling
+                case "bowling": //bowling
                     controller.knockbackMult = bowlingKnockbackMult;
                     controller.maxSpeed *= bowlingSpeedMult;
                     controller.maxBackSpeed *= bowlingSpeedMult;
                     break;
-                case 2: //marble
+                case "marble": //marble
                     controller.knockbackMult = marbleKnockbackMult;
                     controller.maxSpeed *= marbleSpeedMult;
                     controller.maxBackSpeed *= marbleSpeedMult;
                     break;
-                case 3: //snooker
+                case "snooker": //snooker
                     controller.maxSpeed *= snookerSpeedMult;
                     controller.maxBackSpeed *= snookerSpeedMult;
                     controller.fDamp *= snookerDampMult;

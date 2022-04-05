@@ -766,9 +766,23 @@ MonoBehaviour:
   ballTypeID: 0
   currentBallType: 
   ballTypes:
-  - bouncy
   - bowling
-  - marble
+  - bowling
+  - bowling
+  - bowling
+  - bouncy
+  - bouncy
+  - bouncy
+  - bouncy
+  - bouncy
+  - bouncy
+  - snooker
+  - snooker
+  - snooker
+  - snooker
+  - snooker
+  - snooker
+  - snooker
   - snooker
   bouncyJumpMult: 1.2
   bouncyMaterial: {fileID: 13400000, guid: 490a8dd731fdec3429e715bf3021830c, type: 2}
