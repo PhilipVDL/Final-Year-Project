@@ -46,8 +46,8 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
         if (inventory.obstacles.Count > 0)
         {
             currentPreviewIndex = inventory.obstacles[inventory.selectedIndex].GetComponent<ObstacleID>()._obstacleID;
-            ObstaclePreview _obstaclePreviw = preview.GetComponent<ObstaclePreview>();
-            _obstaclePreviw.ActivePreview(currentPreviewIndex);
+            ObstaclePreview _obstaclePreview = preview.GetComponent<ObstaclePreview>();
+            _obstaclePreview.ActivePreview(currentPreviewIndex);
         }
     }
 

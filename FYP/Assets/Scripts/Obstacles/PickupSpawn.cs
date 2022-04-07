@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PickupSpawn : MonoBehaviour
 {
+    public bool placeRandomObstacles;
     public GameObject pickupPrefab;
+    public GameObject randomObstaclePrefab;
     BoxCollider collider;
 
     public int spawnNumber;
@@ -16,7 +18,15 @@ public class PickupSpawn : MonoBehaviour
         {
             spawnNumber = 1;
         }
-        spawnPickups();
+
+        if (placeRandomObstacles)
+        {
+            SpawnRandomObstacles();
+        }
+        else
+        {
+            spawnPickups();
+        }
     }
 
     public Vector3 GetRandomPointInsideCollider(BoxCollider boxCollider)
@@ -37,6 +47,15 @@ public class PickupSpawn : MonoBehaviour
         {
             Vector3 spawn = GetRandomPointInsideCollider(collider);
             Instantiate(pickupPrefab, spawn, Quaternion.identity);
+        }
+    }
+
+    void SpawnRandomObstacles()
+    {
+        for (int i = 0; i < spawnNumber; i++)
+        {
+            Vector3 spawn = GetRandomPointInsideCollider(collider);
+            Instantiate(randomObstaclePrefab, spawn, Quaternion.identity);
         }
     }
 }

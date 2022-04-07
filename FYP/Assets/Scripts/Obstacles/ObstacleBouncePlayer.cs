@@ -26,7 +26,7 @@ public class ObstacleBouncePlayer : MonoBehaviour
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 point = collision.GetContact(0).point;
 
-            sfx.PlaySFX(sfx.playerCollide);
+            sfx.PlaySFX(sfx.obstacleCollide);
 
             controller.knockbacked();
             controller.currentSpeed = 0;

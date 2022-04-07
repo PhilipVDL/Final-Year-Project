@@ -109,5 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8f72ad07f0a0b4a8b4f37425787a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeRandomObstacles: 0
   pickupPrefab: {fileID: 7621648361189900607, guid: dedadcb4722d34b419a2b548bb660b61, type: 3}
+  randomObstaclePrefab: {fileID: 4143734740911532103, guid: 1130aa012c653a74d984a1925f328f78, type: 3}
   spawnNumber: 5

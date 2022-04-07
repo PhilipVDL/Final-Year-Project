@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXPrefab: {fileID: 4479175560544367332, guid: 6efdb0c53d278cc4c874f9f253be918d, type: 3}
-  test: 0
   obstaclePlaced: {fileID: 8300000, guid: 2e4d8f53d1db28a489b0cffcb46be50b, type: 3}
   offscreenEliminated: {fileID: 0}
   pickupObstacle: {fileID: 8300000, guid: f02252f4e93487a4f864bf1d8f079ce8, type: 3}
   playerCollide: {fileID: 8300000, guid: 7f45c06b4c726574492e22ea8abedbcf, type: 3}
+  Checkpoint: {fileID: 8300000, guid: 01cd35722face554db6202f26cee9d1a, type: 3}
+  Jump: {fileID: 8300000, guid: 9bddce8f265950b4b9d7030fb370da31, type: 3}
+  obstacleCollide: {fileID: 8300000, guid: 049dab4191cb69b4197089e6db8227b1, type: 3}
+  timeRunningOut: {fileID: 8300000, guid: 328f3ecf434315c48ae113c34869ad03, type: 3}
