@@ -89,12 +89,6 @@ public class EndDistance : MonoBehaviour
                 playerPositions[i].GetComponent<PlayerController>().pos = i + 1;
             }
 
-            /*
-            playerPositions[0].GetComponent<PlayerController>().pos = 1;
-            playerPositions[1].GetComponent<PlayerController>().pos = 2;
-            playerPositions[2].GetComponent<PlayerController>().pos = 3;
-            playerPositions[3].GetComponent<PlayerController>().pos = 4;
-            */
         }
         else if (finish.finished == 1)
         {
@@ -103,11 +97,6 @@ public class EndDistance : MonoBehaviour
                 playerPositions[i].GetComponent<PlayerController>().pos = i + 2;
             }
 
-            /*
-            playerPositions[0].GetComponent<PlayerController>().pos = 2;
-            playerPositions[1].GetComponent<PlayerController>().pos = 3;
-            playerPositions[2].GetComponent<PlayerController>().pos = 4;
-            */
         }
     }
 

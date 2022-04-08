@@ -31,7 +31,6 @@ public class CameraController : MonoBehaviour
     public float defaultHeight;
     public float followDist, verticalZoomDistance, horizontalZoomDistance, verticalZoomScale, horizontalZoomScale, zoomScaleFactor, ZoomMax, maxDistance;
     public float lerpSpeed;
-   // public float placementCamSpeed;
     public float managerCount;
     public float camCountdown;
     public float maxCount;
@@ -41,16 +40,14 @@ public class CameraController : MonoBehaviour
     public int totalPlayers;
     public GameObject[] Players;
 
-    //modes
-   // public bool placementPhase;
+ 
+  
 
 
 
     private void Start()
     {
-       
         eDist = GameObject.Find("End").GetComponent<EndDistance>();
-        
         Zones = GameObject.FindGameObjectsWithTag("Zone");
         Players = GameObject.FindGameObjectsWithTag("Player");
         managerCount = GameObject.Find("Background Tasks").GetComponent<MainManager>().countdown;
@@ -60,49 +57,22 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         CountPlayers();
-        StartAnim();
-
         CameraMove();
         transform.rotation = Quaternion.Euler(15, 0, 0);
 
-
-
-
         if (managerCount >= 3)
         {
-            //Reset zone focus, phase and countdown
-            // ZoneManager.GetComponent<PlaceZoneManager>().activeZone = 0;
-
-            // camCountdown = maxCount;
-
-            //reset start timer
-
-           
+         
             managerCount = 3;
-
-
-
-            //Players[0].GetComponent<PlayerController>().checkpointActivations[0].SetActive(false);
-           // Players[0].GetComponent<PlayerController>().checkpointActivations[1].SetActive(false);
-
         }
+
+        
     }
-            
-        
-
-        
-    
-
+     
     public void CountPlayers()
     {
         totalPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
     }
-
-    public void StartAnim()
-    {
-      
-    }
-
 
     private void CameraMove()
     {

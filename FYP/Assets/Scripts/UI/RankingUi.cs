@@ -11,8 +11,7 @@ public class RankingUi : MonoBehaviour
     public GameObject[] players;
     public GameObject[] positions;
 
-    private float countdown = 3;
-    private float countSpd = 1;
+  
 
     public GameObject placementModetext;
 
@@ -340,9 +339,7 @@ public class RankingUi : MonoBehaviour
                 break;
 
             case 2:
-
-
-
+                
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
 
@@ -354,10 +351,7 @@ public class RankingUi : MonoBehaviour
                 positions[3].SetActive(false);
                 playerImages[2].SetActive(false);
                 playerImages[3].SetActive(false);
-                       
-                        
-                    
-                
+               
                 break;
             
         }
