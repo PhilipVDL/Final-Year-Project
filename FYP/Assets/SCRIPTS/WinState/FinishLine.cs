@@ -39,6 +39,7 @@ public class FinishLine : MonoBehaviour
 
             finished++;
             StartRound();
+            GameObject.Find("UI").GetComponent<RankingUi>().getPlayers();
 
           //  other.gameObject.GetComponent<PlayerController>().currentSpawn = other.gameObject.GetComponent<PlayerController>().spawn;
            // other.gameObject.transform.position = win.spawns[0].transform.position;

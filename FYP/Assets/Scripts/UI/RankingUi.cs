@@ -42,33 +42,11 @@ public class RankingUi : MonoBehaviour
       
     }
 
-    void getPlayers()
+    public void getPlayers()
     {
-        countdown -= countSpd * Time.deltaTime;
-        if(countdown <= 0)
-        {
+       
             players = GameObject.FindGameObjectsWithTag("Player");
-        }
-        if(countdown <= 0 && players.Length < 3)
-        {
-            players = GameObject.FindGameObjectsWithTag("Player");
-            countSpd = 0;
-            countdown = 10;
-            //activatePositions();
-            
-           
-
-           
-        }
-        else if (countdown <= 0 && players.Length == 3)
-        {
-            players = GameObject.FindGameObjectsWithTag("Player");
-            countSpd = 0;
-            countdown = 10;
-           
-            
-              //  GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
-        }
+     
     }
 
     void availablePositions()
@@ -217,11 +195,8 @@ public class RankingUi : MonoBehaviour
 
             }
         }
-
-
-
-
-
+        
+        // 4 PLAYERS
 
         else if (players.Length == 4)
         {
@@ -257,9 +232,7 @@ public class RankingUi : MonoBehaviour
 
                 }
             }
-
-
-            //Player 2
+             //Player 2
 
             if (players[1] != null && players[1] == true)
             {
