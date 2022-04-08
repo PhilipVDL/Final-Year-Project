@@ -3704,6 +3704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b7760044dd734f9656a6f1a0171ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Levels: []
 --- !u!1 &8864183368364828826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,7 +4169,7 @@ RectTransform:
   m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
   m_Children: []
   m_Father: {fileID: 8864183369401876935}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6050,9 +6051,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8864183369684741176}
-  - {fileID: 8864183369388677829}
   - {fileID: 8864183368539816560}
+  - {fileID: 8864183369388677829}
+  - {fileID: 8864183369684741176}
   - {fileID: 8864183369567358682}
   m_Father: {fileID: 8864183369006360020}
   m_RootOrder: 0
@@ -6075,10 +6076,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScores:
-  - {fileID: 8864183368539816563}
-  - {fileID: 8864183369388677828}
-  - {fileID: 8864183369684741179}
-  - {fileID: 8864183369567358685}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerImages:
   - {fileID: 8994293077804323598}
   - {fileID: 7319136985212615405}
@@ -6194,7 +6195,7 @@ RectTransform:
   m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
   m_Children: []
   m_Father: {fileID: 8864183369401876935}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6771,6 +6772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b7760044dd734f9656a6f1a0171ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Levels: []
 --- !u!1 &8864183369986361438
 GameObject:
   m_ObjectHideFlags: 0

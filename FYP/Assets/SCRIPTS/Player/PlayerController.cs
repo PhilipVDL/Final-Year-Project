@@ -711,6 +711,7 @@ public class PlayerController : MonoBehaviour
             //currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
+            currentSpawn = spawn;
             transform.position = spawn.transform.position;
             braking = true;
         }

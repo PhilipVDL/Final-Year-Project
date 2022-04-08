@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinState : MonoBehaviour
 {
     FinishLine finish;
-    ObstaclesOnMap obstaclesOnMap;
+    public ObstaclesOnMap obstaclesOnMap;
     public GameObject playerPrefab;
     public GameObject[] players;
     public GameObject[] spawns;

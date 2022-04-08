@@ -17,6 +17,12 @@ public class RankingUi : MonoBehaviour
     public GameObject placementModetext;
 
     public float lerpSpd = 10f;
+
+    private void Awake()
+    {
+        finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
+        end = GameObject.Find("End").GetComponent<EndDistance>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -357,7 +363,7 @@ public class RankingUi : MonoBehaviour
                 positions[3].SetActive(false);
                 playerImages[3].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
-                GameObject.Find("Scores").GetComponent<Scores>().playerScores[3] = null;
+                GameObject.Find("Scores").GetComponent<Scores>().playerScores[3].SetActive(false);
                 break;
 
             case 2:
@@ -367,7 +373,10 @@ public class RankingUi : MonoBehaviour
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
 
-                
+                GameObject.Find("Scores").GetComponent<Scores>().playerScores[2].SetActive(false);
+                GameObject.Find("Scores").GetComponent<Scores>().playerScores[3].SetActive(false);
+
+
                 positions[2].SetActive(false);
                 positions[3].SetActive(false);
                 playerImages[2].SetActive(false);

@@ -14,7 +14,7 @@ public class FinishLine : MonoBehaviour
     public GameObject countdownSign;
     public GameObject manager;
 
-    private float countdown = 3;
+    public float countdown = 3;
     private float countamount = 1;
 
 
@@ -26,6 +26,7 @@ public class FinishLine : MonoBehaviour
         cam = GameObject.Find("Main Camera");
         manager = GameObject.Find("Background Tasks");
         countdownSign = GameObject.Find("SIGN");
+        end = GameObject.Find("End").GetComponent<EndDistance>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,8 +39,9 @@ public class FinishLine : MonoBehaviour
 
             finished++;
             StartRound();
-           
-            other.gameObject.transform.position = win.spawns[0].transform.position;
+
+          //  other.gameObject.GetComponent<PlayerController>().currentSpawn = other.gameObject.GetComponent<PlayerController>().spawn;
+           // other.gameObject.transform.position = win.spawns[0].transform.position;
         }
         else if(other.CompareTag("Player") && Players.Length != 1)
         {
