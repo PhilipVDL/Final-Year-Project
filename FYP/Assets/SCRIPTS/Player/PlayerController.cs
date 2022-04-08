@@ -266,7 +266,11 @@ public class PlayerController : MonoBehaviour
             goLeft = false;
         }
 
-        if (!goRight && !goLeft)
+        if (!goRight && !goLeft && !knockBacking)
+        {
+            StrafingDamping();
+        }
+        else if (knockBacking)
         {
             StrafingDamping();
         }
