@@ -294,6 +294,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump" + playerNumber) && grounded)
         {
             chargingJump = false;
+            sfx.PlaySFX(sfx.Jump);
             Jump();
         }
 
