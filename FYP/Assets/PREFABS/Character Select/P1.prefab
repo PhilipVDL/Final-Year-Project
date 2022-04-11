@@ -189,7 +189,12 @@ MonoBehaviour:
   - {fileID: 7834203572012907259, guid: dcfbf6b608ae29a4a9b793c8e3fa9598, type: 3}
   - {fileID: 6619615042370057031, guid: 9c00392b1dbe6ae47ae2f252c94ddaad, type: 3}
   currentHat: {fileID: 0}
-  glasses: []
+  glasses:
+  - {fileID: 0}
+  - {fileID: 6665123476746033866, guid: bab892eb66af5d44da47d07b42a4e206, type: 3}
+  - {fileID: 5951205959184872350, guid: dff2757b6b27eb84ebf6076c21fcd37b, type: 3}
   currentGlasses: {fileID: 0}
-  moustache: []
+  moustaches:
+  - {fileID: 0}
+  - {fileID: 6112337705121918571, guid: 5f795e6ef94129f4b9b0d6c656ddc7b1, type: 3}
   currentMoustache: {fileID: 0}

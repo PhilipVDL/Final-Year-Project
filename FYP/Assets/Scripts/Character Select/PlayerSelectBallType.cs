@@ -46,7 +46,7 @@ public class PlayerSelectBallType : MonoBehaviour
     public GameObject[] glasses;
     public GameObject currentGlasses;
     [Header("Moustache")]
-    public GameObject[] moustache;
+    public GameObject[] moustaches;
     public GameObject currentMoustache;
     #endregion
 
@@ -96,22 +96,14 @@ public class PlayerSelectBallType : MonoBehaviour
             if (Input.GetAxis("Vertical" + playerNumber) > 0)
             {
                 currentEditIndex++;
+                IndexLoopBounds();
                 currentEditValue = lastValue[currentEditIndex];
             }
             else if (Input.GetAxis("Vertical" + playerNumber) < 0)
             {
                 currentEditIndex--;
+                IndexLoopBounds();
                 currentEditValue = lastValue[currentEditIndex];
-            }
-
-            //loop bounds
-            if(currentEditIndex > maxIndex)
-            {
-                currentEditIndex = minIndex;
-            }
-            else if(currentEditIndex < minIndex)
-            {
-                currentEditIndex = maxIndex;
             }
         }
 
@@ -142,6 +134,25 @@ public class PlayerSelectBallType : MonoBehaviour
             case 2:
                 SwitchHat();
                 break;
+            case 3:
+                SwitchGlasses();
+                break;
+            case 4:
+                SwitchMoustache();
+                break;
+        }
+    }
+
+    void IndexLoopBounds()
+    {
+        //loop bounds
+        if (currentEditIndex > maxIndex)
+        {
+            currentEditIndex = minIndex;
+        }
+        else if (currentEditIndex < minIndex)
+        {
+            currentEditIndex = maxIndex;
         }
     }
 
@@ -160,6 +171,7 @@ public class PlayerSelectBallType : MonoBehaviour
         //set value
         ballTypeID = currentEditValue;
         lastValue[currentEditIndex] = currentEditValue;
+        lastValue[1] = 0;
         SwitchSkin(0);
     }
 
@@ -168,10 +180,12 @@ public class PlayerSelectBallType : MonoBehaviour
         if (value >= materialsAll[ballTypeID].Length)
         {
             currentEditValue = 0;
+            value = 0;
         }
         else if (value < 0)
         {
             currentEditValue = materialsAll[ballTypeID].Length - 1;
+            value = materialsAll[ballTypeID].Length - 1;
         }
 
         lastValue[currentEditIndex] = currentEditValue;
@@ -215,12 +229,70 @@ public class PlayerSelectBallType : MonoBehaviour
 
     void SwitchGlasses()
     {
+        if (currentEditValue >= glasses.Length)
+        {
+            currentEditValue = 0;
+        }
+        else if (currentEditValue < 0)
+        {
+            currentEditValue = glasses.Length - 1;
+        }
 
+        lastValue[currentEditIndex] = currentEditValue;
+        GameObject desiredGlasses = glasses[currentEditValue];
+
+        if (currentGlasses != null)
+        {
+            if (desiredGlasses == null)
+            {
+                Destroy(currentGlasses); //destroy if null desired
+            }
+            else if (currentGlasses.name != desiredGlasses.name)
+            {
+                Destroy(currentGlasses); //destroy if not desired type
+            }
+        }
+
+        if (currentGlasses == null && desiredGlasses != null)
+        {
+            currentGlasses = Instantiate(desiredGlasses, transform.parent); //replace with correct type
+            currentGlasses.name = desiredGlasses.name;
+            currentGlasses.transform.parent = transform;
+        }
     }
 
     void SwitchMoustache()
     {
+        if (currentEditValue >= moustaches.Length)
+        {
+            currentEditValue = 0;
+        }
+        else if (currentEditValue < 0)
+        {
+            currentEditValue = moustaches.Length - 1;
+        }
 
+        lastValue[currentEditIndex] = currentEditValue;
+        GameObject desiredMoustache = moustaches[currentEditValue];
+
+        if (currentMoustache != null)
+        {
+            if (desiredMoustache == null)
+            {
+                Destroy(currentMoustache); //destroy if null desired
+            }
+            else if (currentMoustache.name != desiredMoustache.name)
+            {
+                Destroy(currentMoustache); //destroy if not desired type
+            }
+        }
+
+        if (currentMoustache == null && desiredMoustache != null)
+        {
+            currentMoustache = Instantiate(desiredMoustache, transform.parent); //replace with correct type
+            currentMoustache.name = desiredMoustache.name;
+            currentMoustache.transform.parent = transform;
+        }
     }
 
     void UnReady(int pNum)

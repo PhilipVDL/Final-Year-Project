@@ -11,6 +11,7 @@ public class PlayerJoinVisible : MonoBehaviour
 
     private void Start()
     {
+        joinCount = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
         rend = GetComponent<MeshRenderer>();
         rend.enabled = false;
     }
