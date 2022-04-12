@@ -42,12 +42,15 @@ public class PlayerSelectBallType : MonoBehaviour
     [Header("Hat")]
     public GameObject[] hats;
     public GameObject currentHat;
+    public GameObject currentHatPrefab;
     [Header("Glasses")]
     public GameObject[] glasses;
     public GameObject currentGlasses;
+    public GameObject currentGlassesPrefab;
     [Header("Moustache")]
     public GameObject[] moustaches;
     public GameObject currentMoustache;
+    public GameObject currentMoustachePrefab;
     #endregion
 
     private void Start()
@@ -222,6 +225,7 @@ public class PlayerSelectBallType : MonoBehaviour
         if (currentHat == null && desiredHat != null)
         {
             currentHat = Instantiate(desiredHat, transform.parent); //replace with correct hat
+            currentHatPrefab = desiredHat;
             currentHat.name = desiredHat.name;
             currentHat.transform.parent = transform;
         }
@@ -256,6 +260,7 @@ public class PlayerSelectBallType : MonoBehaviour
         if (currentGlasses == null && desiredGlasses != null)
         {
             currentGlasses = Instantiate(desiredGlasses, transform.parent); //replace with correct type
+            currentGlassesPrefab = desiredGlasses;
             currentGlasses.name = desiredGlasses.name;
             currentGlasses.transform.parent = transform;
         }
@@ -290,6 +295,7 @@ public class PlayerSelectBallType : MonoBehaviour
         if (currentMoustache == null && desiredMoustache != null)
         {
             currentMoustache = Instantiate(desiredMoustache, transform.parent); //replace with correct type
+            currentMoustachePrefab = desiredMoustache;
             currentMoustache.name = desiredMoustache.name;
             currentMoustache.transform.parent = transform;
         }

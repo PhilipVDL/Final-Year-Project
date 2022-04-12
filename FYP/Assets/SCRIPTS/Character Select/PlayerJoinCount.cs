@@ -34,6 +34,7 @@ public class PlayerJoinCount : MonoBehaviour
 
     private void Awake()
     {
+        transform.parent = null;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneUnloaded += OnSceneUnloaded; //allows detecting when scene unloads
         SceneManager.sceneLoaded += OnSceneLoaded; //allows detecting when scene loads

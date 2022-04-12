@@ -14,9 +14,13 @@ public class PlayerCustoms : MonoBehaviour
     public Mesh[] playerMeshes;
     public Material[] playerMaterials;
     public int[] playerTypes;
+    public GameObject[] playerHats;
+    public GameObject[] playerGlasses;
+    public GameObject[] playerMoustaches;
 
     private void Awake()
     {
+        transform.parent = null;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneUnloaded += OnSceneUnloaded; //allows detecting when scene unloads
     }
@@ -50,21 +54,31 @@ public class PlayerCustoms : MonoBehaviour
             playerMeshes = new Mesh[players.Count];
             playerMaterials = new Material[players.Count];
             playerTypes = new int[players.Count];
+            playerHats = new GameObject[players.Count];
+            playerGlasses = new GameObject[players.Count];
+            playerMoustaches = new GameObject[players.Count];
 
             for (int i = 0; i < players.Count; i++)
             {
                 if (currentPlayers[i])
                 {
                     GameObject skin = players[i].transform.GetChild(0).gameObject;
+                    PlayerSelectBallType player = skin.GetComponent<PlayerSelectBallType>();
                     playerMeshes[i] = skin.GetComponent<MeshFilter>().mesh;
                     playerMaterials[i] = skin.GetComponent<Renderer>().material;
                     playerTypes[i] = skin.GetComponent<PlayerSelectBallType>().ballTypeID;
+                    playerHats[i] = player.currentHatPrefab;
+                    playerGlasses[i] = player.currentGlassesPrefab;
+                    playerMoustaches[i] = player.currentMoustachePrefab;
                 }
                 else
                 {
                     playerMeshes[i] = null;
                     playerMaterials[i] = null;
                     playerTypes[i] = -1;
+                    playerHats[i] = null;
+                    playerGlasses[i] = null;
+                    playerMoustaches[i] = null;
                 }
             }
         }
@@ -86,6 +100,19 @@ public class PlayerCustoms : MonoBehaviour
             PlayerAttributes attributes = player.GetComponent<PlayerAttributes>();
             attributes.ballTypeID = playerTypes[pNum - 1];
             attributes.set = true;
+            //cosmetics
+            if(playerHats[pNum - 1] != null)
+            {
+                Instantiate(playerHats[pNum - 1], player.transform);
+            }
+            if(playerGlasses[pNum - 1] != null)
+            {
+                Instantiate(playerGlasses[pNum - 1], player.transform);
+            }
+            if(playerMoustaches[pNum - 1] != null)
+            {
+                Instantiate(playerMoustaches[pNum - 1], player.transform);
+            }
         }
     }
 }
