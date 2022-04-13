@@ -59,7 +59,6 @@ public class RankingUi : MonoBehaviour
         //Player 1
         if (players.Length == 2)
         {
-
             switch (players[0].GetComponent<PlayerController>().pos)
             {
                 case 1:

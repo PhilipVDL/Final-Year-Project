@@ -8,16 +8,19 @@ public class PlayerTracker : MonoBehaviour
 
     public GameObject[] players;
 
+    // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     void GetPlayers()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+
     }
 
+    // Update is called once per frame
     void Update()
     {
         GetPlayers();
@@ -32,5 +35,6 @@ public class PlayerTracker : MonoBehaviour
                 transform.position = players[0].transform.position;
                 break;
         }
+
     }
 }
