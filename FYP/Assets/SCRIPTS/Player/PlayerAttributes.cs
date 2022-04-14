@@ -54,22 +54,22 @@ public class PlayerAttributes : MonoBehaviour
         {
             switch (currentBallType)
             {
-                case "bouncy": //bouncy
+                case "bouncy":
                     controller.minJumpForce *= bouncyJumpMult;
                     controller.maxJumpForce *= bouncyJumpMult;
                     GetComponent<Collider>().material = bouncyMaterial;
                     break;
-                case "bowling": //bowling
+                case "bowling":
                     controller.knockbackMult = bowlingKnockbackMult;
                     controller.maxSpeed *= bowlingSpeedMult;
                     controller.maxBackSpeed *= bowlingSpeedMult;
                     break;
-                case "marble": //marble
+                case "marble":
                     controller.knockbackMult = marbleKnockbackMult;
                     controller.maxSpeed *= marbleSpeedMult;
                     controller.maxBackSpeed *= marbleSpeedMult;
                     break;
-                case "snooker": //snooker
+                case "snooker":
                     controller.maxSpeed *= snookerSpeedMult;
                     controller.maxBackSpeed *= snookerSpeedMult;
                     controller.fDamp *= snookerDampMult;
