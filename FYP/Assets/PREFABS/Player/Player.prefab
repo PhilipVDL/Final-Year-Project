@@ -796,7 +796,7 @@ MonoBehaviour:
   marbleSpeedMult: 1.1
   marbleKnockbackMult: 1.5
   snookerSpeedMult: 1.1
-  snookerDampMult: 0.5
+  snookerKnockbackMult: 1.5
 --- !u!114 &4821443776047870066
 MonoBehaviour:
   m_ObjectHideFlags: 0

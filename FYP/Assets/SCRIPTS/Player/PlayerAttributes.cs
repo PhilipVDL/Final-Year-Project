@@ -22,7 +22,8 @@ public class PlayerAttributes : MonoBehaviour
     public float marbleKnockbackMult;
     [Header("Snooker")]
     public float snookerSpeedMult;
-    public float snookerDampMult;
+    public float snookerKnockbackMult;
+    //public float snookerDampMult;
 
     private void Start()
     {
@@ -70,10 +71,11 @@ public class PlayerAttributes : MonoBehaviour
                     controller.maxBackSpeed *= marbleSpeedMult;
                     break;
                 case "snooker":
+                    controller.knockbackMult *= snookerKnockbackMult;
                     controller.maxSpeed *= snookerSpeedMult;
                     controller.maxBackSpeed *= snookerSpeedMult;
-                    controller.fDamp *= snookerDampMult;
-                    controller.hDamp *= snookerDampMult;
+                    //controller.fDamp *= snookerDampMult;
+                    //controller.hDamp *= snookerDampMult;
                     break;
             }
             set = false;
