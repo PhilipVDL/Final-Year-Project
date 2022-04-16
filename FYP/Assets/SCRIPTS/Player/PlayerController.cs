@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public bool knockBacking;
     public float knockBackTime;
     private float knockBackTimer;
+    public float knockbackObjectiveTime;
+    private float knockbackObjectiveTimer;
     public float knockbackForce;
     public float knockbackMult;
 
@@ -138,6 +140,7 @@ public class PlayerController : MonoBehaviour
     public void knockbacked()
     {
         knockBackTimer = knockBackTime;
+        knockbackObjectiveTimer = knockbackObjectiveTime;
         knockBacking = true;
     }
 
@@ -150,6 +153,11 @@ public class PlayerController : MonoBehaviour
             {
                 knockBacking = false;
             }
+        }
+
+        if(knockbackObjectiveTimer > 0)
+        {
+            knockbackObjectiveTimer -= Time.deltaTime;
         }
     }
 
@@ -567,22 +575,30 @@ public class PlayerController : MonoBehaviour
 
     void Respawn()
     {
-       
+
         if (transform.position.y < deathHeight && !doesRespawn)
         {
+            TOM.noPlayerFell = false;
+            if(knockbackObjectiveTimer > 0)
+            {
+                TOM.playerKnockout = true;
+            }
             Destroy(gameObject);
         }
-         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers != 1)
-         {
-             transform.position = currentSpawn.transform.position;
-          //  particleSys.SetActive(true);
+        else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers != 1)
+        {
+            transform.position = currentSpawn.transform.position;
+            //  particleSys.SetActive(true);
             // Instantiate(particleSys, transform.position, transform.rotation);
             currentSpeed = 0;
-         }
-         
+            TOM.noPlayerFell = false;
+            if (knockbackObjectiveTimer > 0)
+            {
+                TOM.playerKnockout = true;
+            }
+        }
         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
         {
-
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[0].SetActive(true);
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[1].SetActive(true);
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].SetActive(true);
@@ -593,9 +609,13 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[2].transform.position = currentSpawn.transform.position;
             GameObject.Find("Finish").GetComponent<FinishLine>().PlayerClones[3].transform.position = currentSpawn.transform.position;
             transform.position = currentSpawn.transform.position;
-          //  particleSys.SetActive(true);
+            //  particleSys.SetActive(true);
             //Instantiate(particleSys, transform.position, transform.rotation);
-
+            TOM.noPlayerFell = false;
+            if (knockbackObjectiveTimer > 0)
+            {
+                TOM.playerKnockout = true;
+            }
         }
     }
 
@@ -710,6 +730,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(elimCount);
         GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers--;
         this.gameObject.SetActive(false);
+        TOM.noPlayerOffCamera = false;
     }
 
     public void OnTriggerEnter(Collider other)

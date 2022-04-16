@@ -10,22 +10,30 @@ public class TeamObjectivesManager : MonoBehaviour
     public string[] allObjectives;
 
     #region objectives
-    //Can't touch this
+    [Header("Can't touch this")]
     public bool noPlayerCollisionsThisRound;
 
-    //Tread Carefully
+    [Header("Tread Carefully")]
     public bool noObstacleCollisionsThisRound;
 
-    //Collision Course
+    [Header("Collision Course")]
     public bool allPlayersPlaced;
     public bool[] playersPlacedObstacles;
     private PlayerObstaclesRacePlace[] _playerObstacles;
 
-    //Formation
+    [Header("Formation")]
     public bool allPlayersDifferentType;
     public List<int> playerTypes;
     private PlayerAttributes[] _playerAttributes;
 
+    [Header("Don't Look Down")]
+    public bool noPlayerFell;
+
+    [Header("Keep Up")]
+    public bool noPlayerOffCamera;
+
+    [Header("Knockout")]
+    public bool playerKnockout;
     #endregion
 
     private void Start()
@@ -96,6 +104,15 @@ public class TeamObjectivesManager : MonoBehaviour
                     {
                         playersPlacedObstacles[i] = false;
                     }
+                    break;
+                case "Don't Look Down":
+                    noPlayerFell = true;
+                    break;
+                case "Keep Up":
+                    noPlayerOffCamera = true;
+                    break;
+                case "Knockout":
+                    playerKnockout = false;
                     break;
             }
         }

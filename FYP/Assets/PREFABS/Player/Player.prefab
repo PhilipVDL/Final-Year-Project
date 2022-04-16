@@ -718,6 +718,7 @@ MonoBehaviour:
   playerNumber: 1
   knockBacking: 0
   knockBackTime: 0.25
+  knockbackObjectiveTime: 3
   knockbackForce: 250
   knockbackMult: 1
   moveBackwards: 1
