@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleBouncePlayer : MonoBehaviour
 {
     SFXScript sfx;
+    TeamObjectivesManager TOM;
 
     private float bounceForce = 250;
     public float bounceForceScale;
@@ -12,7 +13,8 @@ public class ObstacleBouncePlayer : MonoBehaviour
     private void Start()
     {
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
-        if(bounceForceScale == 0)
+        TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
+        if (bounceForceScale == 0)
         {
             bounceForceScale = 1;
         }
@@ -31,6 +33,8 @@ public class ObstacleBouncePlayer : MonoBehaviour
             controller.knockbacked();
             controller.currentSpeed = 0;
             rb.AddExplosionForce(bounceForce * bounceForceScale, point, 1);
+
+            TOM.noObstacleCollisionsThisRound = false;
         }
     }
 }

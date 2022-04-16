@@ -509,11 +509,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSelect: 0
+  currentEditIndex: 0
+  minIndex: 0
+  maxIndex: 0
+  currentEditValue: 0
+  lastValue: 
   ballTypeID: 0
   minID: 0
   maxID: 0
   meshes: []
   materials: []
+  meshesBowling: []
+  materialsBowling: []
+  meshesBouncy: []
+  materialsBouncy: []
+  meshesSnooker: []
+  materialsSnooker: []
+  hats: []
+  currentHat: {fileID: 0}
+  currentHatPrefab: {fileID: 0}
+  glasses: []
+  currentGlasses: {fileID: 0}
+  currentGlassesPrefab: {fileID: 0}
+  moustaches: []
+  currentMoustache: {fileID: 0}
+  currentMoustachePrefab: {fileID: 0}
 --- !u!1 &8331225723004286651
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,22 +787,7 @@ MonoBehaviour:
   currentBallType: 
   ballTypes:
   - bowling
-  - bowling
-  - bowling
-  - bowling
   - bouncy
-  - bouncy
-  - bouncy
-  - bouncy
-  - bouncy
-  - bouncy
-  - snooker
-  - snooker
-  - snooker
-  - snooker
-  - snooker
-  - snooker
-  - snooker
   - snooker
   bouncyJumpMult: 1.2
   bouncyMaterial: {fileID: 13400000, guid: 490a8dd731fdec3429e715bf3021830c, type: 2}
@@ -791,7 +796,7 @@ MonoBehaviour:
   marbleSpeedMult: 1.1
   marbleKnockbackMult: 1.5
   snookerSpeedMult: 1.1
-  snookerDampMult: 0.5
+  snookerKnockbackMult: 1.5
 --- !u!114 &4821443776047870066
 MonoBehaviour:
   m_ObjectHideFlags: 0

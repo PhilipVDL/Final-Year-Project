@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     PlayerObstacles playerObstacles;
     PlayerObstaclesRacePlace playerObstaclesRacePlace;
     GameObject obstaclesOnMap;
+    TeamObjectivesManager TOM;
     public GameObject spawn;
     EndDistance end;
     public GameObject[] Checkpoints;
@@ -131,10 +132,7 @@ public class PlayerController : MonoBehaviour
         sfx.PlaySFX(sfx.playerCollide);
         knockbacked();
         prb.AddExplosionForce(knockbackForce * knockbackMult, point, 1);
-
-        //PlayerController otherController = other.GetComponent<PlayerController>();
-        //Rigidbody otherRB = other.GetComponent<Rigidbody>();
-        //otherRB.AddExplosionForce(otherController.knockbackForce * otherController.knockbackMult, point, 1);
+        TOM.noPlayerCollisionsThisRound = false;
     }
 
     public void knockbacked()
@@ -165,6 +163,7 @@ public class PlayerController : MonoBehaviour
         playerObstacles = GetComponent<PlayerObstacles>();
         playerObstaclesRacePlace = GetComponent<PlayerObstaclesRacePlace>();
         obstaclesOnMap = GameObject.Find("ObstaclesOnMap");
+        TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
 
         Defaults();
         GetSpawnPos();
@@ -612,29 +611,34 @@ public class PlayerController : MonoBehaviour
     {
         oiled = true;
         oilSpillTimer = oilSpillDuration;
+        TOM.noObstacleCollisionsThisRound = false;
     }
 
     public void Deflated()
     {
         deflated = true;
         tackTimer = tackDuration;
+        TOM.noObstacleCollisionsThisRound = false;
     }
 
     public void Trampolined()
     {
         trampolined = true;
         trampolineTimer = trampolineDuration;
+        TOM.noObstacleCollisionsThisRound = false;
     }
 
     public void SpeedPadded()
     {
         speedPadded = true;
         padTimer = padDuration;
+        TOM.noObstacleCollisionsThisRound = false;
     }
 
     public void Lasered()
     {
         lasered = true;
+        TOM.noObstacleCollisionsThisRound = false;
     }
 
     void ObstacleTimers()
