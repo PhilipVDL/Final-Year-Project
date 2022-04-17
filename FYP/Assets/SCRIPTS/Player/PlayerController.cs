@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public float knockBackTime;
     private float knockBackTimer;
     public float knockbackObjectiveTime;
-    private float knockbackObjectiveTimer;
+    public float knockbackObjectiveTimer;
     public float knockbackForce;
     public float knockbackMult;
 

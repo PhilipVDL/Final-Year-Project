@@ -34,6 +34,15 @@ public class TeamObjectivesManager : MonoBehaviour
 
     [Header("Knockout")]
     public bool playerKnockout;
+
+    [Header("Avoidance")]
+    public bool noPlayerHitBack;
+
+    [Header("Aim of the Game")]
+    public bool playerHitBack;
+
+    [Header("Over the Line")]
+    public bool playerHitOverLine;
     #endregion
 
     private void Start()
@@ -113,6 +122,15 @@ public class TeamObjectivesManager : MonoBehaviour
                     break;
                 case "Knockout":
                     playerKnockout = false;
+                    break;
+                case "Avoidance":
+                    noPlayerHitBack = true;
+                    break;
+                case "Aim of the Game":
+                    playerHitBack = false;
+                    break;
+                case "Over the Line":
+                    playerHitOverLine = false;
                     break;
             }
         }

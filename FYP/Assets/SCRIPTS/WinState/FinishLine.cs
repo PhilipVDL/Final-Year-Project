@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
+    TeamObjectivesManager TOM;
     public WinState win;
     public int[] points = new int[4];
     public int finished;
@@ -20,6 +21,7 @@ public class FinishLine : MonoBehaviour
 
     private void Start()
     {
+        TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
         win = GameObject.Find("WinState").GetComponent<WinState>();
         finished = 0;
         PlayerClones = GameObject.FindGameObjectsWithTag("Player");
@@ -41,6 +43,11 @@ public class FinishLine : MonoBehaviour
             StartRound();
             GameObject.Find("UI").GetComponent<RankingUi>().getPlayers();
 
+            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0)
+            {
+                TOM.playerHitOverLine = true;
+            }
+
           //  other.gameObject.GetComponent<PlayerController>().currentSpawn = other.gameObject.GetComponent<PlayerController>().spawn;
            // other.gameObject.transform.position = win.spawns[0].transform.position;
         }
@@ -52,6 +59,11 @@ public class FinishLine : MonoBehaviour
             other.gameObject.transform.position = win.spawns[0].transform.position;
             other.gameObject.SetActive(false);
             GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
+
+            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0)
+            {
+                TOM.playerHitOverLine = true;
+            }
         }
     }
 

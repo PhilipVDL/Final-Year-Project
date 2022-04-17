@@ -35,6 +35,12 @@ public class ObstacleBouncePlayer : MonoBehaviour
             rb.AddExplosionForce(bounceForce * bounceForceScale, point, 1);
 
             TOM.noObstacleCollisionsThisRound = false;
+            TOM.noPlayerHitBack = false;
+
+            if(controller.knockbackObjectiveTimer > 0)
+            {
+                TOM.playerHitBack = true;
+            }
         }
     }
 }
