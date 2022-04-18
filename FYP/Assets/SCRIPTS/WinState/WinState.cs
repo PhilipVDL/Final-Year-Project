@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinState : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class WinState : MonoBehaviour
     public int[] scores = new int[4];
     public int targetScore;
     public bool win;
+    private bool won = false;
     public int winnerNumber;
 
     //rounds
@@ -56,10 +58,20 @@ public class WinState : MonoBehaviour
         {
             NewRound();
         }
-        else if (endRound && win)
+        else if (win && !won)
         {
+            won = true;
             Debug.Log("Player " + winnerNumber + " Wins!"); //win
+            Camera.main.gameObject.GetComponent<AudioSource>().Stop();
+            sfx.PlaySFX(sfx.levelComplete);
+            StartCoroutine(MainMenu());
         }
+    }
+
+    IEnumerator MainMenu()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
     }
 
     public void Score(int player, int score)
@@ -74,7 +86,6 @@ public class WinState : MonoBehaviour
             {
                 win = true;
                 winnerNumber = player;
-                sfx.PlaySFX(sfx.levelComplete);
             }
         }
     }
@@ -84,7 +95,8 @@ public class WinState : MonoBehaviour
         currentRound++;
         finish.finished = 0;
         obstaclesOnMap.ActivateObstacles();
-        foreach(GameObject player in players)
+        GetPlayers();
+        foreach (GameObject player in players)
         {
             player.GetComponent<PlayerObstaclesRacePlace>().placedThisRound = 0;
         }

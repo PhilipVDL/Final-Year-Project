@@ -10,7 +10,6 @@ public class FinishLine : MonoBehaviour
     public int[] points = new int[4];
     public int finished;
     public GameObject[] Players;
-    public GameObject[] PlayerClones;
     public GameObject cam;
     public EndDistance end;
     public GameObject countdownSign;
@@ -26,11 +25,12 @@ public class FinishLine : MonoBehaviour
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         win = GameObject.Find("WinState").GetComponent<WinState>();
         finished = 0;
-        PlayerClones = GameObject.FindGameObjectsWithTag("Player");
+        Players = GameObject.FindGameObjectsWithTag("Player");
         cam = GameObject.Find("Main Camera");
         manager = GameObject.Find("Background Tasks");
         countdownSign = GameObject.Find("SIGN");
         end = GameObject.Find("End").GetComponent<EndDistance>();
+        sfx.PlaySFX(sfx._321Go);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,22 +69,23 @@ public class FinishLine : MonoBehaviour
         }
     }
 
+    /*
     void GetPlayerClones()
     {
         countdown -= countamount * Time.deltaTime;
 
         if(countdown <= 0)
         {
-            PlayerClones = GameObject.FindGameObjectsWithTag("Player");
+            Players = GameObject.FindGameObjectsWithTag("Player");
             countamount = 0;
             countdown = 10;
         }
     }
+    */
 
     private void Update()
     {
         GetPlayers();
-        GetPlayerClones();
     }
 
     void GetPlayers()
@@ -96,24 +97,27 @@ public class FinishLine : MonoBehaviour
     {
         countdownSign.GetComponent<Animator>().Play(0);
         manager.GetComponent<MainManager>().countdown = 3;
-        sfx.PlaySFX(sfx._321Go);
+        if (!win.win)
+        {
+            sfx.PlaySFX(sfx._321Go);
+        }
 
         //end round
         win.endRound = true;
 
-        for (int i = 0; i < PlayerClones.Length; i++)
+        for (int i = 0; i < Players.Length; i++)
         {
-            PlayerClones[i ].SetActive(true);
+            Players[i ].SetActive(true);
         }
 
-        for (int i = 0; i < PlayerClones.Length; i++)
+        for (int i = 0; i < Players.Length; i++)
         {
-            PlayerClones[i + 1].transform.position = win.spawns[i+ 1].transform.position;
+            Players[i].transform.position = win.spawns[i].transform.position;
         }
 
-        for (int i = 0; i < PlayerClones.Length; i++)
+        for (int i = 0; i < Players.Length; i++)
         {
-            PlayerClones[i].GetComponent<PlayerController>().currentSpawn = PlayerClones[i].GetComponent<PlayerController>().spawn;
+            Players[i].GetComponent<PlayerController>().currentSpawn = Players[i].GetComponent<PlayerController>().spawn;
         }
     }
 }

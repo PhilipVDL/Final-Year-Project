@@ -9,15 +9,12 @@ EditorBuildSettings:
     path: Assets/3D ASSETS/MAP/MAIN_MENU_UI/ARCADE_MACHINE/MAIN_MENU_ARCADE_MACHINE.unity
     guid: 18d8e019a6556d2428f863b7fcaf5bd5
   - enabled: 1
-    path: Assets/3D ASSETS/MAP/CHARACTER_SELECT_UI/CHARACTER_SELECT/CHARACTER_SELECT.unity
+    path: Assets/3D ASSETS/MAP/CHARACTER_SELECT_UI/CHARACTER_SELECT/CHARACTER_SELECT_PINBALL.unity
     guid: a3d81f91259ae7a41a13ffda8411a868
-  - enabled: 1
-    path: Assets/3D ASSETS/MAP/CHARACTER_SELECT_UI/CHARACTER_SELECT/Character_Select_Sky.unity
-    guid: 2afe3b6addb03a24cba4a44ad12db704
   - enabled: 1
     path: Assets/3D ASSETS/MAP/LEVEL_2/SCENES/LEVEL_2_COMPLETE.unity
     guid: a654bbf2f543cdd428729f596b69bc24
   - enabled: 1
-    path: Assets/Scenes/Tutorial/TUTORIAL_VERTICAL_SLICE.unity
+    path: Assets/SCENES/Tutorial/TUTORIAL_VERTICAL_SLICE.unity
     guid: b90d217391105664786b42e23c96633d
   m_configObjects: {}

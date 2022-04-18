@@ -22,7 +22,7 @@ public class PlayerJoinCount : MonoBehaviour
     [Header("Counts")]
     public int joinCount;
     public int readyCount;
-    public GameObject sky;
+    public bool sky;
 
     [Header("Debug")]
     public bool DEBUG_Player1Only;
@@ -152,11 +152,11 @@ public class PlayerJoinCount : MonoBehaviour
         ReadyLoad();
         SetText();
 
-        if(readyToLoad && firstScene && sky == null)
+        if(readyToLoad && firstScene && !sky)
         {
             SceneManager.LoadScene(3);
         }
-        else if(readyToLoad && firstScene && sky != null)
+        else if(readyToLoad && firstScene && sky)
         {
             SceneManager.LoadScene(4);
         }
