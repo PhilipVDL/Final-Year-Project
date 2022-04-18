@@ -5,6 +5,7 @@ using UnityEngine;
 public class WinState : MonoBehaviour
 {
     FinishLine finish;
+    SFXScript sfx;
     public ObstaclesOnMap obstaclesOnMap;
     public GameObject playerPrefab;
     public GameObject[] players;
@@ -26,6 +27,7 @@ public class WinState : MonoBehaviour
     {
         spawns = GameObject.FindGameObjectsWithTag("Start Spawn");
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
+        sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map").GetComponent<ObstaclesOnMap>();
         maincamera = GameObject.Find("Main Camera");
         camController = maincamera.GetComponent<CameraController>();
@@ -72,6 +74,7 @@ public class WinState : MonoBehaviour
             {
                 win = true;
                 winnerNumber = player;
+                sfx.PlaySFX(sfx.levelComplete);
             }
         }
     }

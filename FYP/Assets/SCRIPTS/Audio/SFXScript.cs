@@ -7,7 +7,6 @@ public class SFXScript : MonoBehaviour
     public GameObject SFXPrefab;
 
     [Header("SFX")]
-    public AudioClip obstaclePlaced;
     public AudioClip offscreenEliminated;
     public AudioClip pickupObstacle;
     public AudioClip playerCollide;
@@ -15,6 +14,9 @@ public class SFXScript : MonoBehaviour
     public AudioClip Jump;
     public AudioClip obstacleCollide;
     public AudioClip timeRunningOut;
+    public AudioClip _321Go;
+    public AudioClip levelComplete;
+    public AudioClip placeObstacle;
 
     public void PlaySFX(AudioClip clip)
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerObstaclesRacePlace : MonoBehaviour
 {
     ObstacleInventory inventory;
+    SFXScript sfx;
 
     public GameObject previewPrefab;
     private GameObject obstaclesOnMap;
@@ -17,6 +18,7 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
     private void Start()
     {
         inventory = GetComponent<ObstacleInventory>();
+        sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map");
     }
 
@@ -65,6 +67,7 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
             obstacle.transform.parent = obstaclesOnMap.transform; //unparent
             inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
             Destroy(preview); //delete preview
+            sfx.PlaySFX(sfx.placeObstacle);
         }
     }
 }

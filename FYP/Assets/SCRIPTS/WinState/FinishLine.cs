@@ -5,6 +5,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
     TeamObjectivesManager TOM;
+    SFXScript sfx;
     public WinState win;
     public int[] points = new int[4];
     public int finished;
@@ -22,6 +23,7 @@ public class FinishLine : MonoBehaviour
     private void Start()
     {
         TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
+        sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         win = GameObject.Find("WinState").GetComponent<WinState>();
         finished = 0;
         PlayerClones = GameObject.FindGameObjectsWithTag("Player");
@@ -94,6 +96,7 @@ public class FinishLine : MonoBehaviour
     {
         countdownSign.GetComponent<Animator>().Play(0);
         manager.GetComponent<MainManager>().countdown = 3;
+        sfx.PlaySFX(sfx._321Go);
 
         //end round
         win.endRound = true;

@@ -756,6 +756,7 @@ public class PlayerController : MonoBehaviour
                 //finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
                 //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
+                sfx.PlaySFX(sfx.Checkpoint);
             }
 
         }
@@ -768,7 +769,8 @@ public class PlayerController : MonoBehaviour
                 finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 5];
                 // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
-               // other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                // other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                sfx.PlaySFX(sfx.Checkpoint);
             }
 
         }
@@ -781,7 +783,8 @@ public class PlayerController : MonoBehaviour
                 finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 9];
                 // finishLine.PlayerClones[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
                 finishLine.PlayerClones[i + 1].transform.position = currentSpawn.transform.position;
-              //  other.GetComponent<Checkpoint>().notifiers[2].SetActive(true);
+                //  other.GetComponent<Checkpoint>().notifiers[2].SetActive(true);
+                sfx.PlaySFX(sfx.Checkpoint);
             }
 
         }
@@ -808,6 +811,7 @@ public class PlayerController : MonoBehaviour
                     }
                     //checkpointActivations[0].SetActive(true);
                     //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
+                    sfx.PlaySFX(sfx.Checkpoint);
                     break;
                 case "Checkpoint 2":
                     switch (playerNumber)
@@ -825,8 +829,9 @@ public class PlayerController : MonoBehaviour
                             currentSpawn = Checkpoints[7];
                             break;
                     }
-                   //checkpointActivations[1].SetActive(true);
-                   //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                    //checkpointActivations[1].SetActive(true);
+                    //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                    sfx.PlaySFX(sfx.Checkpoint);
                     break;
                 case "Checkpoint 3":
                     switch (playerNumber)
@@ -846,6 +851,7 @@ public class PlayerController : MonoBehaviour
                     }
                     //checkpointActivations[2].SetActive(true);
                     //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                    sfx.PlaySFX(sfx.Checkpoint);
                     break;
             }
         }
