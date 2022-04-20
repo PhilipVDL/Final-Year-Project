@@ -5,6 +5,7 @@ using System.Linq;
 
 public class TeamObjectivesManager : MonoBehaviour
 {
+    EndDistance end;
     public int numberOfObjectives;
     public List<string> currentObjectives;
     public string[] allObjectives;
@@ -22,9 +23,7 @@ public class TeamObjectivesManager : MonoBehaviour
     private PlayerObstaclesRacePlace[] _playerObstacles;
 
     [Header("Formation")]
-    public bool allPlayersDifferentType;
-    public List<int> playerTypes;
-    private PlayerAttributes[] _playerAttributes;
+    public bool checkpointRespawned;
 
     [Header("Don't Look Down")]
     public bool noPlayerFell;
@@ -43,10 +42,15 @@ public class TeamObjectivesManager : MonoBehaviour
 
     [Header("Over the Line")]
     public bool playerHitOverLine;
+
+    [Header("Dark Horse")]
+    public bool darkHorse;
+    public GameObject lastPlayer;
     #endregion
 
     private void Start()
     {
+        end = GameObject.Find("End").GetComponent<EndDistance>();
         GetAll();
         RandomObjectives();
     }
@@ -54,7 +58,7 @@ public class TeamObjectivesManager : MonoBehaviour
     void GetAll()
     {
         GetCollisionCourse();
-        GetFormation();
+        //GetFormation();
     }
 
     void GetCollisionCourse()
@@ -71,6 +75,7 @@ public class TeamObjectivesManager : MonoBehaviour
 
     void GetFormation()
     {
+        /*
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         int playerCount = players.Length;
         _playerAttributes = new PlayerAttributes[playerCount];
@@ -78,6 +83,7 @@ public class TeamObjectivesManager : MonoBehaviour
         {
             _playerAttributes[i] = players[i].GetComponent<PlayerAttributes>();
         }
+        */
     }
 
     void RandomObjectives()
@@ -114,6 +120,9 @@ public class TeamObjectivesManager : MonoBehaviour
                         playersPlacedObstacles[i] = false;
                     }
                     break;
+                case "Formation":
+                    checkpointRespawned = false;
+                    break;
                 case "Don't Look Down":
                     noPlayerFell = true;
                     break;
@@ -132,14 +141,25 @@ public class TeamObjectivesManager : MonoBehaviour
                 case "Over the Line":
                     playerHitOverLine = false;
                     break;
+                case "Dark Horse":
+                    StartCoroutine(DarkHorseActivated());
+                    break;
             }
         }
+    }
+
+    IEnumerator DarkHorseActivated()
+    {
+        darkHorse = false;
+        yield return new WaitForSeconds(6f);
+        lastPlayer = end.lastPlayer;
     }
 
     private void Update()
     {
         CollisionCourseCheck();
-        FormationCheck();
+        //FormationCheck();
+        DarkHorseCheck();
     }
 
     void CollisionCourseCheck()
@@ -180,6 +200,7 @@ public class TeamObjectivesManager : MonoBehaviour
 
     void FormationCheck()
     {
+        /*
         playerTypes.Clear(); //clear for new check
         foreach(PlayerAttributes att in _playerAttributes)
         {
@@ -194,6 +215,18 @@ public class TeamObjectivesManager : MonoBehaviour
         else
         {
             allPlayersDifferentType = false;
+        }
+        */
+    }
+
+    void DarkHorseCheck()
+    {
+        if(lastPlayer != null)
+        {
+            if (end.firstPlayer == lastPlayer)
+            {
+                darkHorse = true;
+            }
         }
     }
 }

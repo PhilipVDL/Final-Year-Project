@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EndDistance : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EndDistance : MonoBehaviour
     public float closestDist, furthestDist, playerDifference, leftDist, rightDist, horizontalDifference;
     public List<GameObject> playerPositions;
     public FinishLine finish;
+    public GameObject lastPlayer;
+    public GameObject firstPlayer;
 
     private void ListPlayers()
     {
@@ -25,6 +28,7 @@ public class EndDistance : MonoBehaviour
         PlayerDistance();
         HorizontalDistance();
         GetPlayerPositions();
+        FirstLastPlayer();
         SetPlayerPos();
     }
 
@@ -78,6 +82,12 @@ public class EndDistance : MonoBehaviour
             Vector3 B = b.transform.position;
             return (pos - A).sqrMagnitude.CompareTo((pos-B).sqrMagnitude);
         });
+    }
+
+    void FirstLastPlayer()
+    {
+        lastPlayer = playerPositions.Last();
+        firstPlayer = playerPositions.First();
     }
 
     void SetPlayerPos()
