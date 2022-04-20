@@ -6,6 +6,8 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
 {
     ObstacleInventory inventory;
     SFXScript sfx;
+    ControllerRumble rumble;
+    PlayerController controller;
 
     public GameObject previewPrefab;
     private GameObject obstaclesOnMap;
@@ -19,6 +21,8 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
     {
         inventory = GetComponent<ObstacleInventory>();
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
+        rumble = GetComponent<ControllerRumble>();
+        controller = GetComponent<PlayerController>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map");
     }
 
@@ -68,6 +72,7 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
             inventory.obstacles.RemoveAt(inventory.selectedIndex); //remove from inventory
             Destroy(preview); //delete preview
             sfx.PlaySFX(sfx.placeObstacle);
+            rumble.PlaceRumble(controller.playerNumber);
         }
     }
 }

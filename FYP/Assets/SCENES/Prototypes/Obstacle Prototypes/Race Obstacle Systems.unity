@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1327776278939099430, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
+      propertyPath: DEBUG_MaxPlace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1370262700781777219, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Enabled
       value: 0

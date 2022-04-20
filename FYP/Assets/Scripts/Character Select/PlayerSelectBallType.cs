@@ -94,15 +94,15 @@ public class PlayerSelectBallType : MonoBehaviour
     void EditValue()
     {
         //change target
-        if(Input.GetButtonDown("Vertical" + playerNumber))
+        if(Input.GetButtonDown("EditIndex" + playerNumber))
         {
-            if (Input.GetAxis("Vertical" + playerNumber) > 0)
+            if (Input.GetAxis("EditIndex" + playerNumber) > 0)
             {
                 currentEditIndex++;
                 IndexLoopBounds();
                 currentEditValue = lastValue[currentEditIndex];
             }
-            else if (Input.GetAxis("Vertical" + playerNumber) < 0)
+            else if (Input.GetAxis("EditIndex" + playerNumber) < 0)
             {
                 currentEditIndex--;
                 IndexLoopBounds();
