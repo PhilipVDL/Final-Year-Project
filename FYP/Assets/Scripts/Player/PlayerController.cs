@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     //components
+    Animator anim;
     Rigidbody prb;
     GridManager gm;
     RaycastHit hit;
@@ -163,6 +164,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         elimCount = 2.5f;
         finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         prb = GetComponent<Rigidbody>();
@@ -632,6 +634,7 @@ public class PlayerController : MonoBehaviour
         oiled = true;
         oilSpillTimer = oilSpillDuration;
         TOM.noObstacleCollisionsThisRound = false;
+        anim.SetBool("IsSlippy", true);
     }
 
     public void Deflated()
@@ -639,6 +642,7 @@ public class PlayerController : MonoBehaviour
         deflated = true;
         tackTimer = tackDuration;
         TOM.noObstacleCollisionsThisRound = false;
+        anim.SetBool("IsStuck", true);
     }
 
     public void Trampolined()
@@ -653,12 +657,14 @@ public class PlayerController : MonoBehaviour
         speedPadded = true;
         padTimer = padDuration;
         TOM.noObstacleCollisionsThisRound = false;
+        anim.SetBool("IsDizzy", true);
     }
 
     public void Lasered()
     {
         lasered = true;
         TOM.noObstacleCollisionsThisRound = false;
+        anim.SetBool("IsDizzy", true);
     }
 
     void ObstacleTimers()
