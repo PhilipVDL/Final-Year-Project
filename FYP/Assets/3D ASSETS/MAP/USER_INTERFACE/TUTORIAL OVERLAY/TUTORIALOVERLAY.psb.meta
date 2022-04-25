@@ -98,11 +98,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 210
-      y: 377
-      width: 87
-      height: 87
-    spriteID: 85c9a168a06a5dc4eb777c2851a2bcfd
+      x: 4
+      y: 152
+      width: 546
+      height: 140
+    spriteID: 8e3d0084688e0f64f8e4962e4e62e94e
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -112,29 +112,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -337, y: -118}
-  - name: Line 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 961
-      y: 245
-      width: 56
-      height: 10
-    spriteID: 8b1d55ad754639941956582a3f8c34d0
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 614, y: -292}
+    uvTransform: {x: -110, y: -316}
   - name: /
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -142,77 +120,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 961
-      y: 149
-      width: 26
-      height: 88
-    spriteID: 4919c6ca228831d4e9478dc52cfc61a4
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 443, y: -348}
-  - name: Jump
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 454
-      y: 149
-      width: 194
-      height: 75
-    spriteID: cc041b633f213a04684dc5f4d5fbaf54
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 315, y: -356}
-  - name: A
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 114
-      y: 377
-      width: 88
-      height: 88
-    spriteID: 0cb4d32579194594f83a8124ba764367
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -307, y: -118}
-  - name: Rectangle 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
+      x: 558
+      y: 152
       width: 544
-      height: 137
-    spriteID: 3215305097ca80648a37291e870acb13
+      height: 140
+    spriteID: a14317d581ed4b343a7fee59db979ebf
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -222,85 +134,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -110, y: -467}
-  - name: Left Stick All
+    uvTransform: {x: 443, y: -153}
+  - name: Objects placed will appear next round
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 851
-      y: 149
-      width: 102
-      height: 103
-    spriteID: 5c52246ed7efbf545bf69ed0346c8e95
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 429, y: -179}
-  - name: Line 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 961
-      y: 263
-      width: 56
-      height: 10
-    spriteID: a9acc5e2b8947ee448778553e4bab851
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 613, y: -111}
-  - name: Move
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 656
-      y: 149
-      width: 187
-      height: 75
-    spriteID: 0fdddb419d1144d4891a864ed9410317
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 512, y: -193}
-  - name: Rectangle 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 556
+      x: 4
       y: 4
-      width: 442
-      height: 137
-    spriteID: 98867b4207ac93d4c9777b8d670c93e1
+      width: 1631
+      height: 140
+    spriteID: db853b54464fff344b920d83254b8ea1
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -310,7 +156,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 441, y: -304}
+    uvTransform: {x: -111, y: -138}
   - name: Left Stick All
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -318,11 +164,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 377
-      width: 102
-      height: 103
-    spriteID: 0e7eb5fec89715c46a7b515be601abf2
+      x: 1110
+      y: 152
+      width: 444
+      height: 140
+    spriteID: 8bfb71ad6f20e5e459f4f366d4f55c6b
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -332,95 +178,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -417, y: -277}
-  - name: Line 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 851
-      y: 260
-      width: 56
-      height: 10
-    spriteID: abaeb87da6d6dac46a847767ff2da719
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 504, y: -440}
-  - name: Move
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 294
-      width: 187
-      height: 75
-    spriteID: efaa4f865ce76194fb9b1c10ec553d31
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -139, y: -374}
-  - name: Rectangle 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 149
-      width: 442
-      height: 137
-    spriteID: 3f92977bb576cee428bf66300cbefada
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -110, y: -485}
-  - name: Layer 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 915
-      y: 260
-      width: 0
-      height: 0
-    spriteID: fd942a12c8577f94197919a3c5fe3949
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -1005, y: -820}
+    uvTransform: {x: 996, y: -479}
   characterData:
     bones: []
     parts: []
@@ -440,16 +198,16 @@ ScriptedImporter:
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
   importHiddenLayers: 0
-  importedTextureWidth: 1024
-  importedTextureHeight: 1024
+  importedTextureWidth: 2048
+  importedTextureHeight: 2048
   documentSize: {x: 1920, y: 1080}
   paperDollMode: 0
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
   spriteCategoryList:
     categories: []
-  textureActualWidth: 1024
-  textureActualHeight: 1024
+  textureActualWidth: 2048
+  textureActualHeight: 2048
   spritePackingTag: 
   resliceFromLayer: 0
   mosaicPSDLayers: []
@@ -458,107 +216,30 @@ ScriptedImporter:
     spriteName: Cross
     isGroup: 0
     parentIndex: -1
-    spriteID: 85c9a168a06a5dc4eb777c2851a2bcfd
-    layerID: 237
-    mosaicPosition: {x: 210, y: 377}
-  - name: Line 3
-    spriteName: Line 3
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 8b1d55ad754639941956582a3f8c34d0
-    layerID: 234
-    mosaicPosition: {x: 961, y: 245}
+    spriteID: 8e3d0084688e0f64f8e4962e4e62e94e
+    layerID: 261
+    mosaicPosition: {x: 4, y: 152}
   - name: /
     spriteName: /
     isGroup: 0
     parentIndex: -1
-    spriteID: 4919c6ca228831d4e9478dc52cfc61a4
-    layerID: 238
-    mosaicPosition: {x: 961, y: 149}
-  - name: Jump
-    spriteName: Jump
+    spriteID: a14317d581ed4b343a7fee59db979ebf
+    layerID: 262
+    mosaicPosition: {x: 558, y: 152}
+  - name: Objects placed will appear next round
+    spriteName: Objects placed will appear next round
     isGroup: 0
     parentIndex: -1
-    spriteID: cc041b633f213a04684dc5f4d5fbaf54
-    layerID: 233
-    mosaicPosition: {x: 454, y: 149}
-  - name: A
-    spriteName: A
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 0cb4d32579194594f83a8124ba764367
-    layerID: 236
-    mosaicPosition: {x: 114, y: 377}
-  - name: Rectangle 1
-    spriteName: Rectangle 1
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 3215305097ca80648a37291e870acb13
-    layerID: 232
+    spriteID: db853b54464fff344b920d83254b8ea1
+    layerID: 263
     mosaicPosition: {x: 4, y: 4}
   - name: Left Stick All
     spriteName: Left Stick All
     isGroup: 0
     parentIndex: -1
-    spriteID: 5c52246ed7efbf545bf69ed0346c8e95
-    layerID: 242
-    mosaicPosition: {x: 851, y: 149}
-  - name: Line 3
-    spriteName: Line 3
-    isGroup: 0
-    parentIndex: -1
-    spriteID: a9acc5e2b8947ee448778553e4bab851
-    layerID: 241
-    mosaicPosition: {x: 961, y: 263}
-  - name: Move
-    spriteName: Move
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 0fdddb419d1144d4891a864ed9410317
-    layerID: 240
-    mosaicPosition: {x: 656, y: 149}
-  - name: Rectangle 1
-    spriteName: Rectangle 1
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 98867b4207ac93d4c9777b8d670c93e1
-    layerID: 239
-    mosaicPosition: {x: 556, y: 4}
-  - name: Left Stick All
-    spriteName: Left Stick All
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 0e7eb5fec89715c46a7b515be601abf2
-    layerID: 231
-    mosaicPosition: {x: 4, y: 377}
-  - name: Line 3
-    spriteName: Line 3
-    isGroup: 0
-    parentIndex: -1
-    spriteID: abaeb87da6d6dac46a847767ff2da719
-    layerID: 230
-    mosaicPosition: {x: 851, y: 260}
-  - name: Move
-    spriteName: Move
-    isGroup: 0
-    parentIndex: -1
-    spriteID: efaa4f865ce76194fb9b1c10ec553d31
-    layerID: 229
-    mosaicPosition: {x: 4, y: 294}
-  - name: Rectangle 1
-    spriteName: Rectangle 1
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 3f92977bb576cee428bf66300cbefada
-    layerID: 226
-    mosaicPosition: {x: 4, y: 149}
-  - name: Layer 1
-    spriteName: Layer 1
-    isGroup: 0
-    parentIndex: -1
-    spriteID: fd942a12c8577f94197919a3c5fe3949
-    layerID: 225
-    mosaicPosition: {x: 915, y: 260}
+    spriteID: 8bfb71ad6f20e5e459f4f366d4f55c6b
+    layerID: 260
+    mosaicPosition: {x: 1110, y: 152}
   sharedRigPSDLayers: []
   generateGOHierarchy: 0
   textureAssetName: TUTORIALOVERLAY Texture
