@@ -8,8 +8,7 @@ public class MenuNav : MonoBehaviour
 
     public GameObject[] screens;
     public bool currentScreen;
-    public EventSystem nav;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,17 +26,18 @@ public class MenuNav : MonoBehaviour
 
         if (screens[0] == true)
         {
-            nav.GetComponent<EventSystem>().SetSelectedGameObject(ScreeensFirstButtons[1]);
+            EventSystem.current.SetSelectedGameObject(ScreeensFirstButtons[1]);
         }
     }
 
     public void SetActiveButtonStart()
     {
 
-        if (screens[1] == true)
+        if (screens[1] == true || screens[2] == true)
         {
-            nav.GetComponent<EventSystem>().SetSelectedGameObject(ScreeensFirstButtons[0]);
+            EventSystem.current.SetSelectedGameObject(ScreeensFirstButtons[0]);
         }
+        
     }
 
     public void SetActiveButtonPlay()
@@ -45,9 +45,11 @@ public class MenuNav : MonoBehaviour
 
         if (screens[0] == true)
         {
-            nav.GetComponent<EventSystem>().SetSelectedGameObject(ScreeensFirstButtons[2]);
+            EventSystem.current.SetSelectedGameObject(ScreeensFirstButtons[2]);
         }
     }
+
+    
 }
     
  
