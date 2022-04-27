@@ -2459,15 +2459,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 211
+      value: 1079.4
       objectReference: {fileID: 0}
     - target: {fileID: 2284794791762200930, guid: 37b951753b7e6024fbfbf5a2f35f9d30, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8026,7 +8026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXPrefab: {fileID: 4479175560544367332, guid: 6efdb0c53d278cc4c874f9f253be918d, type: 3}
-  obstaclePlaced: {fileID: 8300000, guid: 2e4d8f53d1db28a489b0cffcb46be50b, type: 3}
   offscreenEliminated: {fileID: 0}
   pickupObstacle: {fileID: 0}
   playerCollide: {fileID: 0}
@@ -8034,6 +8033,9 @@ MonoBehaviour:
   Jump: {fileID: 0}
   obstacleCollide: {fileID: 0}
   timeRunningOut: {fileID: 0}
+  _321Go: {fileID: 0}
+  levelComplete: {fileID: 0}
+  placeObstacle: {fileID: 0}
 --- !u!4 &837820052
 Transform:
   m_ObjectHideFlags: 0
@@ -12871,7 +12873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2475178424084400079, guid: 5d0de16c01fa77446b464f943dc34121, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2475178424084400079, guid: 5d0de16c01fa77446b464f943dc34121, type: 3}
       propertyPath: m_LocalPosition.x
