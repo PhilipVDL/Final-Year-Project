@@ -188,13 +188,35 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 7834203572012907259, guid: dcfbf6b608ae29a4a9b793c8e3fa9598, type: 3}
   - {fileID: 6619615042370057031, guid: 9c00392b1dbe6ae47ae2f252c94ddaad, type: 3}
+  - {fileID: 5612755930087069722, guid: a3e44c77a73d3194eb2f3cee6dad4aa8, type: 3}
+  - {fileID: 3284131489891784162, guid: 62fcea28481ce53458bc2637471abb2b, type: 3}
+  - {fileID: 6238496804061964178, guid: e557b2ea667e9394c9948c7bb4af9bfe, type: 3}
+  - {fileID: 5046737398523733010, guid: 02f48d0f7baba3d439da83408a17ed24, type: 3}
+  - {fileID: 1142554914321484133, guid: bd75d080d1bfe0b40baf0fa9dbba4d0c, type: 3}
+  - {fileID: 7767703393985636957, guid: 7f6cc8592659f8948bb9ea096760dbe3, type: 3}
+  - {fileID: 6756119580174171980, guid: fea7045afa0d7bd48b167fc57cf2c809, type: 3}
+  - {fileID: 7483560565635918755, guid: 01cd571f7a16dc14d87244f333fab608, type: 3}
+  - {fileID: 2618685203722846881, guid: 866917beb88c4994396c440eda402fee, type: 3}
+  - {fileID: 3182539319741204467, guid: 96b81623ea68d04429f445d2d86ee34e, type: 3}
+  - {fileID: 5116731085172608220, guid: ed4c81f7f00b54b4dafca3f0443157e8, type: 3}
+  - {fileID: 3217401755073189636, guid: e3b23cc725dccd34286bdf06d8a14074, type: 3}
+  - {fileID: 675176191786046375, guid: 7c726722201547644bb07cf421b23ee6, type: 3}
+  - {fileID: 7022066617059651136, guid: 2112e3e42b5156e49951b0200a07ea99, type: 3}
+  - {fileID: 6565982780093623029, guid: 4cbe0bc8b72ac2f40af78f64ba9d2c78, type: 3}
   currentHat: {fileID: 0}
+  currentHatPrefab: {fileID: 0}
   glasses:
   - {fileID: 0}
   - {fileID: 6665123476746033866, guid: bab892eb66af5d44da47d07b42a4e206, type: 3}
   - {fileID: 5951205959184872350, guid: dff2757b6b27eb84ebf6076c21fcd37b, type: 3}
+  - {fileID: 2827118319289291169, guid: 2fd2b73d5d9baf74ba07a71f9b72f5da, type: 3}
   currentGlasses: {fileID: 0}
+  currentGlassesPrefab: {fileID: 0}
   moustaches:
   - {fileID: 0}
   - {fileID: 6112337705121918571, guid: 5f795e6ef94129f4b9b0d6c656ddc7b1, type: 3}
+  - {fileID: 4036335528437933006, guid: 9e7a242afdf07f944a5752c1a18ab034, type: 3}
+  - {fileID: 8825191241538859586, guid: 24186b36d99d65a4c840546aecff4d02, type: 3}
+  - {fileID: 5620528079158442607, guid: fb7b181522f9d2840965ae5e1fefc938, type: 3}
   currentMoustache: {fileID: 0}
+  currentMoustachePrefab: {fileID: 0}
