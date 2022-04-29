@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fire Hydrant Material
+  m_Name: Dizzy Spinner Material
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 1ffeffc37096e734aaaaed5f00b28043, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3fe5cb4cbc7e59e4d90552119d4d6bca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,19 +40,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 16dc494c9b12a234c968257ffbc7760e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c7acd02d7061854ab97e087f87c328c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b62339bc633a84f4ea78cbead32c1e70, type: 3}
+        m_Texture: {fileID: 2800000, guid: ede9565e864e5eb43a21bf3d7c60e6cf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: fe72cb642451c1b42a9da5c08850937d, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce79a1075ac079b478a0a1077592e634, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 3df6a466f1b890f49a2c3b53691c2691, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5ec4f2d777b647f478ee8434eeab9edd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -62,9 +62,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.824
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.539
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

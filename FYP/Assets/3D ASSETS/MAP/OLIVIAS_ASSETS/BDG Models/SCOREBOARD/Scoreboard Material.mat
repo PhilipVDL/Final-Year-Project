@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fire Hydrant Material
+  m_Name: Scoreboard Material
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 1ffeffc37096e734aaaaed5f00b28043, type: 3}
+        m_Texture: {fileID: 2800000, guid: 40e778ab3b295cd41b66c5c50667abbc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,19 +40,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 16dc494c9b12a234c968257ffbc7760e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 275467d2d889fab4dbb44b973bac861d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b62339bc633a84f4ea78cbead32c1e70, type: 3}
+        m_Texture: {fileID: 2800000, guid: f76bc2bb83da91949a4b8be8c949d93c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: fe72cb642451c1b42a9da5c08850937d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8493f1c56970f7b4b9a745eb4aef76f9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 3df6a466f1b890f49a2c3b53691c2691, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8136379ec71ab5747a50e741f247ec0c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -62,9 +62,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.824
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.539
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

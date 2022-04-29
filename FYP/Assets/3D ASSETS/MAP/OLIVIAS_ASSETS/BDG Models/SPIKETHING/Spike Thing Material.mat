@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fire Hydrant Material
+  m_Name: Spike Thing Material
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 1ffeffc37096e734aaaaed5f00b28043, type: 3}
+        m_Texture: {fileID: 2800000, guid: 90790c77be3fc9f42bb9a6b720d2ba3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,19 +40,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 16dc494c9b12a234c968257ffbc7760e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 71b0d3570a965cc48a85549fd1e9da95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b62339bc633a84f4ea78cbead32c1e70, type: 3}
+        m_Texture: {fileID: 2800000, guid: e479308fb014a554b95631fc1a8ac2a1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: fe72cb642451c1b42a9da5c08850937d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5e7b0334e598034459527c90fe2a3dfb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 3df6a466f1b890f49a2c3b53691c2691, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0415760fc639d654984e423c9b0e3275, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -62,9 +62,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.824
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.539
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

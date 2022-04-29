@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fire Hydrant Material
+  m_Name: Wooden Debris Small Material
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 1ffeffc37096e734aaaaed5f00b28043, type: 3}
+        m_Texture: {fileID: 2800000, guid: c8b18db00d36ad0458db6c41abd5d496, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,19 +40,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 16dc494c9b12a234c968257ffbc7760e, type: 3}
+        m_Texture: {fileID: 2800000, guid: ac5863cecf5e8a84292c41541ca623df, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b62339bc633a84f4ea78cbead32c1e70, type: 3}
+        m_Texture: {fileID: 2800000, guid: 933856e1a271ca240973ecc76395b237, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: fe72cb642451c1b42a9da5c08850937d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94087fc03bdaea4439d248854ec83508, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 3df6a466f1b890f49a2c3b53691c2691, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9804df50cc1ba0d4b8d732dffd5d6a1c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -62,9 +62,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.824
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.539
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
