@@ -85,7 +85,7 @@ public class FinishLine : MonoBehaviour
 
     private void Update()
     {
-        GetPlayers();
+       // GetPlayers();
     }
 
     void GetPlayers()

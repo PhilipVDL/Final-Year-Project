@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
         particleSys = GameObject.Find("UniParticle");
 
         gameObject.name = "Player " + playerNumber;
+        Checkpoints = GameObject.FindGameObjectsWithTag("CP");
     }
 
     void GetSpawnPos()
@@ -812,60 +813,31 @@ public class PlayerController : MonoBehaviour
             switch (other.tag)
             {
                 case "Checkpoint 1":
-                    switch (playerNumber)
                     {
-                        case 1:
-                            currentSpawn = Checkpoints[0];
-                            break;
-                        case 2:
-                            currentSpawn = Checkpoints[1];
-                            break;
-                        case 3:
-                            currentSpawn = Checkpoints[2];
-                            break;
-                        case 4:
-                            currentSpawn = Checkpoints[3];
-                            break;
+                        for(int i = 0; i < 4; i++)
+                        {
+                            finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[0];
+                        }
                     }
-                    //checkpointActivations[0].SetActive(true);
-                    //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
+                    
                     sfx.PlaySFX(sfx.Checkpoint);
                     break;
                 case "Checkpoint 2":
-                    switch (playerNumber)
                     {
-                        case 1:
-                            currentSpawn = Checkpoints[4];
-                            break;
-                        case 2:
-                            currentSpawn = Checkpoints[5];
-                            break;
-                        case 3:
-                            currentSpawn = Checkpoints[6];
-                            break;
-                        case 4:
-                            currentSpawn = Checkpoints[7];
-                            break;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[1];
+                        }
                     }
-                    //checkpointActivations[1].SetActive(true);
-                    //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
+                    
                     sfx.PlaySFX(sfx.Checkpoint);
                     break;
                 case "Checkpoint 3":
-                    switch (playerNumber)
                     {
-                        case 1:
-                            currentSpawn = Checkpoints[8];
-                            break;
-                        case 2:
-                            currentSpawn = Checkpoints[9];
-                            break;
-                        case 3:
-                            currentSpawn = Checkpoints[10];
-                            break;
-                        case 4:
-                            currentSpawn = Checkpoints[11];
-                            break;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
+                        }
                     }
                     //checkpointActivations[2].SetActive(true);
                     //other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
