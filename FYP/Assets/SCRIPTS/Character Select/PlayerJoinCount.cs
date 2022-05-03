@@ -23,6 +23,7 @@ public class PlayerJoinCount : MonoBehaviour
     public int joinCount;
     public int readyCount;
     public bool sky;
+    public bool foosball;
 
     [Header("Debug")]
     public bool DEBUG_Player1Only;
@@ -58,7 +59,7 @@ public class PlayerJoinCount : MonoBehaviour
     {
         if (firstScene)
         {
-            joinedandReady[0].text = joinCount.ToString();
+            joinedandReady[0].text = joinCount.ToString(); 
             joinedandReady[1].text = readyCount.ToString();
         }
     }
@@ -152,13 +153,17 @@ public class PlayerJoinCount : MonoBehaviour
         ReadyLoad();
         SetText();
 
-        if(readyToLoad && firstScene && !sky)
+        if(readyToLoad && firstScene && !sky && !foosball)
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
         else if(readyToLoad && firstScene && sky)
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(5);
+        }
+        else if (readyToLoad && firstScene && foosball)
+        {
+            SceneManager.LoadScene(6);
         }
     }
 

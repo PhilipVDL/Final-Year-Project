@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject PauseCanvas;
-     void Update()
+    public GameObject PauseScreen;
+    public GameObject SetttingsScreen;
+
+   
+    void Update()
     {
         Pause();   
     }
@@ -14,9 +17,19 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            PauseCanvas.SetActive(true);
+            PauseScreen.SetActive(true);
             Time.timeScale = 0;
         }
-       
+        if((Input.GetKey(KeyCode.Escape) && PauseScreen == true))
+        {
+            PauseScreen.SetActive(false);
+        }
+        else if(Input.GetKey(KeyCode.Escape) && SetttingsScreen == true)
+        {
+            SetttingsScreen.SetActive(false);
+        }
+
+        
+            
     }
 }
