@@ -12,12 +12,18 @@ EditorBuildSettings:
     path: Assets/3D ASSETS/MAP/CHARACTER_SELECT_UI/CHARACTER_SELECT/CHARACTER_SELECT_PINBALL.unity
     guid: a3d81f91259ae7a41a13ffda8411a868
   - enabled: 1
-    path: Assets/3D ASSETS/MAP/CHARACTER_SELECT_UI/CHARACTER_SELECT/CHARACTER_SELECT_SKY.unity
+    path: Assets/3D ASSETS/MAP/CHARACTER_SELECT_UI/CHARACTER_SELECT/Character_Select_Sky.unity
     guid: 710480bf29e4a9d4192bdc0c4cde13fb
+  - enabled: 1
+    path: Assets/Scenes/Character_Select_Foosball.unity
+    guid: bec3cb30aee83ef4680a433d1a182e81
   - enabled: 1
     path: Assets/3D ASSETS/MAP/LEVEL_2/SCENES/LEVEL_2_COMPLETE.unity
     guid: a654bbf2f543cdd428729f596b69bc24
   - enabled: 1
-    path: Assets/SCENES/Tutorial/TUTORIAL_VERTICAL_SLICE.unity
+    path: Assets/Scenes/Tutorial/TUTORIAL_VERTICAL_SLICE.unity
     guid: b90d217391105664786b42e23c96633d
+  - enabled: 1
+    path: Assets/3D ASSETS/MAP/FOOSBALL_LEVEL/FOOSBALL_LEVEL.unity
+    guid: b32546575a606de4f8782dbdf8e4a9a0
   m_configObjects: {}
