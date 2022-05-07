@@ -1,0 +1,593 @@
+fileFormatVersion: 2
+guid: afb3b520b3a4a044c93d2bf69eedbe6e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: 'FOOLSBALL: Place an obstacle thats puts you into the lead.'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 590
+      width: 629
+      height: 49
+    spriteID: ff1d0c442d13d4e4fab303330d06276d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -183, y: 144}
+  - name: 'SCORE: Come first in every round in foosball.'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 531
+      y: 761
+      width: 485
+      height: 49
+    spriteID: 9dc8f4e0f2bc4c642927ba06d93a4cd8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 273, y: 259}
+  - name: 'Aim of the game: Cause a player to get hit back.'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 761
+      width: 519
+      height: 49
+    spriteID: 2fd58851ff0112f4f86d02850b90f319
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -237, y: 203}
+  - name: 'Avoidance: Don''t get hit back.'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 657
+      y: 476
+      width: 341
+      height: 49
+    spriteID: c19a5ac0ee4826d4eb1c128bfee9a4db
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 327, y: -138}
+  - name: 'Collision Course: All players place one obstacle throughout a r'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 305
+      width: 735
+      height: 49
+    spriteID: b09a8602f01f972469e412fddd410dee
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -95, y: 301}
+  - name: 'Formation: All players respawn at the same checkpoint.'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 647
+      width: 611
+      height: 49
+    spriteID: b8a78a04282fb3f4799b0406b0e6f9ef
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -162, y: 583}
+  - name: 'Knockout: Knock out a competitor in the sky level.'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 704
+      width: 548
+      height: 49
+    spriteID: 8495486ce8f987f479b0f5c611098eb4
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -219, y: 582}
+  - name: 'Dreamwork: Complete all objectives in each round  (only applies'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 98
+      width: 661
+      height: 85
+    spriteID: f9fc6d940b4b4dd4a9622164083c124b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -163, y: -84}
+  - name: "Thread Carefully: Don\u2019t hit an obstacle for an entire round. "
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 476
+      width: 645
+      height: 49
+    spriteID: 3dc2b065cafc6a345b6304cf756a7f3b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -171, y: 205}
+  - name: "Don\u2019t Look Down: No one falls off for one round in the sky leve"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 419
+      width: 692
+      height: 49
+    spriteID: b29df8d03d08f1c4ea847b0af85fc2e1
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -144, y: 82}
+  - name: 'Dark horse: The player in last place catches up with the player'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 248
+      width: 769
+      height: 49
+    spriteID: 2c1cce0e6607fdc4980dcc3b1a82de30
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -108, y: -431}
+  - name: 'Collision Course: All players place one obstacle throughout a r'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 362
+      width: 735
+      height: 49
+    spriteID: ca8c388898076464983d952a3e75c4f7
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -130, y: -373}
+  - name: 'Dreamwork: Complete all objectives in each round  (only applies'
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 660
+      height: 86
+    spriteID: 7d9d043c48cc2a84983c44f16acfe893
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -171, y: -787}
+  - name: "Thread Carefully: Don\u2019t hit an obstacle for an entire round."
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 533
+      width: 644
+      height: 49
+    spriteID: 6fc23443cfb496e45bbc94f6c92733db
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -175, y: -351}
+  - name: "Can\u2019t touch this: Don\u2019t collide with any other player for an
+      en"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 191
+      width: 786
+      height: 49
+    spriteID: d9feff9a344a07a42b0168421183d7f8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -104, y: -749}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 1024
+  importedTextureHeight: 1024
+  documentSize: {x: 1000, y: 1000}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 1024
+  textureActualHeight: 1024
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: FOOSBALL
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 44
+    mosaicPosition: {x: 0, y: 0}
+  - name: 'FOOLSBALL: Place an obstacle thats puts you into the lead.'
+    spriteName: 'FOOLSBALL: Place an obstacle thats puts you into the lead.'
+    isGroup: 0
+    parentIndex: 0
+    spriteID: ff1d0c442d13d4e4fab303330d06276d
+    layerID: 55
+    mosaicPosition: {x: 4, y: 590}
+  - name: 'SCORE: Come first in every round in foosball.'
+    spriteName: 'SCORE: Come first in every round in foosball.'
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 9dc8f4e0f2bc4c642927ba06d93a4cd8
+    layerID: 54
+    mosaicPosition: {x: 531, y: 761}
+  - name: 'Aim of the game: Cause a player to get hit back.'
+    spriteName: 'Aim of the game: Cause a player to get hit back.'
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 2fd58851ff0112f4f86d02850b90f319
+    layerID: 53
+    mosaicPosition: {x: 4, y: 761}
+  - name: 'Avoidance: Don''t get hit back.'
+    spriteName: 'Avoidance: Don''t get hit back.'
+    isGroup: 0
+    parentIndex: 0
+    spriteID: c19a5ac0ee4826d4eb1c128bfee9a4db
+    layerID: 52
+    mosaicPosition: {x: 657, y: 476}
+  - name: SKYLEVEL
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 24
+    mosaicPosition: {x: 0, y: 0}
+  - name: 'Collision Course: All players place one obstacle throughout a r'
+    spriteName: 'Collision Course: All players place one obstacle throughout a r'
+    isGroup: 0
+    parentIndex: 5
+    spriteID: b09a8602f01f972469e412fddd410dee
+    layerID: 61
+    mosaicPosition: {x: 4, y: 305}
+  - name: 'Formation: All players respawn at the same checkpoint.'
+    spriteName: 'Formation: All players respawn at the same checkpoint.'
+    isGroup: 0
+    parentIndex: 5
+    spriteID: b8a78a04282fb3f4799b0406b0e6f9ef
+    layerID: 60
+    mosaicPosition: {x: 4, y: 647}
+  - name: 'Knockout: Knock out a competitor in the sky level.'
+    spriteName: 'Knockout: Knock out a competitor in the sky level.'
+    isGroup: 0
+    parentIndex: 5
+    spriteID: 8495486ce8f987f479b0f5c611098eb4
+    layerID: 59
+    mosaicPosition: {x: 4, y: 704}
+  - name: 'Dreamwork: Complete all objectives in each round  (only applies'
+    spriteName: 'Dreamwork: Complete all objectives in each round  (only applies'
+    isGroup: 0
+    parentIndex: 5
+    spriteID: f9fc6d940b4b4dd4a9622164083c124b
+    layerID: 58
+    mosaicPosition: {x: 4, y: 98}
+  - name: "Thread Carefully: Don\u2019t hit an obstacle for an entire round. "
+    spriteName: "Thread Carefully: Don\u2019t hit an obstacle for an entire round. "
+    isGroup: 0
+    parentIndex: 5
+    spriteID: 3dc2b065cafc6a345b6304cf756a7f3b
+    layerID: 57
+    mosaicPosition: {x: 4, y: 476}
+  - name: "Don\u2019t Look Down: No one falls off for one round in the sky leve"
+    spriteName: "Don\u2019t Look Down: No one falls off for one round in the sky
+      leve"
+    isGroup: 0
+    parentIndex: 5
+    spriteID: b29df8d03d08f1c4ea847b0af85fc2e1
+    layerID: 56
+    mosaicPosition: {x: 4, y: 419}
+  - name: PINBALL
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 35
+    mosaicPosition: {x: 0, y: 0}
+  - name: 'Dark horse: The player in last place catches up with the player'
+    spriteName: 'Dark horse: The player in last place catches up with the player'
+    isGroup: 0
+    parentIndex: 12
+    spriteID: 2c1cce0e6607fdc4980dcc3b1a82de30
+    layerID: 51
+    mosaicPosition: {x: 4, y: 248}
+  - name: 'Collision Course: All players place one obstacle throughout a r'
+    spriteName: 'Collision Course: All players place one obstacle throughout a r'
+    isGroup: 0
+    parentIndex: 12
+    spriteID: ca8c388898076464983d952a3e75c4f7
+    layerID: 50
+    mosaicPosition: {x: 4, y: 362}
+  - name: 'Dreamwork: Complete all objectives in each round  (only applies'
+    spriteName: 'Dreamwork: Complete all objectives in each round  (only applies'
+    isGroup: 0
+    parentIndex: 12
+    spriteID: 7d9d043c48cc2a84983c44f16acfe893
+    layerID: 49
+    mosaicPosition: {x: 4, y: 4}
+  - name: "Thread Carefully: Don\u2019t hit an obstacle for an entire round."
+    spriteName: "Thread Carefully: Don\u2019t hit an obstacle for an entire round."
+    isGroup: 0
+    parentIndex: 12
+    spriteID: 6fc23443cfb496e45bbc94f6c92733db
+    layerID: 48
+    mosaicPosition: {x: 4, y: 533}
+  - name: "Can\u2019t touch this: Don\u2019t collide with any other player for an
+      en"
+    spriteName: "Can\u2019t touch this: Don\u2019t collide with any other player
+      for an en"
+    isGroup: 0
+    parentIndex: 12
+    spriteID: d9feff9a344a07a42b0168421183d7f8
+    layerID: 47
+    mosaicPosition: {x: 4, y: 191}
+  sharedRigPSDLayers: []
+  generateGOHierarchy: 0
+  textureAssetName: UIACHIEVEMENTS Texture
+  prefabAssetName: UIACHIEVEMENTS Prefab
+  spriteLibAssetName: UIACHIEVEMENTS Sprite Lib
+  skeletonAssetName: UIACHIEVEMENTS Skeleton
+  secondarySpriteTextures: []
