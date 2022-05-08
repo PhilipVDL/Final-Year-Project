@@ -459,7 +459,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 44
     mosaicPosition: {x: 0, y: 0}
   - name: 'FOOLSBALL: Place an obstacle thats puts you into the lead.'
@@ -494,7 +494,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 24
     mosaicPosition: {x: 0, y: 0}
   - name: 'Collision Course: All players place one obstacle throughout a r'
@@ -544,7 +544,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 35
     mosaicPosition: {x: 0, y: 0}
   - name: 'Dark horse: The player in last place catches up with the player'
