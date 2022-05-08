@@ -7,35 +7,29 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseScreen;
     public GameObject SetttingsScreen;
 
-    public bool paused;
-
-
+   
     void Update()
     {
-      Pause();
+        Pause();   
     }
-
-    
 
     public void Pause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && paused == false)
+        if (Input.GetKey(KeyCode.Escape))
         {
             PauseScreen.SetActive(true);
-            paused = true;
             Time.timeScale = 0;
         }
-
-        else if(Input.GetKeyDown(KeyCode.Escape) && paused == true)
+        if((Input.GetKey(KeyCode.Escape) && PauseScreen == true))
         {
             PauseScreen.SetActive(false);
+        }
+        else if(Input.GetKey(KeyCode.Escape) && SetttingsScreen == true)
+        {
             SetttingsScreen.SetActive(false);
-            paused = false;
-            Time.timeScale = 1;
         }
 
-       
+        
+            
     }
-
-    
 }
