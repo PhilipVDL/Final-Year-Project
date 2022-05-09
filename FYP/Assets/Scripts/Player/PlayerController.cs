@@ -582,9 +582,10 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < deathHeight && !doesRespawn)
         {
             TOM.noPlayerFell = false;
-            if(knockbackObjectiveTimer > 0)
+            if(knockbackObjectiveTimer > 0 && !TOM.playerKnockout)
             {
                 TOM.playerKnockout = true;
+                TOM.ObjectivePoints();
             }
             Destroy(gameObject);
         }
@@ -595,9 +596,10 @@ public class PlayerController : MonoBehaviour
             // Instantiate(particleSys, transform.position, transform.rotation);
             currentSpeed = 0;
             TOM.noPlayerFell = false;
-            if (knockbackObjectiveTimer > 0)
+            if (knockbackObjectiveTimer > 0 && !TOM.playerKnockout)
             {
                 TOM.playerKnockout = true;
+                TOM.ObjectivePoints();
             }
         }
         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
@@ -610,9 +612,10 @@ public class PlayerController : MonoBehaviour
             //  particleSys.SetActive(true);
             //Instantiate(particleSys, transform.position, transform.rotation);
             TOM.noPlayerFell = false;
-            if (knockbackObjectiveTimer > 0)
+            if (knockbackObjectiveTimer > 0 && !TOM.playerKnockout)
             {
                 TOM.playerKnockout = true;
+                TOM.ObjectivePoints();
             }
         }
     }
@@ -752,9 +755,10 @@ public class PlayerController : MonoBehaviour
         {
             for(int i = 0; i < finishLine.currentPlayers.Length - 1; i++)
             {
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
                 {
                     TOM.checkpointRespawned = true;
+                    TOM.ObjectivePoints();
                 }
                 finishLine.currentPlayers[i + 1].SetActive(true);
                 finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
@@ -770,9 +774,10 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < finishLine.currentPlayers.Length -1; i++)
             {
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
                 {
                     TOM.checkpointRespawned = true;
+                    TOM.ObjectivePoints();
                 }
                 finishLine.currentPlayers[i + 1].SetActive(true);
                 finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
@@ -788,9 +793,10 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < finishLine.currentPlayers.Length - 1; i++)
             {
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
                 {
                     TOM.checkpointRespawned = true;
+                    TOM.ObjectivePoints();
                 }
                 finishLine.currentPlayers[i + 1].SetActive(true);
                 finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 8];

@@ -53,9 +53,10 @@ public class FinishLine : MonoBehaviour
             StartRound();
             GameObject.Find("UI").GetComponent<RankingUi>().getPlayers();
 
-            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0)
+            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0 && !TOM.playerHitOverLine)
             {
                 TOM.playerHitOverLine = true;
+                TOM.ObjectivePoints();
             }
 
           //  other.gameObject.GetComponent<PlayerController>().currentSpawn = other.gameObject.GetComponent<PlayerController>().spawn;
@@ -70,9 +71,10 @@ public class FinishLine : MonoBehaviour
             other.gameObject.SetActive(false);
             GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
 
-            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0)
+            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0 && !TOM.playerHitOverLine)
             {
                 TOM.playerHitOverLine = true;
+                TOM.ObjectivePoints();
             }
         }
     }
@@ -126,6 +128,39 @@ public class FinishLine : MonoBehaviour
         for (int i = 0; i < currentPlayers.Length; i++)
         {
             currentPlayers[i].GetComponent<PlayerController>().currentSpawn = currentPlayers[i].GetComponent<PlayerController>().spawn;
+        }
+    }
+
+    void CheckObjectives()
+    {
+        if (TOM.noPlayerCollisionsThisRound)
+        {
+            TOM.noPlayerCollisionsThisRound = false;
+            TOM.ObjectivePoints();
+        }
+
+        if (TOM.noObstacleCollisionsThisRound)
+        {
+            TOM.noObstacleCollisionsThisRound = false;
+            TOM.ObjectivePoints();
+        }
+
+        if (TOM.noPlayerFell)
+        {
+            TOM.noPlayerFell = false;
+            TOM.ObjectivePoints();
+        }
+
+        if (TOM.noPlayerOffCamera)
+        {
+            TOM.noPlayerOffCamera = false;
+            TOM.ObjectivePoints();
+        }
+
+        if (TOM.noPlayerHitBack)
+        {
+            TOM.noPlayerHitBack = false;
+            TOM.ObjectivePoints();
         }
     }
 }

@@ -37,9 +37,10 @@ public class ObstacleBouncePlayer : MonoBehaviour
             TOM.noObstacleCollisionsThisRound = false;
             TOM.noPlayerHitBack = false;
 
-            if(controller.knockbackObjectiveTimer > 0)
+            if(controller.knockbackObjectiveTimer > 0 && !TOM.playerHitBack)
             {
                 TOM.playerHitBack = true;
+                TOM.ObjectivePoints();
             }
         }
     }

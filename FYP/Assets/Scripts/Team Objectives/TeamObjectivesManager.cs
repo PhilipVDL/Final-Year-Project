@@ -6,6 +6,7 @@ using System.Linq;
 public class TeamObjectivesManager : MonoBehaviour
 {
     EndDistance end;
+    WinState win;
     public int numberOfObjectives;
     public List<string> currentObjectives;
     public string[] allObjectives;
@@ -48,9 +49,18 @@ public class TeamObjectivesManager : MonoBehaviour
     public GameObject lastPlayer;
     #endregion
 
+    public void ObjectivePoints()
+    {
+        for(int i = 0; i < win.scores.Length; i++)
+        {
+            win.scores[i] += 2;
+        }
+    }
+
     private void Start()
     {
         end = GameObject.Find("End").GetComponent<EndDistance>();
+        win = GameObject.Find("WinState").GetComponent<WinState>();
         GetAll();
         RandomObjectives();
     }
@@ -188,9 +198,10 @@ public class TeamObjectivesManager : MonoBehaviour
         }
 
         //if all placed, objective true
-        if(trueCount >= playersPlacedObstacles.Length)
+        if(trueCount >= playersPlacedObstacles.Length && !allPlayersPlaced)
         {
             allPlayersPlaced = true;
+            ObjectivePoints();
         }
         else
         {
@@ -223,9 +234,10 @@ public class TeamObjectivesManager : MonoBehaviour
     {
         if(lastPlayer != null)
         {
-            if (end.firstPlayer == lastPlayer)
+            if (end.firstPlayer == lastPlayer && !darkHorse)
             {
                 darkHorse = true;
+                ObjectivePoints();
             }
         }
     }
