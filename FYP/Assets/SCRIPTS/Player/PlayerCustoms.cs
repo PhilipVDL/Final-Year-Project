@@ -32,7 +32,10 @@ public class PlayerCustoms : MonoBehaviour
 
     private void Start()
     {
-        pjc = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
+        if (characterSelect)
+        {
+            pjc = GameObject.Find("PlayerJoinCount").GetComponent<PlayerJoinCount>();
+        }
     }
 
     private void Update()

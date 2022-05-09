@@ -16258,34 +16258,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &360876762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9174557629962939020, guid: 1b1c431d711eadf4589d2d8b9ea2eb43, type: 3}
-  m_PrefabInstance: {fileID: 620925109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &360876763 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9174557629962939021, guid: 1b1c431d711eadf4589d2d8b9ea2eb43, type: 3}
   m_PrefabInstance: {fileID: 620925109}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &360876764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360876762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec6b56cccf8b8e48951236567ec44c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptBoxes:
-  - {fileID: 291440336}
-  - {fileID: 582283045}
-  - {fileID: 298318549}
-  Player: {fileID: 1669131350}
-  duration: 0
 --- !u!1 &363447442
 GameObject:
   m_ObjectHideFlags: 0
@@ -36181,7 +36158,7 @@ MonoBehaviour:
   - {fileID: 291440336}
   - {fileID: 582283045}
   - {fileID: 298318549}
-  Player: {fileID: 0}
+  player: {fileID: 0}
   duration: 3
 --- !u!1 &869857531 stripped
 GameObject:
@@ -47564,7 +47541,7 @@ MonoBehaviour:
   - {fileID: 291440336}
   - {fileID: 582283045}
   - {fileID: 298318549}
-  Player: {fileID: 0}
+  player: {fileID: 0}
   duration: 3
 --- !u!1 &1150347238
 GameObject:
@@ -57788,11 +57765,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5543406982121833974, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5969064415414457383, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Mesh
@@ -57868,7 +57845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331225723004286651, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8444978536034656493, guid: 5d2ff77b9840b7e42b3ccdf30d16d172, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -69031,7 +69008,7 @@ MonoBehaviour:
   - {fileID: 291440336}
   - {fileID: 582283045}
   - {fileID: 298318549}
-  Player: {fileID: 0}
+  player: {fileID: 0}
   duration: 3
 --- !u!1 &1670653400 stripped
 GameObject:
@@ -75875,7 +75852,7 @@ MonoBehaviour:
   - {fileID: 291440336}
   - {fileID: 582283045}
   - {fileID: 298318549}
-  Player: {fileID: 0}
+  player: {fileID: 0}
   duration: 3
 --- !u!1 &1841319868 stripped
 GameObject:
@@ -91196,7 +91173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2284794791769480218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.99, y: 0.5, z: 2466.4}
+  m_LocalPosition: {x: 2.37, y: 0.5, z: 1258.59}
   m_LocalScale: {x: 1.9656, y: 1, z: 1}
   m_Children:
   - {fileID: 72740950020222227}
@@ -91352,7 +91329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7089378ebb6b9e349a3669bc3dee967e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSelect: 1
+  characterSelect: 0
   currentPlayers: 
   players: []
   playerMeshes: []

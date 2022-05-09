@@ -602,16 +602,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
         {
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].SetActive(true);
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].SetActive(true);
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].SetActive(true);
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].SetActive(true);
-
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[0].transform.position = currentSpawn.transform.position;
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[1].transform.position = currentSpawn.transform.position;
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[2].transform.position = currentSpawn.transform.position;
-            GameObject.Find("Finish").GetComponent<FinishLine>().Players[3].transform.position = currentSpawn.transform.position;
-            transform.position = currentSpawn.transform.position;
+            foreach(GameObject player in finishLine.Players)
+            {
+                player.SetActive(true);
+                player.transform.position = currentSpawn.transform.position;
+            }
             //  particleSys.SetActive(true);
             //Instantiate(particleSys, transform.position, transform.rotation);
             TOM.noPlayerFell = false;

@@ -5,40 +5,45 @@ using UnityEngine;
 public class TutorialPrompts : MonoBehaviour
 {
     public GameObject[] promptBoxes;
-    public GameObject Player;
+    public GameObject player;
+    PlayerController controller;
+    ObstacleInventory obsInv;
 
     public float duration;
 
     private bool moveTut = false;
     private bool jumpTut = false;
     private bool pickUpTut = false;
-    // Start is called before the first frame update
+
     void Start()
     {
-       
+        player = gameObject;
+        controller = player.GetComponent<PlayerController>();
+        obsInv = player.GetComponent<ObstacleInventory>();
     }
-
 
     void Prompts()
     {
-        if(Player.GetComponent<PlayerController>().grounded != true && jumpTut == false)
+        if(controller.grounded != true && jumpTut == false)
         {
             promptBoxes[1].SetActive(true);
             jumpTut = true;
         }
 
-        if (Player.GetComponent<PlayerController>().speeding == true && moveTut == false)
+        if (controller.speeding == true && moveTut == false)
         {
             promptBoxes[0].SetActive(true);
             moveTut = true;
         }
 
-        if(Player.GetComponent<ObstacleInventory>().obstacles[0] != null && pickUpTut == false)
+        if(obsInv.obstacles.Count > 0)
         {
-            promptBoxes[2].SetActive(true);
-            pickUpTut = true;
+            if (obsInv.obstacles[0] != null && pickUpTut == false)
+            {
+                promptBoxes[2].SetActive(true);
+                pickUpTut = true;
+            }
         }
-
     }
 
     void EndPrompts()
@@ -55,16 +60,11 @@ public class TutorialPrompts : MonoBehaviour
             promptBoxes[2].SetActive(false);
             duration = 0;
         }
-
     }
-    
-     void Update()
-    {
-        Player = this.gameObject;
-        Prompts();
-        
-        EndPrompts();
 
-       
+    void Update()
+    {
+        Prompts();
+        EndPrompts();
     }
 }

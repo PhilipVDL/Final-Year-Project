@@ -86,8 +86,11 @@ public class EndDistance : MonoBehaviour
 
     void FirstLastPlayer()
     {
-        lastPlayer = playerPositions.Last();
-        firstPlayer = playerPositions.First();
+        if(playerPositions.Count > 0)
+        {
+            lastPlayer = playerPositions.Last();
+            firstPlayer = playerPositions.First();
+        }
     }
 
     void SetPlayerPos()
