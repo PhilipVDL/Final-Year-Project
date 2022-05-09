@@ -9,7 +9,8 @@ public class FinishLine : MonoBehaviour
     public WinState win;
     public int[] points = new int[4];
     public int finished;
-    public GameObject[] Players;
+    public GameObject[] currentPlayers;
+    public GameObject[] startPlayers;
     public GameObject cam;
     public EndDistance end;
     public GameObject countdownSign;
@@ -25,7 +26,8 @@ public class FinishLine : MonoBehaviour
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
         win = GameObject.Find("WinState").GetComponent<WinState>();
         finished = 0;
-        Players = GameObject.FindGameObjectsWithTag("Player");
+        currentPlayers = GameObject.FindGameObjectsWithTag("Player");
+        StartCoroutine(GetStartPlayers());
         cam = GameObject.Find("Main Camera");
         manager = GameObject.Find("Background Tasks");
         countdownSign = GameObject.Find("SIGN");
@@ -33,10 +35,16 @@ public class FinishLine : MonoBehaviour
         sfx.PlaySFX(sfx._321Go);
     }
 
+    IEnumerator GetStartPlayers()
+    {
+        yield return new WaitForSeconds(0.1f);
+        startPlayers = GameObject.FindGameObjectsWithTag("Player");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //score
-        if (other.CompareTag("Player") && Players.Length == 1)
+        if (other.CompareTag("Player") && currentPlayers.Length == 1)
         {
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
             win.Score(player, points[finished]);
@@ -53,7 +61,7 @@ public class FinishLine : MonoBehaviour
           //  other.gameObject.GetComponent<PlayerController>().currentSpawn = other.gameObject.GetComponent<PlayerController>().spawn;
            // other.gameObject.transform.position = win.spawns[0].transform.position;
         }
-        else if(other.CompareTag("Player") && Players.Length != 1)
+        else if(other.CompareTag("Player") && currentPlayers.Length != 1)
         {
             finished++;
             int player = other.gameObject.GetComponent<PlayerController>().playerNumber;
@@ -85,12 +93,12 @@ public class FinishLine : MonoBehaviour
 
     private void Update()
     {
-       // GetPlayers();
+        GetPlayers();
     }
 
     void GetPlayers()
     {
-        Players = GameObject.FindGameObjectsWithTag("Player");
+        currentPlayers = GameObject.FindGameObjectsWithTag("Player");
     }
 
     public void StartRound()
@@ -105,19 +113,19 @@ public class FinishLine : MonoBehaviour
         //end round
         win.endRound = true;
 
-        for (int i = 0; i < Players.Length; i++)
+        for (int i = 0; i < currentPlayers.Length; i++)
         {
-            Players[i ].SetActive(true);
+            currentPlayers[i ].SetActive(true);
         }
 
-        for (int i = 0; i < Players.Length; i++)
+        for (int i = 0; i < currentPlayers.Length; i++)
         {
-            Players[i].transform.position = win.spawns[i].transform.position;
+            currentPlayers[i].transform.position = win.spawns[i].transform.position;
         }
 
-        for (int i = 0; i < Players.Length; i++)
+        for (int i = 0; i < currentPlayers.Length; i++)
         {
-            Players[i].GetComponent<PlayerController>().currentSpawn = Players[i].GetComponent<PlayerController>().spawn;
+            currentPlayers[i].GetComponent<PlayerController>().currentSpawn = currentPlayers[i].GetComponent<PlayerController>().spawn;
         }
     }
 }

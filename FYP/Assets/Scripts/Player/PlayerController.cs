@@ -602,7 +602,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
         {
-            foreach(GameObject player in finishLine.Players)
+            foreach(GameObject player in finishLine.startPlayers)
             {
                 player.SetActive(true);
                 player.transform.position = currentSpawn.transform.position;
@@ -750,17 +750,17 @@ public class PlayerController : MonoBehaviour
 
         if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
         {
-            for(int i = 0; i < finishLine.Players.Length - 1; i++)
+            for(int i = 0; i < finishLine.currentPlayers.Length - 1; i++)
             {
-                if (!finishLine.Players[i + 1].activeInHierarchy)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
                 {
                     TOM.checkpointRespawned = true;
                 }
-                finishLine.Players[i + 1].SetActive(true);
-                finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
-                finishLine.Players[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 1];
+                finishLine.currentPlayers[i + 1].SetActive(true);
+                finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i];
+                finishLine.currentPlayers[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 1];
                 //finishLine.Players[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
-                finishLine.Players[i + 1].transform.position = currentSpawn.transform.position;
+                finishLine.currentPlayers[i + 1].transform.position = currentSpawn.transform.position;
                 //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
                 sfx.PlaySFX(sfx.Checkpoint);
             }
@@ -768,17 +768,17 @@ public class PlayerController : MonoBehaviour
         }
         else if(GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 2"))
         {
-            for (int i = 0; i < finishLine.Players.Length -1; i++)
+            for (int i = 0; i < finishLine.currentPlayers.Length -1; i++)
             {
-                if (!finishLine.Players[i + 1].activeInHierarchy)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
                 {
                     TOM.checkpointRespawned = true;
                 }
-                finishLine.Players[i + 1].SetActive(true);
-                finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
-                finishLine.Players[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 5];
+                finishLine.currentPlayers[i + 1].SetActive(true);
+                finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 4];
+                finishLine.currentPlayers[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 5];
                 // finishLine.Players[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
-                finishLine.Players[i + 1].transform.position = currentSpawn.transform.position;
+                finishLine.currentPlayers[i + 1].transform.position = currentSpawn.transform.position;
                 // other.GetComponent<Checkpoint>().notifiers[1].SetActive(true);
                 sfx.PlaySFX(sfx.Checkpoint);
             }
@@ -786,17 +786,17 @@ public class PlayerController : MonoBehaviour
         }
         else if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 3"))
         {
-            for (int i = 0; i < finishLine.Players.Length - 1; i++)
+            for (int i = 0; i < finishLine.currentPlayers.Length - 1; i++)
             {
-                if (!finishLine.Players[i + 1].activeInHierarchy)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
                 {
                     TOM.checkpointRespawned = true;
                 }
-                finishLine.Players[i + 1].SetActive(true);
-                finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 8];
-                finishLine.Players[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 9];
+                finishLine.currentPlayers[i + 1].SetActive(true);
+                finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 8];
+                finishLine.currentPlayers[i + 1].GetComponent<PlayerController>().currentSpawn = Checkpoints[i + 9];
                 // finishLine.Players[i + 1].GetComponent<PlayerController>().particleSys.SetActive(true);
-                finishLine.Players[i + 1].transform.position = currentSpawn.transform.position;
+                finishLine.currentPlayers[i + 1].transform.position = currentSpawn.transform.position;
                 //  other.GetComponent<Checkpoint>().notifiers[2].SetActive(true);
                 sfx.PlaySFX(sfx.Checkpoint);
             }
@@ -811,7 +811,7 @@ public class PlayerController : MonoBehaviour
                     {
                         for(int i = 0; i < 4; i++)
                         {
-                            finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[0];
+                            finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[0];
                         }
                     }
                     
@@ -821,7 +821,7 @@ public class PlayerController : MonoBehaviour
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[1];
+                            finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[1];
                         }
                     }
                     
@@ -831,7 +831,7 @@ public class PlayerController : MonoBehaviour
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            finishLine.Players[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
+                            finishLine.currentPlayers[i].GetComponent<PlayerController>().currentSpawn = Checkpoints[2];
                         }
                     }
                     //checkpointActivations[2].SetActive(true);
