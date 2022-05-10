@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonScript : MonoBehaviour
 {
     public GameObject[] Levels;
+
  public void StartButton()
     {
         SceneManager.LoadScene(1);
