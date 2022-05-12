@@ -604,13 +604,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (transform.position.y < deathHeight && doesRespawn && GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1)
         {
-<<<<<<< HEAD
-            GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[0].SetActive(true);
-            GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[1].SetActive(true);
-            GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[2].SetActive(true);
-            GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[3].SetActive(true);
 
-=======
             foreach(GameObject player in finishLine.startPlayers)
             {
                 player.SetActive(true);
@@ -623,7 +617,6 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[2].SetActive(true);
             GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[3].SetActive(true);
 
->>>>>>> main
             GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[0].transform.position = currentSpawn.transform.position;
             GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[1].transform.position = currentSpawn.transform.position;
             GameObject.Find("Finish").GetComponent<FinishLine>().currentPlayers[2].transform.position = currentSpawn.transform.position;
@@ -784,11 +777,8 @@ public class PlayerController : MonoBehaviour
                 finishLine.currentPlayers[i + 1].transform.position = currentSpawn.transform.position;
                 //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
                 sfx.PlaySFX(sfx.Checkpoint);
-<<<<<<< HEAD
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
-=======
+
                 if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
->>>>>>> main
                 {
                     TOM.checkpointRespawned = true;
                     TOM.ObjectivePoints();
@@ -800,11 +790,8 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < finishLine.currentPlayers.Length; i++)
             {
-<<<<<<< HEAD
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
-=======
+
                 if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
->>>>>>> main
                 {
                     TOM.checkpointRespawned = true;
                     TOM.ObjectivePoints();
@@ -823,11 +810,8 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < finishLine.currentPlayers.Length; i++)
             {
-<<<<<<< HEAD
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy)
-=======
+
                 if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
->>>>>>> main
                 {
                     TOM.checkpointRespawned = true;
                     TOM.ObjectivePoints();
@@ -847,11 +831,8 @@ public class PlayerController : MonoBehaviour
         {
             switch (other.tag)
             {
-<<<<<<< HEAD
-                case "Checkpoint": 
-=======
+
                 case "Checkpoint":
->>>>>>> main
                     {
                         for(int i = 0; i < finishLine.currentPlayers.Length; i++)
                         {

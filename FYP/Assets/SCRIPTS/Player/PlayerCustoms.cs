@@ -118,4 +118,29 @@ public class PlayerCustoms : MonoBehaviour
             }
         }
     }
+
+    public void SetEndCustoms(int winner)
+    {
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            int pNum = winner;
+            GameObject skin = player.transform.GetChild(0).gameObject;
+
+            skin.GetComponent<MeshFilter>().mesh = playerMeshes[pNum];
+            skin.GetComponent<Renderer>().material = playerMaterials[pNum];
+            //cosmetics
+            if (playerHats[pNum] != null)
+            {
+                Instantiate(playerHats[pNum], player.transform);
+            }
+            if (playerGlasses[pNum] != null)
+            {
+                Instantiate(playerGlasses[pNum], player.transform);
+            }
+            if (playerMoustaches[pNum] != null)
+            {
+                Instantiate(playerMoustaches[pNum], player.transform);
+            }
+        }
+    }
 }

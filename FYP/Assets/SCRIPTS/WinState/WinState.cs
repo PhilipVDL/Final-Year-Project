@@ -25,6 +25,12 @@ public class WinState : MonoBehaviour
     public int currentRound;
     public bool endRound;
 
+    private void Awake()
+    {
+        transform.parent = null;
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         spawns = GameObject.FindGameObjectsWithTag("Start Spawn");
@@ -71,7 +77,7 @@ public class WinState : MonoBehaviour
     IEnumerator MainMenu()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("END_SCREEN_UI");
     }
 
     public void Score(int player, int score)

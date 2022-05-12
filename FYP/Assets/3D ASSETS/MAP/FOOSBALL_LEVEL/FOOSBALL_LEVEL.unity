@@ -12238,20 +12238,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4223850623234878302, guid: dece8f441197b0d4abe3a4d77bceb1fc, type: 3}
   m_PrefabInstance: {fileID: 280968228}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &284483134
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569899474097082535}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &285610322
 GameObject:
   m_ObjectHideFlags: 0
@@ -45011,7 +44997,6 @@ Transform:
   m_Children:
   - {fileID: 1021195127}
   - {fileID: 2284794791769480221}
-  - {fileID: 2569899474097082521}
   - {fileID: 4948542974935534738}
   - {fileID: 1530636677}
   m_Father: {fileID: 1088912580}
@@ -63547,7 +63532,7 @@ Transform:
   - {fileID: 1260102449}
   - {fileID: 1304687387}
   m_Father: {fileID: 1070410692}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1534113951
 GameObject:
@@ -91132,59 +91117,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7450741763379908841, guid: 9e94471d3ff038f46931658b0ad2a98e, type: 3}
---- !u!4 &2569899474097082521
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569899474097082535}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1070410692}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2569899474097082534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569899474097082535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7089378ebb6b9e349a3669bc3dee967e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSelect: 0
-  currentPlayers: 
-  players: []
-  playerMeshes: []
-  playerMaterials: []
-  playerTypes: 
-  playerHats: []
-  playerGlasses: []
-  playerMoustaches: []
---- !u!1 &2569899474097082535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2569899474097082521}
-  - component: {fileID: 2569899474097082534}
-  - component: {fileID: 284483134}
-  m_Layer: 0
-  m_Name: Player Customs
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!212 &2635747564821633813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92873,7 +92805,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1070410692}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4948542974935534739
 MonoBehaviour:
