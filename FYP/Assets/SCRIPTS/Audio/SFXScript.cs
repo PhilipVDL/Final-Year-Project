@@ -5,6 +5,7 @@ using UnityEngine;
 public class SFXScript : MonoBehaviour
 {
     public GameObject SFXPrefab;
+    public float sfxVolume;
 
     [Header("SFX")]
     public AudioClip offscreenEliminated;
@@ -22,7 +23,8 @@ public class SFXScript : MonoBehaviour
     {
         GameObject oneShot = Instantiate(SFXPrefab); //spawn SFX source
         AudioSource source = oneShot.GetComponent<AudioSource>(); //get AudioSource
-        source.PlayOneShot(clip); //play clip
+        source.volume = sfxVolume;
+        source.PlayOneShot(clip, sfxVolume); //play clip
         oneShot.GetComponent<OneShot>().DestroyWhenDone(); //destroy SFX source when finished playing clip
     }
 }

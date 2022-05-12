@@ -7939,6 +7939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXPrefab: {fileID: 4479175560544367332, guid: 6efdb0c53d278cc4c874f9f253be918d, type: 3}
+  sfxVolume: 0
   offscreenEliminated: {fileID: 0}
   pickupObstacle: {fileID: 0}
   playerCollide: {fileID: 0}
@@ -15876,7 +15877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1780698993
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15889,7 +15890,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b2d99637a805f5545bf187f7c2f4f6b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0

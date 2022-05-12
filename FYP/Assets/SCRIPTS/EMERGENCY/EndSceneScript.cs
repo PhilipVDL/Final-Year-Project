@@ -47,4 +47,9 @@ public class EndSceneScript : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
