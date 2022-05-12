@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3857388856314726610}
   - component: {fileID: 3353157289751030020}
   - component: {fileID: 3353157289751030021}
+  - component: {fileID: 5393685427916287069}
   m_Layer: 0
   m_Name: P1
   m_TagString: Untagged
@@ -220,3 +221,19 @@ MonoBehaviour:
   - {fileID: 5620528079158442607, guid: fb7b181522f9d2840965ae5e1fefc938, type: 3}
   currentMoustache: {fileID: 0}
   currentMoustachePrefab: {fileID: 0}
+--- !u!114 &5393685427916287069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353157289751030023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1c44da7e819494aaa6deb2d42d54c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descriptions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
