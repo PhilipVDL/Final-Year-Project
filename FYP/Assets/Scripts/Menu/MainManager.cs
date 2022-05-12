@@ -17,7 +17,7 @@ public class MainManager : MonoBehaviour
     void Update()
     {
         CountDown();
-        Restart();
+        //Restart();
     }
 
     void Restart()

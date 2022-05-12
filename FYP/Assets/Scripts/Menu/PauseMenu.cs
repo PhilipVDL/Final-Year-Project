@@ -5,9 +5,16 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseScreen;
-    public GameObject SetttingsScreen;
+    public GameObject SettingsScreen;
 
-   
+    private void Start()
+    {
+        PauseScreen = GameObject.Find("Pause Menu");
+        SettingsScreen = GameObject.Find("Settings Menu");
+        PauseScreen.SetActive(false);
+        SettingsScreen.SetActive(false);
+    }
+
     void Update()
     {
         Pause();   
@@ -15,21 +22,20 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !PauseScreen.activeInHierarchy && !SettingsScreen.activeInHierarchy)
         {
             PauseScreen.SetActive(true);
             Time.timeScale = 0;
         }
-        if((Input.GetKey(KeyCode.Escape) && PauseScreen == true))
+        else if (Input.GetKeyDown(KeyCode.Escape) && SettingsScreen.activeInHierarchy)
+        {
+            SettingsScreen.SetActive(false);
+            PauseScreen.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && PauseScreen.activeInHierarchy)
         {
             PauseScreen.SetActive(false);
-        }
-        else if(Input.GetKey(KeyCode.Escape) && SetttingsScreen == true)
-        {
-            SetttingsScreen.SetActive(false);
-        }
-
-        
-            
+            Time.timeScale = 1;
+        }      
     }
 }

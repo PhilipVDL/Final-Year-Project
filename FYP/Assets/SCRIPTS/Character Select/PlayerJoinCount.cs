@@ -153,6 +153,12 @@ public class PlayerJoinCount : MonoBehaviour
         ReadyLoad();
         SetText();
 
+        if(readyToLoad && firstScene)
+        {
+            GameObject.Find("LevelLoader").GetComponent<LoadSceneScript>().LoadThisScene();
+        }
+
+        /*
         if(readyToLoad && firstScene && !sky && !foosball)
         {
             SceneManager.LoadScene(4);
@@ -165,6 +171,7 @@ public class PlayerJoinCount : MonoBehaviour
         {
             SceneManager.LoadScene(6);
         }
+        */
     }
 
     void PlayerJoin()

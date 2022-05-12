@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerJoinVisible : MonoBehaviour
 {
     public PlayerJoinCount joinCount; //Assign manually
+    public bool amJoined;
     MeshRenderer rend;
 
     [Range(1,4)] public int playerNumber;
@@ -29,24 +30,28 @@ public class PlayerJoinVisible : MonoBehaviour
                 if (joinCount.playerJoined1)
                 {
                     rend.enabled = true;
+                    amJoined = true;
                 }
                 break;
             case 2:
                 if (joinCount.playerJoined2)
                 {
                     rend.enabled = true;
+                    amJoined = true;
                 }
                 break;
             case 3:
                 if (joinCount.playerJoined3)
                 {
                     rend.enabled = true;
+                    amJoined = true;
                 }
                 break;
             case 4:
                 if (joinCount.playerJoined4)
                 {
                     rend.enabled = true;
+                    amJoined = true;
                 }
                 break;
         }
