@@ -11,8 +11,6 @@ public class RankingUi : MonoBehaviour
     public GameObject[] players;
     public GameObject[] positions;
 
-  
-
     public GameObject placementModetext;
 
     public float lerpSpd = 10f;
@@ -22,14 +20,12 @@ public class RankingUi : MonoBehaviour
         finishLine = GameObject.Find("Finish").GetComponent<FinishLine>();
         end = GameObject.Find("End").GetComponent<EndDistance>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        
         players = GameObject.FindGameObjectsWithTag("Player");
         playerImages = GameObject.FindGameObjectsWithTag("Player Image");
-        activatePositions();
-
+        StartCoroutine(ActivatePositions());
     }
  
     void Update()
@@ -37,15 +33,11 @@ public class RankingUi : MonoBehaviour
         getPlayers();
         PLayerRanks();
         availablePositions();
-
-      
     }
 
     public void getPlayers()
     {
-       
-            players = GameObject.FindGameObjectsWithTag("Player");
-     
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void availablePositions()
@@ -66,21 +58,15 @@ public class RankingUi : MonoBehaviour
                     {
                         playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
                     }
-
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
                         playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
                     }
-
                     break;
             }
-
-
             //Player 2
-
-
             switch (players[1].GetComponent<PlayerController>().pos)
             {
                 case 1:
@@ -88,21 +74,17 @@ public class RankingUi : MonoBehaviour
                     {
                         playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[0].transform.position, lerpSpd);
                     }
-
                     break;
                 case 2:
                     if (finishLine.finished < 2)
                     {
                         playerImages[1].transform.position = Vector3.MoveTowards(playerImages[1].transform.position, positions[1].transform.position, lerpSpd);
                     }
-
                     break;
             }
-
         }
+
         //THREE PLAYERS
-
-
         if (players.Length == 3)
         {
             {   //Player 1
@@ -113,30 +95,22 @@ public class RankingUi : MonoBehaviour
                         {
                             playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[0].transform.position, lerpSpd);
                         }
-
                         break;
                     case 2:
                         if (finishLine.finished < 2)
                         {
                             playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[1].transform.position, lerpSpd);
                         }
-
                         break;
-
-
                     case 3:
                         if (finishLine.finished < 3)
                         {
                             playerImages[0].transform.position = Vector3.MoveTowards(playerImages[0].transform.position, positions[2].transform.position, lerpSpd);
                         }
-
                         break;
-
                 }
             }
-
             //Player 2
-
             {
                 switch (players[1].GetComponent<PlayerController>().pos)
                 {
@@ -326,8 +300,10 @@ public class RankingUi : MonoBehaviour
         }
     }
 
-    void activatePositions()
+    IEnumerator ActivatePositions()
     {
+        yield return new WaitForSeconds(0.1f);
+
         switch (players.Length)
         {
             case 3:
@@ -336,29 +312,16 @@ public class RankingUi : MonoBehaviour
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerScores[3].SetActive(false);
                 break;
-
             case 2:
-                
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[2].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerImages[3].SetActive(false);
-
                 GameObject.Find("Scores").GetComponent<Scores>().playerScores[2].SetActive(false);
                 GameObject.Find("Scores").GetComponent<Scores>().playerScores[3].SetActive(false);
-
-
                 positions[2].SetActive(false);
                 positions[3].SetActive(false);
                 playerImages[2].SetActive(false);
                 playerImages[3].SetActive(false);
-               
                 break;
-            
         }
     }
-    }
-
-
-
-    
-
-
+}
