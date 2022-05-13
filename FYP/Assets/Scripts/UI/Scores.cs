@@ -9,16 +9,13 @@ public class Scores : MonoBehaviour
     public GameObject[] playerImages;
 
     public GameObject winState;
-    // Start is called before the first frame update
+
     void Start()
     {
         winState = GameObject.Find("WinState");
         playerScores = GameObject.FindGameObjectsWithTag("Score");
     }    
 
-    
-
-    // Update is called once per frame
     void FixedUpdate()
     {
        GetScore();
