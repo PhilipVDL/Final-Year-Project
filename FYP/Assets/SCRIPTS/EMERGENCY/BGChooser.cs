@@ -7,6 +7,8 @@ public class BGChooser : MonoBehaviour
     LoadSceneScript loader;
     SpriteRenderer rend;
     public Sprite[] backgrounds;
+    public GameObject[] levelName;
+    public GameObject[] difficulty;
 
     private void Start()
     {
@@ -19,6 +21,19 @@ public class BGChooser : MonoBehaviour
         if(loader.currentLevel >= 0 && loader.currentLevel < backgrounds.Length)
         {
             rend.sprite = backgrounds[loader.currentLevel];
+            for (int i = 0; i < backgrounds.Length; i++)
+            {
+                if (i == loader.currentLevel)
+                {
+                    levelName[i].SetActive(true);
+                    difficulty[i].SetActive(true);
+                }
+                else
+                {
+                    levelName[i].SetActive(false);
+                    difficulty[i].SetActive(false);
+                }
+            }
         }
     }
 }
