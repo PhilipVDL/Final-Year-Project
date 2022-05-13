@@ -7,6 +7,7 @@ public class WinState : MonoBehaviour
 {
     FinishLine finish;
     SFXScript sfx;
+    TeamObjectivesManager TOM;
     public ObstaclesOnMap obstaclesOnMap;
     public GameObject playerPrefab;
     public GameObject[] players;
@@ -36,6 +37,7 @@ public class WinState : MonoBehaviour
         spawns = GameObject.FindGameObjectsWithTag("Start Spawn");
         finish = GameObject.Find("Finish").GetComponent<FinishLine>();
         sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
+        TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
         obstaclesOnMap = GameObject.Find("Obstacles On Map").GetComponent<ObstaclesOnMap>();
         maincamera = GameObject.Find("Main Camera");
         camController = maincamera.GetComponent<CameraController>();
@@ -101,6 +103,8 @@ public class WinState : MonoBehaviour
         currentRound++;
         finish.finished = 0;
         obstaclesOnMap.ActivateObstacles();
+        finish.CheckObjectives();
+        TOM.RandomObjectives();
         GetPlayers();
         foreach (GameObject player in players)
         {

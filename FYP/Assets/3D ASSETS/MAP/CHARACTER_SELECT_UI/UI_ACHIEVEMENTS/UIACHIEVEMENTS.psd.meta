@@ -1,12 +1,60 @@
 fileFormatVersion: 2
 guid: c065f4e8a80900348998de10b9a43950
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4296238427807929886
+    second: UIACHIEVEMENTS_0
+  - first:
+      213: 6741184201986933155
+    second: UIACHIEVEMENTS_1
+  - first:
+      213: 398176725794998038
+    second: UIACHIEVEMENTS_2
+  - first:
+      213: -2598310058041283780
+    second: UIACHIEVEMENTS_3
+  - first:
+      213: -820837307679519808
+    second: UIACHIEVEMENTS_4
+  - first:
+      213: 4357171835242048372
+    second: UIACHIEVEMENTS_5
+  - first:
+      213: 3288119987073257701
+    second: UIACHIEVEMENTS_6
+  - first:
+      213: 6327310748126164196
+    second: UIACHIEVEMENTS_7
+  - first:
+      213: 1079123530043214440
+    second: UIACHIEVEMENTS_8
+  - first:
+      213: 2456272282746796878
+    second: UIACHIEVEMENTS_9
+  - first:
+      213: 4005484356253218771
+    second: UIACHIEVEMENTS_10
+  - first:
+      213: -8407494948274053554
+    second: UIACHIEVEMENTS_11
+  - first:
+      213: 1503547796134937547
+    second: UIACHIEVEMENTS_12
+  - first:
+      213: -8378487164580848819
+    second: UIACHIEVEMENTS_13
+  - first:
+      213: 617338734505524174
+    second: UIACHIEVEMENTS_14
+  - first:
+      213: 2634926187109338410
+    second: UIACHIEVEMENTS_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -35,13 +83,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -50,9 +98,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -75,13 +123,373 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_0
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 940
+        width: 784
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e16dfdf661e4f9b30800000000000000
+      internalID: 4296238427807929886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_1
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 884
+        width: 643
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a108ecb05f7d8d50800000000000000
+      internalID: 6741184201986933155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_2
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 791
+        width: 659
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617c6da5f9b968500800000000000000
+      internalID: 398176725794998038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_3
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 735
+        width: 734
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3bef16c4c2f0fbd0800000000000000
+      internalID: -2598310058041283780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 679
+        width: 768
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cbcf5151dccb94f0800000000000000
+      internalID: -820837307679519808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 627
+        width: 339
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b60f8e2b8c77c30800000000000000
+      internalID: 4357171835242048372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_6
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 571
+        width: 518
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e01d5005bfb1ad20800000000000000
+      internalID: 3288119987073257701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_7
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 515
+        width: 483
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e432951a9f1fc750800000000000000
+      internalID: 6327310748126164196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_8
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 459
+        width: 629
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86acdf41221d9fe00800000000000000
+      internalID: 1079123530043214440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_9
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 403
+        width: 397
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4bb2c490ae661220800000000000000
+      internalID: 2456272282746796878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_10
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 338
+        width: 692
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d77bdfccc6569730800000000000000
+      internalID: 4005484356253218771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_11
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 271
+        width: 644
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4edb3da3e3925b80800000000000000
+      internalID: -8407494948274053554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_12
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 183
+        width: 661
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc3c17321ccadd410800000000000000
+      internalID: 1503547796134937547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_13
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 123
+        width: 547
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b1dff9052a9bb80800000000000000
+      internalID: -8378487164580848819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_14
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 64
+        width: 610
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb7a48ee4a319800800000000000000
+      internalID: 617338734505524174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIACHIEVEMENTS_15
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 4
+        width: 734
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2dc6002863219420800000000000000
+      internalID: 2634926187109338410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -90,7 +498,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

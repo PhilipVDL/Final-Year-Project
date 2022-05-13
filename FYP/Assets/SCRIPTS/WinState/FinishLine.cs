@@ -131,7 +131,7 @@ public class FinishLine : MonoBehaviour
         }
     }
 
-    void CheckObjectives()
+    public void CheckObjectives()
     {
         if (TOM.noPlayerCollisionsThisRound)
         {

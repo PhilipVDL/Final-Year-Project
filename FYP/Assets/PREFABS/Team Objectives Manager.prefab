@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3689d7bb07181c946b7c1db487b9bfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfObjectives: 3
+  numberOfObjectives: 1
   currentObjectives: []
   allObjectives:
   - Can't Touch This
@@ -51,21 +51,21 @@ MonoBehaviour:
   - Collision Course
   - Formation
   - Don't Look Down
-  - Keep Up
   - Knockout
   - Avoidance
   - Aim of the Game
-  - Over the Line
   - Dark Horse
+  UI: []
   noPlayerCollisionsThisRound: 0
   noObstacleCollisionsThisRound: 0
   allPlayersPlaced: 0
   playersPlacedObstacles: 
-  allPlayersDifferentType: 0
-  playerTypes: 
+  checkpointRespawned: 0
   noPlayerFell: 0
   noPlayerOffCamera: 0
   playerKnockout: 0
   noPlayerHitBack: 0
   playerHitBack: 0
   playerHitOverLine: 0
+  darkHorse: 0
+  lastPlayer: {fileID: 0}

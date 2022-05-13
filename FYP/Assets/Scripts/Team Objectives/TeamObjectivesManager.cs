@@ -10,6 +10,7 @@ public class TeamObjectivesManager : MonoBehaviour
     public int numberOfObjectives;
     public List<string> currentObjectives;
     public string[] allObjectives;
+    public GameObject[] UI;
 
     #region objectives
     [Header("Can't touch this")]
@@ -30,7 +31,7 @@ public class TeamObjectivesManager : MonoBehaviour
     public bool noPlayerFell;
 
     [Header("Keep Up")]
-    public bool noPlayerOffCamera;
+    public bool noPlayerOffCamera; //disabled
 
     [Header("Knockout")]
     public bool playerKnockout;
@@ -42,7 +43,7 @@ public class TeamObjectivesManager : MonoBehaviour
     public bool playerHitBack;
 
     [Header("Over the Line")]
-    public bool playerHitOverLine;
+    public bool playerHitOverLine; //disabled
 
     [Header("Dark Horse")]
     public bool darkHorse;
@@ -51,16 +52,33 @@ public class TeamObjectivesManager : MonoBehaviour
 
     public void ObjectivePoints()
     {
+        StartCoroutine(ObjectiveComplete());
         for(int i = 0; i < win.scores.Length; i++)
         {
             win.scores[i] += 2;
         }
     }
 
+    IEnumerator ObjectiveComplete()
+    {
+        foreach (GameObject ui in UI)
+        {
+            ui.SetActive(false);
+        }
+        UI[9].SetActive(true);
+        yield return new WaitForSeconds(3f);
+        UI[9].SetActive(false);
+    }
+
     private void Start()
     {
         end = GameObject.Find("End").GetComponent<EndDistance>();
         win = GameObject.Find("WinState").GetComponent<WinState>();
+        UI = GameObject.FindGameObjectsWithTag("ObjectiveUI");
+        foreach(GameObject ui in UI)
+        {
+            ui.SetActive(false);
+        }
         GetAll();
         RandomObjectives();
     }
@@ -96,8 +114,10 @@ public class TeamObjectivesManager : MonoBehaviour
         */
     }
 
-    void RandomObjectives()
+    public void RandomObjectives()
     {
+        DeactivateObjectives();
+
         currentObjectives.Clear(); //clear for new round
         List<string> chooseObjectives = new List<string>(allObjectives);
 
@@ -119,37 +139,45 @@ public class TeamObjectivesManager : MonoBehaviour
             {
                 case "Can't Touch This":
                     noPlayerCollisionsThisRound = true;
+                    UI[0].SetActive(true);
                     break;
                 case "Tread Carefully":
                     noObstacleCollisionsThisRound = true;
+                    UI[1].SetActive(true);
                     break;
                 case "Collision Course":
                     allPlayersPlaced = false;
-                    for(int i = 0; i < playersPlacedObstacles.Length; i++)
+                    UI[2].SetActive(true);
+                    for (int i = 0; i < playersPlacedObstacles.Length; i++)
                     {
                         playersPlacedObstacles[i] = false;
                     }
                     break;
                 case "Formation":
                     checkpointRespawned = false;
+                    UI[3].SetActive(true);
                     break;
                 case "Don't Look Down":
                     noPlayerFell = true;
+                    UI[4].SetActive(true);
                     break;
                 case "Keep Up":
-                    noPlayerOffCamera = true;
+                    noPlayerOffCamera = true; //disabled
                     break;
                 case "Knockout":
                     playerKnockout = false;
+                    UI[5].SetActive(true);
                     break;
                 case "Avoidance":
                     noPlayerHitBack = true;
+                    UI[6].SetActive(true);
                     break;
                 case "Aim of the Game":
                     playerHitBack = false;
+                    UI[7].SetActive(true);
                     break;
                 case "Over the Line":
-                    playerHitOverLine = false;
+                    playerHitOverLine = false; //disabled
                     break;
                 case "Dark Horse":
                     StartCoroutine(DarkHorseActivated());
@@ -158,9 +186,29 @@ public class TeamObjectivesManager : MonoBehaviour
         }
     }
 
+    void DeactivateObjectives()
+    {
+        noPlayerCollisionsThisRound = false;
+        noObstacleCollisionsThisRound = false;
+        allPlayersPlaced = true;
+        checkpointRespawned = true;
+        noPlayerFell = false;
+        noPlayerOffCamera = false;
+        playerKnockout = true;
+        noPlayerHitBack = false;
+        playerHitOverLine = true;
+        darkHorse = false;
+        lastPlayer = null;
+        foreach(GameObject ui in UI)
+        {
+            ui.SetActive(false);
+        }
+    }
+
     IEnumerator DarkHorseActivated()
     {
         darkHorse = false;
+        UI[8].SetActive(true);
         yield return new WaitForSeconds(6f);
         lastPlayer = end.lastPlayer;
     }

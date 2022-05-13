@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e033b1ff6540294c87612821671690b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxObstacles: 6
+  maxObstacles: 20
   currentObstacles: 0
   selectedIndex: 0
   obstacles: []
@@ -697,7 +697,7 @@ MonoBehaviour:
   previewPrefab: {fileID: 7182098491531211140, guid: d61128134ec1d4c45941b2cee80d725c, type: 3}
   DEBUG_MaxPlace: 0
   canPlaceMore: 1
-  maxPlaceThisRound: 1
+  maxPlaceThisRound: 99
   placedThisRound: 0
   currentPreviewIndex: 0
 --- !u!114 &8331225723004286650
