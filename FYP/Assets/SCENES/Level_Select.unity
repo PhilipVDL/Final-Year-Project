@@ -552,6 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: 0
+  pauseMenu: 0
   main: {fileID: 0}
   options: {fileID: 0}
   mainCanvas: {fileID: 0}
@@ -559,6 +560,8 @@ MonoBehaviour:
   mainDefault: {fileID: 0}
   optionsOpenedDefault: {fileID: 0}
   optionsClosedDefault: {fileID: 0}
+  resume: {fileID: 0}
+  pauseCanvas: {fileID: 0}
 --- !u!1 &796018843
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b4ecb001017964ea7bd065ebd3f8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loader: {fileID: 0}
+  audioController: {fileID: 0}
 --- !u!4 &887719605
 Transform:
   m_ObjectHideFlags: 0
@@ -947,14 +952,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 887719604}
         m_TargetAssemblyTypeName: SingletonFinder, Assembly-CSharp
-        m_MethodName: CallLoadCurrentScene
-        m_Mode: 1
+        m_MethodName: CallLoadThisScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Character_Select_Sky
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1129130191
@@ -1226,6 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d0ad9b1b3d69c499a57cbd720f2cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loader: {fileID: 0}
   backgrounds:
   - {fileID: -2226370043849448700, guid: adc0d2156cfca764aaff03995ce2efec, type: 3}
   - {fileID: -5732245983703304665, guid: 94e71daf0befc4a46a8fdc725f64371b, type: 3}
@@ -1484,7 +1490,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 509403386}
     m_SelectOnDown: {fileID: 1129130190}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}

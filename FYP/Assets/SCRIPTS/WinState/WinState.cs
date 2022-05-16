@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class WinState : MonoBehaviour
 {
+    public static WinState Instance;
+
     FinishLine finish;
     SFXScript sfx;
     TeamObjectivesManager TOM;
@@ -28,6 +30,16 @@ public class WinState : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton Pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
     }

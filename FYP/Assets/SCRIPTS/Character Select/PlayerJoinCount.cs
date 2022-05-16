@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerJoinCount : MonoBehaviour
 {
+    public static PlayerJoinCount Instance;
+
     public PlayerCustoms customs;
     [Header("Joined")]
     public bool playerJoined1;
@@ -22,19 +24,29 @@ public class PlayerJoinCount : MonoBehaviour
     [Header("Counts")]
     public int joinCount;
     public int readyCount;
-    public bool sky;
-    public bool foosball;
+    //public bool sky;
+    //public bool foosball;
 
     [Header("Debug")]
     public bool DEBUG_Player1Only;
     public bool firstScene;
     public bool readyToLoad;
 
-    public Text[] joinedandReady;
+    public Text joined, ready;
    
 
     private void Awake()
     {
+        //Singleton Pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneUnloaded += OnSceneUnloaded; //allows detecting when scene unloads
@@ -44,14 +56,34 @@ public class PlayerJoinCount : MonoBehaviour
     void OnSceneUnloaded(Scene scene)
     {
         firstScene = false;
+        //bools
+        playerJoined1 = false;
+        playerJoined1 = false;
+        playerJoined3 = false;
+        playerJoined4 = false;
+        playerReady1 = false;
+        playerReady2 = false;
+        playerReady3 = false;
+        playerReady4 = false;
+        joinCount = 0;
+        readyCount = 0;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //run coroutine when scene loaded, if not first scene
-        if (!firstScene)
+        if (scene.name == "Character_Select_Sky")
+        {
+            firstScene = true;
+        }
+        else if (!firstScene && this != null) //run coroutine when scene loaded, if not first scene
         {
             StartCoroutine(JoinedPlayers());
+        }
+
+        if(GameObject.Find("JoinedCount") != null && GameObject.Find("ReadyCount") != null)
+        {
+            joined = GameObject.Find("JoinedCount").GetComponent<Text>();
+            ready = GameObject.Find("ReadyCount").GetComponent<Text>();
         }
     }
 
@@ -59,8 +91,11 @@ public class PlayerJoinCount : MonoBehaviour
     {
         if (firstScene)
         {
-            joinedandReady[0].text = joinCount.ToString(); 
-            joinedandReady[1].text = readyCount.ToString();
+            if(joined != null && ready != null)
+            {
+                joined.text = joinCount.ToString();
+                ready.text = readyCount.ToString();
+            }
         }
     }
 
@@ -125,17 +160,6 @@ public class PlayerJoinCount : MonoBehaviour
                     {
                         Destroy(player.gameObject);
                     }
-                }
-            }
-        }
-        else
-        {
-            //else delete Players 3 and 4 (min 2 players)
-            foreach (GameObject player in players)
-            {
-                if (player.name == "Player 3" || player.name == "Player 4")
-                {
-                    Destroy(player.gameObject);
                 }
             }
         }

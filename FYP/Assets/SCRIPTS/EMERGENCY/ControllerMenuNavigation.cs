@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class ControllerMenuNavigation : MonoBehaviour
 {
     public bool mainMenu;
+    public bool pauseMenu;
 
     [Header("Main Menu Menus")]
     public GameObject main;
@@ -16,6 +17,9 @@ public class ControllerMenuNavigation : MonoBehaviour
     public GameObject mainDefault;
     public GameObject optionsOpenedDefault;
     public GameObject optionsClosedDefault;
+    [Header("Pause Menu")]
+    public GameObject resume;
+    public GameObject pauseCanvas;
 
     private void Update()
     {
@@ -37,6 +41,17 @@ public class ControllerMenuNavigation : MonoBehaviour
                 else if (optionsCanvas.activeInHierarchy)
                 {
                     EventSystem.current.SetSelectedGameObject(optionsOpenedDefault);
+                }
+            }
+        }
+
+        if (pauseMenu)
+        {
+            if (EventSystem.current.currentSelectedGameObject == null)
+            {
+                if (pauseCanvas.activeInHierarchy)
+                {
+                    EventSystem.current.SetSelectedGameObject(resume);
                 }
             }
         }

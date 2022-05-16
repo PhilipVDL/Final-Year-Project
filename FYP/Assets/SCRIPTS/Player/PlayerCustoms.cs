@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCustoms : MonoBehaviour
 {
+    public static PlayerCustoms Instance;
+
     PlayerJoinCount pjc;
 
     public bool characterSelect;
@@ -20,9 +22,28 @@ public class PlayerCustoms : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton Pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded; //allows detecting when scene unloads
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "Character_Select_Sky")
+        {
+            characterSelect = true;
+        }
     }
 
     void OnSceneUnloaded(Scene scene)
