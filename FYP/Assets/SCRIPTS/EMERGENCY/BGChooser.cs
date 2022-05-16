@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BGChooser : MonoBehaviour
 {
-    LoadSceneScript loader;
+    public LoadSceneScript loader;
     SpriteRenderer rend;
     public Sprite[] backgrounds;
     public GameObject[] levelName;

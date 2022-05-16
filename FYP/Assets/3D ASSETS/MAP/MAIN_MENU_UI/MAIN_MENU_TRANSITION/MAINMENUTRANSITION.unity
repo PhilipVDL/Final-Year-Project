@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140748120}
   - component: {fileID: 140748121}
+  - component: {fileID: 140748122}
   m_Layer: 5
   m_Name: Volume Slider - Music
   m_TagString: Untagged
@@ -213,9 +214,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 736569420}
-        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
-        m_MethodName: UpdateBGM
+      - m_Target: {fileID: 679907749}
+        m_TargetAssemblyTypeName: SingletonFinder, Assembly-CSharp
+        m_MethodName: CallUpdateBGM
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -225,6 +226,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &140748122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140748119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b471b3a00f7bd094486022caa7dd1728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgm: 1
+  sfx: 0
 --- !u!1 &363462216
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +511,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &679907748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679907750}
+  - component: {fileID: 679907749}
+  m_Layer: 0
+  m_Name: SingletonFinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &679907749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679907748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b4ecb001017964ea7bd065ebd3f8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loader: {fileID: 0}
+  audioController: {fileID: 0}
+--- !u!4 &679907750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679907748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715641526
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +631,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715641526}
   m_CullTransparentMesh: 1
+--- !u!1 &729272255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729272256}
+  - component: {fileID: 729272257}
+  m_Layer: 0
+  m_Name: LevelLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &729272256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729272255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &729272257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729272255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bd8453196b40a4f8eed9f37dc3f80b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSelect: 0
+  characterSelect: 0
+  sceneName: 
+  levelnames:
+  - FOOSBALL_LEVEL
+  - LEVEL_2_COMPLETE
+  - TUTORIAL_VERTICAL_SLICE
+  currentLevel: 0
 --- !u!1 &736569419
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +713,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 0}
   sfx: {fileID: 0}
+  musicVolume: 0.7
+  sfxVolume: 0.7
 --- !u!4 &736569421
 Transform:
   m_ObjectHideFlags: 0
@@ -614,7 +727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &798902780
 GameObject:
@@ -626,6 +739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798902781}
   - component: {fileID: 798902782}
+  - component: {fileID: 798902783}
   m_Layer: 5
   m_Name: Volume Slider - Effects
   m_TagString: Untagged
@@ -706,9 +820,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 736569420}
-        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
-        m_MethodName: UpdateSFX
+      - m_Target: {fileID: 679907749}
+        m_TargetAssemblyTypeName: SingletonFinder, Assembly-CSharp
+        m_MethodName: CallUpdateSFX
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -718,6 +832,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &798902783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798902780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b471b3a00f7bd094486022caa7dd1728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgm: 0
+  sfx: 1
 --- !u!1 &862452482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628832067ec79ac46a458e3c931bb68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlsOptions: 1
+  glowNativeSize: 0
 --- !u!1 &1437721017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,7 +1950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628832067ec79ac46a458e3c931bb68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlsOptions: 1
+  glowNativeSize: 0
 --- !u!1 &1724967290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +2038,6 @@ GameObject:
   - component: {fileID: 1828980809}
   - component: {fileID: 1828980808}
   - component: {fileID: 1828980807}
-  - component: {fileID: 1828980810}
   m_Layer: 5
   m_Name: Button - Play
   m_TagString: Untagged
@@ -1982,16 +2109,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1828980810}
-        m_TargetAssemblyTypeName: LoadSceneScript, Assembly-CSharp
-        m_MethodName: LoadThisScene
-        m_Mode: 1
+      - m_Target: {fileID: 679907749}
+        m_TargetAssemblyTypeName: SingletonFinder, Assembly-CSharp
+        m_MethodName: CallLoadThisScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level_Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1828980808
@@ -2032,23 +2159,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828980805}
   m_CullTransparentMesh: 1
---- !u!114 &1828980810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828980805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48bd8453196b40a4f8eed9f37dc3f80b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelSelect: 0
-  characterSelect: 0
-  sceneName: Level_Select
-  levelnames: []
-  currentLevel: 0
 --- !u!1 &1939478591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,7 +2359,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2066207547
 GameObject:
@@ -2971,7 +3081,7 @@ Transform:
   - {fileID: 3100692627984410648}
   - {fileID: 6755253369837733454}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2022154902726814895
 Transform:
@@ -3196,7 +3306,7 @@ Transform:
   - {fileID: 8707885950581513495}
   - {fileID: 4998826326070992730}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2741167174529485737
 GameObject:
@@ -3731,6 +3841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a73b687b3b4b3945a93f802091da9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: 1
   main: {fileID: 5507014543332495}
   options: {fileID: 1265069777470741796}
   mainCanvas: {fileID: 363462216}
@@ -3752,7 +3863,7 @@ RectTransform:
   - {fileID: 363462217}
   - {fileID: 1215197369}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

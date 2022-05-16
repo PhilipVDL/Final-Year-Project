@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class OnSelectUI : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     private Button button;
-    public bool controlsOptions;
+    public bool glowNativeSize;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class OnSelectUI : MonoBehaviour, ISelectHandler, IDeselectHandler
     #region controlsOptions
     void SetNative()
     {
-        if (controlsOptions)
+        if (glowNativeSize)
         {
             button.image.SetNativeSize();
         }

@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class ControllerMenuNavigation : MonoBehaviour
 {
+    public bool mainMenu;
+
     [Header("Main Menu Menus")]
     public GameObject main;
     public GameObject options;
@@ -23,16 +25,19 @@ public class ControllerMenuNavigation : MonoBehaviour
     //Main Menu
     void Reselect()
     {
-        //selects UI in case it gets deselected by accident
-        if(EventSystem.current.currentSelectedGameObject == null)
+        if (mainMenu)
         {
-            if (mainCanvas.activeInHierarchy)
+            //selects UI in case it gets deselected by accident
+            if (EventSystem.current.currentSelectedGameObject == null)
             {
-                EventSystem.current.SetSelectedGameObject(mainDefault);
-            }
-            else if (optionsCanvas.activeInHierarchy)
-            {
-                EventSystem.current.SetSelectedGameObject(optionsOpenedDefault);
+                if (mainCanvas.activeInHierarchy)
+                {
+                    EventSystem.current.SetSelectedGameObject(mainDefault);
+                }
+                else if (optionsCanvas.activeInHierarchy)
+                {
+                    EventSystem.current.SetSelectedGameObject(optionsOpenedDefault);
+                }
             }
         }
     }

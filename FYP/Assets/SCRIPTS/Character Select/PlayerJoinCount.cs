@@ -155,7 +155,7 @@ public class PlayerJoinCount : MonoBehaviour
 
         if(readyToLoad && firstScene)
         {
-            GameObject.Find("LevelLoader").GetComponent<LoadSceneScript>().LoadThisScene();
+            GameObject.Find("LevelLoader").GetComponent<LoadSceneScript>().LoadCurrentScene();
         }
 
         /*

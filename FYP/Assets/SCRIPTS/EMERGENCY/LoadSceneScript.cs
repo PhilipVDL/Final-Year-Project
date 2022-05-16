@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneScript : MonoBehaviour
 {
+    public static LoadSceneScript Instance { get; private set; }
+
     public bool levelSelect;
     public bool characterSelect;
     public string sceneName;
@@ -13,6 +15,16 @@ public class LoadSceneScript : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton Pattern
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         if (levelSelect)
         {
             transform.parent = null;
@@ -34,7 +46,12 @@ public class LoadSceneScript : MonoBehaviour
         }
     }
 
-    public void LoadThisScene()
+    public void LoadThisScene(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
+    public void LoadCurrentScene()
     {
         SceneManager.LoadScene(sceneName);
     }
@@ -51,20 +68,15 @@ public class LoadSceneScript : MonoBehaviour
 
     private void Update()
     {
-        if (levelSelect)
+        if (currentLevel >= levelnames.Length)
         {
-            if(currentLevel >= levelnames.Length)
-            {
-                currentLevel = 0;
-            }
-            else if(currentLevel < 0)
-            {
-                currentLevel = levelnames.Length - 1;
-            }
+            currentLevel = 0;
         }
-        else if (characterSelect)
+        else if (currentLevel < 0)
         {
-            sceneName = levelnames[currentLevel];
+            currentLevel = levelnames.Length - 1;
         }
+
+        sceneName = levelnames[currentLevel];
     }
 }
