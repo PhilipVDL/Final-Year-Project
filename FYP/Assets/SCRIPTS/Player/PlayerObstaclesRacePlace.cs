@@ -11,7 +11,6 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
 
     public GameObject previewPrefab;
     private GameObject obstaclesOnMap;
-    public bool DEBUG_MaxPlace;
     public bool canPlaceMore;
     public int maxPlaceThisRound;
     public int placedThisRound;
@@ -33,15 +32,11 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
 
     void MaxPlaced()
     {
-        if (inventory.obstacles.Count == 0)
-        {
-            canPlaceMore = false;
-        }
-        else if (placedThisRound < maxPlaceThisRound)
+        if (placedThisRound < maxPlaceThisRound)
         {
             canPlaceMore = true;
         }
-        else if (placedThisRound >= maxPlaceThisRound && !DEBUG_MaxPlace)
+        else if (placedThisRound >= maxPlaceThisRound)
         {
             canPlaceMore = false;
         }
@@ -59,7 +54,7 @@ public class PlayerObstaclesRacePlace : MonoBehaviour
 
     public void PlaceObstacle()
     {
-        if (canPlaceMore)
+        if (canPlaceMore && inventory.obstacles.Count > 0)
         {
             RaycastHit hit;
             Physics.Raycast(transform.position, Vector3.down, out hit); //raycast to ground
