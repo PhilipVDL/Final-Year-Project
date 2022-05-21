@@ -55,7 +55,7 @@ public class TeamObjectivesManager : MonoBehaviour
         StartCoroutine(ObjectiveComplete());
         for(int i = 0; i < win.scores.Length; i++)
         {
-            win.scores[i] += 2;
+            win.scores[i] += 2; //add <2> points to everyone
         }
     }
 

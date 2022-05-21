@@ -627,6 +627,28 @@
                 },
                 {
                     "name": "",
+                    "id": "6833134f-1dfd-403e-9cb0-d2ea8c737299",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SubmitCustom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e25912af-8a65-46e9-9a2a-24942889055b",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SubmitCustom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "bba6ec55-e3b2-4230-a20e-f073906c23d5",
                     "path": "*/{Cancel}",
                     "interactions": "",

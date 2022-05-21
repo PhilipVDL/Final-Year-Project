@@ -3813,7 +3813,7 @@ MonoBehaviour:
   m_TrackedDevicePositionAction: {fileID: 7270744911006880446, guid: 0707bd1fa24efd74fb7e0ec7552131e3, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: -8918888786383939163, guid: 0707bd1fa24efd74fb7e0ec7552131e3, type: 3}
   m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
+  m_PointerBehavior: 1
 --- !u!114 &3735736292159979705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3842,6 +3842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: 1
+  pauseMenu: 0
   main: {fileID: 5507014543332495}
   options: {fileID: 1265069777470741796}
   mainCanvas: {fileID: 363462216}
@@ -3849,6 +3850,8 @@ MonoBehaviour:
   mainDefault: {fileID: 1828980805}
   optionsOpenedDefault: {fileID: 140748119}
   optionsClosedDefault: {fileID: 1271164798}
+  resume: {fileID: 0}
+  pauseCanvas: {fileID: 0}
 --- !u!224 &3735736292159979707
 RectTransform:
   m_ObjectHideFlags: 0
