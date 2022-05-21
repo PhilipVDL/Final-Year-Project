@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !PauseScreen.activeInHierarchy) //&& !SettingsScreen.activeInHierarchy)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)) && !PauseScreen.activeInHierarchy) //&& !SettingsScreen.activeInHierarchy)
         {
             PauseScreen.SetActive(true);
             Time.timeScale = 0;
@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
             PauseScreen.SetActive(true);
         }
         */
-        else if (Input.GetKeyDown(KeyCode.Escape) && PauseScreen.activeInHierarchy)
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)) && PauseScreen.activeInHierarchy)
         {
             PauseScreen.SetActive(false);
             Time.timeScale = 1;
