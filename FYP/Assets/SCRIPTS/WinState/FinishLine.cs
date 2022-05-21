@@ -115,19 +115,19 @@ public class FinishLine : MonoBehaviour
         //end round
         win.endRound = true;
 
-        for (int i = 0; i < currentPlayers.Length; i++)
+        for (int i = 0; i < startPlayers.Length; i++)
         {
-            currentPlayers[i ].SetActive(true);
+            startPlayers[i].SetActive(true);
         }
 
-        for (int i = 0; i < currentPlayers.Length; i++)
+        for (int i = 0; i < startPlayers.Length; i++)
         {
-            currentPlayers[i].transform.position = win.spawns[i].transform.position;
+            startPlayers[i].transform.position = win.spawns[i].transform.position;
         }
 
-        for (int i = 0; i < currentPlayers.Length; i++)
+        for (int i = 0; i < startPlayers.Length; i++)
         {
-            currentPlayers[i].GetComponent<PlayerController>().currentSpawn = currentPlayers[i].GetComponent<PlayerController>().spawn;
+            startPlayers[i].GetComponent<PlayerController>().currentSpawn = startPlayers[i].GetComponent<PlayerController>().spawn;
         }
     }
 

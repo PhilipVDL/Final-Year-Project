@@ -826,7 +826,6 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
         else
         {
             switch (other.tag)
