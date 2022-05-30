@@ -133,31 +133,31 @@ public class FinishLine : MonoBehaviour
 
     public void CheckObjectives()
     {
-        if (TOM.noPlayerCollisionsThisRound)
+        if (TOM.noPlayerCollisionsThisRound && TOM.CTT)
         {
             TOM.noPlayerCollisionsThisRound = false;
             TOM.ObjectivePoints();
         }
 
-        if (TOM.noObstacleCollisionsThisRound)
+        if (TOM.noObstacleCollisionsThisRound && TOM.TC)
         {
             TOM.noObstacleCollisionsThisRound = false;
             TOM.ObjectivePoints();
         }
 
-        if (TOM.noPlayerFell)
+        if (TOM.noPlayerFell && TOM.DLD)
         {
             TOM.noPlayerFell = false;
             TOM.ObjectivePoints();
         }
 
-        if (TOM.noPlayerOffCamera)
+        if (TOM.noPlayerOffCamera) //disabled
         {
             TOM.noPlayerOffCamera = false;
             TOM.ObjectivePoints();
         }
 
-        if (TOM.noPlayerHitBack)
+        if (TOM.noPlayerHitBack && TOM.AV)
         {
             TOM.noPlayerHitBack = false;
             TOM.ObjectivePoints();

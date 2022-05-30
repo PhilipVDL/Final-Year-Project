@@ -14,38 +14,47 @@ public class TeamObjectivesManager : MonoBehaviour
 
     #region objectives
     [Header("Can't touch this")]
+    public bool CTT;
     public bool noPlayerCollisionsThisRound;
 
     [Header("Tread Carefully")]
+    public bool TC;
     public bool noObstacleCollisionsThisRound;
 
     [Header("Collision Course")]
+    public bool CC;
     public bool allPlayersPlaced;
     public bool[] playersPlacedObstacles;
     private PlayerObstaclesRacePlace[] _playerObstacles;
 
     [Header("Formation")]
+    public bool FM;
     public bool checkpointRespawned;
 
     [Header("Don't Look Down")]
+    public bool DLD;
     public bool noPlayerFell;
 
     [Header("Keep Up")]
     public bool noPlayerOffCamera; //disabled
 
     [Header("Knockout")]
+    public bool KO;
     public bool playerKnockout;
 
     [Header("Avoidance")]
+    public bool AV;
     public bool noPlayerHitBack;
 
     [Header("Aim of the Game")]
+    public bool ATG;
     public bool playerHitBack;
 
     [Header("Over the Line")]
     public bool playerHitOverLine; //disabled
 
     [Header("Dark Horse")]
+    public bool DH;
     public bool darkHorse;
     public GameObject lastPlayer;
     #endregion
@@ -55,7 +64,7 @@ public class TeamObjectivesManager : MonoBehaviour
         StartCoroutine(ObjectiveComplete());
         for(int i = 0; i < win.scores.Length; i++)
         {
-            win.scores[i] += 2; //add <2> points to everyone
+            win.scores[i] += 2; //add 2 points to everyone
         }
     }
 
@@ -138,14 +147,17 @@ public class TeamObjectivesManager : MonoBehaviour
             switch (objective)
             {
                 case "Can't Touch This":
+                    CTT = true;
                     noPlayerCollisionsThisRound = true;
                     UI[0].SetActive(true);
                     break;
                 case "Tread Carefully":
+                    TC = true;
                     noObstacleCollisionsThisRound = true;
                     UI[1].SetActive(true);
                     break;
                 case "Collision Course":
+                    CC = true;
                     allPlayersPlaced = false;
                     UI[2].SetActive(true);
                     for (int i = 0; i < playersPlacedObstacles.Length; i++)
@@ -154,10 +166,12 @@ public class TeamObjectivesManager : MonoBehaviour
                     }
                     break;
                 case "Formation":
+                    FM = true;
                     checkpointRespawned = false;
                     UI[3].SetActive(true);
                     break;
                 case "Don't Look Down":
+                    DLD = true;
                     noPlayerFell = true;
                     UI[4].SetActive(true);
                     break;
@@ -165,14 +179,17 @@ public class TeamObjectivesManager : MonoBehaviour
                     noPlayerOffCamera = true; //disabled
                     break;
                 case "Knockout":
+                    KO = true;
                     playerKnockout = false;
                     UI[5].SetActive(true);
                     break;
                 case "Avoidance":
+                    AV = true;
                     noPlayerHitBack = true;
                     UI[6].SetActive(true);
                     break;
                 case "Aim of the Game":
+                    ATG = true;
                     playerHitBack = false;
                     UI[7].SetActive(true);
                     break;
@@ -180,6 +197,7 @@ public class TeamObjectivesManager : MonoBehaviour
                     playerHitOverLine = false; //disabled
                     break;
                 case "Dark Horse":
+                    DH = true;
                     StartCoroutine(DarkHorseActivated());
                     break;
             }
@@ -188,6 +206,17 @@ public class TeamObjectivesManager : MonoBehaviour
 
     void DeactivateObjectives()
     {
+        //bools
+        CTT = false;
+        TC = false;
+        CC = false;
+        FM = false;
+        DLD = false;
+        KO = false;
+        AV = false;
+        ATG = false;
+        DH = false;
+        //checks
         noPlayerCollisionsThisRound = false;
         noObstacleCollisionsThisRound = false;
         allPlayersPlaced = true;
