@@ -58,7 +58,7 @@ public class PlayerJoinCount : MonoBehaviour
         firstScene = false;
         //bools
         playerJoined1 = false;
-        playerJoined1 = false;
+        playerJoined2 = false;
         playerJoined3 = false;
         playerJoined4 = false;
         playerReady1 = false;

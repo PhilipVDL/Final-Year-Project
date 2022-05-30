@@ -582,7 +582,7 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < deathHeight && !doesRespawn)
         {
             TOM.noPlayerFell = false;
-            if(knockbackObjectiveTimer > 0 && !TOM.playerKnockout)
+            if(knockbackObjectiveTimer > 0 && !TOM.playerKnockout && TOM.KO)
             {
                 TOM.playerKnockout = true;
                 TOM.ObjectivePoints();
@@ -596,7 +596,7 @@ public class PlayerController : MonoBehaviour
             // Instantiate(particleSys, transform.position, transform.rotation);
             currentSpeed = 0;
             TOM.noPlayerFell = false;
-            if (knockbackObjectiveTimer > 0 && !TOM.playerKnockout)
+            if (knockbackObjectiveTimer > 0 && !TOM.playerKnockout && TOM.KO)
             {
                 TOM.playerKnockout = true;
                 TOM.ObjectivePoints();
@@ -626,7 +626,7 @@ public class PlayerController : MonoBehaviour
             //  particleSys.SetActive(true);
             //Instantiate(particleSys, transform.position, transform.rotation);
             TOM.noPlayerFell = false;
-            if (knockbackObjectiveTimer > 0 && !TOM.playerKnockout)
+            if (knockbackObjectiveTimer > 0 && !TOM.playerKnockout && TOM.KO)
             {
                 TOM.playerKnockout = true;
                 TOM.ObjectivePoints();
@@ -778,7 +778,7 @@ public class PlayerController : MonoBehaviour
                 //other.GetComponent<Checkpoint>().notifiers[0].SetActive(true);
                 sfx.PlaySFX(sfx.Checkpoint);
 
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned && TOM.FM)
                 {
                     TOM.checkpointRespawned = true;
                     TOM.ObjectivePoints();
@@ -791,7 +791,7 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < finishLine.currentPlayers.Length; i++)
             {
 
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned && TOM.FM)
                 {
                     TOM.checkpointRespawned = true;
                     TOM.ObjectivePoints();
@@ -811,7 +811,7 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < finishLine.currentPlayers.Length; i++)
             {
 
-                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned)
+                if (!finishLine.currentPlayers[i + 1].activeInHierarchy && !TOM.checkpointRespawned && TOM.FM)
                 {
                     TOM.checkpointRespawned = true;
                     TOM.ObjectivePoints();

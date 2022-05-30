@@ -83,7 +83,44 @@ public class TeamObjectivesManager : MonoBehaviour
     {
         end = GameObject.Find("End").GetComponent<EndDistance>();
         win = GameObject.Find("WinState").GetComponent<WinState>();
-        UI = GameObject.FindGameObjectsWithTag("ObjectiveUI");
+        UI = new GameObject[GameObject.FindGameObjectsWithTag("ObjectiveUI").Length];
+        foreach(GameObject ui in GameObject.FindGameObjectsWithTag("ObjectiveUI")) //gets them in the wrong order in build, so this is solution
+        {
+            switch (ui.name)
+            {
+                case "CTT":
+                    UI[0] = ui;
+                    break;
+                case "TC":
+                    UI[1] = ui;
+                    break; 
+                case "CC":
+                    UI[2] = ui;
+                    break; 
+                case "Fm":
+                    UI[3] = ui;
+                    break; 
+                case "DLD":
+                    UI[4] = ui;
+                    break; 
+                case "KO":
+                    UI[5] = ui;
+                    break; 
+                case "Av":
+                    UI[6] = ui;
+                    break; 
+                case "ATG":
+                    UI[7] = ui;
+                    break; 
+                case "DH":
+                    UI[8] = ui;
+                    break; 
+                case "OC":
+                    UI[9] = ui;
+                    break; 
+            }
+        }
+
         foreach(GameObject ui in UI)
         {
             ui.SetActive(false);
@@ -275,7 +312,7 @@ public class TeamObjectivesManager : MonoBehaviour
         }
 
         //if all placed, objective true
-        if(trueCount >= playersPlacedObstacles.Length && !allPlayersPlaced)
+        if(trueCount >= playersPlacedObstacles.Length && !allPlayersPlaced && CC)
         {
             allPlayersPlaced = true;
             ObjectivePoints();
@@ -311,7 +348,7 @@ public class TeamObjectivesManager : MonoBehaviour
     {
         if(lastPlayer != null)
         {
-            if (end.firstPlayer == lastPlayer && !darkHorse)
+            if (end.firstPlayer == lastPlayer && !darkHorse && DH)
             {
                 darkHorse = true;
                 ObjectivePoints();

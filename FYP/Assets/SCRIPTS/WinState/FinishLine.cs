@@ -53,10 +53,10 @@ public class FinishLine : MonoBehaviour
             StartRound();
             GameObject.Find("UI").GetComponent<RankingUi>().getPlayers();
 
-            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0 && !TOM.playerHitOverLine)
+            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0 && !TOM.playerHitOverLine) //disabled
             {
-                TOM.playerHitOverLine = true;
-                TOM.ObjectivePoints();
+                //TOM.playerHitOverLine = true;
+                //TOM.ObjectivePoints();
             }
 
           //  other.gameObject.GetComponent<PlayerController>().currentSpawn = other.gameObject.GetComponent<PlayerController>().spawn;
@@ -71,10 +71,10 @@ public class FinishLine : MonoBehaviour
             other.gameObject.SetActive(false);
             GameObject.Find("UI").GetComponent<RankingUi>().positions[0] = null;
 
-            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0 && !TOM.playerHitOverLine)
+            if (other.GetComponent<PlayerController>().knockbackObjectiveTimer > 0 && !TOM.playerHitOverLine ) //disabled
             {
-                TOM.playerHitOverLine = true;
-                TOM.ObjectivePoints();
+                //TOM.playerHitOverLine = true;
+                //TOM.ObjectivePoints();
             }
         }
     }
@@ -153,8 +153,8 @@ public class FinishLine : MonoBehaviour
 
         if (TOM.noPlayerOffCamera) //disabled
         {
-            TOM.noPlayerOffCamera = false;
-            TOM.ObjectivePoints();
+            //TOM.noPlayerOffCamera = false;
+            //TOM.ObjectivePoints();
         }
 
         if (TOM.noPlayerHitBack && TOM.AV)
