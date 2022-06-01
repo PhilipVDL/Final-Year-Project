@@ -56,17 +56,6 @@ public class PlayerJoinCount : MonoBehaviour
     void OnSceneUnloaded(Scene scene)
     {
         firstScene = false;
-        //bools
-        playerJoined1 = false;
-        playerJoined2 = false;
-        playerJoined3 = false;
-        playerJoined4 = false;
-        playerReady1 = false;
-        playerReady2 = false;
-        playerReady3 = false;
-        playerReady4 = false;
-        joinCount = 0;
-        readyCount = 0;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -166,6 +155,18 @@ public class PlayerJoinCount : MonoBehaviour
 
         customs = GameObject.Find("PlayerCustoms").GetComponent<PlayerCustoms>();
         customs.SetPlayerCustoms();
+
+        //bools
+        playerJoined1 = false;
+        playerJoined2 = false;
+        playerJoined3 = false;
+        playerJoined4 = false;
+        playerReady1 = false;
+        playerReady2 = false;
+        playerReady3 = false;
+        playerReady4 = false;
+        joinCount = 0;
+        readyCount = 0;
     }
 
 
