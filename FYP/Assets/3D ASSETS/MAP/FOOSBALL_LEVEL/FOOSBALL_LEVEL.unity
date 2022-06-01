@@ -12913,11 +12913,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dedadcb4722d34b419a2b548bb660b61, type: 3}
---- !u!1 &291440336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9174557629707106603, guid: 1b1c431d711eadf4589d2d8b9ea2eb43, type: 3}
-  m_PrefabInstance: {fileID: 620925109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &293447921
 GameObject:
   m_ObjectHideFlags: 0
@@ -13001,11 +12996,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &298318549 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9174557630030582383, guid: 1b1c431d711eadf4589d2d8b9ea2eb43, type: 3}
-  m_PrefabInstance: {fileID: 620925109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &300531056
 GameObject:
   m_ObjectHideFlags: 0
@@ -25007,11 +24997,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.9028087, y: 56.495567, z: 16.000006}
   m_Center: {x: 0.0001938343, y: -8.539207, z: 0.000098228455}
---- !u!1 &582283045 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9174557629369032372, guid: 1b1c431d711eadf4589d2d8b9ea2eb43, type: 3}
-  m_PrefabInstance: {fileID: 620925109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &583067733
 GameObject:
   m_ObjectHideFlags: 0
@@ -36438,12 +36423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec6b56cccf8b8e48951236567ec44c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptBoxes:
-  - {fileID: 291440336}
-  - {fileID: 582283045}
-  - {fileID: 298318549}
+  promptManager: {fileID: 0}
   player: {fileID: 0}
-  duration: 3
 --- !u!1 &869857531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1644938232095019149, guid: 461143e9e7a2de544a1db558125cbbac, type: 3}
@@ -47824,12 +47805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec6b56cccf8b8e48951236567ec44c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptBoxes:
-  - {fileID: 291440336}
-  - {fileID: 582283045}
-  - {fileID: 298318549}
+  promptManager: {fileID: 0}
   player: {fileID: 0}
-  duration: 3
 --- !u!1 &1150347238
 GameObject:
   m_ObjectHideFlags: 0
@@ -69726,12 +69703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec6b56cccf8b8e48951236567ec44c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptBoxes:
-  - {fileID: 291440336}
-  - {fileID: 582283045}
-  - {fileID: 298318549}
+  promptManager: {fileID: 0}
   player: {fileID: 0}
-  duration: 3
 --- !u!1 &1670653400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2137430033286311823, guid: f66cacf3f5f9eab4eb0f2e09109eeee2, type: 3}
@@ -76580,12 +76553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec6b56cccf8b8e48951236567ec44c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptBoxes:
-  - {fileID: 291440336}
-  - {fileID: 582283045}
-  - {fileID: 298318549}
+  promptManager: {fileID: 0}
   player: {fileID: 0}
-  duration: 3
 --- !u!1 &1841319868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5751197806474342979, guid: 461143e9e7a2de544a1db558125cbbac, type: 3}

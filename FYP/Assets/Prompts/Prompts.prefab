@@ -193,6 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9174557629962939021}
+  - component: {fileID: 2716639948965893840}
   m_Layer: 5
   m_Name: Prompts
   m_TagString: Untagged
@@ -222,6 +223,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2716639948965893840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174557629962939020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce34009aa5625d4a89ff6675d1a8e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptBoxes:
+  - {fileID: 9174557629707106603}
+  - {fileID: 9174557629369032372}
+  - {fileID: 9174557630030582383}
+  duration: 0
+  moveTut: 0
+  jumpTut: 0
+  hasJumped: 0
+  pickUpTut: 0
 --- !u!1 &9174557630030582383
 GameObject:
   m_ObjectHideFlags: 0
