@@ -756,8 +756,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-
-            //currentSpawn = spawn;
             speeding = false;
             currentSpeed = 0;
             currentSpawn = spawn;
@@ -765,6 +763,8 @@ public class PlayerController : MonoBehaviour
             braking = true;
         }
 
+        #region old checkpoint code
+        /*
         if (GameObject.Find("Main Camera").GetComponent<CameraController>().totalPlayers == 1 && other.CompareTag("Checkpoint 1"))
         {
             for(int i = 0; i < finishLine.currentPlayers.Length ; i++)
@@ -864,7 +864,9 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-    }     
+        */
+        #endregion
+    }
 
     void OnBecameInvisible()
     {

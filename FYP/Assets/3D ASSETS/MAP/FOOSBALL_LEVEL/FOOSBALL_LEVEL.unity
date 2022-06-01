@@ -52748,6 +52748,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1246169013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1246169015}
+  - component: {fileID: 1246169014}
+  m_Layer: 0
+  m_Name: Checkpoint Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1246169014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246169013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f68553bd58aa52419c0424fda4a92bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints: []
+  currentCheckpoint: {fileID: 0}
+--- !u!4 &1246169015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246169013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249616782
 GameObject:
   m_ObjectHideFlags: 0
@@ -53343,10 +53388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6890f85b8845020478f99089bf87c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notifiers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  checkpointNumber: 2
+  checkpointActivated: 0
 --- !u!1 &1264081149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4592639038360629082, guid: 461143e9e7a2de544a1db558125cbbac, type: 3}
@@ -54617,10 +54660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6890f85b8845020478f99089bf87c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notifiers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  checkpointNumber: 3
+  checkpointActivated: 0
 --- !u!65 &1304687389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82456,7 +82497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982580842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.7, y: 1, z: -73.7}
+  m_LocalPosition: {x: 0, y: 1, z: -83.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 520970260}
@@ -82476,7 +82517,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 45.41909, y: 8.563963, z: 4.542145}
-  m_Center: {x: 7.293476, y: 1.9319515, z: -10.763077}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1982580845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82489,10 +82530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6890f85b8845020478f99089bf87c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notifiers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  checkpointNumber: 1
+  checkpointActivated: 0
 --- !u!1001 &1990389174
 PrefabInstance:
   m_ObjectHideFlags: 0
