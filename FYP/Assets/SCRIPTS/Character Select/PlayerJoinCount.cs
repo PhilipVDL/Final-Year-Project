@@ -24,15 +24,14 @@ public class PlayerJoinCount : MonoBehaviour
     [Header("Counts")]
     public int joinCount;
     public int readyCount;
-    //public bool sky;
-    //public bool foosball;
 
     [Header("Debug")]
     public bool DEBUG_Player1Only;
     public bool firstScene;
     public bool readyToLoad;
 
-    public Text joined, ready;
+    public Sprite[] joinReadySprites;
+    public SpriteRenderer joined, ready;
    
 
     private void Awake()
@@ -71,8 +70,8 @@ public class PlayerJoinCount : MonoBehaviour
 
         if(GameObject.Find("JoinedCount") != null && GameObject.Find("ReadyCount") != null)
         {
-            joined = GameObject.Find("JoinedCount").GetComponent<Text>();
-            ready = GameObject.Find("ReadyCount").GetComponent<Text>();
+            joined = GameObject.Find("JoinedCount").GetComponent<SpriteRenderer>();
+            ready = GameObject.Find("ReadyCount").GetComponent<SpriteRenderer>();
         }
     }
 
@@ -82,8 +81,8 @@ public class PlayerJoinCount : MonoBehaviour
         {
             if(joined != null && ready != null)
             {
-                joined.text = joinCount.ToString();
-                ready.text = readyCount.ToString();
+                joined.sprite = joinReadySprites[joinCount];
+                ready.sprite = joinReadySprites[readyCount];
             }
         }
     }
@@ -182,21 +181,6 @@ public class PlayerJoinCount : MonoBehaviour
         {
             GameObject.Find("LevelLoader").GetComponent<LoadSceneScript>().LoadCurrentScene();
         }
-
-        /*
-        if(readyToLoad && firstScene && !sky && !foosball)
-        {
-            SceneManager.LoadScene(4);
-        }
-        else if(readyToLoad && firstScene && sky)
-        {
-            SceneManager.LoadScene(5);
-        }
-        else if (readyToLoad && firstScene && foosball)
-        {
-            SceneManager.LoadScene(6);
-        }
-        */
     }
 
     void PlayerJoin()
