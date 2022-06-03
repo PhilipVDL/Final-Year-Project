@@ -25,6 +25,7 @@ public class RankingUi : MonoBehaviour
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         GetPlayerImages();
+        availablePositions();
         StartCoroutine(ActivatePositions());
     }
  
@@ -32,7 +33,6 @@ public class RankingUi : MonoBehaviour
     {
         getPlayers();
         PLayerRanks();
-        availablePositions();
     }
 
     void GetPlayerImages()
@@ -66,7 +66,26 @@ public class RankingUi : MonoBehaviour
 
     void availablePositions()
     {
-        positions = GameObject.FindGameObjectsWithTag("Position");
+        GameObject[] pos = GameObject.FindGameObjectsWithTag("Position");
+        positions = new GameObject[pos.Length];
+        foreach(GameObject p in pos)
+        {
+            switch (p.name)
+            {
+                case "1st Pos":
+                    positions[0] = p;
+                    break;
+                case "2nd Pos":
+                    positions[1] = p;
+                    break;
+                case "3rd Pos":
+                    positions[2] = p;
+                    break;
+                case "4th Pos":
+                    positions[3] = p;
+                    break;
+            }
+        }
     }
 
     void PLayerRanks()
