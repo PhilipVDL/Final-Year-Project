@@ -185,53 +185,56 @@ public class PlayerJoinCount : MonoBehaviour
 
     void PlayerJoin()
     {
-        //join, else ready
+        if (firstScene)
+        {
+            //join, else ready
 
-        //Player 1
-        if (!playerJoined1 && Input.GetButtonDown("Jump1"))
-        {
-            playerJoined1 = true;
-            joinCount++;
-           
-        }
-        else if(playerJoined1 && Input.GetButtonDown("Jump1"))
-        {
-            playerReady1 = true;
-            readyCount ++;
-        }
+            //Player 1
+            if (!playerJoined1 && Input.GetButtonDown("Jump1"))
+            {
+                playerJoined1 = true;
+                joinCount++;
 
-        //Player 2
-        if (!playerJoined2 && Input.GetButtonDown("Jump2"))
-        {
-            playerJoined2 = true;
-            joinCount++;
-            
-        }
-        else if(playerJoined2 && Input.GetButtonDown("Jump2"))
-        {
-            playerReady2 = true;
-        }
+            }
+            else if (playerJoined1 && Input.GetButtonDown("Jump1"))
+            {
+                playerReady1 = true;
+                readyCount++;
+            }
 
-        //Player 3
-        if (!playerJoined3 && Input.GetButtonDown("Jump3"))
-        {
-            playerJoined3 = true;
-            joinCount++;
-        }
-        else if(playerJoined3 && Input.GetButtonDown("Jump3"))
-        {
-            playerReady3 = true;
-        }
+            //Player 2
+            if (!playerJoined2 && Input.GetButtonDown("Jump2"))
+            {
+                playerJoined2 = true;
+                joinCount++;
 
-        //Player 4
-        if (!playerJoined4 && Input.GetButtonDown("Jump4"))
-        {
-            playerJoined4 = true;
-            joinCount++;
-        }
-        else if(playerJoined4 && Input.GetButtonDown("Jump4"))
-        {
-            playerReady4 = true;
+            }
+            else if (playerJoined2 && Input.GetButtonDown("Jump2"))
+            {
+                playerReady2 = true;
+            }
+
+            //Player 3
+            if (!playerJoined3 && Input.GetButtonDown("Jump3"))
+            {
+                playerJoined3 = true;
+                joinCount++;
+            }
+            else if (playerJoined3 && Input.GetButtonDown("Jump3"))
+            {
+                playerReady3 = true;
+            }
+
+            //Player 4
+            if (!playerJoined4 && Input.GetButtonDown("Jump4"))
+            {
+                playerJoined4 = true;
+                joinCount++;
+            }
+            else if (playerJoined4 && Input.GetButtonDown("Jump4"))
+            {
+                playerReady4 = true;
+            }
         }
     }
 
