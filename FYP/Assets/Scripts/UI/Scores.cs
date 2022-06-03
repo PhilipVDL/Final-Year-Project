@@ -13,12 +13,36 @@ public class Scores : MonoBehaviour
     void Start()
     {
         winState = GameObject.Find("WinState");
-        playerScores = GameObject.FindGameObjectsWithTag("Score");
+        GetScoreText();
     }    
 
     void FixedUpdate()
     {
        GetScore();
+    }
+
+    void GetScoreText()
+    {
+        GameObject[] scoreTexts = GameObject.FindGameObjectsWithTag("Score");
+        playerScores = new GameObject[scoreTexts.Length];
+        foreach(GameObject st in scoreTexts)
+        {
+            switch (st.name)
+            {
+                case "Player 1 Score":
+                    playerScores[0] = st;
+                    break;
+                case "Player 2 Score":
+                    playerScores[1] = st;
+                    break;
+                case "Player 3 Score":
+                    playerScores[2] = st;
+                    break;
+                case "Player 4 Score":
+                    playerScores[3] = st;
+                    break;
+            }
+        }
     }
 
     void GetScore()

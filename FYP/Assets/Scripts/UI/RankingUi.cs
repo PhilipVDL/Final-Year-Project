@@ -24,7 +24,7 @@ public class RankingUi : MonoBehaviour
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        playerImages = GameObject.FindGameObjectsWithTag("Player Image");
+        GetPlayerImages();
         StartCoroutine(ActivatePositions());
     }
  
@@ -33,6 +33,30 @@ public class RankingUi : MonoBehaviour
         getPlayers();
         PLayerRanks();
         availablePositions();
+    }
+
+    void GetPlayerImages()
+    {
+        GameObject[] pImages = GameObject.FindGameObjectsWithTag("Player Image");
+        playerImages = new GameObject[pImages.Length];
+        foreach(GameObject pi in pImages)
+        {
+            switch (pi.name)
+            {
+                case "Player 1 img":
+                    playerImages[0] = pi;
+                    break;
+                case "Player 2 img":
+                    playerImages[1] = pi;
+                    break;
+                case "Player 3 img":
+                    playerImages[2] = pi;
+                    break;
+                case "Player 4 img":
+                    playerImages[3] = pi;
+                    break;
+            }
+        }
     }
 
     public void getPlayers()
