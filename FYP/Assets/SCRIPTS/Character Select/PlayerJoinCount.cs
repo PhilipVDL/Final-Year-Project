@@ -54,24 +54,30 @@ public class PlayerJoinCount : MonoBehaviour
 
     void OnSceneUnloaded(Scene scene)
     {
-        firstScene = false;
+        if (Instance == this) //if this is the singleton
+        {
+            firstScene = false;
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Character_Select_Sky")
+        if (Instance == this) //if this is the singleton
         {
-            firstScene = true;
-        }
-        else if (!firstScene && this != null) //run coroutine when scene loaded, if not first scene
-        {
-            StartCoroutine(JoinedPlayers());
-        }
+            if (scene.name == "Character_Select_Sky")
+            {
+                firstScene = true;
+            }
+            else if (!firstScene && this != null) //run coroutine when scene loaded, if not first scene
+            {
+                StartCoroutine(JoinedPlayers());
+            }
 
-        if(GameObject.Find("JoinedCount") != null && GameObject.Find("ReadyCount") != null)
-        {
-            joined = GameObject.Find("JoinedCount").GetComponent<SpriteRenderer>();
-            ready = GameObject.Find("ReadyCount").GetComponent<SpriteRenderer>();
+            if (GameObject.Find("JoinedCount") != null && GameObject.Find("ReadyCount") != null)
+            {
+                joined = GameObject.Find("JoinedCount").GetComponent<SpriteRenderer>();
+                ready = GameObject.Find("ReadyCount").GetComponent<SpriteRenderer>();
+            }
         }
     }
 

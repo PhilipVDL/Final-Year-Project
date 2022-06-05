@@ -44,14 +44,17 @@ public class AudioScript : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (GameObject.Find("BGM") != null)
+        if (Instance == this) //if this is the singleton
         {
-            bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
-        }
+            if (GameObject.Find("BGM") != null)
+            {
+                bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
+            }
 
-        if (GameObject.Find("SFX") != null)
-        {
-            sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
+            if (GameObject.Find("SFX") != null)
+            {
+                sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
+            }
         }
     }
     

@@ -35,14 +35,17 @@ public class LoadSceneScript : MonoBehaviour
 
     void OnSceneUnloaded(Scene scene)
     {
-        if (levelSelect)
+        if (Instance == this) //if this is the singleton
         {
-            levelSelect = false;
-            characterSelect = true;
-        }
-        else if (characterSelect)
-        {
-            characterSelect = false;
+            if (levelSelect)
+            {
+                levelSelect = false;
+                characterSelect = true;
+            }
+            else if (characterSelect)
+            {
+                characterSelect = false;
+            }
         }
     }
 
