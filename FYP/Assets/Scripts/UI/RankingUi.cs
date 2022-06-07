@@ -24,7 +24,8 @@ public class RankingUi : MonoBehaviour
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        playerImages = GameObject.FindGameObjectsWithTag("Player Image");
+        GetPlayerImages();
+        availablePositions();
         StartCoroutine(ActivatePositions());
     }
  
@@ -32,7 +33,30 @@ public class RankingUi : MonoBehaviour
     {
         getPlayers();
         PLayerRanks();
-        availablePositions();
+    }
+
+    void GetPlayerImages()
+    {
+        GameObject[] pImages = GameObject.FindGameObjectsWithTag("Player Image");
+        playerImages = new GameObject[pImages.Length];
+        foreach(GameObject pi in pImages)
+        {
+            switch (pi.name)
+            {
+                case "Player 1 img":
+                    playerImages[0] = pi;
+                    break;
+                case "Player 2 img":
+                    playerImages[1] = pi;
+                    break;
+                case "Player 3 img":
+                    playerImages[2] = pi;
+                    break;
+                case "Player 4 img":
+                    playerImages[3] = pi;
+                    break;
+            }
+        }
     }
 
     public void getPlayers()
@@ -42,7 +66,26 @@ public class RankingUi : MonoBehaviour
 
     void availablePositions()
     {
-        positions = GameObject.FindGameObjectsWithTag("Position");
+        GameObject[] pos = GameObject.FindGameObjectsWithTag("Position");
+        positions = new GameObject[pos.Length];
+        foreach(GameObject p in pos)
+        {
+            switch (p.name)
+            {
+                case "1st Pos":
+                    positions[0] = p;
+                    break;
+                case "2nd Pos":
+                    positions[1] = p;
+                    break;
+                case "3rd Pos":
+                    positions[2] = p;
+                    break;
+                case "4th Pos":
+                    positions[3] = p;
+                    break;
+            }
+        }
     }
 
     void PLayerRanks()

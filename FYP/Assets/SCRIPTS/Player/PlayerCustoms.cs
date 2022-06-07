@@ -40,15 +40,21 @@ public class PlayerCustoms : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Character_Select_Sky")
+        if (Instance == this) //if this is the singleton
         {
-            characterSelect = true;
+            if (scene.name == "Character_Select_Sky")
+            {
+                characterSelect = true;
+            }
         }
     }
 
     void OnSceneUnloaded(Scene scene)
     {
-        characterSelect = false;
+        if (Instance == this) //if this is the singleton
+        {
+            characterSelect = false;
+        }
     }
 
     private void Start()

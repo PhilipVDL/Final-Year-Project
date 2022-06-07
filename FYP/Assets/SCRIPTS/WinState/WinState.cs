@@ -35,25 +35,37 @@ public class WinState : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else
+        else if (Instance == null)
         {
             Instance = this;
         }
 
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded; //detects scene loading
     }
 
-    private void Start()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) //runs at the start of each scene
     {
-        spawns = GameObject.FindGameObjectsWithTag("Start Spawn");
-        finish = GameObject.Find("Finish").GetComponent<FinishLine>();
-        sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
-        TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
-        obstaclesOnMap = GameObject.Find("Obstacles On Map").GetComponent<ObstaclesOnMap>();
-        maincamera = GameObject.Find("Main Camera");
-        camController = maincamera.GetComponent<CameraController>();
-        GetPlayers();
+        if (Instance == this) //if this is the singleton
+        {
+            Debug.Log("WinState: Scene Loaded");
+            if (GameObject.FindGameObjectWithTag("Player") != null) //if there is a player
+            {
+                if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>() != null) //with a playercontroller
+                {
+                    Debug.Log("WinState: Start Code");
+                    spawns = GameObject.FindGameObjectsWithTag("Start Spawn");
+                    finish = GameObject.Find("Finish").GetComponent<FinishLine>();
+                    sfx = GameObject.Find("SFX").GetComponent<SFXScript>();
+                    TOM = GameObject.Find("Team Objectives Manager").GetComponent<TeamObjectivesManager>();
+                    obstaclesOnMap = GameObject.Find("Obstacles On Map").GetComponent<ObstaclesOnMap>();
+                    maincamera = GameObject.Find("Main Camera");
+                    camController = maincamera.GetComponent<CameraController>();
+                    GetPlayers();
+                }
+            }
+        }
     }
 
     private void Update()

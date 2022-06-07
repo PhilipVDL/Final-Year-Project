@@ -6,6 +6,7 @@ public class SFXScript : MonoBehaviour
 {
     public GameObject SFXPrefab;
     public float sfxVolume;
+    float jumpVolumeScale = 0.6f;
 
     [Header("SFX")]
     public AudioClip offscreenEliminated;
@@ -24,7 +25,14 @@ public class SFXScript : MonoBehaviour
         GameObject oneShot = Instantiate(SFXPrefab); //spawn SFX source
         AudioSource source = oneShot.GetComponent<AudioSource>(); //get AudioSource
         source.volume = sfxVolume;
-        source.PlayOneShot(clip, sfxVolume); //play clip
+        if(clip == Jump)
+        {
+            source.PlayOneShot(clip, jumpVolumeScale); //play jump clip, reduced volume
+        }
+        else
+        {
+            source.PlayOneShot(clip); //play clip
+        }
         oneShot.GetComponent<OneShot>().DestroyWhenDone(); //destroy SFX source when finished playing clip
     }
 }
