@@ -695,7 +695,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 7182098491531211140, guid: d61128134ec1d4c45941b2cee80d725c, type: 3}
-  DEBUG_MaxPlace: 0
   canPlaceMore: 1
   maxPlaceThisRound: 99
   placedThisRound: 0
@@ -794,11 +793,11 @@ MonoBehaviour:
   - snooker
   bouncyJumpMult: 1.2
   bouncyMaterial: {fileID: 13400000, guid: 490a8dd731fdec3429e715bf3021830c, type: 2}
-  bowlingSpeedMult: 0.9
+  bowlingSpeedMult: 0.95
   bowlingKnockbackMult: 0.5
-  marbleSpeedMult: 1.1
+  marbleSpeedMult: 1.05
   marbleKnockbackMult: 1.5
-  snookerSpeedMult: 1.1
+  snookerSpeedMult: 1.05
   snookerKnockbackMult: 1.5
 --- !u!114 &4821443776047870066
 MonoBehaviour:
