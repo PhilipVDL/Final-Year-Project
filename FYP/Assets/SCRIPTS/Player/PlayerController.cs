@@ -464,43 +464,40 @@ public class PlayerController : MonoBehaviour
     void Strafing()
     {
         //rigidbody
-        if (grounded)
+        if (goRight)
         {
-            if (goRight)
+            if (prb.velocity.x >= 0) //if moving right
             {
-                if (prb.velocity.x >= 0) //if moving right
+                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                 {
-                    if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
-                    {
-                        prb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
-                    }
-                    else
-                    {
-                        prb.AddForce(transform.right * horizontalMoveSpeedMin);
-                    }
+                    prb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier);
                 }
                 else
                 {
-                    prb.velocity = new Vector3(prb.velocity.x * -1, prb.velocity.y, prb.velocity.z); //switch direction
+                    prb.AddForce(transform.right * horizontalMoveSpeedMin);
                 }
             }
-            else if (goLeft)
+            else
             {
-                if (prb.velocity.x <= 0) //if moving left
+                prb.velocity = new Vector3(prb.velocity.x * -1, prb.velocity.y, prb.velocity.z); //switch direction
+            }
+        }
+        else if (goLeft)
+        {
+            if (prb.velocity.x <= 0) //if moving left
+            {
+                if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
                 {
-                    if (currentSpeed * horizontalMoveSpeedMultiplier > horizontalMoveSpeedMin)
-                    {
-                        prb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
-                    }
-                    else
-                    {
-                        prb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
-                    }
+                    prb.AddForce(transform.right * currentSpeed * horizontalMoveSpeedMultiplier * -1);
                 }
                 else
                 {
-                    prb.velocity = new Vector3(prb.velocity.x * -1, prb.velocity.y, prb.velocity.z); //switch direction
+                    prb.AddForce(transform.right * horizontalMoveSpeedMin * -1);
                 }
+            }
+            else
+            {
+                prb.velocity = new Vector3(prb.velocity.x * -1, prb.velocity.y, prb.velocity.z); //switch direction
             }
         }
         StrafingMax();
